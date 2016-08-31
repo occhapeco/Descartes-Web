@@ -75,6 +75,12 @@
     }
     else
       echo "<script>alert('Erro 1!');</script>";
+
+      $pais = $_POST['pais'];
+      $estado = $_POST['estado'];
+      $rua = $_POST['endereco'];
+      $cep = $_POST['cep'];
+      $cidade = $_POST['cidade'];
   }
  
   //---------------------//

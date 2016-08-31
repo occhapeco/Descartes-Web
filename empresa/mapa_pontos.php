@@ -15,8 +15,6 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
     
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
@@ -25,6 +23,8 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="assets/css/table-responsive.css" rel="stylesheet">
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
 
     <script src="assets/js/chart-master/Chart.js"></script>
     <style type="text/css">
@@ -113,6 +113,11 @@
                 <form action="cadastro_pontos.php" method="post" id="submete">        
                   <input type="hidden" name="lat" id="lat" value="e">
                   <input type="hidden" name="long" id="long" value="e">
+                  <input type="hidden" name="estado" id="estado" value="">
+                  <input type="hidden" name="cidade" id="cidade" value="">
+                  <input type="hidden" name="pais" id="pais" value="">
+                  <input type="hidden" name="endereco" id="endereco" value="">
+                  <input type="hidden" name="cep" id="cep" value="">
                 </form>
                 <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade"> </input>
                 <div id="map"></div>                  
@@ -345,6 +350,51 @@
 
       function submeter()
       {
+        var geocoder = new google.maps.Geocoder;
+        var lati = document.getElementById('lat').value;
+        var long = document.getElementById('long').value;
+        var latlng = {lat: parseFloat(lati), lng: parseFloat(long)};
+
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+              alert(results[1].formatted_address);
+              var address = "", city = "", state = "", zip = "", country = "", formattedAddress = "";
+              for (var i = 0; i < results[0].address_components.length; i++) {
+                          var addr = results[0].address_components[i];
+                          // check if this entry in address_components has a type of country
+                          if (addr.types[0] == 'country')
+                              country = addr.long_name;
+                          else if (addr.types[0] == 'street_address') // address 1
+                              address = address + addr.long_name;
+                          else if (addr.types[0] == 'establishment')
+                              address = address + addr.long_name;
+                          else if (addr.types[0] == 'route')  // address 2
+                              address = address + addr.long_name;
+                          else if (addr.types[0] == 'postal_code')       // Zip
+                              zip = addr.short_name;
+                          else if (addr.types[0] == ['administrative_area_level_1'])       // State
+                              state = addr.long_name;
+                          else if (addr.types[0] == ['locality'])       // City
+                              city = addr.long_name;
+              }
+              alert(country);
+              alert(address);
+              alert(zip);
+              alert(state);
+              alert(city);
+              document.getElementById('estado').value = state;
+              document.getElementById('endereco').value = state;
+              document.getElementById('cep').value = state;
+              document.getElementById('pais').value = state;
+              document.getElementById('cidade').value = state;
+            } else {
+             //window.alert('No results found');
+            }
+          } else {
+            //window.alert('Geocoder failed due to: ' + status);
+          }
+        });
         document.getElementById("submete").submit();
       }
 
@@ -352,8 +402,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
 
         <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>

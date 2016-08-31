@@ -2,5 +2,5 @@
 	require_once('lib/nusoap.php');
 
 	ini_set("soap.wsdl_cache_enabled", "1");
-	$service = new nusoap_client('http://localhost/descartes/service/server.php?wsdl', true);
+	$service = new nusoap_client('http://localhost/descartes/Descartes-Web/service/server.php?wsdl', true);
 ?>
