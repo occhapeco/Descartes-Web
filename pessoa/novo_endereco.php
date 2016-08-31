@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>Descartes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
+    
+    <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
+
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <link href="assets/css/table-responsive.css" rel="stylesheet">
+
+    <script src="assets/js/chart-master/Chart.js"></script>
+	
+  </head>
+
+  <body>
+
+  <section id="container" >
+     <?php 
+          require_once("topnav.php");
+          require_once("sidenav.php");
+      ?>
+  
+  <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT Formulário
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+          	<h3><i class="fa fa-angle-right"></i> Novo Endereço</h3>
+          	
+          	<!-- BASIC FORM ELELEMNTS -->
+          	<div class="row mt">
+          		<div class="col-lg-12">
+                  <div class="form-panel offset1">
+                      <form class="form-horizontal style-form" method="get">
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">CEP</label>
+                              <div class="col-sm-10">
+								  <input type="text" id="cep" name="cep" maxlength="8" OnKeyPress="formatar('##.###-###', this,event)" class="form-control" onblur="pesquisacep(this.value);">
+                              </div>
+                          </div>
+						  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">País</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" maxlength="20">
+                              </div>
+                          </div>
+						  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Estado</label>
+                              <div class="col-sm-10">
+                                  <input id="uf" type="text" class="form-control" maxlength="2">
+                              </div>
+                          </div>
+						  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
+                              <div class="col-sm-10">
+                                  <input id="cidade" type="text" class="form-control" maxlength="40">
+                              </div>
+                          </div>
+						  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Bairro</label>
+                              <div class="col-sm-10">
+                                  <input id="bairro" type="text" class="form-control" maxlength="40">
+                              </div>
+                          </div>
+						  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Rua</label>
+                              <div class="col-sm-10">
+                                  <input id="rua" type="text" class="form-control" maxlength="40">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Número</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" onkeypress="return numbro(event)" maxlength="6">
+                              </div>
+                          </div>
+						  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Complemento</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" maxlength="20">
+                              </div>
+                          </div>
+                      </form>
+              	         <a href="enderecos.php"><button class="btn btn-sm btn-theme03 pull-right">Confirmar</button></a><br><br>
+                  </div>
+				</div><!-- col-lg-12-->      	
+          	</div><!-- /row -->
+			</section><! --/wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
+			
+     </section><!-- Conteiner-->
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.sparkline.js"></script>
+
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+    
+    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+
+    <!--script for this page-->
+    <script src="assets/js/sparkline-chart.js"></script>    
+	<script src="assets/js/zabuto_calendar.js"></script>	
+	
+	<script type="text/javascript">
+        $(document).ready(function () {
+        var unique_id = $.gritter.add({
+            // (string | mandatory) the heading of the notification
+            //title: 'Welcome to Dashgum!',
+            // (string | mandatory) the text inside the notification
+            //text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
+            // (string | optional) the image to display on the left
+            image: 'assets/img/ui-sam.jpg',
+            // (bool | optional) if you want it to fade out on its own or just sit there
+            sticky: true,
+            // (int | optional) the time you want it to be alive for before fading out
+            time: '',
+            // (string | optional) the class name you want to apply to that specific message
+            class_name: 'my-sticky-class'
+        });
+
+        return false;
+        });
+		
+		function numbro(e){
+			var tecla=(window.event)?event.keyCode:e.which;
+			if((tecla>47)&&(tecla<58)) return true;
+			else{
+				if((tecla==8)||(tecla==0)) return true;
+				else return false;
+			}
+		}
+	</script>
+	
+	<script type="application/javascript">
+        $(document).ready(function () {
+            $("#date-popover").popover({html: true, trigger: "manual"});
+            $("#date-popover").hide();
+            $("#date-popover").click(function (e) {
+                $(this).hide();
+            });
+        
+            $("#my-calendar").zabuto_calendar({
+                action: function () {
+                    return myDateFunction(this.id, false);
+                },
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Special event", badge: "00"},
+                    {type: "block", label: "Regular event", }
+                ]
+            });
+        });
+        
+        
+        function myNavFunction(id) {
+            $("#date-popover").hide();
+            var nav = $("#" + id).data("navigation");
+            var to = $("#" + id).data("to");
+            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+    </script>
+  
+   <script>
+     function formatar(mascara, documento,e){
+     var i = documento.value.length;
+     var saida = mascara.substring(0,1);
+     var texto = mascara.substring(i);
+	 var tecla=(window.event)?event.keyCode:e.which;
+
+	if(tecla!=8){
+		 if (texto.substring(0,1) != saida){
+				documento.value += texto.substring(0,1);
+		 }
+	}
+  
+    }
+	</script>
+	   
+	   
+	<script type="text/javascript" >
+//    CEP
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+    </script>
+  </body>
+</html>
