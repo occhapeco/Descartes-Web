@@ -113,11 +113,11 @@
                 <form action="cadastro_pontos.php" method="post" id="submete">        
                   <input type="hidden" name="lat" id="lat" value="e">
                   <input type="hidden" name="long" id="long" value="e">
-                  <input type="hidden" name="estado" id="estado" value="">
-                  <input type="hidden" name="cidade" id="cidade" value="">
-                  <input type="hidden" name="pais" id="pais" value="">
-                  <input type="hidden" name="endereco" id="endereco" value="">
-                  <input type="hidden" name="cep" id="cep" value="">
+                  <input type="hidden" name="estado" id="estado" value="e">
+                  <input type="hidden" name="cidade" id="cidade" value="e">
+                  <input type="hidden" name="pais" id="pais" value="e">
+                  <input type="hidden" name="endereco" id="endereco" value="e">
+                  <input type="hidden" name="cep" id="cep" value="e">
                 </form>
                 <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade"> </input>
                 <div id="map"></div>                  
@@ -378,16 +378,17 @@
                           else if (addr.types[0] == ['locality'])       // City
                               city = addr.long_name;
               }
-              alert(country);
-              alert(address);
-              alert(zip);
-              alert(state);
-              alert(city);
               document.getElementById('estado').value = state;
-              document.getElementById('endereco').value = state;
-              document.getElementById('cep').value = state;
-              document.getElementById('pais').value = state;
-              document.getElementById('cidade').value = state;
+              document.getElementById('endereco').value = address;
+              document.getElementById('cep').value = zip;
+              document.getElementById('pais').value = country;
+              document.getElementById('cidade').value = city;
+              alert(document.getElementById('estado').value);
+              alert(document.getElementById('endereco').value);
+              alert(document.getElementById('cep').value);
+              alert(document.getElementById('pais').value);
+              alert(document.getElementById('cidade').value);
+              document.getElementById("submete").submit();
             } else {
              //window.alert('No results found');
             }
@@ -395,7 +396,6 @@
             //window.alert('Geocoder failed due to: ' + status);
           }
         });
-        document.getElementById("submete").submit();
       }
 
     </script>

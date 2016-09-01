@@ -46,6 +46,11 @@
   if (isset($_POST['lat']))
   {
     $lat_long  = "<input type='hidden' id='lat' name='lat' value=" . $_POST["lat"] . "><input type='hidden' id='long' name='long' value=" . $_POST["long"] . ">";
+    $pais = $_POST['pais'];
+      $estado = $_POST['estado'];
+      $rua = $_POST['endereco'];
+      $cep = $_POST['cep'];
+      $cidade = $_POST['cidade'];
   }
   
   //---------------------//
@@ -75,12 +80,6 @@
     }
     else
       echo "<script>alert('Erro 1!');</script>";
-
-      $pais = $_POST['pais'];
-      $estado = $_POST['estado'];
-      $rua = $_POST['endereco'];
-      $cep = $_POST['cep'];
-      $cidade = $_POST['cidade'];
   }
  
   //---------------------//
@@ -376,6 +375,10 @@
         $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
       });
 
+    <?php 
+      echo "alert(".$cidade.");";
+
+    ?>
    </script>
     </body>
 </html>
