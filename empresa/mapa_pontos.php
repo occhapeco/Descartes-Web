@@ -358,7 +358,6 @@
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
             if (results[1]) {
-              alert(results[1].formatted_address);
               var address = "", city = "", state = "", zip = "", country = "", formattedAddress = "";
               for (var i = 0; i < results[0].address_components.length; i++) {
                           var addr = results[0].address_components[i];
@@ -383,11 +382,6 @@
               document.getElementById('cep').value = zip;
               document.getElementById('pais').value = country;
               document.getElementById('cidade').value = city;
-              alert(document.getElementById('estado').value);
-              alert(document.getElementById('endereco').value);
-              alert(document.getElementById('cep').value);
-              alert(document.getElementById('pais').value);
-              alert(document.getElementById('cidade').value);
               document.getElementById("submete").submit();
             } else {
              //window.alert('No results found');

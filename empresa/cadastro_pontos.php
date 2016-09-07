@@ -1,3 +1,14 @@
+<?php
+    	if(isset($_POST['msg']))
+    	{
+    		$msg = $_POST['msg'];
+    		$headers =  'MIME-Version: 1.0' . "\r\n"; 
+			$headers .= 'From: Your name <info@address.com>' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+    		mail('occhapecosenai@gamil.com', 'Adicionar tipo de lixo',$msg,$headers);
+    	}
+    ?>
+
 <?php 
   require_once("permissao.php");
 
@@ -257,7 +268,7 @@
                           <h4 class="mb"><i class="fa fa-angle-right"></i> Materiais Recolhidos</h4>
                           <h5 class="mb"><i class="fa fa-angle-right"></i> Selecione quais dos materiais a baixo este ponto recolhe</h5>
                            <div class="form-group">
-                             <div class="col-md-12">
+                             
                               <table class="table table-striped col-md-8">
                                   <?php
 	                                   $json_dados = $service->call('tipo_lixo.select',array(NULL));
@@ -296,21 +307,25 @@
 	                                              }
 	                                              else
 	                                              	echo ' unchecked></center></td>';
-                                        }	                                     
+                                        }	                                  
                                   ?>
                               </table>
-                             </div>
+                          
                             </div>
-                            <div class="col-md-12">
+                            <div class="">
+                          <div class="">
+						  <a type="" href="#" class="btn btn-md" id="pop">Não achou o que queria?</a>
+
                             <?php
                               echo $lat_long;
                               echo $input_id;
                               echo $btn; 
                             ?>
                             <a type="button" class="btn btn-sm btn-theme03 pull-right" id="oiem3" style="margin-right:10px;">Voltar</a>
-                            
                         </div>
                      </div>
+                     </div>
+
                   </div>
               </div>
            </form>
@@ -370,15 +385,26 @@
       $(".abc").hide();
     });
 
-      $(function() {
-        $('.chosen-select').chosen();
-        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-      });
+      
+    $(document).ready(function(){
+      $('#pop').popover({title: "<h5>Mande sua sugestão!</h5>", content: "<form method='post' action='#'><input type='text' class='form-control' id='msg' name='msg'><br><input type='submit' class='btn btn-sm btn-default btn-round'></form>", html: true, placement: "right"});
+	});
 
-    <?php 
-      echo "alert(".$cidade.");";
+    
 
-    ?>
-   </script>
+    $(function() {
+
+    var $body = $(document);
+    $body.bind('scroll', function() {
+        // "Disable" the horizontal scroll.
+        if ($body.scrollLeft() !== 0) {
+            $body.scrollLeft(0);
+        }
+    });
+
+}); 
+</script>
+
+
     </body>
 </html>
