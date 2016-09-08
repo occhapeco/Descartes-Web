@@ -3,9 +3,8 @@
     	{
     		$msg = $_POST['msg'];
     		$headers =  'MIME-Version: 1.0' . "\r\n"; 
-			$headers .= 'From: Your name <info@address.com>' . "\r\n";
-			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
-    		mail('occhapecosenai@gamil.com', 'Adicionar tipo de lixo',$msg,$headers);
+			$headers .= 'From: DescartesLab' . "\r\n";
+    		mail('occhapecosenai@gmail.com', 'Adicionar tipo de lixo',$msg,$headers);
     	}
     ?>
 
