@@ -1,3 +1,22 @@
+<?php 
+  require_once("permissao_pessoa.php"); 
+
+  // Tratando edições
+  if(isset($_POST))
+  {
+    require_once("../conectar_service.php");
+    if (isset($_POST["editar_perfil"]))
+      if ($service->call('usuario.update_perfil',array($_SESSION["id"],$_POST["nome"],$_POST["email"],$_POST["telefone"])))
+        echo "<script>alert('Perfil editado com sucesso');</script>";
+      else
+        echo "<script>alert('Erro ao editar perfil!');</script>";
+    if (isset($_POST["editar_senha"]))
+        if ($_POST["senha_nova1"] == $_POST["senha_nova2"] && $service->call('usuario.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
+          echo "<script>alert('Senha alterada com sucesso');</script>";
+        else
+          echo "<script>alert('Erro ao editar senha!');</script>";
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,54 +68,62 @@
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i> Dados Pessoais</h4>
-                      <form class="form-horizontal style-form" method="get">
+                      <form class="form-horizontal style-form" method="post" action="#">
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nome Completo</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" maxlength="30">
-                              </div>
+                                  <?php
+                                    echo '<input type="text" id="nome" name="nome" class="form-control" maxlength="30" value="' . $usuario[0]->nome . '" required autofocus>';
+                              ?>
+						      </div>
                           </div>
+
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                               <div class="col-sm-10">
-							                   <input id='o' type="text" name="tel" maxlength="13" onkeypress="formatar('## ####-####', this)" class="form-control">
-                              </div>
+							        <?php
+                                      echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
+                              ?>
+					          </div>
                           </div>
-						              <div class="form-group">
+
+						  <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" maxlength="40">
+                                  <?php
+                                    echo '<input type="text" id="email" name="email" class="form-control" maxlength="40" value="' . $usuario[0]->email . '" required autofocus>';
+                              ?>
                               </div>
                           </div>
+							<button type="submit" name="editar_perfil" id="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmar</button>		
+              	         <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Editar Senha</a><br><br>                     
                       </form>
-              	         <a href="indexPessoa.html"><button class="btn btn-sm btn-theme pull-right">Confirmar</button></a>
-              	         <button class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Editar Senha</button><br><br>
                   </div>
 				  
 					
 				  <div class="form-panel offset1 abc" >
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i> Alteração de Senha</h4>
-                      <form class="form-horizontal style-form" method="get">
+                      <form class="form-horizontal style-form" method="post" action="#">
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Senha Atual</label>
                               <div class="col-sm-10">
-                                  <input type="password" class="form-control" maxlength="12">
+                                  <input type="password" id="senha_antiga" name="senha_antiga" class="form-control" maxlength="12">
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nova Senha</label>
                               <div class="col-sm-10">
-                                  <input type="password" class="form-control" maxlength="12">
+                                  <input type="password" id="senha_nova1" name="senha_nova1" class="form-control" maxlength="12">
                               </div>
                           </div>
 						  <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Confirmação da Nova Senha</label>
                               <div class="col-sm-10">
-                                  <input type="password" class="form-control" maxlength="12">
+                                  <input type="password" id="senha_nova2" name="senha_nova2" class="form-control" maxlength="12">
                               </div>
                           </div>
+                          <button type="submit" name="editar_senha" id="editar_senha" class="btn btn-sm btn-theme pull-right">Confirmar</button><br><br>
                       </form>
-					  <button class="btn btn-sm btn-theme pull-right" id="oiem1">Confirmar</button><br><br>
               	    </div>
 				</div><!-- col-lg-12-->      	
           	</div><!-- /row -->
@@ -142,19 +169,19 @@
     </script>
 	
 	<script>
-     function formatar(mascara, documento){
-     var i = documento.value.length;
-     var saida = mascara.substring(0,1);
-     var texto = mascara.substring(i);
-	 var tecla=(window.event)?event.keyCode:e.which;
 
-//	if(tecla!=8){
-		 if (texto.substring(0,1) != saida){
-				documento.value += texto.substring(0,1);
-		 }
-//	}
-  
-    }
+     function formatar(mascara, documento){
+	     var i = documento.value.length;
+	     var saida = mascara.substring(0,1);
+	     var texto = mascara.substring(i);
+		 var tecla=(window.event);
+
+		if(tecla!=8){
+			 if (texto.substring(0,1) != saida){
+					documento.value += texto.substring(0,1);
+			 }
+		}
+	}
    </script>
   </body>
 </html>

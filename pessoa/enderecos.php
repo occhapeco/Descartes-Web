@@ -1,3 +1,9 @@
+<?php 
+  require_once("permissao_pessoa.php"); 
+  require_once("../conectar_service.php");
+
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,16 +54,27 @@
                      <div class="form-panel offset1" >
                         <form class="form-horizontal style-form" method="get">
                            <div class="panel-group" id="accordion">
-						     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+						                
+                           <?php
+                            $json_dados = $service->call('usuario_has_endereco.select',array("id = " . $_SESSION["id"]));
+                            $endereco_usu = json_decode($json_dados);
+
+                            for($i = 0; $i<=count($endereco_usu);$i++) 
+                            {
+                              $endereco_id = $endereco_usu[$i]->endereco_id;
+                              $json_dados = $service->call('endereco.select_by_id',array("id = " . $endereco_id));
+                              $endereco = json_decode($json_dados);
+                           ?>
+                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                <div class="panel panel-default">
                                  <div class="panel-heading">
                                   <h4 class="panel-title">
-                                    Casa
+                                    <?php echo $endereco_usu[$i]->nome ?>
                                   </h4></a>
                                </div>
-							   <div id="collapse1" class="panel-collapse collapse">
-								 <div class="panel-body">
-									<div class="row mt">
+              							   <div id="collapse1" class="panel-collapse collapse">
+              								 <div class="panel-body">
+              									<div class="row mt">
                                       <div class="col-lg-12">
                                         <div class="content-panel">
                                          <section id="no-more-tables">
@@ -67,148 +84,47 @@
                                                  <th>Rua</th>
                                                  <th>Número</th>  
                                                  <th>Complemento</th>  
-									             <th>CEP</th>
+									                               <th>CEP</th>
                                                  <th>Bairro</th>  
                                                  <th>UF</th>
-												 <th>Cidade</th>
-												 <th>País</th>
+                        												 <th>Cidade</th>
+                        												 <th>País</th>
                                                  <th><center>Editar</center></th>
-												 <th><center>Excluir</center></th>
+												                         <th><center>Excluir</center></th>
                                                </tr>
                                              </thead>
                                              <tbody>
                                               <tr>
-                                                <td data-title="Rua">Avenida</td>
-                                                <td data-title="Número">15</td>
-                                                <td data-title="Complemento">D</td>
-									            <td data-title="CEP">89000000</td>
-									            <td data-title="Bairro">Centro</td>
-									            <td data-title="UF">SC</td>
-									            <td data-title="Cidade">Chapecó</td>
-									            <td data-title="País">Brasil</td>
-									            <td data-title="Editar"><center><button type="button" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></td>
-									            <td data-title="Excluir"><center><button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button></center></td>
+                                                <td data-title="Rua"><?php echo $endereco[$i]->rua; ?></td>
+                                                <td data-title="Número"><?php echo $endereco[$i]->numero; ?></td>
+                                                <td data-title="Complemento"><?php echo $endereco[$i]->complemento; ?></td>
+                  									            <td data-title="CEP"><?php echo $endereco[$i]->cep; ?></td>
+                  									            <td data-title="Bairro"><?php echo $endereco[$i]->bairro; ?></td>
+                  									            <td data-title="UF"><?php echo $endereco[$i]->uf; ?></td>
+                  									            <td data-title="Cidade"><?php echo $endereco[$i]->cidade; ?></td>
+                  									            <td data-title="País"><?php echo $endereco[$i]->pais; ?></td>
+                  									            <td data-title="Editar"><center><button type="submit" id="editar" name="editar" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></td>
+                  									            <td data-title="Excluir"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></td>
                                               </tr>
                                              </tbody>
                                            </table>
                                          </section>
                                         </div><!-- /content-panel -->
                                       </div><!-- /col-lg-12 -->
-									  </div><!-- /row -->
-									 </div>
-                                    </div>
-								  </div>
-							 
-							 <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-							 <div class="panel panel-default">
-                                 <div class="panel-heading">
-                                  <h4 class="panel-title">
-                                    Trabalho
-                                  </h4></a>
-                               </div>
-							   <div id="collapse2" class="panel-collapse collapse">
-								 <div class="panel-body">
-									<div class="row mt">
-                                      <div class="col-lg-12">
-                                        <div class="content-panel">
-                                         <section id="no-more-tables">
-                                           <table class="table table-striped table-condensed cf" style="">
-                                             <thead class="cf">
-                                               <tr>
-                                                 <th>Rua</th>
-                                                 <th>Número</th>  
-                                                 <th>Complemento</th>  
-									             <th>CEP</th>
-                                                 <th>Bairro</th>  
-                                                 <th>UF</th>
-												 <th>Cidade</th>
-												 <th>País</th>
-                                                 <th><center>Editar</center></th>
-												 <th><center>Excluir</center></th>
-                                               </tr>
-                                             </thead>
-                                             <tbody>
-                                              <tr>
-                                                <td data-title="Rua">Avenida</td>
-                                                <td data-title="Número">15</td>
-                                                <td data-title="Complemento">D</td>
-									            <td data-title="CEP">89000000</td>
-									            <td data-title="Bairro">Centro</td>
-									            <td data-title="UF">SC</td>
-									            <td data-title="Cidade">Chapecó</td>
-									            <td data-title="País">Brasil</td>
-									            <td data-title="Editar"><center><button type="button" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></td>
-									            <td data-title="Excluir"><center><button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button></center></td>
-                                              </tr>
-                                             </tbody>
-                                           </table>
-                                         </section>
-                                        </div><!-- /content-panel -->
-                                      </div><!-- /col-lg-12 -->
-									  </div><!-- /row -->
-									 </div>
-                                    </div>
-								  </div>
-							 
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-							 <div class="panel panel-default">
-                                 <div class="panel-heading">
-                                  <h4 class="panel-title">
-                                    Escola
-                                  </h4></a>
-                               </div>
-							   <div id="collapse3" class="panel-collapse collapse">
-								 <div class="panel-body">
-									<div class="row mt">
-                                      <div class="col-lg-12">
-                                        <div class="content-panel">
-                                         <section id="no-more-tables">
-                                           <table class="table table-striped table-condensed cf" style="">
-                                             <thead class="cf">
-                                               <tr>
-                                                 <th>Rua</th>
-                                                 <th>Número</th>  
-                                                 <th>Complemento</th>  
-									             <th>CEP</th>
-                                                 <th>Bairro</th>  
-                                                 <th>UF</th>
-												 <th>Cidade</th>
-												 <th>País</th>
-                                                 <th><center>Editar</center></th>
-												 <th><center>Excluir</center></th>
-                                               </tr>
-                                             </thead>
-                                             <tbody>
-                                              <tr>
-                                                <td data-title="Rua">Avenida</td>
-                                                <td data-title="Número">15</td>
-                                                <td data-title="Complemento">D</td>
-									            <td data-title="CEP">89000000</td>
-									            <td data-title="Bairro">Centro</td>
-									            <td data-title="UF">SC</td>
-									            <td data-title="Cidade">Chapecó</td>
-									            <td data-title="País">Brasil</td>
-									            <td data-title="Editar"><center><button type="button" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></td>
-									            <td data-title="Excluir"><center><button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button></center></td>
-                                              </tr>
-                                             </tbody>
-                                           </table>
-                                         </section>
-                                        </div><!-- /content-panel -->
-                                      </div><!-- /col-lg-12 -->
-									  </div><!-- /row -->
-									 </div>
-                                    </div>
-								  </div>
-                      </form>
-					  <br> 	
-					  <a href="NovoEndereco.html" class="btn btn-sm btn-theme03 pull-right botao03">Adicionar Novo Endereço</a><br>
+            									     </div><!-- /row -->
+            									   </div>
+                                </div>
+                                <?php
+                                  }
+                                ?>
+                            </div>
+							           </form>
               	    </div>
 				  
 				  
-				</div><!-- col-lg-12-->      	
+				        </div><!-- col-lg-12-->      	
           	</div><!-- /row -->
-			</section>
+			   </section>
       </section><!-- /MAIN CONTENT -->
 
 			

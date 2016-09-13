@@ -241,11 +241,7 @@
 	    function update_perfil($id,$nome,$email,$telefone) {
 	    	$nome = ereg_replace("[#'/*\|`]", '',$nome);
 			$email = ereg_replace("[#'/*\|`]", '',$email);
-			$cpf = ereg_replace("[^0-9]", '',$cpf);
 			$telefone = ereg_replace("[^0-9]", '',$telefone);
-	    	if (!validar_cpf($cpf))
-    			return 0;
-    		$senha = sha1($senha);
 	      	require_once("conectar_mysql.php");
 	    	$query = $conexao->query("SELECT * FROM usuario WHERE id = $id");
 	    	$retorno = false;

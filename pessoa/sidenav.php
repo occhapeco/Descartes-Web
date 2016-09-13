@@ -2,9 +2,14 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-              
-              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-				  <center>
+              <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+				          <center>
+                    <?php
+                      require_once("../conectar_service.php");
+                      $json_dados = $service->call('usuario.select',array("id = " . $_SESSION["id"]));
+                      $usuario = json_decode($json_dados);
+                      echo "<p>" . $usuario[0]->nome . "</p>";
+                    ?>
               	    <a href="editarperfil.php"><button class="btn btn-sm btn-theme btn-round">Editar Perfil</button ></a>
               	  </center>	
 				  <br>
@@ -15,7 +20,7 @@
                       </a>
                   </li>
 				  
-				   <li class="sub-menu">
+				          <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-map-marker"></i>
                           <span>Endereços</span>
@@ -32,7 +37,7 @@
                           <span>Pedidos</span>
                       </a>
                   </li>
-		   </ul>
+		          </ul>
               <!-- sidebar menu end-->
           </div>
       </aside>

@@ -6,7 +6,7 @@
 
         require_once("../conectar_service.php");
 
-        $empresa = $service->call('empresa.login',array($email,$senha,true));
+        $empresa = $service->call('empresa.login',array($email,$senha));
         var_dump($empresa);
         if ($empresa != 0)
         {   
@@ -17,13 +17,13 @@
         }
         else
         {
-            $usuario = $service->call('usuario.login',array($email,$senha,true));
+            $usuario = $service->call('usuario.login',array($email,$senha));
             if ($usuario != 0)
             {
                 session_start();
                 $_SESSION["id"] = $usuario;
                 $_SESSION["tabela"] = "usuario";
-                header("location: ../usuario/");
+                header("location: ../pessoa/");
             }
             else
                 header("location: login.php");

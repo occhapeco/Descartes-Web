@@ -11,7 +11,7 @@
       else
         echo "<script>alert('Erro ao editar perfil!');</script>";
     if (isset($_POST["editar_senha"]))
-        if ($_POST["senha_nova1"] == $_POST["senha_nova2"] && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
+        if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
           echo "<script>alert('Senha alterada com sucesso');</script>";
         else
           echo "<script>alert('Erro ao editar senha!');</script>";
@@ -82,7 +82,7 @@
                               ?>
                               </div>
                           </div>
-						  <div class="form-group">
+						              <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
                               <div class="col-sm-10">
                               <?php
@@ -111,7 +111,7 @@
                                   <input type="password" id="senha_nova1" name="senha_nova1" class="form-control" maxlength="12" required>
                               </div>
                           </div>
-						  <div class="form-group">
+						              <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Confirmação da Nova Senha</label>
                               <div class="col-sm-10">
                                   <input type="password" id="senha_nova2" name="senha_nova2" class="form-control" maxlength="12" required>

@@ -1,3 +1,6 @@
+<?php 
+  require_once("permissao_pessoa.php"); 
+?>
 <!DOCTYPE html>
 <html lang="en">
  <head>
