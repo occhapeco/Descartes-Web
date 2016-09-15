@@ -2,6 +2,21 @@
   require_once("permissao_pessoa.php"); 
   require_once("../conectar_service.php");
 
+  if(isset($_POST["excluir"]))
+  {
+    if($service->call('usuario_has_endereco.delete',array($_POST["id"])))
+    {
+      echo "<script>alert('usuario_has_endereco deletado com sucesso');</script>";
+      if($service->call('endereco.delete',array($_POST["id"])))
+      {
+        echo "<script>alert('endereco deletado com sucesso');</script>";
+      }
+      else
+        echo "<script>alert('endereco não pode ser deletado com sucesso');</script>";
+    }
+    else
+      echo "<script>alert('usuario_has_endereco não pode ser deletado');</script>";   
+  }
   
 ?>
 <!DOCTYPE html>
@@ -52,24 +67,24 @@
           	
           	<!-- BASIC FORM ELELEMNTS -->
                      <div class="form-panel offset1" >
-                        <form class="form-horizontal style-form" method="get">
+                        
                            <div class="panel-group" id="accordion">
 						                
                            <?php
                             $json_dados = $service->call('usuario_has_endereco.select',array("id = " . $_SESSION["id"]));
                             $endereco_usu = json_decode($json_dados);
 
-                            for($i = 0; $i<=count($endereco_usu);$i++) 
+                            for($i = 0; $i<count($endereco_usu);$i++) 
                             {
                               $endereco_id = $endereco_usu[$i]->endereco_id;
-                              $json_dados = $service->call('endereco.select_by_id',array("id = " . $endereco_id));
+                              $json_dados = $service->call('endereco.select_by_id',array($endereco_id));
                               $endereco = json_decode($json_dados);
                            ?>
                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                <div class="panel panel-default">
                                  <div class="panel-heading">
                                   <h4 class="panel-title">
-                                    <?php echo $endereco_usu[$i]->nome ?>
+                                    <?php echo $endereco_usu[$i]->nome; ?>
                                   </h4></a>
                                </div>
               							   <div id="collapse1" class="panel-collapse collapse">
@@ -96,15 +111,24 @@
                                              <tbody>
                                               <tr>
                                                 <td data-title="Rua"><?php echo $endereco[$i]->rua; ?></td>
-                                                <td data-title="Número"><?php echo $endereco[$i]->numero; ?></td>
+                                                <td data-title="Número"><?php echo $endereco[$i]->num; ?></td>
                                                 <td data-title="Complemento"><?php echo $endereco[$i]->complemento; ?></td>
                   									            <td data-title="CEP"><?php echo $endereco[$i]->cep; ?></td>
                   									            <td data-title="Bairro"><?php echo $endereco[$i]->bairro; ?></td>
                   									            <td data-title="UF"><?php echo $endereco[$i]->uf; ?></td>
                   									            <td data-title="Cidade"><?php echo $endereco[$i]->cidade; ?></td>
                   									            <td data-title="País"><?php echo $endereco[$i]->pais; ?></td>
-                  									            <td data-title="Editar"><center><button type="submit" id="editar" name="editar" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></td>
-                  									            <td data-title="Excluir"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></td>
+                  									            <td data-title="Editar">
+                                                  <form method="POST" action="novo_endereco.php" id="formeditar">
+                                                    <input type="hidden" id="id" name="id" value="<?php echo $endereco[$i]->id; ?>">
+                                                    <center>
+                                                    <button type="submit" id="editar" name="editar" class="btn btn-theme">
+                                                      <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                    </center>
+                                                  </form>
+                                                </td>
+                                                <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[$i]->id; ?>"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>
                                               </tr>
                                              </tbody>
                                            </table>
@@ -118,7 +142,7 @@
                                   }
                                 ?>
                             </div>
-							           </form>
+							           <!--</form>-->
               	    </div>
 				  
 				  
