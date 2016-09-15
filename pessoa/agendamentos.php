@@ -2,25 +2,34 @@
   require_once("permissao_pessoa.php"); 
 
   require_once("../conectar_service.php");
+
+ //Pegar informações de telefone e email;
+  $json_dados = $service->call('usuario.select',array("id = ".$_SESSION["id"]));
+  $usuario = json_decode($json_dados);
+
+  //Cadastrar Agendamentos
     
     if (isset($_POST["concluir"]))
     {
-      $id_agendamento = $service->call('agendamento.insert',array($_POST["id_ponto"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],0,0))
+      $json_dados = $service->call('agendamento.insert',array($_POST["id_ponto"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],0,0));
+      $id_agendamento = json_decode($json_dados);
       if($id_agendamento!=0)
       {
-        for percorrendo o tipo de lixo e vendo quais as checkbox estão checadas
-        $id_lixo = recebe o id dos checkbox q estiverem checados
-        
-        //insere os dados na tabela agendamento_has_tipo_lixo, porém como várias checkboxes podem estar checadas e a classe só aceita um por vez, tem q fazer um laço de repetição
-
-        if($service->('ageendamento_has_tipo_lixo', array($id_agendamento, $id_lixo, $_POST["quantiade_lixo"])))
+        $json_dados = $service->call('tipo_lixo.select',array(NULL));
+        $tipo_lixo = json_decode($json_dados);
+        for($i=0;$i<count($tipo_lixo);$i++)
         {
-        echo "<script>alert('Agendamento efetuado com sucesso');</script>";
+          if(isset($_POST[$tipo_lixo[$i]->id]))
+          { // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
+            $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($id_agendamento, $_POST[$tipo_lixo[$i]->id], $_POST["quantidade_lixo"]));
+            header("location: pedidos.php");
+            echo "<script>alert('Agendamento efetuado com sucesso');</script>";
+          }
         }
       }
-      else
-        echo "<script>alert('Erro ao efetuar o agendamento!');</script>";
     }
+    else
+      echo "<script>alert('Erro ao efetuar o agendamento!');</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +44,12 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/boostrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.clodflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
     <!--external css-->
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
@@ -78,18 +93,14 @@
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Data do Recolhimento</label>
                               <div class="col-sm-10">
-                                  <?php
-                                    echo '<input type="text" id="nome" name="nome" class="form-control" maxlength="30" value="' . $usuario[0]->nome . '" required autofocus>';
-                                  ?>
+                                <input type="text" id="data" name="data" class="form-control" maxlength="10" value="" onkeypress="formatar("##/##/####", this)" required autofocus>
 						                  </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Horário</label>
                               <div class="col-sm-10">
-						                     <?php
-                                    echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
-                                 ?>
+                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" onkeypress="formatar("##: ##", this)" required autofocus>
 					                     </div>
                           </div>
 
@@ -97,9 +108,11 @@
 						              <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Endereço para o Recolhimento</label>
                               <div class="col-sm-10">
-                                  <?php
-                                    echo '<input type="text" id="email" name="email" class="form-control" maxlength="40" value="' . $usuario[0]->email . '" required autofocus>';
-                                  ?>
+                                  <select class="selectpicker" data-style="btn-primary" multiple data-max-options="1">
+                                    <option>PHP</option>
+                                    <option>CSS</option>
+                                    <option>HTML</option>
+                                  </select>
                               </div>
                           </div>
 
@@ -107,18 +120,18 @@
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
                               <div class="col-sm-10">
-                                 <?php
-                                    echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
-                                 ?>
+                                 <select class="selectpicker" data-style="btn-primary" multiple>
+                                    <option>PHP</option>
+                                    <option>CSS</option>
+                                    <option>HTML</option>
+                                  </select>
                                </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Quantidade de lixo a ser Recolhida</label>
                               <div class="col-sm-10">
-                                 <?php
-                                    echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
-                                 ?>
+                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" required autofocus>
                                  <span class="help-block">Informe a unidade de medida da quantidade juntamente com seu valor</span>
                                </div>
                           </div>
@@ -136,13 +149,13 @@
                               <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
                               <div class="col-sm-10">
                                  <?php
-                                    echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
+                                    echo '<input type="text" id="email" name="email" class="form-control" maxlength="13" value="' . $usuario[0]->email . '" required autofocus>';
                                  ?>
                                </div>
                           </div>
 							         
-                        <button type="submit" name="editar_perfil" id="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmar</button>		
-              	        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Editar Senha</a><br><br>                     
+                        <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>		
+              	        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br>                     
                       </form>
                   </div>
 			       	</div><!-- col-lg-12-->      	

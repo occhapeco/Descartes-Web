@@ -325,9 +325,10 @@
 
 	// Classe da tabela usuario_has_endereco //
 	class usuario_has_endereco {
-		function insert($usuario_id,$endereco_id) {
+		function insert($usuario_id,$endereco_id,$nome) {
+			$nome = ereg_replace("[#'/*\|`]", '',$nome);
 	    	require_once("conectar_mysql.php");
-	    	$query = $conexao->query("INSERT INTO endereco VALUES(NULL,$usuario_id,$endereco_id)");
+	    	$query = $conexao->query("INSERT INTO endereco VALUES(NULL,$usuario_id,$endereco_id,'$nome')");
 	    	$id = 0;
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
@@ -357,7 +358,7 @@
 		}
 	}
 	// Registro dos métodos da classe usuario_has_endereco //
-	$server->register('usuario_has_endereco.insert', array('tipo_lixo_id' => 'xsd:integer','ponto_id' => 'xsd:integer'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela usuario_has_endereco (retorna o id do registro inserido).');
+	$server->register('usuario_has_endereco.insert', array('usuario_id' => 'xsd:integer','endereco_id' => 'xsd:integer','nome' => 'xsd:string'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela usuario_has_endereco (retorna o id do registro inserido).');
 	$server->register('usuario_has_endereco.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela usuario_has_endereco.');
 	$server->register('usuario_has_endereco.select', array('condicoes' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela usuario_has_endereco com condições definidas ou indefinidas (retorna json).');
 
