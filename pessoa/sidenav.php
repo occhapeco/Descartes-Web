@@ -32,10 +32,14 @@
                   </li>
           
                   <li class="sub-menu">
-                      <a href="pedidos.php" >
+                      <a href="javascript:;" >
                           <i class="fa fa-calendar"></i>
                           <span>Pedidos</span>
                       </a>
+                      <ul class="sub">
+                          <li><a  href="pedidos.php">Meus Pedidos</a></li>  
+                          <li><a  href="agendamentos.php">Novo Agendamento</a></li>
+                      </ul>
                   </li>
 		          </ul>
               <!-- sidebar menu end-->

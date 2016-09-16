@@ -295,13 +295,16 @@
                         '<div id="siteNotice">'+
                         '</div>'+
                         '<h1 id="firstHeading" class="firstHeading"><?php echo utf8_encode($pontos); ?></h1>'+
-                        '<div id="bodyContent" class="col-sm-12">'+
-                        '<p name="nome" class="col-sm-6"> <?php echo utf8_encode($endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais); ?></p>'+
-                        '<p name="descricao" class="col-sm-6"> <?php echo utf8_encode($ponto[0]->observacao); ?> </p>'+
-                        '<p name="descricao" class="col-sm-6"> <?php echo utf8_encode($ponto[0]->telefone); ?> </p>'+
-                        '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-right">Agendar Recolhimento</button>'+  
-                        '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-right: 10px;">Traçar Rota</a><br>'+
+                        '<div id="bodyContent">'+
+                        '<p name="nome"> <?php echo utf8_encode($endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais); ?></p>'+
+                        '<p name="descricao"> <?php echo utf8_encode($ponto[0]->observacao); ?> </p>'+
+                        '<p name="descricao"> <?php echo utf8_encode($ponto[0]->telefone); ?> </p>'+
+                        '<form action="agendamentos.php" method="post">'+
+                        '<input type="hidden" id="id_ponto" name="id_ponto" value="<?php echo utf8_encode($ponto[0]->id); ?>">'+
+                        '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
+                        '</form>'+
                         '<form action="#" method="post">'+
+                        '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
                         '</form>'+
                         '</div>'+
                         '</div>',

@@ -6,30 +6,36 @@
  //Pegar informações de telefone e email;
   $json_dados = $service->call('usuario.select',array("id = ".$_SESSION["id"]));
   $usuario = json_decode($json_dados);
-
+  if(isset($_POST["agendar"]))
+  {
+    $input = '<input type="hidden" id="ponto" name="ponto" value="'. $_POST["id_ponto"] . '">';
+  }
+  
   //Cadastrar Agendamentos
     
-    if (isset($_POST["concluir"]))
+  elseif (isset($_POST["confirmar"]))
+  {
+    $json_dados = $service->call('agendamento.insert',array($_POST["ponto"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],0,0));
+    $id_agendamento = json_decode($json_dados);
+    if($id_agendamento!=0)
     {
-      $json_dados = $service->call('agendamento.insert',array($_POST["id_ponto"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],0,0));
-      $id_agendamento = json_decode($json_dados);
-      if($id_agendamento!=0)
+      $json_dados = $service->call('tipo_lixo.select',array(NULL));
+      $tipo_lixo = json_decode($json_dados);
+      for($i=0;$i<count($tipo_lixo);$i++)
       {
-        $json_dados = $service->call('tipo_lixo.select',array(NULL));
-        $tipo_lixo = json_decode($json_dados);
-        for($i=0;$i<count($tipo_lixo);$i++)
-        {
-          if(isset($_POST[$tipo_lixo[$i]->id]))
-          { // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
-            $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($id_agendamento, $_POST[$tipo_lixo[$i]->id], $_POST["quantidade_lixo"]));
-            header("location: pedidos.php");
-            echo "<script>alert('Agendamento efetuado com sucesso');</script>";
-          }
+        if(isset($_POST[$tipo_lixo[$i]->id]))
+        { // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
+          $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($id_agendamento, $_POST[$tipo_lixo[$i]->id], $_POST["quantidade_lixo"]));
+          echo "<script>alert('Agendamento efetuado com sucesso');</script>";
         }
       }
     }
-    else
-      echo "<script>alert('Erro ao efetuar o agendamento!');</script>";
+  }
+  else
+  {
+    header("location:index.php");
+  }
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,20 +50,22 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
-
-    <script src="https://maxcdn.bootstrapcdn.com/boostrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.clodflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
     <!--external css-->
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
-    
+   
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="dist/css/bootstrap-select.css">
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap-select.js"></script>
+ 
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
@@ -87,57 +95,71 @@
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
-                  	  <!--<h4 class="mb"><i class="fa fa-angle-right"></i> Dados Pessoais</h4>-->
                       <form class="form-horizontal style-form" method="post" action="#">
                           
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Data do Recolhimento</label>
+                              <label class="col-sm-2 control-label">Data do Recolhimento</label>
                               <div class="col-sm-10">
-                                <input type="text" id="data" name="data" class="form-control" maxlength="10" value="" onkeypress="formatar("##/##/####", this)" required autofocus>
+                                <input type="text" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" onkeypress="formatar("##/##/####", this)" required autofocus>
 						                  </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Horário</label>
+                              <label class="col-sm-2 control-label">Horário</label>
                               <div class="col-sm-10">
                                  <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" onkeypress="formatar("##: ##", this)" required autofocus>
 					                     </div>
                           </div>
 
-                          <!-- Fazer select de só uma opção ou input com sugestão -->
+                          <!-- Fazer select nos endereços pelo id do usuário -->
 						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Endereço para o Recolhimento</label>
-                              <div class="col-sm-10">
-                                  <select class="selectpicker" data-style="btn-primary" multiple data-max-options="1">
-                                    <option>PHP</option>
-                                    <option>CSS</option>
-                                    <option>HTML</option>
-                                  </select>
+                              <label class="col-sm-2 control-label">Endereço para o Recolhimento</label>
+                              <div class="container">
+                                <form class="form-inline">
+                                  <div class="form-group">
+                                    <select id="lunch" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
+                                      <option>Hot Dog, Fries and a Soda</option>
+                                      <option>Burger, Shake and a Smile</option>
+                                      <option>Sugar, Spice and all things nice</option>
+                                      <option>Baby Back Ribs</option>
+                                      <option>A really really long option made to illustrate an issue with the live search in an inline form</option>
+                                    </select>
+                                  </div>
+                                </form>
                               </div>
                           </div>
 
-                          <!-- Fazer select multiplo ou checkbox -->
+                          <!-- Fazer select no tipo_lixo_has_ponto -->
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
-                              <div class="col-sm-10">
-                                 <select class="selectpicker" data-style="btn-primary" multiple>
-                                    <option>PHP</option>
-                                    <option>CSS</option>
-                                    <option>HTML</option>
-                                  </select>
-                               </div>
+                              <label class="col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
+                              <div>
+                                 <select id="done" class="selectpicker" multiple data-done-button="true">
+                                    <option>Apple</option>
+                                    <option>Banana</option>
+                                    <option>Orange</option>
+                                    <option>Pineapple</option>
+                                    <option>Apple2</option>
+                                    <option>Banana2</option>
+                                    <option>Orange2</option>
+                                    <option>Pineapple2</option>
+                                    <option>Apple2</option>
+                                    <option>Banana2</option>
+                                    <option>Orange2</option>
+                                    <option>Pineapple2</option>
+                                 </select>
+                              </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Quantidade de lixo a ser Recolhida</label>
+                              <label class="col-sm-2 control-label">Quantidade de lixo a ser Recolhida</label>
                               <div class="col-sm-10">
                                   <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" required autofocus>
-                                 <span class="help-block">Informe a unidade de medida da quantidade juntamente com seu valor</span>
+                                 <span class="help-block">Valor em Kg</span>
                                </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Telefone para Contato</label>
+                              <label class="col-sm-2 control-label">Telefone para Contato</label>
                               <div class="col-sm-10">
                                  <?php
                                     echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
@@ -146,7 +168,7 @@
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
+                              <label class="col-sm-2 control-label">E-mail</label>
                               <div class="col-sm-10">
                                  <?php
                                     echo '<input type="text" id="email" name="email" class="form-control" maxlength="13" value="' . $usuario[0]->email . '" required autofocus>';
@@ -155,7 +177,10 @@
                           </div>
 							         
                         <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>		
-              	        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br>                     
+              	        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
+                        <?php
+                          echo $input;
+                        ?>                 
                       </form>
                   </div>
 			       	</div><!-- col-lg-12-->      	
@@ -178,13 +203,6 @@
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-    
-    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
-    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
-
-    <!--script for this page-->
-    <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
 
 	<script>
 
@@ -200,6 +218,28 @@
 			 }
 		}
 	}
+    $(document).ready(function() {
+        $('#example-getting-started').multiselect();
+    });
+
+     $(document).ready(function () {
+    var mySelect = $('#first-disabled2');
+
+    $('#special').on('click', function () {
+      mySelect.find('option:selected').prop('disabled', true);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#special2').on('click', function () {
+      mySelect.find('option:disabled').prop('disabled', false);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#basic2').selectpicker({
+      liveSearch: true,
+      maxOptions: 1
+    });
+  });
    </script>
   </body>
 </html>
