@@ -328,7 +328,7 @@
 		function insert($usuario_id,$endereco_id,$nome) {
 			$nome = ereg_replace("[#'/*\|`]", '',$nome);
 	    	require_once("conectar_mysql.php");
-	    	$query = $conexao->query("INSERT INTO endereco VALUES(NULL,$usuario_id,$endereco_id,'$nome')");
+	    	$query = $conexao->query("INSERT INTO usuario_has_endereco VALUES(NULL,$usuario_id,$endereco_id,'$nome')");
 	    	$id = 0;
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
