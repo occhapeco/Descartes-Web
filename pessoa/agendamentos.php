@@ -116,6 +116,7 @@
                               <div class="container">
                                 <form class="form-inline">
                                   <div class="form-group">
+                                  <div class="col-sm-10">
                                     <select id="lunch" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
                                     <?php
                                       $json_dados = $service->call('usuario_has_endereco.select', array("usuario_id = " .$_SESSION["id"]));
@@ -126,13 +127,14 @@
                                       }
                                     ?>
                                    </select>
+                                   </div>
                                   </div>
                                 </form>
                               </div>
 
                               <div>
                               <label class="col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
-                              <div>
+                              <div class="col-sm-10">
                                  <select id="done" class="selectpicker" multiple data-done-button="true">
                                     <?php
                                       $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["id_ponto"]));
@@ -141,12 +143,14 @@
                                       {
                                         $json_dados = $service->call('tipo_lixo.select_by_id', array($tipo_lixo_has_ponto[$i]->tipo_lixo_id));
                                         $tipo_lixo = json_decode($json_dados);
-                                        echo '<option>'. $tipo_lixo[$i]->nome .'</option>';
+                                        echo '<option>'. $tipo_lixo[0]->nome .'</option>';
                                       }
                                     ?>
                                  </select>
                               </div>
                           </div>
+                          
+                          <div class="form-group"></div>
                           
                           <div>
                               <label class="col-sm-2 control-label">Quantidade de lixo a ser Recolhida</label>
@@ -156,6 +160,8 @@
                                </div>
                           </div>
 
+                          <div class="form-group"></div>
+                          
                           <div>
                               <label class="col-sm-2 control-label">Telefone para Contato</label>
                               <div class="col-sm-10">
@@ -164,6 +170,8 @@
                                  ?>
                                </div>
                           </div>
+
+                          <div class="form-group"></div>
 
                           <div>
                               <label class="col-sm-2 control-label">E-mail</label>
@@ -174,10 +182,11 @@
                                </div>
                           </div>
                        
-                        <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
-                        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
-                                         
+                                        
                           </div>
+                          <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
+                        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
+                         
                           <?php
                           echo $input;
                         ?>
