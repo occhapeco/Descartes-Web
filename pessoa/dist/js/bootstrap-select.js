@@ -311,7 +311,7 @@
 
   // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
   Selectpicker.DEFAULTS = {
-    noneSelectedText: 'Nothing selected',
+    noneSelectedText: 'Nada Selecionado',
     noneResultsText: 'No results matched {0}',
     countSelectedText: function (numSelected, numTotal) {
       return (numSelected == 1) ? "{0} item selected" : "{0} items selected";
@@ -325,7 +325,7 @@
     selectAllText: 'Select All',
     deselectAllText: 'Deselect All',
     doneButton: false,
-    doneButtonText: 'Close',
+    //doneButtonText: 'Close',
     multipleSeparator: ', ',
     styleBase: 'btn',
     style: 'btn-default',
@@ -458,7 +458,7 @@
           inputGroup = this.$element.parent().hasClass('input-group') ? ' input-group-btn' : '',
           autofocus = this.autofocus ? ' autofocus' : '';
       // Elements
-      var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
+      //var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
       var searchbox = this.options.liveSearch ?
       '<div class="bs-searchbox">' +
       '<input type="text" class="form-control" autocomplete="off"' +
@@ -1348,17 +1348,17 @@
         }
       });
 
-      this.$menu.on('click', 'li.disabled a, .popover-title, .popover-title :not(.close)', function (e) {
-        if (e.currentTarget == this) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (that.options.liveSearch && !$(e.target).hasClass('close')) {
-            that.$searchbox.focus();
-          } else {
-            that.$button.focus();
-          }
-        }
-      });
+//      this.$menu.on('click', 'li.disabled a, .popover-title, .popover-title :not(.close)', function (e) {
+//        if (e.currentTarget == this) {
+//          e.preventDefault();
+//          e.stopPropagation();
+//          if (that.options.liveSearch && !$(e.target).hasClass('close')) {
+//            that.$searchbox.focus();
+//          } else {
+//            that.$button.focus();
+//          }
+//        }
+//      });
 
       this.$menuInner.on('click', '.divider, .dropdown-header', function (e) {
         e.preventDefault();
@@ -1370,9 +1370,9 @@
         }
       });
 
-      this.$menu.on('click', '.popover-title .close', function () {
-        that.$button.click();
-      });
+//      this.$menu.on('click', '.popover-title .close', function () {
+//        that.$button.click();
+//      });
 
       this.$searchbox.on('click', function (e) {
         e.stopPropagation();

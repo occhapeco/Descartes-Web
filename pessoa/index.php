@@ -27,9 +27,12 @@
     <link href="assets/css/table-responsive.css" rel="stylesheet">
     <style type="text/css">
 
+    html{
+        height: 100%;
+      }
+
       #map {
-        height: 550px;
-        margin: 5px 5px 5px 5px;
+        height: 700px;
       }
 
       .controls {
@@ -92,8 +95,12 @@
           require_once("sidenav.php");
       ?>
   </section>
-<section id="main-content">
+<section id="main-content" style="height:100%">
 <section class="wrapper">
+  <div style="width:100%;height:auto;background-color:#00FFFF;">
+    <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
+    <div id="map"></div> 
+  </div>
   <form action="cadastro_pontos.php" method="post" id="submete">        
     <input type="hidden" name="lat" id="lat" value="e">
     <input type="hidden" name="long" id="long" value="e">
@@ -102,13 +109,11 @@
     <input type="hidden" name="pais" id="pais" value="e">
     <input type="hidden" name="endereco" id="endereco" value="e">
     <input type="hidden" name="cep" id="cep" value="e">
-  </form>
-  <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade"> </input>
-  <div id="map"></div>  
+  </form> 
 </section>
 </section>
-  <script>
-    function initAutocomplete() {
+ <script type="text/javascript">
+   function initAutocomplete() {
       var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
       var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 2,
@@ -285,7 +290,7 @@
                   $tipo_lixo = json_decode($dados_json);
                   if ($i != 0)
                     $pontos += ", ";
-                  $pontos += $tipo_lixo->nome;
+                  $pontos += $tipo_lixo[0]->nome;
                 }
                 ?>
                 {
@@ -375,7 +380,7 @@
       });
     }
 
-  </script>
+ </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
 
 

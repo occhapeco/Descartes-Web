@@ -111,46 +111,44 @@
 					                     </div>
                           </div>
 
-                          <!-- Fazer select nos endereços pelo id do usuário -->
 						              <div class="form-group">
                               <label class="col-sm-2 control-label">Endereço para o Recolhimento</label>
                               <div class="container">
                                 <form class="form-inline">
                                   <div class="form-group">
                                     <select id="lunch" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
-                                      <option>Hot Dog, Fries and a Soda</option>
-                                      <option>Burger, Shake and a Smile</option>
-                                      <option>Sugar, Spice and all things nice</option>
-                                      <option>Baby Back Ribs</option>
-                                      <option>A really really long option made to illustrate an issue with the live search in an inline form</option>
-                                    </select>
+                                    <?php
+                                      $json_dados = $service->call('usuario_has_endereco.select', array("usuario_id = " .$_SESSION["id"]));
+                                      $endereco = json_decode($json_dados);
+                                      for($i = 0; $i<count($endereco); $i++)
+                                      {
+                                        echo '<option>' . $endereco[$i]->nome . '</option>';
+                                      }
+                                    ?>
+                                   </select>
                                   </div>
                                 </form>
                               </div>
-                          </div>
 
-                          <!-- Fazer select no tipo_lixo_has_ponto -->
-                          <div class="form-group">
+                              <div>
                               <label class="col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
                               <div>
                                  <select id="done" class="selectpicker" multiple data-done-button="true">
-                                    <option>Apple</option>
-                                    <option>Banana</option>
-                                    <option>Orange</option>
-                                    <option>Pineapple</option>
-                                    <option>Apple2</option>
-                                    <option>Banana2</option>
-                                    <option>Orange2</option>
-                                    <option>Pineapple2</option>
-                                    <option>Apple2</option>
-                                    <option>Banana2</option>
-                                    <option>Orange2</option>
-                                    <option>Pineapple2</option>
+                                    <?php
+                                      $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["id_ponto"]));
+                                      $tipo_lixo_has_ponto = json_decode($json_dados);
+                                      for($i = 0; $i<count($tipo_lixo_has_ponto); $i++)
+                                      {
+                                        $json_dados = $service->call('tipo_lixo.select_by_id', array($tipo_lixo_has_ponto[$i]->tipo_lixo_id));
+                                        $tipo_lixo = json_decode($json_dados);
+                                        echo '<option>'. $tipo_lixo[$i]->nome .'</option>';
+                                      }
+                                    ?>
                                  </select>
                               </div>
                           </div>
-
-                          <div class="form-group">
+                          
+                          <div>
                               <label class="col-sm-2 control-label">Quantidade de lixo a ser Recolhida</label>
                               <div class="col-sm-10">
                                   <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" required autofocus>
@@ -158,7 +156,7 @@
                                </div>
                           </div>
 
-                          <div class="form-group">
+                          <div>
                               <label class="col-sm-2 control-label">Telefone para Contato</label>
                               <div class="col-sm-10">
                                  <?php
@@ -167,7 +165,7 @@
                                </div>
                           </div>
 
-                          <div class="form-group">
+                          <div>
                               <label class="col-sm-2 control-label">E-mail</label>
                               <div class="col-sm-10">
                                  <?php
@@ -175,12 +173,18 @@
                                  ?>
                                </div>
                           </div>
-							         
-                        <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>		
-              	        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
-                        <?php
+                       
+                        <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
+                        <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
+                                         
+                          </div>
+                          <?php
                           echo $input;
-                        ?>                 
+                        ?>
+
+                          
+
+                          
                       </form>
                   </div>
 			       	</div><!-- col-lg-12-->      	
@@ -224,6 +228,7 @@
 
      $(document).ready(function () {
     var mySelect = $('#first-disabled2');
+    });
 
     $('#special').on('click', function () {
       mySelect.find('option:selected').prop('disabled', true);
@@ -239,7 +244,7 @@
       liveSearch: true,
       maxOptions: 1
     });
-  });
+
    </script>
   </body>
 </html>

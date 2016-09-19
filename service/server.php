@@ -682,11 +682,11 @@
 
 	// Classe da tabela agendamento //
 	class agendamento {
-	    function insert($empresa_id,$usuario_id,$data_agendamento,$horario) {
+	    function insert($empresa_id,$usuario_id,$data_agendamento,$horario, $endereco_id) {
 	    	$data_agendamento = ereg_replace("[^0-9-]", '',$data_agendamento);
 			$horario = ereg_replace("[^0-9:]", '',$horario);
 	    	require_once("conectar_mysql.php");
-	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0)");
+	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0,$endereco_id)");
 	    	$id = 0;
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
@@ -856,7 +856,7 @@
 		}
 	}
 	// Registro dos métodos da classe agendamento //
-	$server->register('agendamento.insert', array('empresa_id' => 'xsd:integer','usuario_id' => 'xsd:integer','data_agendamento' => 'xsd:string','horario' => 'xsd:string','aceito' => 'xsd:string','realizado' => 'xsd:string'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela agendamento (retorna o id do registro inserido).');
+	$server->register('agendamento.insert', array('empresa_id' => 'xsd:integer','usuario_id' => 'xsd:integer','data_agendamento' => 'xsd:string','horario' => 'xsd:string','endereco_id' => 'xsd:integer'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela agendamento (retorna o id do registro inserido).');
 	$server->register('agendamento.update', array('id' => 'xsd:integer','data_agendamento' => 'xsd:string','horario' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro na tabela agendamento (retorna o id do registro inserido).');
 	$server->register('agendamento.aceitar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Aceita um agendamento.');
 	$server->register('agendamento.recusar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Recusa um agendamento.');
