@@ -20,13 +20,13 @@
    $uf = "";
    $cidade = "";
    $pais = "";
-   $btn = '<a href="enderecos.php"><button type="submit" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme03 pull-right">Confirmar</button></a><br><br>';
+   $nome_endereco = "";
+   $btn = '<a onclick="codeAddress();" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Confirmar</a>';
 
   if(isset($_POST["editar"]))
   {
     $id = $_POST["id"];
     $json_dados = $service->call('endereco.select_by_id',array($id));
-    echo "<script>alert('$json_dados');</script>";
     $endereco = json_decode($json_dados);
     $rua = $endereco[0]->rua;
     $num = $endereco[0]->num;
@@ -36,15 +36,29 @@
     $uf = $endereco[0]->uf;
     $cidade = $endereco[0]->cidade;
     $pais = $endereco[0]->pais;
+
     $id_input = "<input type='hidden' id='id' name='id' value=" . $id . ">";
-    $btn = '<a href="enderecos.php"><button type="submit" id="edit" name="edit" class="btn btn-sm btn-theme03 pull-right">Confirmar</button></a><br><br>';
+    $btn = ' <a href="enderecos.php"><button type="submit" id="edit" name="edit" class="btn btn-sm btn-theme pull-right">Confirmar</button></a>';
+
+    $json_dados = $service->call('usuario_has_endereco.select', array("endereco_id = " . $endereco[0]->id));
+    $endereco_usu = json_decode($json_dados);
+    $nome_endereco = $endereco_usu [0]->nome;
   }
 
   //Cadastro
-  if (isset($_POST["cadastrar"]))
+  //É verificado se há o post de nome_endereco1, pois se estiver editando o nome deste campo é nome_endreco e se está em cadastro o nome é nome_endereco1, sendo um post que só vai existir caso a ação seja de cadastro.
+  if (isset($_POST["nome_endereco1"]))
   {
     // Cadastra o endereço e retorna seu id (0 se der bosta)
     $endereco_id = $service->call('endereco.insert',array($_POST["rua"],$_POST['num'],$_POST['complemento'],$_POST['cep'],$_POST['bairro'],$_POST['uf'],$_POST['cidade'],$_POST['pais'],$_POST['lat'],$_POST['long']));
+    if($endereco_id != 0)
+    {
+      $endereco_has_usuario = $service -> call('usuario_has_endereco.insert', array($_SESSION["id"], $endereco_id, $_POST["nome_endereco1"]));
+    }
+    else
+    {
+      $deletar = $service->call('endereco.delete', array("id = " . $endereco_id));
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -66,6 +80,7 @@
     <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
     
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places"></script> 
 
 
     <!-- Custom styles for this template -->
@@ -97,8 +112,28 @@
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
-                      <form class="form-horizontal style-form" method="post" action="#">
+                      <form class="form-horizontal style-form" method="post" action="#" id="form_sub">
                           <?php echo $id_input; ?>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Nome do Endereço</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control " maxlength="20" id="nome_endereco"  <?php echo "value='$nome_endereco'"; 
+                                      if(isset($_POST["editar"]))
+                                      { ?>
+                                        disabled name="nome_endereco"
+                                      <?php
+                                        }
+                                        else
+                                        {
+                                        ?>
+                                        name="nome_endereco1"
+                                        <?php
+                                        }
+                                      ?>
+                                  required>
+                                  <span>Atribua um nome a este endereço para acha-lo mais facilmente.</span>
+                              </div>
+                          </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">CEP</label>
                               <div class="col-sm-10">
@@ -150,6 +185,9 @@
                           <?php
                             echo $btn;
                           ?>
+                          <a href="enderecos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>
+                          <input type="hidden" name="lat" id="lat">
+                           <input type="hidden" name="long" id="long">
                       </form>
                   </div>
 				</div><!-- col-lg-12-->      	
@@ -263,6 +301,20 @@
 	   
 	   
 	<script type="text/javascript" >
+  var geocoder = new google.maps.Geocoder();
+
+  function codeAddress() {
+    var address = document.getElementById( 'cidade' ).value+', '+document.getElementById( 'uf' ).value+ ', '+ document.getElementById( 'rua' ).value+' '+ document.getElementById( 'num' ).value;
+    geocoder.geocode( { 'address' : address }, function( results, status ) {
+        if( status == google.maps.GeocoderStatus.OK ) {
+            document.getElementById( 'lat' ).value = results[0].geometry.location.lat();
+            document.getElementById( 'long' ).value = results[0].geometry.location.lng();
+            document.getElementById( 'form_sub' ).submit();
+        } else {
+            alert( 'Não podemos encontrar sua localização corretamente, por favor, reveja os dados.');
+        }
+    } );
+  }
 //    CEP
     function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
@@ -330,5 +382,7 @@
     };
 
     </script>
+
+    
   </body>
 </html>

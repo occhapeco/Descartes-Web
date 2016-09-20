@@ -71,75 +71,79 @@
                            <div class="panel-group" id="accordion">
 						                
                            <?php
-                            $json_dados = $service->call('usuario_has_endereco.select',array("id = " . $_SESSION["id"]));
+                            $json_dados = $service->call('usuario_has_endereco.select',array("usuario_id = " . $_SESSION["id"]));
                             $endereco_usu = json_decode($json_dados);
-
-                            for($i = 0; $i<count($endereco_usu);$i++) 
-                            {
-                              $endereco_id = $endereco_usu[$i]->endereco_id;
-                              $json_dados = $service->call('endereco.select_by_id',array($endereco_id));
-                              $endereco = json_decode($json_dados);
-                           ?>
-                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                               <div class="panel panel-default">
-                                 <div class="panel-heading">
-                                  <h4 class="panel-title">
-                                    <?php echo $endereco_usu[$i]->nome; ?>
-                                  </h4></a>
-                               </div>
-              							   <div id="collapse1" class="panel-collapse collapse">
-              								 <div class="panel-body">
-              									<div class="row mt">
-                                      <div class="col-lg-12">
-                                        <div class="content-panel">
-                                         <section id="no-more-tables">
-                                           <table class="table table-striped table-condensed cf" style="">
-                                             <thead class="cf">
-                                               <tr>
-                                                 <th>Rua</th>
-                                                 <th>Número</th>  
-                                                 <th>Complemento</th>  
-									                               <th>CEP</th>
-                                                 <th>Bairro</th>  
-                                                 <th>UF</th>
-                        												 <th>Cidade</th>
-                        												 <th>País</th>
-                                                 <th><center>Editar</center></th>
-												                         <th><center>Excluir</center></th>
-                                               </tr>
-                                             </thead>
-                                             <tbody>
-                                              <tr>
-                                                <td data-title="Rua"><?php echo $endereco[$i]->rua; ?></td>
-                                                <td data-title="Número"><?php echo $endereco[$i]->num; ?></td>
-                                                <td data-title="Complemento"><?php echo $endereco[$i]->complemento; ?></td>
-                  									            <td data-title="CEP"><?php echo $endereco[$i]->cep; ?></td>
-                  									            <td data-title="Bairro"><?php echo $endereco[$i]->bairro; ?></td>
-                  									            <td data-title="UF"><?php echo $endereco[$i]->uf; ?></td>
-                  									            <td data-title="Cidade"><?php echo $endereco[$i]->cidade; ?></td>
-                  									            <td data-title="País"><?php echo $endereco[$i]->pais; ?></td>
-                  									            <td data-title="Editar">
-                                                  <form method="POST" action="novo_endereco.php" id="formeditar">
-                                                    <input type="hidden" id="id" name="id" value="<?php echo $endereco[$i]->id; ?>">
-                                                    <center>
-                                                    <button type="submit" id="editar" name="editar" class="btn btn-theme">
-                                                      <i class="fa fa-pencil"></i>
-                                                    </button>
-                                                    </center>
-                                                  </form>
-                                                </td>
-                                                <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[$i]->id; ?>"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>
-                                              </tr>
-                                             </tbody>
-                                           </table>
-                                         </section>
-                                        </div><!-- /content-panel -->
-                                      </div><!-- /col-lg-12 -->
-            									     </div><!-- /row -->
-            									   </div>
-                                </div>
+                            if(count($endereco_usu)>=1)
+                             {
+                              for($i = 0; $i<count($endereco_usu);$i++) 
+                              {
+                                $endereco_id = $endereco_usu[$i]->endereco_id;
+                                $json_dados = $service->call('endereco.select_by_id',array($endereco_id));
+                                $endereco = json_decode($json_dados);
+                             ?>
+                               <a data-toggle="collapse" data-parent="#accordion" <?php echo "href='#id_". $endereco_usu[$i]->endereco_id."'"; ?> >
+                                 <div class="panel panel-default">
+                                   <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <?php echo $endereco_usu[$i]->nome; ?>
+                                    </h4></a>
+                                 </div>
+                							   <div <?php echo "id='id_". $endereco_usu[$i]->endereco_id."'"; ?> class="panel-collapse collapse">
+                								 <div class="panel-body">
+                									<div class="row mt">
+                                        <div class="col-lg-12">
+                                          <div class="content-panel">
+                                           <section id="no-more-tables">
+                                             <table class="table table-striped table-condensed cf" style="">
+                                               <thead class="cf">
+                                                 <tr>
+                                                   <th>Rua</th>
+                                                   <th>Número</th>  
+                                                   <th>Complemento</th>  
+  									                               <th>CEP</th>
+                                                   <th>Bairro</th>  
+                                                   <th>UF</th>
+                          												 <th>Cidade</th>
+                          												 <th>País</th>
+                                                   <th><center>Editar</center></th>
+  												                         <th><center>Excluir</center></th>
+                                                 </tr>
+                                               </thead>
+                                               <tbody>
+                                                <tr>
+                                                  <td data-title="Rua"><?php echo $endereco[0]->rua; ?></td>
+                                                  <td data-title="Número"><?php echo $endereco[0]->num; ?></td>
+                                                  <td data-title="Complemento"><?php echo $endereco[0]->complemento; ?></td>
+                    									            <td data-title="CEP"><?php echo $endereco[0]->cep; ?></td>
+                    									            <td data-title="Bairro"><?php echo $endereco[0]->bairro; ?></td>
+                    									            <td data-title="UF"><?php echo $endereco[0]->uf; ?></td>
+                    									            <td data-title="Cidade"><?php echo $endereco[0]->cidade; ?></td>
+                    									            <td data-title="País"><?php echo $endereco[0]->pais; ?></td>
+                    									            <td data-title="Editar">
+                                                    <form method="POST" action="novo_endereco.php" id="formeditar">
+                                                      <input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>">
+                                                      <center>
+                                                      <button type="submit" id="editar" name="editar" class="btn btn-theme">
+                                                        <i class="fa fa-pencil"></i>
+                                                      </button>
+                                                      </center>
+                                                    </form>
+                                                  </td>
+                                                  <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[$i]->id; ?>"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>
+                                                </tr>
+                                               </tbody>
+                                             </table>
+                                           </section>
+                                          </div><!-- /content-panel -->
+                                        </div><!-- /col-lg-12 -->
+              									     </div><!-- /row -->
+              									   </div>
+                                  </div>
                                 <?php
                                   }
+                                 } 
+                                  else
+                                    echo "<center><h4>Você não possui endereços cadastrados.</h4></center><br>";
                                 ?>
                             </div>
 							           <!--</form>-->
