@@ -932,7 +932,7 @@
 		}
 	}
 	// Registro dos métodos da classe agendamento_has_tipo_lixo //
-	$server->register('agendamento_has_tipo_lixo.insert', array('agendamento_id' => 'xsd:integer','usuario_id' => 'xsd:integer','quantidade' => 'xsd:double'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela agendamento_has_tipo_lixo (retorna o id do registro inserido).');
+	$server->register('agendamento_has_tipo_lixo.insert', array('tipo_lixo_id' => 'xsd:integer','agendamento_id' => 'xsd:integer','quantidade' => 'xsd:double'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela agendamento_has_tipo_lixo (retorna o id do registro inserido).');
 	$server->register('agendamento_has_tipo_lixo.update', array('quantidade' => 'xsd:double'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Insere um registro na tabela agendamento_has_tipo_lixo (retorna o id do registro inserido).');
 	$server->register('agendamento_has_tipo_lixo.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela agendamento_has_tipo_lixo.');
 	$server->register('agendamento_has_tipo_lixo.select_by_agendamento', array('agendamento_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registro da tabela agendamento_has_tipo_lixo por agendamento (retorna json).');
