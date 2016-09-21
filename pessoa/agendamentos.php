@@ -15,6 +15,7 @@
     
   elseif (isset($_POST["confirmar"]))
   {
+    echo $_POST["lixo"];
     $json_dados = $service->call('agendamento.insert',array($_POST["ponto"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],0,0));
     $id_agendamento = json_decode($json_dados);
     if($id_agendamento!=0)
@@ -187,11 +188,7 @@
                           <?php
                           echo $input;
                         ?>
-
-                          
-
-                          
-                      </form>
+                    </form>
                   </div>
 			       	</div><!-- col-lg-12-->      	
           	</div><!-- /row -->
@@ -228,9 +225,14 @@
 			 }
 		}
 	}
-    $(document).ready(function() {
-        $('#example-getting-started').multiselect();
-    });
+//    $(document).ready(function() {
+//        $('#example-getting-started').multiselect();
+//    });
+
+//    $('#basic2').selectpicker({
+//      liveSearch: true,
+//      maxOptions: 1
+//    });
 
      $(document).ready(function () {
     var mySelect = $('#first-disabled2');
@@ -246,10 +248,7 @@
       mySelect.selectpicker('refresh');
     });
 
-    $('#basic2').selectpicker({
-      liveSearch: true,
-      maxOptions: 1
-    });
+
 
    </script>
   </body>
