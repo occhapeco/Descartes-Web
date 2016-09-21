@@ -875,10 +875,10 @@
 
 	// Classe da tabela agendamento_has_tipo_lixo //
 	class agendamento_has_tipo_lixo {
-	    function insert($agendamento_id,$tipo_lixo_id,$quantidade) {
+	    function insert($tipo_lixo_id,$agendamento_id,$quantidade) {
 	    	$quantidade = ereg_replace("[^0-9.]", '',$quantidade);
 	    	require_once("conectar_mysql.php");
-	    	$query = $conexao->query("INSERT INTO agendamento_has_tipo_lixo VALUES(NULL,$agendamento_id,$tipo_lixo_id,$quantidade)");
+	    	$query = $conexao->query("INSERT INTO agendamento_has_tipo_lixo VALUES(NULL,$tipo_lixo_id,$agendamento_id,$quantidade)");
 	    	$id = 0;
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
