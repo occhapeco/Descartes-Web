@@ -182,7 +182,8 @@
 	    }
 	    function delete($id) {
 	    	require_once("conectar_mysql.php");
-	    	$query = $conexao->query("DELETE FROM endereco_has_ponto WHERE endereco_id = $id");
+	    	$query = $conexao->query("DELETE FROM ponto WHERE endereco_id = $id");
+	    	$query = $conexao->query("DELETE FROM agendamento WHERE endereco_id = $id");
 	    	$query = $conexao->query("DELETE FROM usuario_has_endereco WHERE endereco_id = $id");
 	    	$query = $conexao->query("DELETE FROM endereco WHERE id = $id");
 	    	$retorno = false;
