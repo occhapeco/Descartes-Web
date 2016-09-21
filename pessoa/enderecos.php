@@ -4,19 +4,14 @@
 
   if(isset($_POST["excluir"]))
   {
-    if($service->call('usuario_has_endereco.delete',array($_POST["id"])))
-    {
-      echo "<script>alert('usuario_has_endereco deletado com sucesso');</script>";
-      if($service->call('endereco.delete',array($_POST["id"])))
+    if($service->call('endereco.delete',array($_POST["id"])))
       {
         echo "<script>alert('endereco deletado com sucesso');</script>";
       }
       else
         echo "<script>alert('endereco não pode ser deletado com sucesso');</script>";
-    }
-    else
-      echo "<script>alert('usuario_has_endereco não pode ser deletado');</script>";   
   }
+  
   
 ?>
 <!DOCTYPE html>

@@ -77,12 +77,13 @@
                        </thead>
                        <tbody>
                     <?php
-                      $json_dados = $service->call('usuario_has_endereco.select', array('usuario_id = '. $_SESSION["id"]. 'and edereco_id = '. $agendamento->endereco_id));
+                      $json_dados = $service->call('usuario_has_endereco.select', array('usuario_id = '.$_SESSION["id"].' AND endereco_id = '. $agendamento[0]->endereco_id));
                       $endereco = json_decode($json_dados);
                       for($i=0;$i<$num;$i++)
                       {
-                        $json_dados = $service->call('empresa.select', array('id = '. $agendamento[$i]->id_empresa));
+                        $json_dados = $service->call('empresa.select', array('id = '. $agendamento[$i]->id));
                         $empresa = json_decode($json_dados);
+                        $status = "";
 
                         if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento < date("Y-m-d"))
                         {
@@ -100,12 +101,11 @@
                         {
                           $status = 'Realizado';
                         }
-
                         echo '<tr>
                                 <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
                                 <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
-                                <td data-title="Endereço">' . $endereco[$i]->nome . '</td>
-                                <td data-title="Coletadora">' . $empresa[$i]->nome_fantasia . '</td>
+                                <td data-title="Endereço">' . $endereco[0]->nome . '</td>
+                                <td data-title="Coletadora">' . $empresa[0]->nome_fantasia . '</td>
                                 <td data-title="Coletadora">' . $status . '</td>
                                 <td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
                       }

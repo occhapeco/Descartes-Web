@@ -114,13 +114,13 @@
                                 <form class="form-inline">
                                   <div class="form-group">
                                   <div class="col-sm-10">
-                                    <select id="lunch" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
+                                    <select id="lunch" name="endereco" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
                                     <?php
                                       $json_dados = $service->call('usuario_has_endereco.select', array("usuario_id = " .$_SESSION["id"]));
                                       $endereco = json_decode($json_dados);
                                       for($i = 0; $i<count($endereco); $i++)
                                       {
-                                        echo '<option>' . $endereco[$i]->nome . '</option>';
+                                        echo '<option value=' . $endereco[$i]->endereco_id . '>' . $endereco[$i]->nome . '</option>';
                                       }
                                     ?>
                                    </select>
@@ -132,7 +132,7 @@
                               <div>
                               <label class="col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
                               <div class="col-sm-10">
-                                 <select id="done" class="selectpicker" multiple data-done-button="true">
+                                 <select id="done" name="lixo" class="selectpicker" multiple data-done-button="true">
                                     <?php
                                       $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["id_ponto"]));
                                       $tipo_lixo_has_ponto = json_decode($json_dados);
@@ -140,7 +140,7 @@
                                       {
                                         $json_dados = $service->call('tipo_lixo.select_by_id', array($tipo_lixo_has_ponto[$i]->tipo_lixo_id));
                                         $tipo_lixo = json_decode($json_dados);
-                                        echo '<option>'. $tipo_lixo[0]->nome .'</option>';
+                                        echo '<option value=' . $tipo_lixo[0]->tipo_lixo_id . '>'. $tipo_lixo[0]->nome .'</option>';
                                       }
                                     ?>
                                  </select>

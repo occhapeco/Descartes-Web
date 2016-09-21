@@ -754,8 +754,9 @@
 	    	$row = mysqli_fetch_assoc($query);
 			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 1) && ($row["realizado"] == 0))
 			{
+				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
-		    	$retorno = true;
+				$retorno = true;
 			}
 			$conexao->close();
 	     	return $retorno;
