@@ -97,7 +97,7 @@
   </section>
 <section id="main-content" style="height:100%">
 <section class="wrapper">
-  <div style="width:100%;height:auto;background-color:#00FFFF;">
+  <div style="width:100%;height:auto;">
     <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
     <div id="map"></div> 
   </div>
@@ -305,7 +305,8 @@
                         '<p name="descricao"> <?php echo utf8_encode($ponto[0]->observacao); ?> </p>'+
                         '<p name="descricao"> <?php echo utf8_encode($ponto[0]->telefone); ?> </p>'+
                         '<form action="agendamentos.php" method="post">'+
-                        '<input type="hidden" id="id_ponto" name="id_ponto" value="<?php echo utf8_encode($ponto[0]->id); ?>">'+
+                        '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo utf8_encode($ponto[0]->empresa_id); ?>">'+
+                        '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo utf8_encode($ponto[0]->id); ?>">'+
                         '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                         '</form>'+
                         '<form action="#" method="post">'+

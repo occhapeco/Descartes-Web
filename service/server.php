@@ -146,7 +146,7 @@
 		function insert($rua,$num,$complemento,$cep,$bairro,$uf,$cidade,$pais,$latitude,$longitude) {
 			$rua = ereg_replace("[#'/*\|`]", '',$rua);
 			$complemento = ereg_replace("[#'/*\|`]", '',$complemento);
-			$cep = ereg_replace("[#'/*\|`]", '',$cep);
+			$cep = ereg_replace("[^0-9]", '',$cep);
 			$bairro = ereg_replace("[#'/*\|`]", '',$bairro);
 			$uf = ereg_replace("[#'/*\|`]", '',$uf);
 			$cidade = ereg_replace("[#'/*\|`]", '',$cidade);
@@ -162,7 +162,7 @@
 	    function update($id,$rua,$num,$complemento,$cep,$bairro,$uf,$cidade,$pais,$latitude,$longitude) {
 	    	$rua = ereg_replace("[#'/*\|`]", '',$rua);
 			$complemento = ereg_replace("[#'/*\|`]", '',$complemento);
-			$cep = ereg_replace("[#'/*\|`]", '',$cep);
+			$cep = ereg_replace("[^0-9]", '',$cep);
 			$bairro = ereg_replace("[#'/*\|`]", '',$bairro);
 			$uf = ereg_replace("[#'/*\|`]", '',$uf);
 			$cidade = ereg_replace("[#'/*\|`]", '',$cidade);

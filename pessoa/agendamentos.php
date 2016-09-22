@@ -4,32 +4,29 @@
   require_once("../conectar_service.php");
 
  //Pegar informações de telefone e email;
+  $input = "";
   $json_dados = $service->call('usuario.select',array("id = ".$_SESSION["id"]));
   $usuario = json_decode($json_dados);
   if(isset($_POST["agendar"]))
   {
-    $input = '<input type="hidden" id="ponto" name="ponto" value="'. $_POST["id_ponto"] . '">';
+    $input = '<input type="hidden" id="empresa_id" name="empresa_id" value="'. $_POST["empresa_id"] . '"><input type="hidden" id="ponto_id" name="ponto_id" value="'. $_POST["ponto_id"] . '">';
   }
   
   //Cadastrar Agendamentos
     
   elseif (isset($_POST["confirmar"]))
   {
-    echo $_POST["lixo"];
-    $json_dados = $service->call('agendamento.insert',array($_POST["ponto"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],0,0));
-    $id_agendamento = json_decode($json_dados);
+    $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],$_POST["endereco"]));
     if($id_agendamento!=0)
     {
-      $json_dados = $service->call('tipo_lixo.select',array(NULL));
-      $tipo_lixo = json_decode($json_dados);
+      $tipo_lixo = $_POST["lixo"];
       for($i=0;$i<count($tipo_lixo);$i++)
       {
-        if(isset($_POST[$tipo_lixo[$i]->id]))
-        { // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
-          $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($id_agendamento, $_POST[$tipo_lixo[$i]->id], $_POST["quantidade_lixo"]));
-          echo "<script>alert('Agendamento efetuado com sucesso');</script>";
-        }
+        // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
+        $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($tipo_lixo[$i],$id_agendamento,$_POST["quantidade_lixo"]));
       }
+      echo "<script>alert('Agendamento efetuado com sucesso');</script>";
+      header("location:pedidos.php");
     }
   }
   else
@@ -112,10 +109,10 @@
 						              <div class="form-group">
                               <label class="col-sm-2 control-label">Endereço para o Recolhimento</label>
                               <div class="container">
-                                <form class="form-inline">
+                                
                                   <div class="form-group">
                                   <div class="col-sm-10">
-                                    <select id="lunch" name="endereco" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
+                                    <select id="endereco" name="endereco" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
                                     <?php
                                       $json_dados = $service->call('usuario_has_endereco.select', array("usuario_id = " .$_SESSION["id"]));
                                       $endereco = json_decode($json_dados);
@@ -127,26 +124,26 @@
                                    </select>
                                    </div>
                                   </div>
-                                </form>
+                                
                               </div>
 
                               <div>
-                              <label class="col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
-                              <div class="col-sm-10">
-                                 <select id="done" name="lixo" class="selectpicker" multiple data-done-button="true">
-                                    <?php
-                                      $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["id_ponto"]));
-                                      $tipo_lixo_has_ponto = json_decode($json_dados);
-                                      for($i = 0; $i<count($tipo_lixo_has_ponto); $i++)
-                                      {
-                                        $json_dados = $service->call('tipo_lixo.select_by_id', array($tipo_lixo_has_ponto[$i]->tipo_lixo_id));
-                                        $tipo_lixo = json_decode($json_dados);
-                                        echo '<option value=' . $tipo_lixo[0]->tipo_lixo_id . '>'. $tipo_lixo[0]->nome .'</option>';
-                                      }
-                                    ?>
-                                 </select>
-                              </div>
-                          </div>
+                                <label class="col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
+                                <div class="col-sm-10">
+                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="true">
+                                      <?php
+                                        $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["ponto_id"]));
+                                        $tipo_lixo_has_ponto = json_decode($json_dados);
+                                        for($i = 0; $i<count($tipo_lixo_has_ponto); $i++)
+                                        {
+                                          $json_dados = $service->call('tipo_lixo.select_by_id', array($tipo_lixo_has_ponto[$i]->tipo_lixo_id));
+                                          $tipo_lixo = json_decode($json_dados);
+                                          echo '<option value=' . $tipo_lixo[0]->id . '>'. $tipo_lixo[0]->nome .'</option>';
+                                        }
+                                      ?>
+                                   </select>
+                                </div>
+                            </div>
                           
                           <div class="form-group"></div>
                           
@@ -248,7 +245,17 @@
       mySelect.selectpicker('refresh');
     });
 
+    $(function() {
 
+    var $body = $(document);
+    $body.bind('scroll', function() {
+        // "Disable" the horizontal scroll.
+        if ($body.scrollLeft() !== 0) {
+            $body.scrollLeft(0);
+        }
+    });
+
+}); 
 
    </script>
   </body>

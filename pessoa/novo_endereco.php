@@ -130,14 +130,14 @@
                                         <?php
                                         }
                                       ?>
-                                  required>
+                                  autofocus required>
                                   <span>Atribua um nome a este endereço para acha-lo mais facilmente.</span>
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">CEP</label>
                               <div class="col-sm-10">
-                                <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus required>
+                                <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this,event)" class="form-control" <?php echo "value='$cep'"; ?> required>
                               </div>
                           </div>
 						              <div class="form-group">
