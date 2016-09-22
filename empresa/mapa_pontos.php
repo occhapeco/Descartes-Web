@@ -308,7 +308,7 @@
                     $tipo_lixo = json_decode($dados_json);
                     if ($i != 0)
                       $pontos += ", ";
-                    $pontos += $tipo_lixo->nome;
+                    $pontos += $tipo_lixo[0]->nome;
                   }
                   ?>
                   {
