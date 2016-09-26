@@ -29,22 +29,6 @@
     <link href="assets/css/table-responsive.css" rel="stylesheet">
 
     <script src="assets/js/chart-master/Chart.js"></script>
-
-    <style>
-      .esquerda{
-        margin-top:10px;
-        height:350px;
-        width:350px;
-      }
-
-      .direita{
-        margin-top:10px;
-        height:350px;
-        width:350px;
-      }
-
-    </style>
-	
   </head>
 
   <body>
@@ -63,23 +47,28 @@
           	<h3><i class="fa fa-angle-right"></i> Cadastro</h3>
           	
           	<!-- BASIC FORM ELELEMNTS -->
-          	<div class="row mt">
-          		<div class="form-panel offset1 col-lg-12">
+            <div class="row mt">
+            	<div class="form-panel col-lg-11">
+              <h4><i class="fa fa-angle-right"></i> Escolha o seu tipo de cadastro:</h4>
                 <form method="post" action="#">
                   <div class="col-lg-2">
                   </div>
-                    <div class="col-lg-4 esquerda" style="margin-top:10px;">
-                       <a href="cadastro_pessoa.php"><img src="pessoa.png" class="img-responsive img-rounded pull-right"></a>
+                    <div class="col-lg-3" >
+                       <center><h4>Usuário</h4></center>
+                       <a href="cadastro_pessoa.php"><img src="pessoa.png" class="img-responsive img-rounded pull-right" style="margin-bottom:40px;"></a>
                     </div>
-                    <div class="col-lg-4 direita" style="margin-top:10px;">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3" >
+                      <center><h4>Empresa</h4></center>
                       <a href="cadastro_empresa.php"><img src="ind3.png" class="img-responsive img-rounded"></a>
                     </div>
                     <div class="col-lg-2">
                     </div>
                 </form>
-				      </div><!-- col-lg-12-->      	
-           </div><!-- /row -->
-        </section><!--/wrapper -->
+				      </div><!-- col-lg-12-->   
+            </div><!-- /row -->
+         </section><!--/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
 			
