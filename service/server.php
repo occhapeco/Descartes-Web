@@ -713,10 +713,10 @@
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
-			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 0) && ($row["realizado"] == 0))
+			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
 			{
 		    	$query = $conexao->query("UPDATE agendamento SET aceito = 1 WHERE id = $id");
-				$retorno = true;
+				$retorno = $query;
 			}
 			$conexao->close();
 	     	return $retorno;
@@ -752,7 +752,7 @@
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
-			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 1) && ($row["realizado"] == 0))
+			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
 			{
 				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
