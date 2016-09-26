@@ -12,7 +12,7 @@
 	        return false;
 
 	    // Elimina possivel mascara
-	    $cpf = ereg_replace('[^0-9]', '', $cpf);
+	    $cpf = $cpf = preg_replace("![^0-9]+!",'',$cpf);
 	    $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
 
 	    // Verifica se o numero de digitos informados é igual a 11
@@ -79,8 +79,8 @@
 	// Classe da tabela tipo_lixo //
 	class tipo_lixo {
 	    function insert($nome) {
-	    	$nome = ereg_replace("[#'/*\|`]", '',$nome);
-	    	require_once("conectar_mysql.php");
+	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO tipo_lixo VALUES(NULL,'$nome')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -89,8 +89,8 @@
 	      	return $id;
 	    }
 	    function update($id,$nome) {
-	    	$nome = ereg_replace("[#'/*\|`]", '',$nome);
-	    	require_once("conectar_mysql.php");
+	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("SELECT * FROM tipo_lixo WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -102,7 +102,7 @@
 	     	return $retorno;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("DELETE FROM tipo_lixo_has_ponto WHERE tipo_lixo_id = $id");
 	    	$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE tipo_lixo_id = $id");
 	    	$query = $conexao->query("DELETE FROM tipo_lixo WHERE id = $id");
@@ -114,7 +114,7 @@
 	  		return $retorno;
 	    }
 	    function select_by_id($id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM tipo_lixo WHERE id = $id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -123,7 +123,7 @@
 			return json_encode($dados);
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM tipo_lixo $condicoes");
@@ -143,16 +143,16 @@
 
 	// Classe da tabela endereco //
 	class endereco {
-		function insert($rua,$num,$complemento,$cep,$bairro,$uf,$cidade,$pais,$latitude,$longitude) {
-			$rua = ereg_replace("[#'/*\|`]", '',$rua);
-			$complemento = ereg_replace("[#'/*\|`]", '',$complemento);
-			$cep = ereg_replace("[^0-9]", '',$cep);
-			$bairro = ereg_replace("[#'/*\|`]", '',$bairro);
-			$uf = ereg_replace("[#'/*\|`]", '',$uf);
-			$cidade = ereg_replace("[#'/*\|`]", '',$cidade);
-			$pais = ereg_replace("[#'/*\|`]", '',$pais);
+		function insert($rua,$num,$complemento,$cep,$bairro,$estado,$uf,$pais,$latitude,$longitude) {
+			$rua = preg_replace('![*#/\"´`]+!','',$rua);
+			$complemento = preg_replace('![*#/\"´`]+!','',$complemento);
+			$cep = preg_replace("![^0-9]+!",'',$cep);
+			$bairro = preg_replace('![*#/\"´`]+!','',$bairro);
+			$uf = preg_replace('![*#/\"´`]+!','',$uf);
+			$cidade = preg_replace('![*#/\"´`]+!','',$cidade);
+			$pais = preg_replace('![*#/\"´`]+!','',$pais);
 			$id = 0;
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO endereco VALUES(NULL,'$rua','$num','$complemento','$cep','$bairro','$uf','$cidade','$pais',$latitude,$longitude)");
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
@@ -160,14 +160,14 @@
 	      	return $id;
 	    }
 	    function update($id,$rua,$num,$complemento,$cep,$bairro,$uf,$cidade,$pais,$latitude,$longitude) {
-	    	$rua = ereg_replace("[#'/*\|`]", '',$rua);
-			$complemento = ereg_replace("[#'/*\|`]", '',$complemento);
-			$cep = ereg_replace("[^0-9]", '',$cep);
-			$bairro = ereg_replace("[#'/*\|`]", '',$bairro);
-			$uf = ereg_replace("[#'/*\|`]", '',$uf);
-			$cidade = ereg_replace("[#'/*\|`]", '',$cidade);
-			$pais = ereg_replace("[#'/*\|`]", '',$pais);
-			require_once("conectar_mysql.php");
+	    	$rua = preg_replace('![*#/\"´`]+!','',$rua);
+			$complemento = preg_replace('![*#/\"´`]+!','',$complemento);
+			$cep = preg_replace("![^0-9]+!",'',$cep);
+			$bairro = preg_replace('![*#/\"´`]+!','',$bairro);
+			$uf = preg_replace('![*#/\"´`]+!','',$uf);
+			$cidade = preg_replace('![*#/\"´`]+!','',$cidade);
+			$pais = preg_replace('![*#/\"´`]+!','',$pais);
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("SELECT * FROM endereco WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -181,7 +181,7 @@
 	     	return $retorno;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("DELETE FROM ponto WHERE endereco_id = $id");
 	    	$query = $conexao->query("DELETE FROM agendamento WHERE endereco_id = $id");
 	    	$query = $conexao->query("DELETE FROM usuario_has_endereco WHERE endereco_id = $id");
@@ -194,7 +194,7 @@
 	  		return $retorno;
 	    }
 	    function select_by_id($id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM endereco WHERE id = $id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -203,7 +203,7 @@
 			return json_encode($dados);
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM endereco $condicoes");
@@ -224,14 +224,13 @@
 	// Classe da tabela usuario //
 	class usuario {
 	    function insert($nome,$email,$senha,$cpf,$telefone) {
-	    	$nome = ereg_replace("[#'/*\|`]", '',$nome);
-			$email = ereg_replace("[#'/*\|`]", '',$email);
-			$cpf = ereg_replace("[^0-9]", '',$cpf);
-			$telefone = ereg_replace("[^0-9]", '',$telefone);
+	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
+			$email = preg_replace('![*#/\"´`]+!','',$email);
+			$cpf = preg_replace("![^0-9]+!",'',$cpf);
 	    	if (!validar_cpf($cpf))
     			return 0;
     		$senha = sha1($senha);
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO usuario VALUES(NULL,'$nome','$email','$senha','$cpf','$telefone')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -240,10 +239,9 @@
 			return $id;
 	    }
 	    function update_perfil($id,$nome,$email,$telefone) {
-	    	$nome = ereg_replace("[#'/*\|`]", '',$nome);
-			$email = ereg_replace("[#'/*\|`]", '',$email);
-			$telefone = ereg_replace("[^0-9]", '',$telefone);
-	      	require_once("conectar_mysql.php");
+	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
+			$email = preg_replace('![*#/\"´`]+!','',$email);
+	      	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("SELECT * FROM usuario WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -254,9 +252,10 @@
 			$conexao->close();
 	     	return $retorno;
 	    }
-			function update_senha($id,$senha_antiga,$senha_nova) {
+
+		function update_senha($id,$senha_antiga,$senha_nova) {
     		$senha_antiga = sha1($senha_antiga);
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM usuario WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -272,8 +271,9 @@
 			$conexao->close();
 	      	return $retorno;
 	    }
+
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("DELETE FROM usuario_has_endereco WHERE usuario_id = $id");
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $id");
 	    	while ($row = $query->fetch_assoc())
@@ -291,9 +291,9 @@
 	  		return $retorno;
 	    }
 	    function login($email,$senha) {
-			$email = ereg_replace("[#'/*\|`]", '',$email);
+			$email = preg_replace('![*#/\"´`]+!','',$email);
 			$senha = sha1($senha);
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'");
 			$retorno = 0;
 			if (mysqli_num_rows($query) == 1)
@@ -305,7 +305,7 @@
 			return $retorno;
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM usuario $condicoes");
@@ -327,8 +327,8 @@
 	// Classe da tabela usuario_has_endereco //
 	class usuario_has_endereco {
 		function insert($usuario_id,$endereco_id,$nome) {
-			$nome = ereg_replace("[#'/*\|`]", '',$nome);
-	    	require_once("conectar_mysql.php");
+			$nome = preg_replace('![*#/\"´`]+!','',$nome);
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO usuario_has_endereco VALUES(NULL,$usuario_id,$endereco_id,'$nome')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -337,7 +337,7 @@
 	      	return $id;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
     		$query = $conexao->query("DELETE FROM usuario_has_endereco WHERE id = $id");
     		$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM usuario_has_endereco WHERE id = $id");
@@ -346,8 +346,9 @@
 			$conexao->close();
 	  		return $retorno;
 	    }
+
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM usuario_has_endereco $condicoes");
@@ -366,14 +367,13 @@
 	// Classe da tabela empresa //
 	class empresa {
 	    function insert($razao_social,$nome_fantasia,$cnpj,$senha,$email) {
-	    	$razao_social = ereg_replace("[#'/*\|`]", '',$razao_social);
-			$nome_fantasia = ereg_replace("[#'/*\|`]", '',$nome_fantasia);
-			$cnpj = ereg_replace("[^0-9]", '',$cnpj);
-			$email = ereg_replace("[#'/*\|`]", '',$email);
+	    	$razao_social = preg_replace('![*#/\"´`]+!','',$razao_social);
+			$nome_fantasia = preg_replace('![*#/\"´`]+!','',$nome_fantasia);
+			$email = preg_replace('![*#/\"´`]+!','',$email);
 	    	if (!validar_cnpj($cnpj))
     			return 0;
     		$senha = sha1($senha);
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO empresa VALUES(NULL,'$razao_social','$nome_fantasia','$cnpj','$senha','$email')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -382,10 +382,10 @@
 			return $id;
 	    }
 	    function update_perfil($id,$razao_social,$nome_fantasia,$email) {
-	    	$razao_social = ereg_replace("[#'/*\|`]", '',$razao_social);
-			$nome_fantasia = ereg_replace("[#'/*\|`]", '',$nome_fantasia);
-			$email = ereg_replace("[#'/*\|`]", '',$email);
-	      	require_once("conectar_mysql.php");
+	    	$razao_social = preg_replace('![*#/\"´`]+!','',$razao_social);
+			$nome_fantasia = preg_replace('![*#/\"´`]+!','',$nome_fantasia);
+			$email = preg_replace('![*#/\"´`]+!','',$email);
+	      	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("SELECT * FROM empresa WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -398,7 +398,7 @@
 	    }
 		function update_senha($id,$senha_antiga,$senha_nova) {
 	      	$senha_antiga = sha1($senha_antiga);
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM empresa WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -415,7 +415,7 @@
 	      	return $retorno;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $id");
 	    	while ($row = $query->fetch_assoc()){
 	    		$agendamento_id = $row["id"];
@@ -438,9 +438,9 @@
 	  		return $retorno;
 	    }
 	    function login($email,$senha) {
-			$email = ereg_replace("[#'/*\|`]", '',$email);
+			$email = preg_replace('![*#/\"´`]+!','',$email);
 			$senha = sha1($senha);
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM empresa WHERE email = '$email' AND senha = '$senha'");
 			$retorno = 0;
 			if (mysqli_num_rows($query) == 1)
@@ -452,7 +452,7 @@
 			return $retorno;
 		}
 		function select_by_id($id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM empresa WHERE id = $id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -461,7 +461,7 @@
 			return json_encode($dados);
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM empresa $condicoes");
@@ -484,11 +484,10 @@
 	// Classe da tabela ponto //
 	class ponto {
 	    function insert($empresa_id,$atendimento_ini,$atendimento_fim,$observacao,$telefone,$endereco_id) {
-	    	$atendimento_ini = ereg_replace("[^0-9:]", '',$atendimento_ini);
-			$atendimento_fim = ereg_replace("[^0-9:]", '',$atendimento_fim);
-			$observacao = ereg_replace("[#'/*\|`]", '',$observacao);
-			$telefone = ereg_replace("[^0-9]", '',$telefone);
-	    	require_once("conectar_mysql.php");
+	    	$atendimento_ini = preg_replace("![^0-9:]+!",'',$atendimento_ini);
+			$atendimento_fim = preg_replace("![^0-9:]+!",'',$atendimento_fim);
+			$observacao = preg_replace('![*#/\"´`]+!','',$observacao);
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO ponto VALUES(NULL,$empresa_id,'$atendimento_ini','$atendimento_fim','$observacao','$telefone',$endereco_id)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -497,11 +496,10 @@
 	      	return $id;
 	    }
 	    function update($id,$atendimento_ini,$atendimento_fim,$observacao,$telefone) {
-	    	$atendimento_ini = ereg_replace("[^0-9:]", '',$atendimento_ini);
-			$atendimento_fim = ereg_replace("[^0-9:]", '',$atendimento_fim);
-			$observacao = ereg_replace("[#'/*\|`]", '',$observacao);
-			$telefone = ereg_replace("[^0-9]", '',$telefone);
-	     	require_once("conectar_mysql.php");
+	    	$atendimento_ini = preg_replace("![^0-9:]+!",'',$atendimento_ini);
+			$atendimento_fim = preg_replace("![^0-9:]+!",'',$atendimento_fim);
+			$observacao = preg_replace('![*#/\"´`]+!','',$observacao);
+	     	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM ponto WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -513,7 +511,7 @@
 	     	return $retorno;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
     		$query = $conexao->query("DELETE FROM tipo_lixo_has_ponto WHERE ponto_id = $id");
     		$query = $conexao->query("SELECT endereco_id FROM ponto WHERE id = $id");
     		$endereco_id = mysqli_fetch_assoc($query);
@@ -528,7 +526,7 @@
 	  		return $retorno;
 	    }
 		function select_by_atendimento($atendimento) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM ponto WHERE atendimento_ini < '$atendimento' AND atendimento_fim > '$atendimento'");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -537,7 +535,7 @@
 			return json_encode($dados);
 		}
 		function select_by_empresa($empresa_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM ponto WHERE empresa_id = $empresa_id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -546,7 +544,7 @@
 			return json_encode($dados);
 		}
 		function select_by_id($id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM ponto WHERE id = $id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -555,7 +553,7 @@
 			return json_encode($dados);
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM ponto $condicoes");
@@ -578,7 +576,7 @@
 	// Classe da tabela tipo_lixo_has_ponto //
 	class tipo_lixo_has_ponto {
 		function insert($tipo_lixo_id,$ponto_id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO tipo_lixo_has_ponto VALUES(NULL,$tipo_lixo_id,$ponto_id)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -587,7 +585,7 @@
 	      	return $id;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
     		$query = $conexao->query("DELETE FROM tipo_lixo_has_ponto WHERE id = $id");
     		$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM tipo_lixo_has_ponto WHERE id = $id");
@@ -597,7 +595,7 @@
 	  		return $retorno;
 	    }
 	    function select_by_id($id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM tipo_lixo_has_ponto WHERE id = $id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -606,7 +604,7 @@
 			return json_encode($dados);
 		}
 		function select_by_ponto($ponto_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM tipo_lixo_has_ponto WHERE ponto_id = $ponto_id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
@@ -615,7 +613,7 @@
 			return json_encode($dados);
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM tipo_lixo_has_ponto $condicoes");
@@ -636,7 +634,7 @@
 	// Classe da tabela notificacao //
 	class notificacao {
 	    function insert($usuario_id,$empresa_id,$tipo,$destino) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,$usuario_id,$empresa_id,$tipo,$destino)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -645,7 +643,7 @@
 	      	return $id;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("DELETE FROM notificacao WHERE id = $id");
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
@@ -655,7 +653,7 @@
 	  		return $retorno;
 	    }
 		function select_by_usuario($usuario_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = TRUE");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -665,7 +663,7 @@
 			return json_encode($dados);
 		}
 		function select_by_empresa($empresa_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = TRUE");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -684,9 +682,9 @@
 	// Classe da tabela agendamento //
 	class agendamento {
 	    function insert($empresa_id,$usuario_id,$data_agendamento,$horario, $endereco_id) {
-	    	$data_agendamento = ereg_replace("[^0-9-]", '',$data_agendamento);
-			$horario = ereg_replace("[^0-9:]", '',$horario);
-	    	require_once("conectar_mysql.php");
+	    	$data_agendamento = preg_replace("![^0-9-]+!",'',$data_agendamento);
+			$horario = preg_replace("![^0-9:]+!",'',$horario);
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0,$endereco_id)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -695,9 +693,9 @@
 	      	return $id;
 	    }
 	    function update($id,$data_agendamento,$horario) {
-	    	$data_agendamento = ereg_replace("[^0-9-]", '',$data_agendamento);
-			$horario = ereg_replace("[^0-9:]", '',$horario);
-	     	require_once("conectar_mysql.php");
+	    	$data_agendamento = preg_replace("![^0-9-]+!",'',$data_agendamento);
+			$horario = preg_replace("![^0-9:]+!",'',$horario);
+	     	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -709,7 +707,7 @@
 	     	return $retorno;
 	    }
 	    function aceitar($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -722,7 +720,7 @@
 	     	return $retorno;
 	    }
 	    function recusar($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -735,7 +733,7 @@
 	     	return $retorno;
 	    }
 	    function realizar($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -748,7 +746,7 @@
 	     	return $retorno;
 	    }
 	    function cancelar($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -762,7 +760,7 @@
 	     	return $retorno;
 	    }
 		function select_sem_resposta_by_usuario($usuario_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 0 AND realizado = 0");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -772,7 +770,7 @@
 			return json_encode($dados);
 		}
 		function select_em_espera_by_usuario($usuario_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 1 AND realizado = 0 ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -782,7 +780,7 @@
 			return json_encode($dados);
 		}
 		function select_realizados_by_usuario($usuario_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 1 AND realizado = 1 ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -794,7 +792,7 @@
 		function select_atrasados_by_usuario($usuario_id) {
 			$data = date("Y-m-d");
 			$horario = date("H:i:s.u");
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 1 AND realizado = 0 AND data_agendamento < '$data' AND horario < '$horario' ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -804,7 +802,7 @@
 			return json_encode($dados);
 		}
 		function select_sem_resposta_by_empresa($empresa_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 0 AND realizado = 0");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -814,7 +812,7 @@
 			return json_encode($dados);
 		}
 		function select_em_espera_by_empresa($empresa_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 0 ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -824,7 +822,7 @@
 			return json_encode($dados);
 		}
 		function select_realizados_by_empresa($empresa_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 1 ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -836,7 +834,7 @@
 		function select_atrasados_by_empresa($empresa_id) {
 			$data = date("Y-m-d");
 			$horario = date("H:i:s.u");
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 0  AND data_agendamento < '$data' AND horario < '$horario' ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -846,7 +844,7 @@
 			return json_encode($dados);
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM agendamento $condicoes");
@@ -878,7 +876,7 @@
 	class agendamento_has_tipo_lixo {
 	    function insert($tipo_lixo_id,$agendamento_id,$quantidade) {
 	    	$quantidade = ereg_replace("[^0-9.]", '',$quantidade);
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO agendamento_has_tipo_lixo VALUES(NULL,$tipo_lixo_id,$agendamento_id,$quantidade)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -888,7 +886,7 @@
 	    }
 	    function update($id,$quantidade) {
 	    	$quantidade = ereg_replace("[^0-9.]", '',$quantidade);
-	     	require_once("conectar_mysql.php");
+	     	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento_has_tipo_lixo WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -900,7 +898,7 @@
 	     	return $retorno;
 	    }
 	    function delete($id) {
-	    	require_once("conectar_mysql.php");
+	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE id = $id");
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento_has_tipo_lixo WHERE id = $id");
@@ -910,7 +908,7 @@
 	  		return $retorno;
 	    }
 		function select_by_agendamento($agendamento_id) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento_has_tipo_lixo WHERE agendamento_id = $agendamento_id");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
@@ -920,7 +918,7 @@
 			return json_encode($dados);
 		}
 		function select($condicoes) {
-			require_once("conectar_mysql.php");
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			if ($condicoes != NULL)
 				$condicoes = "WHERE " . $condicoes;
 			$query = $conexao->query("SELECT * FROM agendamento_has_tipo_lixo $condicoes");
