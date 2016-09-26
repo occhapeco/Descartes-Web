@@ -40,7 +40,9 @@
                             <?php
                                 for($i=0;$i<$num;$i++)
                                 {
-                                    if ($notificacao[$i]->tipo == 0) // Agendamentos pendentes
+                                        $pessoa = $service->call('usuario.select',' id = '.$notificacao[$i]->usuario_id);
+                                        $usuario_nome = json_decode($pessoa);
+                                    /*if ($notificacao[$i]->tipo == 0) // Agendamentos pendentes
                                         echo '<li>
                                                 <a href="index.php">
                                                     <span class="subject">
@@ -48,7 +50,7 @@
                                                     <span class="time">Just now</span>
                                                     </span>
                                                     <span class="message">
-                                                        Você possui n agendamentos pendentes!
+                                                        Você possui um novo agendamento pendente!
                                                     </span>
                                                 </a>
                                             </li>';
@@ -63,35 +65,36 @@
                                                         Você possui n agendamentos aprovados!
                                                     </span>
                                                 </a>
-                                            </li>';
-                                    if ($notificacao->tipo == 2) // Agendamentos novos (em espera)
+                                            </li>';*/
+                                   if ($notificacao[$i]->tipo == 2) // Agendamentos novos (em espera)
                                         echo '<li>
                                                 <a href="index.php">
                                                     <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
                                                     <span class="subject">
-                                                    <span class="from">Zac Snider</span>
+                                                    <span class="from">'.$usuario_nome[0]->nome.'</span>
                                                     <span class="time">Just now</span>
                                                     </span>
                                                     <span class="message">
-                                                        Você possui novos agendamentos!
+                                                        Você possui um novo agendamento!
                                                     </span>
                                                 </a>
                                             </li>';
-                                    if ($notificacao->tipo == 3) // Agendamentos atrasados 
+                                    if ($notificacao[$i]->tipo == 3){ // Agendamento cancelado
                                         echo '<li>
-                                                <a href="agendamentos_atrasados.php">
-                                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                                    <span class="subject">
-                                                    <span class="from">Zac Snider</span>
-                                                    <span class="time">Just now</span>
-                                                    </span>
-                                                    <span class="message">
-                                                        Você possui n agendamentos atrasados!
-                                                    </span>
-                                                </a>
-                                            </li>';
+                                                    <a href="index.php">
+                                                        <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                                        <span class="subject">
+                                                        <span class="from">'.$usuario_nome[0]->nome.'</span>
+                                                        <span class="time">Recentemente</span>
+                                                        </span>
+                                                        <span class="message">
+                                                            O agendamento de '.$usuario_nome[0]->nome.' foi cancelado pelo usuário!
+                                                        </span>
+                                                    </a>
+                                                </li>';
+                                    }
 
-                                    if ($notificacao->tipo == 4) // Agendamentos cancelados
+                                    /*if ($notificacao->tipo == 4) // Agendamentos cancelados
                                         echo '<li>
                                                     <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
                                                     <span class="subject">
@@ -101,7 +104,7 @@
                                                     <span class="message">
                                                         O !
                                                     </span>
-                                            </li>';
+                                            </li>';*/
                                 }
                             ?>
                         </ul>

@@ -25,6 +25,8 @@
         // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
         $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($tipo_lixo[$i],$id_agendamento,$_POST["quantidade_lixo"]));
       }
+
+      //$notificacao = $service->call('notificacao.insert', array($_SESSION["id"],$_POST["empresa_id"],2,true));
       echo "<script>alert('Agendamento efetuado com sucesso');</script>";
       header("location:pedidos.php");
     }
