@@ -10,7 +10,7 @@
                       $usuario = json_decode($json_dados);
                       echo "<p>" . $usuario[0]->nome . "</p>";
                     ?>
-              	    <a href="editarperfil.php"><button class="btn btn-sm btn-theme btn-round">Editar Perfil</button ></a>
+              	    <a href="editarperfil.php"><button class="btn btn-sm btn-theme btn-round" style="font-size:14px;">Editar Perfil</button ></a>
               	  </center>	
 				  <br>
                   <li class="sub-menu">

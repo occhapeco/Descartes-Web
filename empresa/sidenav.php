@@ -15,7 +15,7 @@
                       $empresa = json_decode($json_dados);
                       echo "<p>" . $empresa[0]->nome_fantasia . "</p>";
                     ?>
-              	    <a href="editar_perfil.php"><button class="btn btn-sm btn-theme btn-round">Editar Perfil</button ></a>
+              	    <a href="editar_perfil.php"><button class="btn btn-sm btn-theme btn-round" style="font-size:14px;">Editar Perfil</button ></a>
               	  </center>	
 				          <br>
                   <li class="sub-menu">

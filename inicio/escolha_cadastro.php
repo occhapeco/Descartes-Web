@@ -63,25 +63,24 @@
           	
           	<!-- BASIC FORM ELELEMNTS -->
             <div class="row mt">
-            	<div class="form-panel col-lg-11">
-              <h4><i class="fa fa-angle-right"></i> Escolha o seu tipo de cadastro:</h4>
-                <form method="post" action="#">
-                  <div class="col-lg-2">
-                  </div>
-                    <div class="col-lg-3 diva " >
-                       <center><h4>Usuário</h4></center>
-                       <a href="cadastro_pessoa.php"><img src="pessoa.png" class="img-responsive img-rounded  pull-right" style="margin-bottom:40px;"></a>
-                    </div>
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-3 diva">
-                      <center><h4>Empresa</h4></center>
-                      <a href="cadastro_empresa.php"><img src="ind3.png" class="img-responsive  img-rounded" style="margin-bottom:40px;"></a>
-                    </div>
-                    <div class="col-lg-2">
-                    </div>
-                </form>
-				      </div><!-- col-lg-12-->   
+            	<div class="form-panel col-md-12">
+                <h4><i class="fa fa-angle-right"></i> Escolha o seu tipo de cadastro:</h4>
+                    <div class="col-lg-2"></div>
+                       <form method="post" action="#">
+                          <div class="col-lg-3 diva pull-left" >
+                             <center><h4>Usuário</h4></center>
+                             <a href="cadastro_pessoa.php"><img src="pessoa.png" class="img-responsive" style="margin-bottom:40px;"></a>
+                          </div>
+                          
+                          <div class="col-lg-2"></div>
+                         
+                          <div class="col-lg-3 diva pull-left">
+                            <center><h4>Empresa</h4></center>
+                            <a href="cadastro_empresa.php"><img src="ind3.png" class="img-responsive" style="margin-bottom:40px;"></a>
+                          </div>
+                      </form>
+                    <div class="col-lg-2"></div>
+              </div><!-- col-lg-12-->   
             </div><!-- /row -->
          </section><!--/wrapper -->
       </section><!-- /MAIN CONTENT -->
