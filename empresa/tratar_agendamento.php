@@ -28,7 +28,7 @@
 	if (isset($_POST["cancelar"]))
 	{
 		$bool = $service->call('agendamento.cancelar',array($_POST["id"]));
-		header("location: index.php");
+		header("location: agendamentos_aceitos.php");
 	}
 
 	//header("location: index.php");

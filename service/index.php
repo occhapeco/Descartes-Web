@@ -704,7 +704,7 @@
 			{
 		    	$query = $conexao->query("UPDATE agendamento SET aceito = 1 WHERE id = $id");
 		    	$retorno = true;
-		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
+		    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 		    	$row = mysqli_fetch_assoc($query);
 		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",0,0)");
 			}
@@ -718,12 +718,12 @@
 	    	$row = mysqli_fetch_assoc($query);
 			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 0))
 			{
+		    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
+				$row = mysqli_fetch_assoc($query);
+		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",1,0)");
 				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
 		    	$retorno = true;
-		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
-		    	$row = mysqli_fetch_assoc($query);
-		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",1,0)");
 			}
 			$conexao->close();
 	     	return $retorno;
@@ -748,12 +748,12 @@
 	    	$row = mysqli_fetch_assoc($query);
 			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
 			{
+				$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
+		    	$row = mysqli_fetch_assoc($query);
+		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",3,1)");
 				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
 		    	$retorno = true;
-		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
-		    	$row = mysqli_fetch_assoc($query);
-		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",3,1)");
 			}
 			$conexao->close();
 	     	return $retorno;
