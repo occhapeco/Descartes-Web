@@ -73,7 +73,7 @@
                     {
                       $json_dados = $service->call('endereco.select_by_id',array($agendamento[$i]->endereco_id));
                       $endereco = json_decode($json_dados);
-                      $json_dados = $service->call('usuario.select_by_id',array($agendamento[$i]->usuario_id));
+                      $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                       $usuario = json_decode($json_dados);
                       echo '<tr class="warning">
                               <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>

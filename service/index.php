@@ -700,13 +700,13 @@
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
-			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
+			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 0))
 			{
 		    	$query = $conexao->query("UPDATE agendamento SET aceito = 1 WHERE id = $id");
+		    	$retorno = true;
 		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
 		    	$row = mysqli_fetch_assoc($query);
-		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",2,1)");
-				$retorno = $query;
+		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",0,0)");
 			}
 			$conexao->close();
 	     	return $retorno;
@@ -716,13 +716,14 @@
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
-			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 0) && ($row["realizado"] == 0))
+			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 0))
 			{
+				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
+		    	$retorno = true;
 		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
 		    	$row = mysqli_fetch_assoc($query);
 		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",1,0)");
-		    	$retorno = true;
 			}
 			$conexao->close();
 	     	return $retorno;
@@ -732,10 +733,10 @@
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
-			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 1) && ($row["realizado"] == 0))
+			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
 			{
-		    	$query = $conexao->query("UPDATE agendamento SET realizado = 1 WHERE id = $id");
-				$retorno = true;
+		    	$query = $conexao->query("UPDATE agendamento SET aceito = 1,realizado = 1 WHERE id = $id");
+		    	$retorno = true;
 			}
 			$conexao->close();
 	     	return $retorno;
@@ -749,10 +750,10 @@
 			{
 				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
+		    	$retorno = true;
 		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
 		    	$row = mysqli_fetch_assoc($query);
 		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",3,1)");
-				$retorno = true;
 			}
 			$conexao->close();
 	     	return $retorno;
@@ -767,7 +768,7 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
-		function select_em_espera_by_usuario($usuario_id) {
+		function select_aceitos_by_usuario($usuario_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 1 AND realizado = 0 ORDER BY data_agendamento, horario DESC");
 			$dados = array();
@@ -809,7 +810,8 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
-		function select_em_espera_by_empresa($empresa_id) {
+
+		function select_aceitos_by_empresa($empresa_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 0 ORDER BY data_agendamento, horario DESC");
 			$dados = array();
@@ -819,6 +821,7 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
+
 		function select_realizados_by_empresa($empresa_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 1 ORDER BY data_agendamento, horario DESC");
@@ -829,6 +832,7 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
+
 		function select_atrasados_by_empresa($empresa_id) {
 			$data = date("Y-m-d");
 			$horario = date("H:i:s.u");

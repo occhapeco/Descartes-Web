@@ -80,7 +80,7 @@
                         {
                           $json_dados = $service->call('endereco.select_by_id',array($agendamento[$i]->endereco_id));
                           $endereco = json_decode($json_dados);
-                          $json_dados = $service->call('usuario.select_by_id',array($agendamento[$i]->usuario_id));
+                          $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                           $usuario = json_decode($json_dados);
                           echo '<tr class="warning">
                                   <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
@@ -89,7 +89,7 @@
                                   <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
                                   <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
                                   <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                                  <td data-title="Recusar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="cancelar" name="cancelar" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                                  <td data-title="Recusar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><input type="hidden" id="cancelar" name="cancelar"><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
                                 </tr>';
                         }
                     ?>

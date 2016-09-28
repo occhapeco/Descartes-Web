@@ -4,44 +4,32 @@
 
 	// Aceitar agendamento
 	if (isset($_POST["aceitar"]))
-		if ($service->call('agendamento.aceitar',array($_POST["id"])))
-		{
-			//if ($service->call('notificacao.insert',array)) ARRUMAR NOTIFICAÇÃO NO WEB SERVICE
-			header("location: index.php");
-		}
-		else
-			print_r("Erro ao aceitar!");
+	{
+		$bool = $service->call('agendamento.aceitar',array($_POST["id"]));
+		header("location: agendamentos_aceitos.php");
+	}
 
 	// Recusar agendamento
 	if (isset($_POST["recusar"]))
-		if ($service->call('agendamento.recusar',array($_POST["id"])))
-		{
-			//if ($service->call('notificacao.insert',array)) ARRUMAR NOTIFICAÇÃO NO WEB SERVICE
-			header("location: index.php");
-		}
-		else
-			print_r("Erro ao recusar!");
+	{
+		$bool = $service->call('agendamento.recusar',array($_POST["id"]));
+		header("location: index.php");
+	}
 
 
 	// Realizar agendamento
 	if (isset($_POST["realizar"]))
-		if ($service->call('agendamento.realizar',array($_POST["id"])))
-		{
-			//if ($service->call('notificacao.insert',array)) ARRUMAR NOTIFICAÇÃO NO WEB SERVICE
-			header("location: index.php");
-		}
-		else
-			print_r("Erro ao realizar!");
-
+	{
+		$bool = $service->call('agendamento.realizar',array($_POST["id"]));
+		header("location: agendamentos_realizados.php");
+	}
 
 	// Cancelar agendamento
 	if (isset($_POST["cancelar"]))
-		if ($service->call('agendamento.cancelar',array($_POST["id"])))
-		{
-			//if ($service->call('notificacao.insert',array)) ARRUMAR NOTIFICAÇÃO NO WEB SERVICE
-			header("location: index.php");
-		}
-		else
-			print_r("Erro ao cancelar!");
+	{
+		$bool = $service->call('agendamento.cancelar',array($_POST["id"]));
+		header("location: index.php");
+	}
 
+	//header("location: index.php");
 ?>

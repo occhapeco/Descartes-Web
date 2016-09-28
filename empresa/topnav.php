@@ -24,7 +24,7 @@
                                 $notificacao = json_decode($json_dados);
                                 $num = count($notificacao);
                                 if ($num > 0) 
-                                    echo '<span class="badge bg-theme">$num</span>'
+                                    echo '<span class="badge bg-theme">'.$num.'</span>'
                             ?>
                         </a>
                         <ul class="dropdown-menu extended inbox" id="notification_bar">
@@ -40,8 +40,8 @@
                             <?php
                                 for($i=0;$i<$num;$i++)
                                 {
-                                        $pessoa = $service->call('usuario.select',' id = '.$notificacao[$i]->usuario_id);
-                                        $usuario_nome = json_decode($pessoa);
+                                    $json_dados = $service->call('usuario.select',array('id = '.$notificacao[$i]->usuario_id));
+                                    $usuario = json_decode($json_dados);
                                     /*if ($notificacao[$i]->tipo == 0) // Agendamentos pendentes
                                         echo '<li>
                                                 <a href="index.php">
@@ -66,29 +66,26 @@
                                                     </span>
                                                 </a>
                                             </li>';*/
-                                   if ($notificacao[$i]->tipo == 2) // Agendamentos novos (em espera)
-                                        echo '<li>
-                                                <a href="index.php">
-                                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                                    <span class="subject">
-                                                    <span class="from">'.$usuario_nome[0]->nome.'</span>
-                                                    <span class="time">Just now</span>
+                                   if ($notificacao[$i]->tipo == 2) // Novo agendamento
+                                        echo "<li>
+                                                <a href='index.php'>
+                                                    <span class='photo'><img alt='avatar' src='assets/img/ui-zac.jpg'></span>
+                                                    <span class='subject'>
+                                                    <span class='from'>".$usuario[0]->nome."</span>
                                                     </span>
-                                                    <span class="message">
-                                                        Você possui um novo agendamento!
-                                                    </span>
+                                                    <span class='message'>Novo agendamento solicitado!\n\n</span>
                                                 </a>
-                                            </li>';
+                                            </li>";
                                     if ($notificacao[$i]->tipo == 3){ // Agendamento cancelado
                                         echo '<li>
                                                     <a href="index.php">
                                                         <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
                                                         <span class="subject">
-                                                        <span class="from">'.$usuario_nome[0]->nome.'</span>
+                                                        <span class="from">'.$usuario[0]->nome.'</span>
                                                         <span class="time">Recentemente</span>
                                                         </span>
                                                         <span class="message">
-                                                            O agendamento de '.$usuario_nome[0]->nome.' foi cancelado pelo usuário!
+                                                            O agendamento de '.$usuario[0]->nome.' foi cancelado!
                                                         </span>
                                                     </a>
                                                 </li>';

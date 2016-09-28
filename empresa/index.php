@@ -56,7 +56,7 @@
               <div class="content-panel">
                   <h4><i class="fa fa-angle-right fa-d"></i> Em espera</h4>
                   <?php                            
-                      $json_dados = $service->call('agendamento.select_pendentes_by_empresa',array($_SESSION["id"]));
+                      $json_dados = $service->call('agendamento.select_sem_resposta_by_empresa',array($_SESSION["id"]));
                       $agendamento = json_decode($json_dados);
                       $num = count($agendamento);
                       if ($num > 0)
@@ -82,10 +82,10 @@
                         for ($i=0;$i<$num;$i++)
                         {
                           // Dados do endereço
-                          $json_dados = $service->call('endereco.select',array("id = $endereco_id"));
+                          $json_dados = $service->call('endereco.select_by_id',array($agendamento[$i]->endereco_id));
                           $endereco = json_decode($json_dados);
                           // Dados do usuário
-                          $json_dados = $service->call('usuario.select',array("id = $agendamento->usuario_id"));
+                          $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                           $usuario = json_decode($json_dados);
                           echo "<td data-title='Data'>" . $agendamento[$i]->data_agendamento . "</td>
                                 <td data-title='Horário'>" . $agendamento[$i]->horario . "</td>
@@ -93,8 +93,8 @@
                                 <td data-title='Solicitante'>" . $usuario[0]->nome . "</td>
                                 <td data-title='Telefone'>" . $usuario[0]->telefone . "</td>
                                 <td data-title='E-mail'>" . $usuario[0]->email . "</td>                    
-                                <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' value=" . $agendamento[$i]->id . "><center><button type='submit' id='aceitar' class='btn btn-theme'><i class='fa fa-check'></i></button></center></form></td>
-                                <td data-title='Recusar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' value=" . $agendamento[$i]->id . "><center><button type='submit' id='recusar' class='btn btn-danger'><i class='fa fa-times'></i></button></center></form></td>";
+                                <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><input type='hidden' id='aceitar' name='aceitar'><button type='submit' class='btn btn-theme'><i class='fa fa-check'></i></button></center></form></td>
+                                <td data-title='Recusar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><button type='submit' id='recusar' name='recusar' class='btn btn-danger'><i class='fa fa-times'></i></button></center></form></td>";
                         }
                     ?>
                           </tr>
