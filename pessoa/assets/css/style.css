@@ -354,7 +354,7 @@ ul.sidebar-menu li a{
     text-decoration: none;
     display: block;
     padding: 15px 0 15px 10px;
-    font-size: 20px;
+    font-size: 18px;
     outline: none;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -377,7 +377,7 @@ ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
 
 
 ul.sidebar-menu li a i {
-    font-size: 20px;
+    font-size: 18px;
     padding-right: 6px;
 }
 
@@ -745,7 +745,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .sidebar-toggle-box .fa-bars {
     cursor: pointer;
     display: inline-block;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 

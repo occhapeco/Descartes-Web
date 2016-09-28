@@ -29,6 +29,21 @@
     <link href="assets/css/table-responsive.css" rel="stylesheet">
 
     <script src="assets/js/chart-master/Chart.js"></script>
+    <style>
+    .diva:hover{
+      border-color:#1B8B41;
+      border-width:3px;
+      border-radius:25%;
+      border-style: solid;
+    }
+    .diva{
+      border-color:#FFFFFF;
+      border-width:1px;
+      border-radius:25%;
+      border-style: solid;
+    }
+
+    </style>
   </head>
 
   <body>
@@ -53,15 +68,15 @@
                 <form method="post" action="#">
                   <div class="col-lg-2">
                   </div>
-                    <div class="col-lg-3" >
+                    <div class="col-lg-3 diva " >
                        <center><h4>Usuário</h4></center>
-                       <a href="cadastro_pessoa.php"><img src="pessoa.png" class="img-responsive img-rounded pull-right" style="margin-bottom:40px;"></a>
+                       <a href="cadastro_pessoa.php"><img src="pessoa.png" class="img-responsive img-rounded  pull-right" style="margin-bottom:40px;"></a>
                     </div>
                     <div class="col-lg-1">
                     </div>
-                    <div class="col-lg-3" >
+                    <div class="col-lg-3 diva">
                       <center><h4>Empresa</h4></center>
-                      <a href="cadastro_empresa.php"><img src="ind3.png" class="img-responsive img-rounded"></a>
+                      <a href="cadastro_empresa.php"><img src="ind3.png" class="img-responsive  img-rounded" style="margin-bottom:40px;"></a>
                     </div>
                     <div class="col-lg-2">
                     </div>
