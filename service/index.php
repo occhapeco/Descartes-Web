@@ -654,7 +654,7 @@
 	    }
 		function select_by_usuario($usuario_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = TRUE");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = 0");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
@@ -664,7 +664,7 @@
 		}
 		function select_by_empresa($empresa_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = TRUE");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = 1");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
@@ -674,7 +674,7 @@
 		}
 	}
 	// Registro dos métodos da classe notificacao //
-	$server->register('notificacao.insert', array('usuario_id' => 'xsd:string','empresa_id' => 'xsd:string','tipo' => 'xsd:integer','destino' => 'xsd:boolean'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela notificacao (retorna o id do registro inserido).');
+	$server->register('notificacao.insert', array('usuario_id' => 'xsd:string','empresa_id' => 'xsd:string','tipo' => 'xsd:integer','destino' => 'xsd:integer'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela notificacao (retorna o id do registro inserido).');
 	$server->register('notificacao.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela notificacao.');
 	$server->register('notificacao.select_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registro da tabela notificacao por usuario (retorna json).');
 	$server->register('notificacao.select_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registro da tabela notificacao por empresa (retorna json).');
