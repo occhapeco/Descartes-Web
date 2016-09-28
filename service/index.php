@@ -688,23 +688,12 @@
 	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0,$endereco_id)");
 	    	$id = 0;
 	    	if ($query == true)
+	    	{
 	    		$id = $conexao->insert_id;
+	    		$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,$usuario_id,$empresa_id,2,1)");
+	    	}
 			$conexao->close();
 	      	return $id;
-	    }
-	    function update($id,$data_agendamento,$horario) {
-	    	$data_agendamento = preg_replace("![^0-9-]+!",'',$data_agendamento);
-			$horario = preg_replace("![^0-9:]+!",'',$horario);
-	     	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-	     	$retorno = false;
-	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
-			if (mysqli_num_rows($query) == 1)
-			{
-		    	$query = $conexao->query("UPDATE agendamento SET data_agendamento = '$data_agendamento',horario = '$horario' WHERE id = $id");
-				$retorno = true;
-			}
-			$conexao->close();
-	     	return $retorno;
 	    }
 	    function aceitar($id) {
 	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
@@ -714,6 +703,9 @@
 			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
 			{
 		    	$query = $conexao->query("UPDATE agendamento SET aceito = 1 WHERE id = $id");
+		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
+		    	$row = mysqli_fetch_assoc($query);
+		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",2,1)");
 				$retorno = $query;
 			}
 			$conexao->close();
@@ -727,6 +719,9 @@
 			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 0) && ($row["realizado"] == 0))
 			{
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
+		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
+		    	$row = mysqli_fetch_assoc($query);
+		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",1,0)");
 		    	$retorno = true;
 			}
 			$conexao->close();
@@ -754,6 +749,9 @@
 			{
 				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
 		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
+		    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
+		    	$row = mysqli_fetch_assoc($query);
+		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",3,1)");
 				$retorno = true;
 			}
 			$conexao->close();
@@ -857,7 +855,6 @@
 	}
 	// Registro dos métodos da classe agendamento //
 	$server->register('agendamento.insert', array('empresa_id' => 'xsd:integer','usuario_id' => 'xsd:integer','data_agendamento' => 'xsd:string','horario' => 'xsd:string','endereco_id' => 'xsd:integer'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela agendamento (retorna o id do registro inserido).');
-	$server->register('agendamento.update', array('id' => 'xsd:integer','data_agendamento' => 'xsd:string','horario' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro na tabela agendamento (retorna o id do registro inserido).');
 	$server->register('agendamento.aceitar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Aceita um agendamento.');
 	$server->register('agendamento.recusar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Recusa um agendamento.');
 	$server->register('agendamento.realizar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Realiza um agendamento.');
