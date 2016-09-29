@@ -68,27 +68,30 @@
                                             </li>';*/
                                    if ($notificacao[$i]->tipo == 2) // Novo agendamento
                                         echo "<li>
-                                                <a href='index.php'>
-                                                    <span class='photo'><img alt='avatar' src='assets/img/ui-zac.jpg'></span>
-                                                    <span class='subject'>
-                                                    <span class='from'>".$usuario[0]->nome."</span>
-                                                    </span>
-                                                    <span class='message'>Novo agendamento solicitado!\n\n</span>
-                                                </a>
+                                                <form id='form_noti_".$notificacao[$i]->id."' method='POST' action='tratar_notificacoes.php'>
+                                                    <input type='hidden' id='id' name='id' value=".$notificacao[$i]->id.">
+                                                    <input type='hidden' id='pg' name='pg' value='index.php'>
+                                                    <a onclick='document.getElementById(`form_noti_".$notificacao[$i]->id."`).submit();' href='#'>
+                                                        <span class='subject'>
+                                                        <span class='from'>".$usuario[0]->nome."</span>
+                                                        </span>
+                                                        <span class='message'>Um agendamento foi solicitado!</span>
+                                                    </a>
+                                                </form>
                                             </li>";
                                     if ($notificacao[$i]->tipo == 3){ // Agendamento cancelado
-                                        echo '<li>
-                                                    <a href="index.php">
-                                                        <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                                        <span class="subject">
-                                                        <span class="from">'.$usuario[0]->nome.'</span>
-                                                        <span class="time">Recentemente</span>
+                                        echo "<li>
+                                                <form id='form_noti_".$notificacao[$i]->id."' method='POST' action='tratar_notificacoes.php'>
+                                                    <input type='hidden' id='id' name='id' value=".$notificacao[$i]->id.">
+                                                    <input type='hidden' id='pg' name='pg' value='agendamento_aceitos.php'>
+                                                    <a onclick='document.getElementById(`form_noti_".$notificacao[$i]->id."`).submit();' href='#'>
+                                                        <span class='subject'>
+                                                        <span class='from'>".$usuario[0]->nome."</span>
                                                         </span>
-                                                        <span class="message">
-                                                            O agendamento de '.$usuario[0]->nome.' foi cancelado!
-                                                        </span>
+                                                        <span class='message'>Um agendamento foi cancelado!</span>
                                                     </a>
-                                                </li>';
+                                                </form>
+                                            </li>";
                                     }
 
                                     /*if ($notificacao->tipo == 4) // Agendamentos cancelados
