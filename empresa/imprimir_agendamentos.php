@@ -115,7 +115,7 @@
                         $pdf->Cell(5,2,$end,1,1);
                         $pdf->OutPut();
                 }
-                header('location: agendamentos_em_espera.php');
+                header('location: index.php');
         }
 
 
