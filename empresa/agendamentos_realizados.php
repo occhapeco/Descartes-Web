@@ -44,10 +44,14 @@
     <section id="main-content">
       <section class="wrapper">
         <h3><i class="fa fa-angle-right"></i> Agendamentos</h3>
+          <form action="imprimir_agendamentos.php" method="post">
+             <button class="btn btn-theme03 pull-right" style="margin-top:0px;"><i class="fa fa-print"><input type="hidden" name="realizado" id="realizado"></i></button>
+          </form>
         <div class="row mt">
           <div class="col-lg-12">
             <div class="content-panel">
                 <h4><i class="fa fa-angle-right fa-d"></i> Realizados</h4>
+                 
                 <?php                            
                   $json_dados = $service->call('agendamento.select_realizados_by_empresa',array($_SESSION["id"]));
                   $agendamento = json_decode($json_dados);
@@ -55,6 +59,7 @@
                   if ($num > 0)
                   {
                 ?>
+                
                 <section id="no-more-tables">
                    <table class="table table-striped table-condensed cf ">
                       <thead class="cf">

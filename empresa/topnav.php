@@ -8,7 +8,7 @@
                   <div class="fa fa-bars tooltips"></div>
               </div>
             <!--logo start-->
-            <a href="index.php" class="logo"><b>DESCARTES</b></a>
+            <a href="index.php" class="logo"><b>DescartesLab</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
