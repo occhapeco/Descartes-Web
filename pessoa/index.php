@@ -152,25 +152,6 @@
          map.setCenter(center);
       });
 
-      //usuário clica e cria marcador - evento de clique
-      google.maps.event.addListener(map, 'click', function(event) {
-        if(poder)
-        {
-          var temp =[
-            {
-              position: event.latLng,
-              type: 'mark1',
-              info: contentString,
-              draggable:true
-            }
-          ];
-          addMarker(temp[0]);
-          poder = false;
-        }else{
-          alert("ponto já adicionado!");
-        }
-      });
-
       //cria o input para pesquisar no mapa
       var input = document.getElementById('pac-input');
       var searchBox = new google.maps.places.SearchBox(input);
@@ -271,7 +252,8 @@
       var features = [
 
         <?php
-              $dados_json = $service->call('ponto.select_by_empresa',array($_SESSION['id']));
+              $dados_json = $service->call('ponto.select',array(NULL));
+              
               $ponto = json_decode($dados_json);
               $num = count($ponto);
 

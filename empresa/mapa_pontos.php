@@ -284,14 +284,15 @@
           '</p>'+'</p>'+
           '</div>'+
           '</div>';
-
-        //uso de ícone personalizado e conteúdo de cada marker
-        var features = [
-
           <?php
             $dados_json = $service->call('ponto.select_by_empresa',array($_SESSION['id']));
             $ponto = json_decode($dados_json);
             $num = count($ponto);
+          ?>
+        //uso de ícone personalizado e conteúdo de cada marker
+        var features = [
+
+          <?php
 
             for ($i=0;$i<$num;$i++)
             {
