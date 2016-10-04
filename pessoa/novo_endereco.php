@@ -6,7 +6,7 @@
   if(isset($_POST["edit"]))
   {
     if ($service->call('endereco.update',array($_POST["id"],$_POST["rua"],$_POST["num"],$_POST["complemento"],$_POST["cep"],$_POST["bairro"],$_POST["uf"],$_POST["cidade"],$_POST["pais"],$_POST["lat"],$_POST["long"])))
-      echo "<script>alert('Endereço editado com sucesso');</script>";
+      header("location: enderecos.php");
     else
       echo "<script>alert('Erro ao editar endereco!');</script>";
   }
