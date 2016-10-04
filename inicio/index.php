@@ -35,8 +35,14 @@
   </head>
 
   <style>
+    html, body{
+      height: auto;
+    }
     .section1{
-      background-color: #ededed;
+      width: 100%;
+      height:100%;
+      min-height: 100%;
+      background-color: #393939;
     }
   </style>
 

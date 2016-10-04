@@ -38,7 +38,6 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="pedidos.php">Meus Pedidos</a></li>  
-                          <li><a  href="agendamentos.php">Novo Agendamento</a></li>
                       </ul>
                   </li>
 		          </ul>
