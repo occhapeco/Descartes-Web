@@ -76,19 +76,19 @@
                            </thead>
                            <tbody>
                             <?php
-                              $json_dados = $service->call('usuario_has_endereco.select', array('usuario_id = '.$_SESSION["id"].' AND endereco_id = '. $agendamento[0]->endereco_id));
-                              $endereco = json_decode($json_dados);
                               for($i=0;$i<(count($agendamento));$i++)
                               {
+                                $json_dados = $service->call('usuario_has_endereco.select', array('usuario_id = '.$_SESSION["id"].' AND endereco_id = '. $agendamento[$i]->endereco_id));
+                                $endereco = json_decode($json_dados);
                                 $json_dados = $service->call('empresa.select', array('id = '. $agendamento[$i]->empresa_id));
                                 $empresa = json_decode($json_dados);
                                 $status = "";
 
-                                if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento < date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
                                   $status = 'Não Confirmado'; 
                                 }
-                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento < date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento <= date("Y-m-d"))
                                 {
                                   $status = 'Em Espera';
                                 }
@@ -96,7 +96,7 @@
                                 {
                                   $status = 'Atrasado';
                                 }
-                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 1 and $agendamento[$i]->data_agendamento < date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 1)
                                 {
                                   $status = 'Realizado';
                                 }

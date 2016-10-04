@@ -19,7 +19,7 @@
                                 $notificacao = json_decode($json_dados);
                                 $num = count($notificacao);
                                 if ($num > 0) 
-                                    echo '<span class="badge bg-theme">$num</span>'
+                                    echo '<span class="badge bg-theme">'.$num.'</span>';
                             ?>
                         </a>
                         <ul class="dropdown-menu extended inbox" id="notification_bar">
