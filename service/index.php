@@ -143,28 +143,28 @@
 
 	// Classe da tabela endereco //
 	class endereco {
-		function insert($rua,$num,$complemento,$cep,$bairro,$estado,$uf,$pais,$latitude,$longitude) {
+		function insert($rua,$num,$complemento,$cep,$bairro,$estado,$cidade,$pais,$latitude,$longitude) {
 			$rua = preg_replace('![*#/\"´`]+!','',$rua);
 			$complemento = preg_replace('![*#/\"´`]+!','',$complemento);
 			$cep = preg_replace("![^0-9]+!",'',$cep);
 			$bairro = preg_replace('![*#/\"´`]+!','',$bairro);
-			$uf = preg_replace('![*#/\"´`]+!','',$uf);
+			$estado = preg_replace('![*#/\"´`]+!','',$estado);
 			$cidade = preg_replace('![*#/\"´`]+!','',$cidade);
 			$pais = preg_replace('![*#/\"´`]+!','',$pais);
 			$id = 0;
 	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-	    	$query = $conexao->query("INSERT INTO endereco VALUES(NULL,'$rua','$num','$complemento','$cep','$bairro','$uf','$cidade','$pais',$latitude,$longitude)");
+	    	$query = $conexao->query("INSERT INTO endereco VALUES(NULL,'$rua','$num','$complemento','$cep','$bairro','$estado','$cidade','$pais',$latitude,$longitude)");
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
 			$conexao->close();
 	      	return $id;
 	    }
-	    function update($id,$rua,$num,$complemento,$cep,$bairro,$uf,$cidade,$pais,$latitude,$longitude) {
+	    function update($id,$rua,$num,$complemento,$cep,$bairro,$estado,$cidade,$pais,$latitude,$longitude) {
 	    	$rua = preg_replace('![*#/\"´`]+!','',$rua);
 			$complemento = preg_replace('![*#/\"´`]+!','',$complemento);
 			$cep = preg_replace("![^0-9]+!",'',$cep);
 			$bairro = preg_replace('![*#/\"´`]+!','',$bairro);
-			$uf = preg_replace('![*#/\"´`]+!','',$uf);
+			$estado = preg_replace('![*#/\"´`]+!','',$estado);
 			$cidade = preg_replace('![*#/\"´`]+!','',$cidade);
 			$pais = preg_replace('![*#/\"´`]+!','',$pais);
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
@@ -172,7 +172,7 @@
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
 			{
-		    	$query = $conexao->query("UPDATE endereco SET rua = '$rua',num = '$num',complemento = '$complemento',cep = '$cep',bairro = '$bairro',uf = '$uf',cidade = '$cidade',pais = '$pais',latitude = $latitude,longitude = $longitude WHERE id = $id");
+		    	$query = $conexao->query("UPDATE endereco SET rua = '$rua',num = '$num',complemento = '$complemento',cep = '$cep',bairro = '$bairro',estado = '$estado',cidade = '$cidade',pais = '$pais',latitude = $latitude,longitude = $longitude WHERE id = $id");
 				$query = $conexao->query("SELECT * FROM endereco WHERE id = $id");
 				$row = mysqli_fetch_assoc($query);
 				$retorno = true;
@@ -215,8 +215,8 @@
 		}
 	}
 	// Registro dos métodos da classe endereco //
-	$server->register('endereco.insert', array('rua' => 'xsd:string','num' => 'xsd:string','complemento' => 'xsd:string','cep' => 'xsd:string','cep' => 'xsd:string','bairro' => 'xsd:string','uf' => 'xsd:string','cidade' => 'xsd:string','pais' => 'xsd:string','latitude' => 'xsd:double','longitude' => 'xsd:double'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na table endereco (retorna o id do registro inserido).');
-	$server->register('endereco.update', array('id' => 'xsd:integer','rua' => 'xsd:string','num' => 'xsd:string','complemento' => 'xsd:string','cep' => 'xsd:string','cep' => 'xsd:string','bairro' => 'xsd:string','uf' => 'xsd:string','cidade' => 'xsd:string','pais' => 'xsd:string','latitude' => 'xsd:double','longitude' => 'xsd:double'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro da tabela endereco.');
+	$server->register('endereco.insert', array('rua' => 'xsd:string','num' => 'xsd:string','complemento' => 'xsd:string','cep' => 'xsd:string','cep' => 'xsd:string','bairro' => 'xsd:string','estado' => 'xsd:string','cidade' => 'xsd:string','pais' => 'xsd:string','latitude' => 'xsd:double','longitude' => 'xsd:double'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na table endereco (retorna o id do registro inserido).');
+	$server->register('endereco.update', array('id' => 'xsd:integer','rua' => 'xsd:string','num' => 'xsd:string','complemento' => 'xsd:string','cep' => 'xsd:string','cep' => 'xsd:string','bairro' => 'xsd:string','estado' => 'xsd:string','cidade' => 'xsd:string','pais' => 'xsd:string','latitude' => 'xsd:double','longitude' => 'xsd:double'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro da tabela endereco.');
 	$server->register('endereco.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela endereco.');
 	$server->register('endereco.select_by_id', array('id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela endereco por id (retorna json).');
 	$server->register('endereco.select', array('condicoes' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela endereco com condições definidas ou indefinidas (retorna json).');
