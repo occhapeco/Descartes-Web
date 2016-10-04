@@ -565,7 +565,7 @@
 		}
 		function select_by_coordenadas($latitude,$longitude) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM ponto INNER JOIN endereco on (ponto.endereco_id = endereco.id) WHERE abs(endereco.latitude-$latitude) < 0.4 AND abs(endereco.longitude-$longitude) < 0.4");
+			$query = $conexao->query("SELECT * FROM ponto INNER JOIN endereco ON (ponto.endereco_id = endereco.id) WHERE abs(endereco.latitude-$latitude) < 0.4 AND abs(endereco.longitude-$longitude) < 0.4");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query))
 			    $dados[] = $row;

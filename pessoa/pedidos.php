@@ -36,7 +36,7 @@
     <link href="assets/css/table-responsive.css" rel="stylesheet">
 
     <script src="assets/js/chart-master/Chart.js"></script>
-	
+  
   </head>
 
   <body>
@@ -76,29 +76,27 @@
                            </thead>
                            <tbody>
                             <?php
-                              $json_dados = $service->call('usuario_has_endereco.select', array('usuario_id = '.$_SESSION["id"].' AND endereco_id = '. $agendamento[$i]->endereco_id));
-                              $endereco = json_decode($json_dados);
                               for($i=0;$i<(count($agendamento));$i++)
                               {
-                                $json_dados = $service->call('empresa.select_by_id', array($agendamento[$i]->empresa_id));
-
+                                $json_dados = $service->call('usuario_has_endereco.select', array('usuario_id = '.$_SESSION["id"].' AND endereco_id = '. $agendamento[$i]->endereco_id));
+                                $endereco = json_decode($json_dados);
+                                $json_dados = $service->call('empresa.select', array('id = '. $agendamento[$i]->empresa_id));
                                 $empresa = json_decode($json_dados);
                                 $status = "";
 
-                                if($agendamento[$i]->aceito == 1 && $agendamento[$i]->realizado == 0 && $agendamento[$i]->data_agendamento > date("Y-m-d"))
-                                {
-                                  $status = 'Atrasado';
-                                }
-                                if($agendamento[$i]->aceito == 0 && $agendamento[$i]->realizado == 0 && $agendamento[$i]->data_agendamento < date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
                                   $status = 'Não Confirmado'; 
                                 }
-                                if($agendamento[$i]->aceito == 1 && $agendamento[$i]->realizado == 0 && $agendamento[$i]->data_agendamento < date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento <= date("Y-m-d"))
                                 {
                                   $status = 'Em Espera';
                                 }
-                                
-                                if($agendamento[$i]->aceito == 1 && $agendamento[$i]->realizado == 1 && $agendamento[$i]->data_agendamento < date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento > date("Y-m-d"))
+                                {
+                                  $status = 'Atrasado';
+                                }
+                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 1)
                                 {
                                   $status = 'Realizado';
                                 }
@@ -128,7 +126,7 @@
 
       </section><!-- container-->
 
-		
+    
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
@@ -148,10 +146,10 @@
 
     <!--script for this page-->
     <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
-	
-	
-	<script type="application/javascript">
+  <script src="assets/js/zabuto_calendar.js"></script>  
+  
+  
+  <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
