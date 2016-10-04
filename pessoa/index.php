@@ -256,7 +256,6 @@
               
               $ponto = json_decode($dados_json);
               $num = count($ponto);
-
               for ($i=0;$i<$num;$i++)
               {
                 $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
@@ -266,11 +265,11 @@
                 $pontos = "";
                 if (count($tipo_lixo_has_ponto) == 0)
                   $pontos += "Sem tipos de lixo!";
-                for ($i=0;$i<count($tipo_lixo_has_ponto);$i++)
+                for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
                 {
-                  $dados_json = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$i]->tipo_lixo_id));
+                  $dados_json = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
                   $tipo_lixo = json_decode($dados_json);
-                  if ($i != 0)
+                  if ($j != 0)
                     $pontos += ", ";
                   $pontos += $tipo_lixo[0]->nome;
                 }
@@ -281,14 +280,14 @@
                   info:'<div id="content">'+
                         '<div id="siteNotice">'+
                         '</div>'+
-                        '<h1 id="firstHeading" class="firstHeading"><?php echo utf8_encode($pontos); ?></h1>'+
+                        '<h1 id="firstHeading" class="firstHeading"><?php echo utf8_decode($pontos); ?></h1>'+
                         '<div id="bodyContent">'+
-                        '<p name="nome"> <?php echo utf8_encode($endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais); ?></p>'+
-                        '<p name="descricao"> <?php echo utf8_encode($ponto[0]->observacao); ?> </p>'+
-                        '<p name="descricao"> <?php echo utf8_encode($ponto[0]->telefone); ?> </p>'+
+                        '<p name="nome"> <?php echo utf8_decode($endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais); ?></p>'+
+                        '<p name="descricao"> <?php echo utf8_decode($ponto[$i]->observacao); ?> </p>'+
+                        '<p name="descricao"> <?php echo utf8_decode($ponto[$i]->telefone); ?> </p>'+
                         '<form action="agendamentos.php" method="post">'+
-                        '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo utf8_encode($ponto[0]->empresa_id); ?>">'+
-                        '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo utf8_encode($ponto[0]->id); ?>">'+
+                        '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo utf8_decode($ponto[$i]->empresa_id); ?>">'+
+                        '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo utf8_decode($ponto[$i]->id); ?>">'+
                         '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                         '</form>'+
                         '<form action="#" method="post">'+
