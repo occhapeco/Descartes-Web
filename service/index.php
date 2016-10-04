@@ -563,6 +563,15 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
+		function select_by_coordenadas($latitude,$longitude) {
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
+			$query = $conexao->query("SELECT * FROM ponto INNER JOIN endereco on (ponto.endereco_id = endereco.id) WHERE abs(endereco.latitude-$latitude) < 0.4 AND abs(endereco.longitude-$longitude) < 0.4");
+			$dados = array();
+			while($row = mysqli_fetch_assoc($query))
+			    $dados[] = $row;
+			$conexao->close();
+			return json_encode($dados);
+		}
 	}
 	// Registro dos métodos da classe ponto //
 	$server->register('ponto.insert', array('empresa_id' => 'xsd:integer','atendimento_ini' => 'xsd:string','atendimento_fim' => 'xsd:string','observacao' => 'xsd:string','telefone' => 'xsd:string','endereco_id' => 'xsd:integer'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela ponto (retorna o id do registro inserido).');
@@ -572,6 +581,7 @@
 	$server->register('ponto.select_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela ponto por empresa (retorna json).');
 	$server->register('ponto.select_by_id', array('id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela ponto por id (retorna json).');
 	$server->register('ponto.select', array('condicoes' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela ponto com condições definidas ou indefinidas (retorna json).');
+	$server->register('ponto.select_by_coordenadas', array('latitude' => 'xsd:double','longitude' => 'xsd:double'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela ponto pela distância da casa do usuário (retorna json).');
 
 	// Classe da tabela tipo_lixo_has_ponto //
 	class tipo_lixo_has_ponto {
