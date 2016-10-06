@@ -38,7 +38,7 @@
     }
     .diva{
       border-color:#FFFFFF;
-      border-width:1px;
+      border-width:3px;
       border-radius:25%;
       border-style: solid;
     }
