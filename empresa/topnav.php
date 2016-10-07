@@ -15,7 +15,7 @@
                 <ul class="nav top-menu">
                     <!-- inbox dropdown start-->
                     <li id="header_inbox_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="fa fa-envelope-o"></i>
                             <?php
                                 require_once("../conectar_service.php");
@@ -23,18 +23,21 @@
                                 $json_dados = $service->call('notificacao.select_by_empresa',array($_SESSION["id"]));
                                 $notificacao = json_decode($json_dados);
                                 $num = count($notificacao);
+                                $n = $num;
                                 if ($num > 0) 
-                                    echo '<span class="badge bg-theme">'.$num.'</span>'
+                                    echo '<span class="badge bg-theme">'.$num.'</span>';
+                                if($num > 4)
+                                    $num = 4;
                             ?>
                         </a>
                         <ul class="dropdown-menu extended inbox" id="notification_bar">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
                             <?php
-                                $header = "Você não possui notificações";
+                                $header = '<p class="green">Você não possui notificações</p>';
                                 if ($num > 0)
-                                    $header = "Você possui " . $num . " notificações";
-                                echo '<p class="green">' . $header . '</p>';
+                                    $header = '<button class="btn btn-theme" onclick="window.location.href = `notificacao.php`;" style="width: 100%">Ver todas as '.$n.' notificações</button>';
+                                echo $header;
                             ?>
                             </li>
                             <?php
