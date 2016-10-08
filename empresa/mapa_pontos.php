@@ -1,4 +1,4 @@
-<?php 
+i<?php 
   require_once("permissao.php"); 
 ?>
 <!DOCTYPE html>
