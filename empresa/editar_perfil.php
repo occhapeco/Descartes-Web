@@ -1,20 +1,20 @@
 <?php 
   require_once("permissao.php"); 
-
+  $alert = '';
   // Tratando edições
   if(isset($_POST))
   {
     require_once("../conectar_service.php");
     if (isset($_POST["editar_perfil"]))
       if ($service->call('empresa.update_perfil',array($_SESSION["id"],$_POST["razao_social"],$_POST["nome_fantasia"],$_POST["email"])))
-        echo "<script>alert('Perfil editado com sucesso');</script>";
+        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Seu perfil foi alterado com sucesso!</b></div>';
       else
-        echo "<script>alert('Erro ao editar perfil!');</script>";
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
     if (isset($_POST["editar_senha"]))
         if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
-          echo "<script>alert('Senha alterada com sucesso');</script>";
+          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Sua senha foi alterada com sucesso!</b></div>';
         else
-          echo "<script>alert('Erro ao editar senha!');</script>";
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
   }
 ?>
 <!DOCTYPE html>
@@ -60,7 +60,10 @@
       <section id="main-content">
           <section class="wrapper">
           	<h3><i class="fa fa-angle-right"></i> Editar Perfil</h3>
-          	
+          	<?php
+              if($alert != '')
+                echo "<br>".$alert;
+            ?>
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
@@ -86,7 +89,7 @@
                               <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
                               <div class="col-sm-10">
                               <?php
-                                echo '<input type="text" id="email" name="email" class="form-control" maxlength="50" value="' . $empresa[0]->email . '" required>';
+                                echo '<input type="text" id="email" name="email" class="form-control" maxlength="50" value="' . $empresa[0]->email . '" readonly required>';
                               ?>
                               </div>
                           </div>

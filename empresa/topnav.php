@@ -36,7 +36,7 @@
                             <?php
                                 $header = '<p class="green">Você não possui notificações</p>';
                                 if ($num > 0)
-                                    $header = '<button class="btn btn-theme" onclick="window.location.href = `notificacao.php`;" style="width: 100%">Ver todas as '.$n.' notificações</button>';
+                                    $header = '<button class="btn btn-theme" onclick="window.location.href = `notificacoes.php`;" style="width: 100%">Ver todas as '.$n.' notificações</button>';
                                 echo $header;
                             ?>
                             </li>

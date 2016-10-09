@@ -28,18 +28,11 @@
                           <li><a  href="mapa_pontos.php">Adicionar Pontos</a></li>
                       </ul>
                   </li>
-				  
                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-calendar"></i>
+                      <a href="agendamentos.php">   <!-- ligar a outra página-->
+                          <i class="fa fa-bar-chart-o"></i>
                           <span>Agendamentos</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="index.php">Em Espera</a></li>
-                          <li><a  href="agendamentos_aceitos.php">Aceitos</a></li>
-            						  <li><a  href="agendamentos_realizados.php">Realizados</a></li>
-            						  <li><a  href="agendamentos_atrasados.php">Atrasados</a></li>
-                      </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >

@@ -56,7 +56,7 @@
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills" style="margin-left: 20px;">
                   <li class="active"><a data-toggle="pill" href="#home">Não aceitos</a></li>
                   <li><a data-toggle="pill" href="#menu1">Pendentes</a></li>
                   <li><a data-toggle="pill" href="#menu2">Atrasadas</a></li>
