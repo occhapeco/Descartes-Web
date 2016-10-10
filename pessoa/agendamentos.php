@@ -95,21 +95,21 @@
                       <form class="form-horizontal style-form" method="post" action="#">
                           
                           <div class="form-group">
-                              <label class="col-sm-2 control-label">Data do Recolhimento</label>
+                              <label class="col-sm-2 control-label">*Data do Recolhimento</label>
                               <div class="col-sm-10">
-                                <input type="text" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" onkeypress="formatar("##/##/####", this)" required autofocus>
+                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Informe a data desejada para o recolhimento">
 						                  </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 control-label">Horário</label>
+                              <label class="col-sm-2 control-label">*Horário</label>
                               <div class="col-sm-10">
-                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" onkeypress="formatar("##: ##", this)" required autofocus>
+                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Informe o horário desejado para o recolhimento" required autofocus>
 					                     </div>
                           </div>
 
 						              <div class="form-group">
-                              <label class="col-sm-2 control-label">Endereço para o Recolhimento</label>
+                              <label class="col-sm-2 control-label">*Endereço para o Recolhimento</label>
                               <div class="container">
                                 
                                   <div class="form-group">
@@ -130,7 +130,7 @@
                               </div>
 
                               <div>
-                                <label class="col-sm-2 control-label">Tipo de Lixo a ser Recolhido</label>
+                                <label class="col-sm-2 control-label">*Tipo de Lixo a ser Recolhido</label>
                                 <div class="col-sm-10">
                                    <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="true">
                                       <?php
@@ -150,9 +150,9 @@
                           <div class="form-group"></div>
                           
                           <div>
-                              <label class="col-sm-2 control-label">Quantidade de lixo a ser Recolhida</label>
+                              <label class="col-sm-2 control-label">*Quantidade de lixo a ser Recolhida</label>
                               <div class="col-sm-10">
-                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" required autofocus>
+                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Informe a quantidade de lixo que será descartado" required autofocus>
                                  <span class="help-block">Valor em Kg</span>
                                </div>
                           </div>
@@ -160,7 +160,7 @@
                           <div class="form-group"></div>
                           
                           <div>
-                              <label class="col-sm-2 control-label">Telefone para Contato</label>
+                              <label class="col-sm-2 control-label">*Telefone para Contato</label>
                               <div class="col-sm-10">
                                  <?php
                                     echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
@@ -171,7 +171,7 @@
                           <div class="form-group"></div>
 
                           <div>
-                              <label class="col-sm-2 control-label">E-mail</label>
+                              <label class="col-sm-2 control-label">*E-mail</label>
                               <div class="col-sm-10">
                                  <?php
                                     echo '<input type="text" id="email" name="email" class="form-control" maxlength="13" value="' . $usuario[0]->email . '" required autofocus>';
@@ -179,7 +179,7 @@
                                </div>
                           </div>
                        
-                                        
+                          <span class="help-block">Os campos com "*" são obrigatórios.</span>             
                           </div>
                           <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
                         <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    

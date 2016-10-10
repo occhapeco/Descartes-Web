@@ -17,9 +17,9 @@
 
                                 $json_dados = $service->call('notificacao.select_by_usuario',array($_SESSION["id"]));
                                 $notificacao = json_decode($json_dados);
-                                $num = count($notificacao);
-                                if ($num > 0) 
-                                    echo '<span class="badge bg-theme">'.$num.'</span>';
+                                $numero = count($notificacao);
+                                if ($numero > 0) 
+                                    echo '<span class="badge bg-theme">'.$numero.'</span>';
                             ?>
                         </a>
                         <ul class="dropdown-menu extended inbox" id="notification_bar">
@@ -27,13 +27,13 @@
                             <li>
                             <?php
                                 $header = "Você não possui notificações.";
-                                if ($num > 0)
-                                    $header = "Você possui " . $num . " notificações.";
+                                if ($numero > 0)
+                                    $header = "Você possui " . $numero . " notificações.";
                                 echo '<p class="green">' . $header . '</p>';
                             ?>
                             </li>
                             <?php
-                                for($i=0;$i<$num;$i++)
+                                for($i=0;$i<$numero;$i++)
                                 {
                                         $empresa = $service->call('empresa.select',' id = '.$notificacao[$i]->empresa_id);
                                         $empresa_nome = json_decode($empresa);

@@ -1,15 +1,16 @@
 <?php 
   require_once("permissao_pessoa.php"); 
   require_once("../conectar_service.php");
+  $alert='';
 
   if(isset($_POST["excluir"]))
   {
     if($service->call('endereco.delete',array($_POST["id"])))
       {
-        echo "<script>alert('endereco deletado com sucesso');</script>";
+        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Endereço deletado com sucesso!</b></div>';
       }
       else
-        echo "<script>alert('endereco não pode ser deletado com sucesso');</script>";
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
   }
   
   
@@ -59,6 +60,10 @@
         <section id="main-content">
           <section class="wrapper">
           	<h3><i class="fa fa-angle-right"></i> Endereços</h3>
+            <?php
+              if($alert != '')
+                echo "<br>".$alert;
+            ?>
           	
           	<!-- BASIC FORM ELELEMNTS -->
                      <div class="form-panel offset1" >
@@ -68,7 +73,7 @@
                            <?php
                             $json_dados = $service->call('usuario_has_endereco.select',array("usuario_id = " . $_SESSION["id"]));
                             $endereco_usu = json_decode($json_dados);
-                            if(count($endereco_usu)>=1)
+                            if(count($endereco_usu)>0)
                              {
                               for($i = 0; $i<count($endereco_usu);$i++) 
                               {
@@ -81,9 +86,9 @@
                                    <div class="panel-heading">
                                     <h4 class="panel-title">
                                       <?php echo $endereco_usu[$i]->nome; ?>
-                                    </h4></a>
-                                 </div>
-                							   <div <?php echo "id='id_". $endereco_usu[$i]->endereco_id."'"; ?> class="panel-collapse collapse">
+                                    </h4></div></div></a>
+                                 
+                							   <div class="panel-collapse collapse" id='id_<?php echo $endereco_usu[$i]->endereco_id; ?>' >
                 								 <div class="panel-body">
                 									<div class="row mt">
                                         <div class="col-lg-12">
@@ -124,7 +129,7 @@
                                                       </center>
                                                     </form>
                                                   </td>
-                                                  <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[$i]->id; ?>"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>
+                                                  <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
                                                 </tr>
                                                </tbody>
                                              </table>
@@ -147,6 +152,7 @@
 				  
 				        </div><!-- col-lg-12-->      	
           	</div><!-- /row -->
+        </a>
 			   </section>
       </section><!-- /MAIN CONTENT -->
 

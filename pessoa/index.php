@@ -275,14 +275,14 @@
                   info:'<div id="content">'+
                         '<div id="siteNotice">'+
                         '</div>'+
-                        '<h1 id="firstHeading" class="firstHeading"><?php echo utf8_decode($pontos); ?></h1>'+
+                        '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
                         '<div id="bodyContent">'+
-                        '<p name="nome"> <?php echo utf8_decode($endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais); ?></p>'+
-                        '<p name="descricao"> <?php echo utf8_decode($ponto[$i]->observacao); ?> </p>'+
-                        '<p name="descricao"> <?php echo utf8_decode($ponto[$i]->telefone); ?> </p>'+
+                        '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                        '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
+                        '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                         '<form action="agendamentos.php" method="post">'+
-                        '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo utf8_decode($ponto[$i]->empresa_id); ?>">'+
-                        '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo utf8_decode($ponto[$i]->id); ?>">'+
+                        '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
+                        '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
                         '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                         '</form>'+
                         '<form action="#" method="post">'+

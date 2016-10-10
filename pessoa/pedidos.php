@@ -100,13 +100,20 @@
                                 {
                                   $status = 'Realizado';
                                 }
+                                if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 1)
+                                {
+                                  $status = 'Cancelado';
+                                }
                                 echo '<tr>
                                         <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
                                         <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                                         <td data-title="Endereço">' . $endereco[0]->nome . '</td>
                                         <td data-title="Coletadora">' . $empresa[0]->nome_fantasia . '</td>
-                                        <td data-title="Coletadora"><center>' . $status . '</center></td>
-                                        <td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
+                                        <td data-title="Coletadora"><center>' . $status . '</center></td>';
+                                        if($status != 'Cancelado')
+                                        {
+                                          echo '<td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
+                                        }
                               }
                           ?>
                         </tbody>

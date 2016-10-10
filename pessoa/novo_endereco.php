@@ -1,14 +1,18 @@
 <?php 
   require_once("permissao_pessoa.php"); 
   require_once("../conectar_service.php");
+  $alert='';
 
   // Tratando edições
   if(isset($_POST["edit"]))
   {
     if ($service->call('endereco.update',array($_POST["id"],$_POST["rua"],$_POST["num"],$_POST["complemento"],$_POST["cep"],$_POST["bairro"],$_POST["uf"],$_POST["cidade"],$_POST["pais"],$_POST["lat"],$_POST["long"])))
+    {
       header("location: enderecos.php");
+      $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Sua endereço foi alterado com sucesso!</b></div>';
+   }
     else
-      echo "<script>alert('Erro ao editar endereco!');</script>";
+      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
   }
 
    $id_input = "";
@@ -54,12 +58,16 @@
     if($endereco_id != 0)
     {
       $endereco_has_usuario = $service -> call('usuario_has_endereco.insert', array($_SESSION["id"], $endereco_id, $_POST["nome_endereco1"]));
+      $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Endereço inserido com sucesso!</b></div>';
+      header("location: enderecos.php");
     }
     else
     {
       $deletar = $service->call('endereco.delete', array("id = " . $endereco_id));
+      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
     }
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,6 +115,10 @@
       <section id="main-content">
           <section class="wrapper">
           	<h3><i class="fa fa-angle-right"></i> Novo Endereço</h3>
+            <?php
+              if($alert != '')
+                echo "<br>".$alert;
+            ?>
           	
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
@@ -115,73 +127,66 @@
                       <form class="form-horizontal style-form" method="post" action="#" id="form_sub">
                           <?php echo $id_input; ?>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome do Endereço</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Nome do Endereço</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control " maxlength="20" id="nome_endereco"  <?php echo "value='$nome_endereco'"; 
+                                  <input type="text" class="form-control " maxlength="20" id="nome_endereco" placeholder="Atribua um nome a este endereço para acha-lo mais facilmente" <?php echo "value='$nome_endereco'"; 
                                       if(isset($_POST["editar"]))
-                                      { ?>
-                                        disabled name="nome_endereco"
-                                      <?php
-                                        }
-                                        else
-                                        {
-                                        ?>
-                                        name="nome_endereco1"
-                                        <?php
-                                        }
+                                        echo 'disabled name="nome_endereco"';
+                                      else
+                                        echo 'name="nome_endereco1"';
                                       ?>
                                   autofocus required>
-                                  <span>Atribua um nome a este endereço para acha-lo mais facilmente.</span>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">CEP</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*CEP</label>
                               <div class="col-sm-10">
-                                <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this,event)" class="form-control" <?php echo "value='$cep'"; ?> required>
+                                <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this,event)" class="form-control" placeholder="Informe o CEP deste endereço" <?php echo "value='$cep'"; ?> required>
                               </div>
                           </div>
 						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">País</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*País</label>
                               <div class="col-sm-10">
-                                 <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required>
+                                 <input type="text" class="form-control" maxlength="20" id="pais" name="pais" placeholder="Informe o país" <?php echo "value='$pais'"; ?> required>
                               </div>
                           </div>
 						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Estado</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Estado</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" maxlength="2" id="uf" name="uf" <?php echo "value='$uf'"; ?> required>
+                                  <input type="text" class="form-control" maxlength="2" id="uf" name="uf"  placeholder="Informe o estado" <?php echo "value='$uf'";?> required>
                               </div>
                           </div>
 						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Cidade</label>
                               <div class="col-sm-10">
-                                  <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade" <?php echo "value='$cidade'"; ?> required>
+                                  <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade" placeholder="Informe a cidade" <?php echo "value='$cidade'"; ?> required>
                               </div>
                           </div>
 						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Bairro</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Bairro</label>
                               <div class="col-sm-10">
-                                <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro" <?php echo "value='$bairro'"; ?> required>
+                                <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro" placeholder="Informe o bairro" <?php echo "value='$bairro'"; ?> required>
                               </div>
                           </div>
 						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Rua</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Rua</label>
                               <div class="col-sm-10">
-                                <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua" <?php echo "value='$rua'"; ?> required>
+                                <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua" placeholder="Informe a rua" <?php echo "value='$rua'"; ?> required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Número</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Número</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" onkeypress="return numbro(event)" onload="return numbro(event)" maxlength="6" id="num" name="num" <?php echo "value='$num'"; ?> required>
+                                  <input type="text" class="form-control" onkeypress="return numbro(event)" onload="return numbro(event)" maxlength="6" id="num" name="num" placeholder="Informe o número do endereço" <?php echo "value='$num'"; ?> required>
                               </div>
                           </div>
 						              <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Complemento</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> required>
+                                  <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" placeholder="Informe o complemento do endereço" <?php echo "value='$complemento'"; ?>>
                               </div>
                           </div>
+                          <span class="help-block">Os campos com "*" são obrigatórios.</span>  
                           <?php
                             echo $btn;
                           ?>
