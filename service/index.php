@@ -739,9 +739,9 @@
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
-			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
+			if ((mysqli_num_rows($query) == 1) && ($row["aceito"] == 1) && ($row["realizado"] == 0))
 			{
-		    	$query = $conexao->query("UPDATE agendamento SET aceito = 1,realizado = 1 WHERE id = $id");
+		    	$query = $conexao->query("UPDATE agendamento SET realizado = 1 WHERE id = $id");
 		    	$retorno = true;
 			}
 			$conexao->close();
@@ -754,10 +754,9 @@
 	    	$row = mysqli_fetch_assoc($query);
 			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
 			{
-		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row['usuario_id'].",".$row['empresa_id'].",3,1)");
-				$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE agendamento_id = $id");
-		    	$query = $conexao->query("DELETE FROM agendamento WHERE id = $id");
+		    	$query = $conexao->query("UPDATE agendamento SET aceito = 0, realizado = 1 WHERE id = $id");
 		    	$retorno = true;
+		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row["usuario_id"].",".$row["empresa_id"].",3,1)");
 			}
 			$conexao->close();
 	     	return $retorno;
@@ -806,6 +805,16 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
+		function select_cancelados_by_usuario($usuario_id) {
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
+			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 0 AND realizado = 1 ORDER BY data_agendamento, horario DESC");
+			$dados = array();
+			while($row = mysqli_fetch_assoc($query)) {
+			    $dados[] = $row;
+			}
+			$conexao->close();
+			return json_encode($dados);
+		}
 		function select_sem_resposta_by_empresa($empresa_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 0 AND realizado = 0");
@@ -829,7 +838,6 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
-
 		function select_realizados_by_empresa($empresa_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 1 ORDER BY data_agendamento, horario DESC");
@@ -840,12 +848,21 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
-
 		function select_atrasados_by_empresa($empresa_id) {
 			$data = date("Y-m-d");
 			$horario = date("H:i:s.u");
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 0  AND data_agendamento < '$data' AND horario < '$horario' ORDER BY data_agendamento, horario DESC");
+			$dados = array();
+			while($row = mysqli_fetch_assoc($query)) {
+			    $dados[] = $row;
+			}
+			$conexao->close();
+			return json_encode($dados);
+		}
+		function select_cancelados_by_empresa($empresa_id) {
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
+			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 0 AND realizado = 1 ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
@@ -875,10 +892,12 @@
 	$server->register('agendamento.select_aceitos_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos pendentes da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select_realizados_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos sem reposta da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select_atrasados_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos atrasados da tabela agendamento por usuario (retorna json).');
+	$server->register('agendamento.select_cancelados_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos cancelados da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select_sem_resposta_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos sem reposta da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select_aceitos_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos pendentes da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select_realizados_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos sem reposta da tabela agendamento por usuario (retorna json).');
-	$server->register('agendamento.select_atrasados_by_empresa', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos atrasados da tabela agendamento por empresa (retorna json).');
+	$server->register('agendamento.select_atrasados_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos atrasados da tabela agendamento por empresa (retorna json).');
+	$server->register('agendamento.select_cancelados_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos cancelados da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select', array('condicoes' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros com condições definidas ou indefinidas (retorna json).');
 
 	// Classe da tabela agendamento_has_tipo_lixo //
