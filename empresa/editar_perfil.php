@@ -95,7 +95,7 @@
                           </div>
                           <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmar</button>
                       </form>
-              	         <button class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Editar Senha</button><br><br>
+              	         <button class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Alterar Senha</button><br><br>
                   </div>
 				  
 				  

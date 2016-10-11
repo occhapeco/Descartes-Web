@@ -166,25 +166,6 @@
            map.setCenter(center);
         });
 
-        //usuário clica e cria marcador - evento de clique
-        google.maps.event.addListener(map, 'click', function(event) {
-          if(poder)
-          {
-            var temp =[
-              {
-                position: event.latLng,
-                type: 'mark1',
-                info: contentString,
-                draggable:true
-              }
-            ];
-            addMarker(temp[0]);
-            poder = false;
-          }else{
-            alert("ponto já adicionado!");
-          }
-        });
-
         //cria o input para pesquisar no mapa
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
@@ -249,17 +230,6 @@
             infowindow.open(map, this);
           });
 
-          if (feature.draggable == true) {
-
-            document.getElementById('lat').value = marker.position.lat();
-            document.getElementById('long').value = marker.position.lng();
-
-            google.maps.event.addListener(marker,'dragend', function() {
-                document.getElementById('lat').value = marker.position.lat();
-                document.getElementById('long').value = marker.position.lng();
-            });
-          }
-
           markers.push(marker);
         }
 
@@ -285,14 +255,15 @@
         var features = [
 
           <?php
-                $dados_json = $service->call('agendamento.select_em_espera_by_empresa',array($_SESSION['id']));
-                $agendamento = json_decode($dados_json);
-                $num = count($agendamento);
-
+                $dados_json = $service->call('agendamento.select_aceitos_by_empresa',array($_SESSION['id']));
+                $aceitos = json_decode($dados_json);
+                $num = count($aceitos);
                 for ($i=0;$i<$num;$i++)
                 {
-                  $dados_json = $service->call('endereco.select_by_id',array($agendamento[$i]->endereco_id));
+                  $dados_json = $service->call('endereco.select_by_id',array($aceitos[$i]->endereco_id));
                   $endereco = json_decode($dados_json);
+                  $dados_json = $service->call('usuario.select',array("id = ".$aceitos[$i]->usuario_id));
+                  $Usuarioponto = json_decode($dados_json);
                   ?>
                   {
                     position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
@@ -300,11 +271,11 @@
                     info:'<div id="content">'+
                           '<div id="siteNotice">'+
                           '</div>'+
-                          '<h1 id="firstHeading" class="firstHeading"><?php echo utf8_encode($empresa[0]->nome_fantasia); ?></h1>'+
+                          '<h1 id="firstHeading" class="firstHeading"><?php echo $Usuarioponto[0]->nome; ?> - Aceitos</h1>'+
                           '<div id="bodyContent" class="col-sm-12">'+
-                          '<p name="nome" class="col-sm-6"> <?php echo utf8_encode($endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais); ?></p>'+
-                          '<p name="data_agendamento" class="col-sm-6"> <?php echo utf8_encode($agendamento[0]->data_agendamento); ?> </p>'+
-                          '<p name="horario" class="col-sm-6"> <?php echo utf8_encode($agendamento[0]->horario); ?> </p>'+
+                          '<p name="nome" class="col-sm-6"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p name="data_agendamento" class="col-sm-6"> <?php echo $aceitos[$i]->data_agendamento; ?> </p>'+
+                          '<p name="horario" class="col-sm-6"> <?php echo $aceitos[$i]->horario; ?> </p>'+
                           
                           '<form action="#" method="post">'+
                           '</form>'+
@@ -314,6 +285,41 @@
                   }
                   <?php
                   if ($i!=$num-1) {
+                    echo ",";
+                  }
+                }
+
+                $dados_json = $service->call('agendamento.select_atrasados_by_empresa',array($_SESSION['id']));
+                $atrasados = json_decode($dados_json);
+                $num1 = count($atrasados);
+                if ($num>0 && $num1>0) {echo ",";}
+                for ($i=0;$i<$num1;$i++)
+                {
+                  $dados_json = $service->call('endereco.select_by_id',array($atrasados[$i]->endereco_id));
+                  $endereco = json_decode($dados_json);
+                  $dados_json = $service->call('usuario.select',array("id = ".$atrasados[$i]->usuario_id));
+                  $Usuarioponto = json_decode($dados_json);
+                  ?>
+                  {
+                    position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
+                    type: 'mark1',
+                    info:'<div id="content">'+
+                          '<div id="siteNotice">'+
+                          '</div>'+
+                          '<h1 id="firstHeading" class="firstHeading"><?php echo $Usuarioponto[0]->nome; ?> - Atrasados</h1>'+
+                          '<div id="bodyContent" class="col-sm-12">'+
+                          '<p name="nome" class="col-sm-6"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p name="data_agendamento" class="col-sm-6"> <?php echo $atrasados[$i]->data_agendamento; ?> </p>'+
+                          '<p name="horario" class="col-sm-6"> <?php echo $atrasados[$i]->horario; ?> </p>'+
+                          
+                          '<form action="#" method="post">'+
+                          '</form>'+
+                          '</div>'+
+                          '</div>',
+                    draggable:false
+                  }
+                  <?php
+                  if ($i!=$num1-1) {
                     echo ",";
                   }
                 }

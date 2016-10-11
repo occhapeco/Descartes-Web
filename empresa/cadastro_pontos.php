@@ -182,41 +182,41 @@
                     	<div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">CEP</label>
                             <div class="col-sm-10">
-                               <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus required>
+                               <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">País</label>
+                            <label class="col-sm-2 col-sm-2 control-label">*País</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Estado</label>
+                            <label class="col-sm-2 col-sm-2 control-label">*Estado</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
+                            <label class="col-sm-2 col-sm-2 control-label">*Cidade</label>
                             <div class="col-sm-10">
                                 <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Bairro</label>
+                            <label class="col-sm-2 col-sm-2 control-label">*Bairro</label>
                             <div class="col-sm-10">
                                 <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Rua</label>
+                            <label class="col-sm-2 col-sm-2 control-label">*Rua</label>
                             <div class="col-sm-10">
                                 <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Número</label>
+                            <label class="col-sm-2 control-label">*Número</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" onkeypress="return numbro(event)" onload="return numbro(event)" maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required>
                             </div>
@@ -224,10 +224,10 @@
                         <div class="form-group">
                             <label class="col-sm-2  control-label ">Complemento</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> required>
+                                <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?>>
                             </div>
                         </div>
-                     <a class="btn btn-sm btn-theme pull-right" id="oiem">Próximo</a><br><br>
+                    *CAMPO REQUIRIDO <a class="btn btn-sm btn-theme pull-right" id="oiem">Próximo</a><br><br>
                   </div>
                     
                     <!-- Dados do funcionamento do Ponto -->    

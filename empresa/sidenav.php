@@ -25,7 +25,7 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="pontos.php">Meus Pontos</a></li> 
-                          <li><a  href="mapa_pontos.php">Adicionar Pontos</a></li>
+                          <li><a  href="cadastro_pontos.php">Adicionar Pontos</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

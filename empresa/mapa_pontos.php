@@ -1,4 +1,4 @@
-i<?php 
+<?php 
   require_once("permissao.php"); 
 ?>
 <!DOCTYPE html>
@@ -170,25 +170,6 @@ i<?php
            map.setCenter(center);
         });
 
-        //usuário clica e cria marcador - evento de clique
-        google.maps.event.addListener(map, 'click', function(event) {
-          if(poder)
-          {
-            var temp =[
-              {
-                position: event.latLng,
-                type: 'mark1',
-                info: contentString,
-                draggable:true
-              }
-            ];
-            addMarker(temp[0]);
-            poder = false;
-          }else{
-            alert("ponto já adicionado!");
-          }
-        });
-
         //cria o input para pesquisar no mapa
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
@@ -253,37 +234,12 @@ i<?php
             infowindow.open(map, this);
           });
 
-          if (feature.draggable == true) {
-
-            document.getElementById('lat').value = marker.position.lat();
-            document.getElementById('long').value = marker.position.lng();
-
-            google.maps.event.addListener(marker,'dragend', function() {
-                document.getElementById('lat').value = marker.position.lat();
-                document.getElementById('long').value = marker.position.lng();
-            });
-          }
-
           markers.push(marker);
         }
 
         //criação da infowindow
         var infowindow = new google.maps.InfoWindow(); // variável para criar a tela quando clica no marcador
 
-        //variáveis de conteudo, substituir depois pela info no features
-        var contentString = '<div id="content">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<h1 id="firstHeading" class="firstHeading">NOME DO PONTO '+1+'</h1>'+
-          '<div id="bodyContent" class="col-sm-12">'+
-          '<p class="col-sm-6"> OLHA O CONTEÚDO DO PONTO MAHOE</p>'+
-          '<p class="col-sm-6"> OEIOEIOEIOEOEIOEIEOIEOEI </p><p>'+
-          '<p>'+
-          '<button class="btn btn-primary" onclick="submeter();">SUCESSO!</button>'+
-          ''+
-          '</p>'+'</p>'+
-          '</div>'+
-          '</div>';
           <?php
             $dados_json = $service->call('ponto.select_by_empresa',array($_SESSION['id']));
             $ponto = json_decode($dados_json);
@@ -318,10 +274,10 @@ i<?php
                 info:'<div id="content">'+
                       '<div id="siteNotice">'+
                       '</div>'+
-                      '<h1 id="firstHeading" class="firstHeading"><?php echo utf8_encode($pontos); ?></h1>'+
+                      '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
                       '<div id="bodyContent" class="col-sm-12">'+
-                      '<p name="nome" class="col-sm-6"> <?php echo utf8_encode($endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais); ?></p>'+
-                      '<p name="descricao" class="col-sm-6"> <?php echo utf8_encode($ponto[0]->observacao); ?> </p>'+
+                      '<p name="nome" class="col-sm-6"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                      '<p name="descricao" class="col-sm-6"> <?php echo $ponto[0]->observacao; ?> </p>'+
                       '<form action="#" method="post">'+
                       '</form>'+
                       '</div>'+
