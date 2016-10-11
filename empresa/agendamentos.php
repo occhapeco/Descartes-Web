@@ -43,14 +43,12 @@
       
       <?php
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>    
   
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT  TABELA RESPONSIVA
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
         <section class="wrapper">
           <h3><i class="fa fa-angle-right"></i> Agendamentos</h3>
           <div class="row mt">
@@ -116,7 +114,7 @@
                     <?php
                       }
                       else
-                        echo "<center><h4>Você não possui agendamentos em espera.</h4></center><br>";
+                        echo "<center><h4>Nenhum agendamento em espera.</h4></center><br>";
                     ?>
                   </div>
                   <div id="menu1" class="tab-pane fade">
@@ -166,7 +164,7 @@
                   <?php
                     }
                     else
-                      echo "<center><h4>Você não possui agendamentos aceitos.</h4></center><br>";
+                      echo "<center><h4>Nenhum agendamento aceito.</h4></center><br>";
                   ?>
                   </div>
                   <div id="menu2" class="tab-pane fade">
@@ -178,7 +176,7 @@
                       {
                   ?>
                   <section id="no-more-tables">
-                    <table class="table table-striped table-condensed cf ">
+                    <table class="table table-striped table-condensed cf">
                         <thead class="cf">
                           <tr>
                             <th class="date">Data</th>
@@ -215,11 +213,11 @@
                     <?php
                       }
                       else
-                        echo "<center><h4>Você não possui agendamentos atrasados! :)</h4></center><br>";
+                        echo "<center><h4>Nenhhum agendamento atrasado. :)</h4></center><br>";
                     ?>
                   </div>
                   <div id="menu3" class="tab-pane fade">
-                    <?php                            
+                <?php                            
                   $json_dados = $service->call('agendamento.select_realizados_by_empresa',array($_SESSION["id"]));
                   $agendamento = json_decode($json_dados);
                   $num = count($agendamento);
@@ -247,7 +245,7 @@
                       $endereco = json_decode($json_dados);
                       $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                       $usuario = json_decode($json_dados);
-                      echo '<tr class="warning">
+                      echo '<tr class="success">
                               <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
                               <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
@@ -263,11 +261,56 @@
                 <?php
                   }
                   else
-                    echo "<center><h4>Você não possui agendamentos realizados.</h4></center><br>";
+                    echo "<center><h4>Nenhum agendamento realizado.</h4></center><br>";
                 ?>
                   </div>
                   <div id="menu4" class="tab-pane fade">
-                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <?php                            
+                  $json_dados = $service->call('agendamento.select_cancelados_by_empresa',array($_SESSION["id"]));
+                  $agendamento = json_decode($json_dados);
+                  $num = count($agendamento);
+                  if ($num > 0)
+                  {
+                ?>
+                
+                <section id="no-more-tables">
+                   <table class="table table-striped table-condensed cf ">
+                      <thead class="cf">
+                         <tr>
+                            <th class="date">Data</th>
+                            <th class="time">Horário</th>  
+                            <th>Endereço</th>
+                            <th>Solicitante</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                         </tr>
+                        </thead>
+                         <tbody>
+                <?php
+                    for($i=0;$i<$num;$i++)
+                    {
+                      $json_dados = $service->call('endereco.select_by_id',array($agendamento[$i]->endereco_id));
+                      $endereco = json_decode($json_dados);
+                      $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
+                      $usuario = json_decode($json_dados);
+                      echo '<tr class="danger">
+                              <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
+                              <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
+                              <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                              <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
+                              <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
+                              <td data-title="E-mail">' . $usuario[0]->email . '</td>
+                            </tr>';
+                    }
+                ?>
+                    </tbody>
+                  </table>
+                </section>
+                <?php
+                  }
+                  else
+                    echo "<center><h4>Nenhhum agendamento cancelado.</h4></center><br>";
+                ?>
                   </div>
                 </div>
               </div>
@@ -278,8 +321,6 @@
           </div>
         </section>
       </section>
-
-     </section>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
