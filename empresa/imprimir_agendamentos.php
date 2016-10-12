@@ -32,9 +32,8 @@
                 	$end += ', ';
                 	$end += $endereco[0]->cep;
                 	$pdf->Cell(5,2,$end,1,1);
-        		$pdf->OutPut();
                 }
-                header('location: agendamentos_aceitos.php');
+        		$pdf->OutPut();
 	}
 	
 	if (isset($_POST["realizado"]))
@@ -59,9 +58,8 @@
                 	$end += ', ';
                 	$end += $endereco[0]->cep;
                 	$pdf->Cell(5,2,$end,1,1);
-        		$pdf->OutPut();
                 }
-                header('location: agendamentos_realizados.php');
+        		$pdf->OutPut();
 	}
 	
 	if (isset($_POST["atrasado"]))
@@ -86,9 +84,8 @@
                 	$end += ', ';
                 	$end += $endereco[0]->cep;
                 	$pdf->Cell(5,2,$end,1,1);
-        		$pdf->OutPut();
                 }
-                header('location: agendamentos_atradados.php');
+        		$pdf->OutPut();
 	}
 
         if (isset($_POST["em_espera"]))
@@ -113,9 +110,8 @@
                         $end += ', ';
                         $end += $endereco[0]->cep;
                         $pdf->Cell(5,2,$end,1,1);
-                        $pdf->OutPut();
                 }
-                header('location: index.php');
+                $pdf->OutPut();
         }
 
 

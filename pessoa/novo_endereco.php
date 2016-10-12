@@ -149,7 +149,7 @@
                               </div>
                           </div>
 						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Estado</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*UF</label>
                               <div class="col-sm-10">
                                   <input type="text" class="form-control" maxlength="2" id="uf" name="uf"  placeholder="Informe o estado" <?php echo "value='$uf'";?> required>
                               </div>
@@ -184,7 +184,7 @@
                                   <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" placeholder="Informe o complemento do endereço" <?php echo "value='$complemento'"; ?>>
                               </div>
                           </div>
-                          <span class="help-block">Os campos com "*" são obrigatórios.</span>  
+                           <span class="help-block">*CAMPO REQUERIDO.</span> 
                           <?php
                             echo $btn;
                           ?>

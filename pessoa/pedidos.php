@@ -55,10 +55,16 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
     <section class="wrapper">
-      <h3><i class="fa fa-angle-right"></i> Meus Pedidos</h3>
+      <h3><i class="fa fa-angle-right"></i> Meus Agendamentos</h3>
       <div class="row mt">
         <div class="col-lg-12">
            <div class="content-panel">
+           <div class="row">
+              <form action="imprimir_agendamentos.php" method="post">
+                  <button class="btn btn-theme03 pull-right" style="margin-right:20px;"><i class="fa fa-print"></i></button>
+
+              </form>
+              </div>
                  <?php                            
                     $json_dados = $service->call('agendamento.select',array('usuario_id = '. $_SESSION["id"]));
                     $agendamento = json_decode($json_dados);

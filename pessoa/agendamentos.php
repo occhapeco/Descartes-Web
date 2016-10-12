@@ -84,7 +84,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
           <section class="wrapper">
-          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Novo Endereço</a><br><br>
+          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Novo Endereço</a>
           	<h3><i class="fa fa-angle-right"></i> Efetuar Agendamento</h3>
             
           	
@@ -179,9 +179,8 @@
                                  ?>
                                </div>
                           </div>
-                       
-                          <span class="help-block">Os campos com "*" são obrigatórios.</span>             
-                          </div>
+                       </div>
+                       <span class="help-block">*CAMPO REQUERIDO.</span>     
                           <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
                         <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
                          
