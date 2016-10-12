@@ -78,20 +78,21 @@
      
      <?php 
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT Formulário
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
           <section class="wrapper">
+          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Novo Endereço</a><br><br>
           	<h3><i class="fa fa-angle-right"></i> Efetuar Agendamento</h3>
+            
           	
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
+
                       <form class="form-horizontal style-form" method="post" action="#">
                           
                           <div class="form-group">
@@ -192,7 +193,6 @@
 			       	</div><!-- col-lg-12-->      	
           	</div><!-- /row -->
 			  </section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
 
 			
      </section><!-- Conteiner-->

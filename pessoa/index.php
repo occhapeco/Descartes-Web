@@ -87,12 +87,10 @@
   <section id="container" >
       <?php 
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>
   </section>
-<section id="main-content" style="height:100%">
 <section class="wrapper">
-  <div style="width:100%;height:auto;">
+  <div style="width:100%;height:auto;margin-top:10px;">
     <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
     <div id="map"></div> 
   </div>
@@ -105,7 +103,6 @@
     <input type="hidden" name="endereco" id="endereco" value="e">
     <input type="hidden" name="cep" id="cep" value="e">
   </form> 
-</section>
 </section>
  <script type="text/javascript">
    function initAutocomplete() {

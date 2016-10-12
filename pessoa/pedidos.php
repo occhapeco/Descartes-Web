@@ -8,6 +8,11 @@
       require_once("../conectar_service.php"); 
       $batata = $service->call('agendamento.cancelar',array($_POST['id']));
     }
+    if (isset($_POST['confirmar']))
+    {
+      require_once("../conectar_service.php"); 
+      $batata = $service->call('agendamento.realizado',array($_POST['id']));
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -44,13 +49,11 @@
   <section id="container" >
       <?php 
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT  TABELA RESPONSIVA
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-    <section id="main-content">
     <section class="wrapper">
       <h3><i class="fa fa-angle-right"></i> Meus Pedidos</h3>
       <div class="row mt">
@@ -72,6 +75,7 @@
                                  <th>Coletadora</th>
                                  <th><center>Status</center></th>
                                  <th><center>Cancelar</center></th>
+                                 <th><center>Marcar como Realizado</center></th>
                               </tr>
                            </thead>
                            <tbody>
@@ -110,10 +114,17 @@
                                         <td data-title="Endereço">' . $endereco[0]->nome . '</td>
                                         <td data-title="Coletadora">' . $empresa[0]->nome_fantasia . '</td>
                                         <td data-title="Coletadora"><center>' . $status . '</center></td>';
-                                        if($status != 'Cancelado')
+                                        if($status != 'Cancelado' and $status != 'Realizado')
                                         {
                                           echo '<td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
+                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="cofirmar" name="confirmar" class="btn btn-theme"><i class="fa fa-times"></i></button></center></form></td></tr>';
                                         }
+                                        else
+                                        {
+                                          echo '<td></td>';
+                                          echo '<td></td>';
+                                        }
+                                       
                               }
                           ?>
                         </tbody>
@@ -129,7 +140,6 @@
               </div><!-- /row -->
 
     </section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
 
       </section><!-- container-->
 

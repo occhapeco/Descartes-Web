@@ -54,13 +54,11 @@
      
      <?php 
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT Formulário
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
           <section class="wrapper">
           	<h3><i class="fa fa-angle-right"></i> Editar Perfil</h3>
           	<?php
@@ -86,7 +84,7 @@
                               <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                               <div class="col-sm-10">
 							        <?php
-                                      echo '<input type="number" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
+                                      echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
                               ?>
 					          </div>
                           </div>
@@ -100,7 +98,7 @@
                               </div>
                           </div>
 							<button type="submit" name="editar_perfil" id="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmar</button>		
-              	         <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Editar Senha</a><br><br>                     
+              	         <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Alterar Senha</a><br><br>                     
                       </form>
                   </div>
 				  
@@ -126,13 +124,13 @@
                                   <input type="password" id="senha_nova2" name="senha_nova2" class="form-control" maxlength="12">
                               </div>
                           </div>
-                          <button type="submit" name="editar_senha" id="editar_senha" class="btn btn-sm btn-theme pull-right">Confirmar</button><br><br>
+                          <button type="submit" name="editar_senha" id="editar_senha" class="btn btn-sm btn-theme pull-right">Confirmar</button>
+                          <a class="btn btn-sm btn-theme03 pull-right" id="oiem1" style="margin-right: 10px;">Editar Perfil</a><br><br>
                       </form>
               	    </div>
 				</div><!-- col-lg-12-->      	
           	</div><!-- /row -->
 			</section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
 
 			
      </section><!-- Conteiner-->

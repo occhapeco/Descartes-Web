@@ -105,14 +105,12 @@
   <section id="container" >
      <?php 
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>
   
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT Formulário
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
           <section class="wrapper">
           	<h3><i class="fa fa-angle-right"></i> Novo Endereço</h3>
             <?php
@@ -198,7 +196,6 @@
 				</div><!-- col-lg-12-->      	
           	</div><!-- /row -->
 			</section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
 
 			
      </section><!-- Conteiner-->

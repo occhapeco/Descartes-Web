@@ -50,20 +50,20 @@
   <section id="container" >
      <?php 
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>
   
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT Formulário
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-        <section id="main-content">
           <section class="wrapper">
+          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px">Novo Endereço</a>
           	<h3><i class="fa fa-angle-right"></i> Endereços</h3>
             <?php
               if($alert != '')
                 echo "<br>".$alert;
             ?>
+
           	
           	<!-- BASIC FORM ELELEMNTS -->
                      <div class="form-panel offset1" >
@@ -154,7 +154,6 @@
           	</div><!-- /row -->
         </a>
 			   </section>
-      </section><!-- /MAIN CONTENT -->
 
 			
      </section><!-- Conteiner-->
