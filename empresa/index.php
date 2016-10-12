@@ -2,8 +2,67 @@
   require_once("permissao.php");
   require_once("../conectar_service.php");
 
+  function dia_semana($data)
+  {
+    $ano =  substr($data,0,4);
+    $mes =  substr($data,5,-3);
+    $dia =  substr($data,8,9);
+    return date("w", mktime(0,0,0,$mes,$dia,$ano) );
+  }
+
+  function semanas_mes ($ano, $mes) 
+  {
+    $data = new DateTime("$ano-$mes-01");
+    $dataFimMes = new DateTime($data->format('Y-m-t'));
+
+    $numSemanaInicio = $data->format('W');
+    $numSemanaFinal  = $dataFimMes->format('W') + 1;
+
+    // Última semana do ano pode ser semana 1
+    $numeroSemanas = ($numSemanaFinal < $numSemanaInicio)  
+        ? (52 + $numSemanaFinal) - $numSemanaInicio
+        : $numSemanaFinal - $numSemanaInicio;
+
+    return $numeroSemanas;
+  }
+
+  $realizados_semana = [];
   $json = $service->call("agendamento.select_realizados_by_empresa",array($_SESSION["id"]));
-  $num_realizados = count(json_decode($json));
+  $realizados = json_decode($json);
+  $num_realizados = count($realizados);
+  for($i=0;$i<$num_realizados;$i++)
+  {
+    $data_agendamento = DateTime::createFromFormat('Y-m-d',$realizados[$i]->data_agendamento);
+    $format = $data_agendamento->format('Y-m');
+    $semana1 = DateTime::createFromFormat('Y-m-d',$format.'-01');
+    $semana1 = $semana1->format("W");
+    $semana1--;
+    if($data_agendamento->format('Y-m') == date("Y-m"));
+    {
+      $semana = $data_agendamento->format("W");
+      $semana = $semana - $semana1;
+      if($semana == 6)
+        $semana = 1;
+      elseif($semana == 5)
+        $semana = 2;
+      elseif($semana == 4)
+        $semana = 3;
+      elseif($semana == 3)
+        $semana = 4;
+      elseif($semana == 2)
+        $semana = 5;
+      else
+        $semana = 6;
+
+      if(isset($realizados_semana["semana".$semana]))
+      {
+        $realizados_semana["semana$semana"]++;
+      }
+      else
+        $realizados_semana["semana$semana"] = 1;
+    }
+  }
+
   $json = $service->call("agendamento.select_cancelados_by_empresa",array($_SESSION["id"]));
   $num_cancelados = count(json_decode($json));
   $total_finalizados = $num_realizados + $num_cancelados;
@@ -39,6 +98,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
 
@@ -66,14 +126,11 @@
       require_once("topnav.php");
     ?>    
     <section class="wrapper site-min-height">
-      <h3><i class="fa fa-angle-right"></i> Estatísticas</h3>
-      <div class="col-md-5">
-        <div class="content-panel">
-          <div id="finalizados" class="graph"></div>
-        </div>
+      <h4><i class="fa fa-angle-right"></i> Estatísticas</h4>
+      <div class="col-md-1">
       </div>
       <a href="agendamentos.php">
-        <div class="col-md-2 col-sm-2 box0">
+        <div class="col-md-2 box0">
           <div class="box1">
             <span class="fa fa-plus-circle"></span>
             <h3><?php echo $num_solicitados; ?></h3>
@@ -82,39 +139,54 @@
         </div>
       </a>
       <a href="agendamentos.php">
-      <div class="col-md-2 col-sm-2 box0">
-        <div class="box1">
-          <span class="fa fa-hourglass-start"></span>
-          <h3><?php echo $num_pendentes; ?></h3>
-                </div>
-          <p><?php echo $num_pendentes; ?> agendamentos pendentes.</p>
-      </div>
+        <div class="col-md-2 box0">
+          <div class="box1">
+            <span class="fa fa-hourglass-start"></span>
+            <h3><?php echo $num_pendentes; ?></h3>
+                  </div>
+            <p><?php echo $num_pendentes; ?> agendamentos pendentes.</p>
+        </div>
       </a>
       <a href="agendamentos.php">
-      <div class="col-md-2 col-sm-2 box0">
-        <div class="box1">
-          <span class="fa fa-hourglass-end"></span>
-          <h3><?php echo $num_atrasados; ?></h3>
-                </div>
-          <p><?php echo $num_atrasados; ?> agendamentos atrasados.</p>
-      </div>
+        <div class="col-md-2 box0">
+          <div class="box1">
+            <span class="fa fa-hourglass-end"></span>
+            <h3><?php echo $num_atrasados; ?></h3>
+                  </div>
+            <p><?php echo $num_atrasados; ?> agendamentos atrasados.</p>
+        </div>
       </a>
       <a href="agendamentos.php">
-      <div class="col-md-2 col-sm-2 box0">
-        <div class="box1">
-          <span class="fa fa-calendar-check-o"></span>
-          <h3><?php echo $num_realizados; ?></h3>
-                </div>
-          <p><?php echo $num_realizados; ?> agendamentos relizados.</p>
-      </div>
+        <div class="col-md-2 box0">
+          <div class="box1">
+            <span class="fa fa-calendar-check-o"></span>
+            <h3><?php echo $num_realizados; ?></h3>
+                  </div>
+            <p><?php echo $num_realizados; ?> agendamentos relizados.</p>
+        </div>
       </a>
       <a href="agendamentos.php">
-      <div class="col-md-2 col-sm-2 box0">
-        <div class="box1">
-          <span class="fa fa-calendar-times-o"></span>
-          <h3><?php echo $num_cancelados; ?></h3>
-                </div>
-          <p><?php echo $num_cancelados; ?> agendamentos cancelados.</p>
+        <div class="col-md-2 box0">
+          <div class="box1">
+            <span class="fa fa-calendar-times-o"></span>
+            <h3><?php echo $num_cancelados; ?></h3>
+                  </div>
+            <p><?php echo $num_cancelados; ?> agendamentos cancelados.</p>
+        </div>
+      </a>
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-5" style="margin-top: 10px">
+        <div class="content-panel">
+          <center><h4>Agendamentos finalizados</h4></center>
+          <div id="finalizados" class="graph"></div>
+        </div>
+      </div>
+      <div class="col-md-7" style="margin-top: 10px">
+        <div class="content-panel" style="padding-bottom: 50px;">
+          <center><h4>Agendamentos realizados no mês</h4></center>
+          <div id="finalizados_mes" class="graph" style="height: 300px; margin-left: 10px;"></div>
+        </div>
       </div>
     </section>
 
@@ -153,6 +225,31 @@
                       colors: ['#0288D1'],
                     formatter: function (y) {return 'finalizados'}";
           ?>
+        });
+
+        Morris.Line({
+          element: 'finalizados_mes',
+          data: [
+            <?php
+              $data = '';
+              for($i=1;$i<=semanas_mes(date("Y"),date("m"));$i++)
+              {
+                if($i > 1)
+                  $data = ",".$data;
+                if(isset($realizados_semana["semana$i"]))
+                  $data = "{ 'week': '${i}º semana', value: ".$realizados_semana["semana$i"]." }".$data;
+                else
+                  $data = "{ 'week': '${i}º semana', value: 0 }".$data;
+              }
+              echo $data;
+            ?>
+          ],
+          xkey: 'week',
+          ykeys: ['value'],
+          ymin: 0,
+          yLabelFormat: function(y){return y != Math.round(y)?'':y;},
+          xLabelFormat: function(){return "";},
+          labels: ['Total']
         });
       });
     }();
