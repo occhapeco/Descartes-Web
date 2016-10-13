@@ -3,16 +3,17 @@
 
   if (isset($_POST))
   {
-    if (isset($_POST['excluir']))
+    if (isset($_POST['cancelar']))
     {
       require_once("../conectar_service.php"); 
-      $batata = $service->call('agendamento.cancelar',array($_POST['id']));
+      $batata = $service->call('agendamento.cancelar',array($_POST['id'],$_POST['justificativa']));
     }
-    if (isset($_POST['confirmar']))
+    if (isset($_POST['realizar']))
     {
       require_once("../conectar_service.php"); 
-      $batata = $service->call('agendamento.realizado',array($_POST['id']));
+      $batata = $service->call('agendamento.realizar',array($_POST['id']));
     }
+
   }
 ?>
 <!DOCTYPE html>
@@ -28,20 +29,26 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
-    
+    <!--external css-->    
+   
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/bootstrap-select.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap-select.js"></script>
+ 
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="assets/css/table-responsive.css" rel="stylesheet">
 
     <script src="assets/js/chart-master/Chart.js"></script>
-  
+
   </head>
 
   <body>
@@ -98,11 +105,11 @@
                                 {
                                   $status = 'Não Confirmado'; 
                                 }
-                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento <= date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento >= date("Y-m-d"))
                                 {
                                   $status = 'Em Espera';
                                 }
-                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento > date("Y-m-d"))
+                                if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento < date("Y-m-d"))
                                 {
                                   $status = 'Atrasado';
                                 }
@@ -122,13 +129,13 @@
                                         <td data-title="Coletadora"><center>' . $status . '</center></td>';
                                         if($status != 'Cancelado' and $status != 'Realizado')
                                         {
-                                          echo '<td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
-                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="cofirmar" name="confirmar" class="btn btn-theme"><i class="fa fa-times"></i></button></center></form></td></tr>';
+                                          echo '<td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><button type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></center></form></td>';
+                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="realizar" name="realizar" class="btn btn-theme"><i class="fa fa-check"></i></button></center></form></td></tr>';
                                         }
                                         else
                                         {
                                           echo '<td></td>';
-                                          echo '<td></td>';
+                                          echo '<td></td></tr>';
                                         }
                                        
                               }
@@ -144,6 +151,54 @@
                 </div>
                   </div><!-- /col-lg-12 -->
               </div><!-- /row -->
+
+              <!--modal -->
+              <div class="container">
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+       
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Justificativa do Cancelamento</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <div>
+                                      <label class="col-sm-4 control-label">*Justificativa</label>
+                                      <div class="col-sm-8">
+                                            <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
+                                                <option value=1>Atraso no recolhimento</option>
+                                                <option value=2>Não estarei no dia agendado</option>
+                                                <option value=4>Lixo já recolhido</option>
+                                                <option value=3>Outro motivo</option>
+
+
+                                            </select>
+                                      </div>
+                                  </div>
+                                  <div style="margin-top:20px;">
+                                      <label class="col-sm-4 control-label">Descreva:</label>
+                                      <div class="col-sm-8">
+                                            <textarea name="descricao_just" id="descricao_just"></textarea>
+                                      </div>
+                                  </div> 
+                                  <p>* CAMPO OBRIGATÓRIO</p>  
+                              </div>
+                              <div class="modal-footer">
+                                 <form action="#" method="post">
+                                    <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Enviar</button>
+                                    <input type="hidden" name="id" id="agendamento_id" value="0">
+                                 </form>
+                              </div>
+                          </div>
+       
+                        </div>
+                  </div>
+   
+              </div>
+
 
     </section><! --/wrapper -->
 

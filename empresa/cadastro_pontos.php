@@ -154,14 +154,12 @@
       
       <?php
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>
   
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT  Formulários de cadastro do ponto
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
       	<section class="wrapper">
         	<h3><i class="fa fa-angle-right"></i> Adicionar novo ponto</h3>
         	<form class="form-horizontal style-form" method="post" action="#" id="frm">
@@ -322,8 +320,7 @@
                   </div>
               </div>
            </form>
-        </section>
-      </section>
+        </sectio>
     </section>
 	
     <script src="assets/js/jquery.js"></script>

@@ -97,14 +97,12 @@
       
       <?php
           require_once("topnav.php");
-          require_once("sidenav.php");
       ?>    
   
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT  TABELA RESPONSIVA
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
         <section class="wrapper">
           <h3><i class="fa fa-angle-right"></i> Mapa de pontos</h3>
           <div class="row mt">
@@ -125,7 +123,6 @@
             </div><!-- /col-lg-12 -->
           </div><!-- /row -->
         </section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
 
      </section><!-- Conteiner-->
 
