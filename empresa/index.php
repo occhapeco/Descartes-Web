@@ -37,27 +37,12 @@
     $semana1 = DateTime::createFromFormat('Y-m-d',$format.'-01');
     $semana1 = $semana1->format("W");
     $semana1--;
-    if($data_agendamento->format('Y-m') == date("Y-m"));
+    if($data_agendamento->format("Y-m") == date("Y-m"))
     {
       $semana = $data_agendamento->format("W");
       $semana = $semana - $semana1;
-      if($semana == 6)
-        $semana = 1;
-      elseif($semana == 5)
-        $semana = 2;
-      elseif($semana == 4)
-        $semana = 3;
-      elseif($semana == 3)
-        $semana = 4;
-      elseif($semana == 2)
-        $semana = 5;
-      else
-        $semana = 6;
-
       if(isset($realizados_semana["semana".$semana]))
-      {
         $realizados_semana["semana$semana"]++;
-      }
       else
         $realizados_semana["semana$semana"] = 1;
     }
