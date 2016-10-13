@@ -170,7 +170,7 @@
         </div>
       </div>
       <div class="col-md-7" style="margin-top: 10px">
-        <div class="content-panel" style="padding-bottom: 50px;">
+        <div class="content-panel" style="padding-bottom: 46px;">
           <center><h4>Agendamentos realizados no mês</h4></center>
           <div id="finalizados_mes" class="graph" style="height: 300px; margin-left: 10px;"></div>
         </div>

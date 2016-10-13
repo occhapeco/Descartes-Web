@@ -692,7 +692,9 @@
 	// Classe da tabela agendamento //
 	class agendamento {
 	    function insert($empresa_id,$usuario_id,$data_agendamento,$horario, $endereco_id) {
-	    	$data_agendamento = preg_replace("![^0-9-]+!",'',$data_agendamento);
+	    	$data_agendamento = preg_replace("![^0-9/]+!",'',$data_agendamento);
+    		$data_agendamento = DateTime::createFromFormat('d/m/Y',$data_agendamento);
+    		$data_agendamento = $data_agendamento->format('Y-m-d');
 			$horario = preg_replace("![^0-9:]+!",'',$horario);
 	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0,$endereco_id)");

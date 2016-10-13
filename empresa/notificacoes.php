@@ -41,16 +41,12 @@
 
   <section id="container" >
       
-      <?php
-          require_once("topnav.php");
-          require_once("sidenav.php");
-      ?>    
+      <?php require_once("topnav.php"); ?>    
   
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT  TABELA RESPONSIVA
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-      <section id="main-content">
         <section class="wrapper">
           <h3><i class="fa fa-angle-right"></i> Central de notificações</h3>
           <div class="row mt">
@@ -113,7 +109,6 @@
             </div>
           </div>
         </section>
-      </section>
 
      </section>
     <!-- js placed at the end of the document so the pages load faster -->
