@@ -41,6 +41,8 @@
     {
       $semana = $data_agendamento->format("W");
       $semana = $semana - $semana1;
+      if($data_agendamento->format("N") == 7)
+        $semana++;
       if(isset($realizados_semana["semana".$semana]))
         $realizados_semana["semana$semana"]++;
       else
@@ -52,11 +54,11 @@
   $num_cancelados = count(json_decode($json));
   $total_finalizados = $num_realizados + $num_cancelados;
   if($num_realizados > 0)
-    $realizados = $num_realizados*100/$total_finalizados;
+    $realizados = round($num_realizados*100/$total_finalizados,1);
   else
     $realizados = 0;
   if($num_cancelados > 0)
-    $cancelados = $num_cancelados*100/$total_finalizados;
+    $cancelados = round($num_cancelados*100/$total_finalizados,1);
   else
     $cancelados = 0;
 
