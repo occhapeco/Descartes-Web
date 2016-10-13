@@ -94,15 +94,6 @@
     <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
     <div id="map"></div> 
   </div>
-  <form action="cadastro_pontos.php" method="post" id="submete">        
-    <input type="hidden" name="lat" id="lat" value="e">
-    <input type="hidden" name="long" id="long" value="e">
-    <input type="hidden" name="estado" id="estado" value="e">
-    <input type="hidden" name="cidade" id="cidade" value="e">
-    <input type="hidden" name="pais" id="pais" value="e">
-    <input type="hidden" name="endereco" id="endereco" value="e">
-    <input type="hidden" name="cep" id="cep" value="e">
-  </form> 
 </section>
  <script type="text/javascript">
    function initAutocomplete() {
@@ -208,17 +199,6 @@
           infowindow.open(map, this);
         });
 
-        if (feature.draggable == true) {
-
-          document.getElementById('lat').value = marker.position.lat();
-          document.getElementById('long').value = marker.position.lng();
-
-          google.maps.event.addListener(marker,'dragend', function() {
-              document.getElementById('lat').value = marker.position.lat();
-              document.getElementById('long').value = marker.position.lng();
-          });
-        }
-
         markers.push(marker);
       }
 
@@ -248,7 +228,7 @@
               
               $ponto = json_decode($dados_json);
               $num = count($ponto);
-              for ($i=0;$i<$num;$i++)
+              for ($i=0;$i<1;$i++)
               {
                 $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
                 $endereco = json_decode($dados_json);
@@ -257,14 +237,15 @@
                 $pontos = "";
                 if (count($tipo_lixo_has_ponto) == 0)
                   $pontos += "Sem tipos de lixo!";
-                for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
-                {
-                  $dados_json = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
-                  $tipo_lixo = json_decode($dados_json);
-                  if ($j != 0)
-                    $pontos += ", ";
-                  $pontos += $tipo_lixo[0]->nome;
-                }
+                else
+                  for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
+                  {
+                    $dados_json1 = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
+                    $tipo_lixo = json_decode($dados_json1);
+                    if ($j != 0)
+                      $pontos .= ", ";
+                    $pontos = $pontos.$tipo_lixo[0]->nome;
+                  }
                 ?>
                 {
                   position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
@@ -309,51 +290,6 @@
 
       var markerCluster = new MarkerClusterer(map, markers, options); // cria cluster
     }
-
-    function submeter()
-    {
-      var geocoder = new google.maps.Geocoder;
-      var lati = document.getElementById('lat').value;
-      var long = document.getElementById('long').value;
-      var latlng = {lat: parseFloat(lati), lng: parseFloat(long)};
-
-      geocoder.geocode({'location': latlng}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-          if (results[1]) {
-            var address = "", city = "", state = "", zip = "", country = "", formattedAddress = "";
-            for (var i = 0; i < results[0].address_components.length; i++) {
-                        var addr = results[0].address_components[i];
-                        // check if this entry in address_components has a type of country
-                        if (addr.types[0] == 'country')
-                            country = addr.long_name;
-                        else if (addr.types[0] == 'street_address') // address 1
-                            address = address + addr.long_name;
-                        else if (addr.types[0] == 'establishment')
-                            address = address + addr.long_name;
-                        else if (addr.types[0] == 'route')  // address 2
-                            address = address + addr.long_name;
-                        else if (addr.types[0] == 'postal_code')       // Zip
-                            zip = addr.short_name;
-                        else if (addr.types[0] == ['administrative_area_level_1'])       // State
-                            state = addr.long_name;
-                        else if (addr.types[0] == ['locality'])       // City
-                            city = addr.long_name;
-            }
-            document.getElementById('estado').value = state;
-            document.getElementById('endereco').value = address;
-            document.getElementById('cep').value = zip;
-            document.getElementById('pais').value = country;
-            document.getElementById('cidade').value = city;
-            document.getElementById("submete").submit();
-          } else {
-           //window.alert('No results found');
-          }
-        } else {
-          //window.alert('Geocoder failed due to: ' + status);
-        }
-      });
-    }
-
  </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
 
