@@ -259,11 +259,11 @@
               $pontos = " - ";
               if (count($tipo_lixo_has_ponto) == 0)
                 $pontos += "Sem tipos de lixo!";
-              for ($i=0;$i<count($tipo_lixo_has_ponto);$i++)
+              for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
               {
-                $dados_json = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$i]->tipo_lixo_id));
+                $dados_json = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
                 $tipo_lixo = json_decode($dados_json);
-                if ($i != 0)
+                if ($j != 0)
                   $pontos += ", ";
                 $pontos += $tipo_lixo[0]->nome;
               }
@@ -277,7 +277,7 @@
                       '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
                       '<div id="bodyContent" class="col-sm-12">'+
                       '<p name="nome" class="col-sm-6"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
-                      '<p name="descricao" class="col-sm-6"> <?php echo $ponto[0]->observacao; ?> </p>'+
+                      '<p name="descricao" class="col-sm-6"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                       '<form action="#" method="post">'+
                       '</form>'+
                       '</div>'+
@@ -285,7 +285,7 @@
                 draggable:false
               }
               <?php
-              if ($i!=$num-1) {
+              if ($i != $num-1) {
                 echo ",";
               }
             }

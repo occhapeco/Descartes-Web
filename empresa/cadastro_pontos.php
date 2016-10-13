@@ -23,9 +23,10 @@
   $atendimento_fim = "";
   $observacao =  "";
   $telefone =  "";
-  $btn = '<button class="btn btn-sm btn-theme pull-right" style="margin-bottom:10px;" type="submit" id="cadastrar" name="cadastrar" style="margin-left:10px">Confirmar</button>';
+  $btn = '<a class="btn btn-sm btn-theme pull-right" style="margin-bottom:10px;" onclick="codeAddress();" id="cadastrar" name="cadastrar" style="margin-left:10px">Confirmar</a>';
   $input_id = "";
   $lat_long = "";
+  $bab = '<input type="hidden" name="cadastrar">';
 
   // Puxando os dados a ser mostrados e editados
   if (isset($_POST["editar"]))
@@ -50,17 +51,7 @@
     $ponto_id = $_POST["id"];
     $input_id = "<input type='hidden' id='lat' name='lat' value=" . $endereco[0]->latitude . "><input type='hidden' id='long' name='long' value=" . $endereco[0]->longitude . "><input type='hidden' id='id' name='id' value=" . $_POST["id"] . "><input type='hidden' id='endereco_id' name='endereco_id' value=" . $ponto[0]->endereco_id . ">";
     $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirmar</button>';
-  }
-
-  // Só serve para criar as inputs de lat e long
-  if (isset($_POST['lat']))
-  {
-    $lat_long  = "<input type='hidden' id='lat' name='lat' value=" . $_POST["lat"] . "><input type='hidden' id='long' name='long' value=" . $_POST["long"] . ">";
-    $pais = $_POST['pais'];
-      $estado = $_POST['estado'];
-      $rua = $_POST['endereco'];
-      $cep = $_POST['cep'];
-      $cidade = $_POST['cidade'];
+    $bab = "";
   }
   
   //---------------------//
@@ -173,7 +164,10 @@
       <section id="main-content">
       	<section class="wrapper">
         	<h3><i class="fa fa-angle-right"></i> Adicionar novo ponto</h3>
-        	<form class="form-horizontal style-form" method="post" action="#">
+        	<form class="form-horizontal style-form" method="post" action="#" id="frm">
+          <input type="hidden" name="lat" id="lat">
+          <input type="hidden" name="long" id="long">
+          <?php echo $bab; ?>
         	   <div class="row mt">
           		  <div class="col-lg-12">
           		<!-- Confirmação e Complemento do endereço do ponto -->
@@ -182,83 +176,83 @@
                     	<div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">CEP</label>
                             <div class="col-sm-10">
-                               <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus>
+                               <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus placeholder="Ex: 89888000">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">*País</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required>
+                                <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Ex: Brasil">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">*Estado</label>
+                            <label class="col-sm-2 col-sm-2 control-label">*UF</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required>
+                                <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required placeholder="Ex: SC">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">*Cidade</label>
                             <div class="col-sm-10">
-                                <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required>
+                                <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required placeholder="Ex: São Paulo">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">*Bairro</label>
                             <div class="col-sm-10">
-                                <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required>
+                                <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required placeholder="Ex: Centro">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">*Rua</label>
                             <div class="col-sm-10">
-                                <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required>
+                                <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required placeholder="Ex: Rua das Margaridas.">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">*Número</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" onkeypress="return numbro(event)" onload="return numbro(event)" maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required>
+                                <input type="text" class="form-control"  maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required placeholder="Ex: 402">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2  control-label ">Complemento</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?>>
+                                <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> placeholder="Ex: D. Ou ponto de referência Ex: Próximo à escola">
                             </div>
                         </div>
-                    *CAMPO REQUIRIDO <a class="btn btn-sm btn-theme pull-right" id="oiem">Próximo</a><br><br>
+                    *CAMPO REQUERIDO <a class="btn btn-sm btn-theme pull-right" id="oiem">Próximo</a><br><br>
                   </div>
                     
                     <!-- Dados do funcionamento do Ponto -->    
                         <div class="form-panel  abc" id="info">
 		                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Dados do Ponto</h4>
 		                  	   <div class="form-group">
-		                           <label class="col-sm-2 col-sm-2 control-label">Horário de início do atendimento</label>
+		                           <label class="col-sm-2 col-sm-2 control-label">*Horário de início do atendimento</label>
 		                            <div class="col-sm-10">
 		                                <input type="time" class="form-control" maxlength="12" OnKeyPress="formatar('##:##', this,event)"  id="atendimento_ini" name="atendimento_ini" <?php echo "value='$atendimento_ini'";?> required>
 		                            </div>
 		                        </div>
 		                        <div class="form-group">
-		                           <label class="col-sm-2 col-sm-2 control-label">Horário de final do atendimento</label>
+		                           <label class="col-sm-2 col-sm-2 control-label">*Horário de final do atendimento</label>
 		                            <div class="col-sm-10">
 		                                <input type="time" class="form-control" maxlength="12" OnKeyPress="formatar('##:##', this,event)"  id="atendimento_fim" name="atendimento_fim"<?php echo "value='$atendimento_fim'";?> required>
 		                            </div>
 		                        </div>
 		                        <div class="form-group">
-		                              <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
+		                              <label class="col-sm-2 col-sm-2 control-label">*Telefone</label>
 		                              <div class="col-sm-10">
-									                  <input type="text" maxlength="13" onkeypress="formatar('## ####-####', this)" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> required>
+									                  <input type="text" maxlength="13" onkeypress="formatar('## ####-####', this)" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> required placeholder="Ex: 44 4444 4444">
 		                              </div>
 		                          </div>
 		                        <div class="form-group">
 		                           <label class="col-sm-2 col-sm-2 control-label">Observações</label>
 		                            <div class="col-sm-10">
-		                                <textarea class="form-control" maxlength="250" id="observacao" name="observacao"><?php
+		                                <textarea class="form-control" maxlength="250" id="observacao" name="observacao" placeholder="Ex: Fecha ao meio dia etc."><?php
 		                                 echo $observacao; ?></textarea>
 		                            </div>
 		                        </div>
-                            <a class="btn btn-sm btn-theme pull-right" id="oiem2" style="margin-left:10px;">Próximo</a>
+                            *CAMPO REQUERIDO<a class="btn btn-sm btn-theme pull-right" id="oiem2" style="margin-left:10px;">Próximo</a>
                             <a class="btn btn-sm btn-theme03 pull-right" id="oiem1">Voltar</a><br><br>
   					         </div>
 
@@ -336,6 +330,7 @@
  
     <script src="assets/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="assets/js/jquery.sparkline.js"></script>
@@ -345,6 +340,22 @@
     <script src="assets/js/common-scripts.js"></script>
 	
     <script type="application/javascript">
+
+  var geocoder = new google.maps.Geocoder();
+
+    function codeAddress() {
+    var address = document.getElementById( 'cidade' ).value+', '+document.getElementById( 'uf' ).value+ ', '+ document.getElementById( 'rua' ).value+' '+ document.getElementById( 'num' ).value;
+    geocoder.geocode( { 'address' : address }, function( results, status ) {
+        if( status == google.maps.GeocoderStatus.OK ) {
+            document.getElementById( 'lat' ).value = results[0].geometry.location.lat();
+            document.getElementById( 'long' ).value = results[0].geometry.location.lng();
+            alert('batatóvski')
+            document.getElementById('frm').submit();
+        } else {
+            alert( 'Não podemos encontrar sua localização corretamente, por favor, reveja os dados.');
+        }
+    } );
+  }
 
      function formatar(mascara, documento){
 	     var i = documento.value.length;
@@ -361,8 +372,14 @@
     }
     
     $("#oiem").click(function(){
-      $("#endereco").toggle(1000);
-      $("#info").toggle(1000);
+      if (document.getElementById("pais").value.length < 1|| document.getElementById("uf").value.length < 1|| document.getElementById("bairro").value.length < 1|| document.getElementById("cidade").value.length < 1|| document.getElementById("rua").value.length < 1||document.getElementById("num").value.length < 1) {
+        alert("Por favor, preencha todos os campos antes de continuar.");
+      }
+      else
+      {
+        $("#endereco").toggle(1000);
+        $("#info").toggle(1000);
+      }      
     });
 
     $("#oiem1").click(function(){
@@ -371,8 +388,12 @@
     });
 
     $("#oiem2").click(function(){
+        if (document.getElementById("atendimento_ini").value.length < 1||document.getElementById("atendimento_fim").value.length < 1||document.getElementById("telefone").value.length < 1) {
+        alert("Por favor, preencha todos os campos antes de continuar.");
+      }else{
       $("#info").toggle(1000);
       $("#lixo").toggle(1000);
+    }
     });
 
     $("#oiem3").click(function(){
