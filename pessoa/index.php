@@ -27,7 +27,7 @@
       }
 
       #map {
-        height: 700px;
+        height: 550px;
       }
 
       .controls {
@@ -40,6 +40,18 @@
         height: 32px;
         outline: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #btfiltro{
+        padding: 15px;
+        //background-color: #00FFFF;
+        color: white;
+        margin-bottom: 15px;
+        margin-right: 15px;
+      }
+
+      .popover {
+        bottom: : 55px !important;
       }
 
       #pac-input {
@@ -92,6 +104,7 @@
 <section class="wrapper">
   <div style="width:100%;height:auto;margin-top:10px;">
     <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
+    <a id="btfiltro" class="btn btn-theme03"><i class="fa fa-filter"></i></a>
     <div id="map"></div> 
   </div>
 </section>
@@ -102,6 +115,12 @@
               zoom: 2,
               center: new google.maps.LatLng(16.770881080415, 12.3046875),
               mapTypeId: google.maps.MapTypeId.ROADMAP,
+              streetViewControlOptions: {
+                  position: google.maps.ControlPosition.BOTTOM_CENTER
+              },
+              zoomControlOptions: {
+                  position: google.maps.ControlPosition.LEFT_BOTTOM
+              },
               styles: [
                 {
                   "stylers": [
@@ -137,8 +156,10 @@
 
       //cria o input para pesquisar no mapa
       var input = document.getElementById('pac-input');
+      var fil = document.getElementById('btfiltro');
       var searchBox = new google.maps.places.SearchBox(input);
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(fil);
 
       // Bias the SearchBox results towards current map's viewport.
       map.addListener('bounds_changed', function() {
@@ -302,6 +323,13 @@
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="assets/js/jquery.sparkline.js"></script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+      $('#btfiltro').modal({title: "<h5>Mande sua sugestão!</h5>", content: "<form method='post' action='#'><input type='text' class='form-control' id='msg' name='msg'><br><input type='submit' class='btn btn-sm btn-default btn-round'></form>", html: true});
+       });
+    </script>
 
 
     <!--common script for all pages-->
