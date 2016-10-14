@@ -1,15 +1,13 @@
 <?php
-    	if(isset($_POST['msg']))
-    	{
-    		$msg = $_POST['msg'];
-    		$headers =  'MIME-Version: 1.0' . "\r\n"; 
-			  $headers .= 'From: DescartesLab' . "\r\n";
-    		mail('occhapecosenai@gmail.com', 'Adicionar tipo de lixo',$msg,$headers);
-    	}
-    ?>
-
-<?php 
   require_once("permissao.php");
+
+	if(isset($_POST['msg']))
+	{
+		$msg = $_POST['msg'];
+		$headers =  'MIME-Version: 1.0' . "\r\n"; 
+	  $headers .= 'From: DescartesLab' . "\r\n";
+		mail('occhapecosenai@gmail.com', 'Adicionar tipo de lixo',$msg,$headers);
+	}
 
   $cep = "";
   $pais = "";
@@ -74,13 +72,13 @@
         for($i=0;$i<count($tipo_lixo);$i++)
           if (isset($_POST[$tipo_lixo[$i]->id])) // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
             $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$ponto_id));
-        header("location: mapa_pontos.php");
+          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Ponto cadastrado com sucesso!</b></div>';
       }
       else
-        echo "<script>alert('Erro 2!');</script>";
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
     }
     else
-      echo "<script>alert('Erro 1!');</script>";
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
   }
  
   //---------------------//
@@ -108,13 +106,13 @@
         for($i=0;$i<count($tipo_lixo);$i++)
           if (isset($_POST[$tipo_lixo[$i]->id])) // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
             $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$_POST["id"]));
-        header("location: mapa_pontos.php");
+        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Ponto editado com sucesso!</b></div>';
       }
       else
-        echo "<script>alert('Erro 2!');</script>";
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
     }
     else
-      echo "<script>alert('Erro 1!');</script>";
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
   }
 ?>
 

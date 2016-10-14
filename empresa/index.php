@@ -64,7 +64,7 @@
 
   $json = $service->call("agendamento.select_sem_resposta_by_empresa",array($_SESSION["id"]));
   $num_solicitados = count(json_decode($json));
-  $json = $service->call("agendamento.select_pendentes_by_empresa",array($_SESSION["id"]));
+  $json = $service->call("agendamento.select_aceitos_by_empresa",array($_SESSION["id"]));
   $num_pendentes = count(json_decode($json));
   $json = $service->call("agendamento.select_atrasados_by_empresa",array($_SESSION["id"]));
   $num_atrasados = count(json_decode($json));

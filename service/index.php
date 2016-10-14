@@ -775,9 +775,9 @@
 		}
 		function select_aceitos_by_usuario($usuario_id) {
 			$data = date("Y-m-d");
-			$horario = date("H:i:s.u");
+			$horario = date("H:i");
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 1 AND realizado = 0 AND data_agendamento >= '$data' AND horario >= '$horario' ORDER BY data_agendamento, horario DESC");
+			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 1 AND realizado = 0 AND data_agendamento >= '$data' ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
@@ -797,7 +797,7 @@
 		}
 		function select_atrasados_by_usuario($usuario_id) {
 			$data = date("Y-m-d");
-			$horario = date("H:i:s.u");
+			$horario = date("H:i");
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $usuario_id AND aceito = 1 AND realizado = 0 AND data_agendamento < '$data' AND horario < '$horario' ORDER BY data_agendamento, horario DESC");
 			$dados = array();
@@ -830,9 +830,9 @@
 
 		function select_aceitos_by_empresa($empresa_id) {
 			$data = date("Y-m-d");
-			$horario = date("H:i:s.u");
+			$horario = date("H:i");
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 0 AND data_agendamento >= '$data' AND horario >= '$horario' ORDER BY data_agendamento, horario DESC");
+			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 0 AND data_agendamento >= '$data' ORDER BY data_agendamento, horario DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
@@ -852,7 +852,7 @@
 		}
 		function select_atrasados_by_empresa($empresa_id) {
 			$data = date("Y-m-d");
-			$horario = date("H:i:s.u");
+			$horario = date("H:i");
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 			$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $empresa_id AND aceito = 1 AND realizado = 0  AND data_agendamento < '$data' AND horario < '$horario' ORDER BY data_agendamento, horario DESC");
 			$dados = array();
