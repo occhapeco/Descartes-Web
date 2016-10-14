@@ -51,15 +51,15 @@
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
-                <ul class="nav nav-pills" style="margin-left: 20px;">
+                <ul class="nav nav-tabs" style="margin-left: 20px;">
                   <li class="active"><a data-toggle="pill" href="#home">Não aceitos</a></li>
                   <li><a data-toggle="pill" href="#menu1">Pendentes</a></li>
-                  <li><a data-toggle="pill" href="#menu2">Atrasadas</a></li>
+                  <li><a data-toggle="pill" href="#menu2">Atrasados</a></li>
                   <li><a data-toggle="pill" href="#menu3">Realizados</a></li>
                   <li><a data-toggle="pill" href="#menu4">Cancelados</a></li>
                 </ul>
                   
-                <div class="tab-content" style="margin-top: 20px;">
+                <div class="tab-content">
                   <div id="home" class="tab-pane fade in active">
                     <?php                            
                       $json_dados = $service->call('agendamento.select_sem_resposta_by_empresa',array($_SESSION["id"]));
@@ -69,6 +69,10 @@
                       {
                     ?>
                     <section id="no-more-tables">
+                       <form action="imprimir_agendamentos.php" method="post">
+                          <input type="hidden" value="em_espera" id="em_espera" name="em_espera">
+                          <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                       </form>
                       <table class="table table-striped table-condensed cf ">
                         <thead class="cf">
                         <tr>
@@ -99,7 +103,7 @@
                                   <td data-title='Solicitante'>" . $usuario[0]->nome . "</td>
                                   <td data-title='Telefone'>" . $usuario[0]->telefone . "</td>
                                   <td data-title='E-mail'>" . $usuario[0]->email . "</td>                    
-                                  <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><input type='hidden' id='aceitar' name='aceitar'><button type='submit' class='btn btn-theme'><i class='fa fa-check'></i></button></center></form></td>
+                                  <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><input type='hidden' id='aceitar' name='aceitar'><center><button type='submit' class='btn btn-theme'><i class='fa fa-check'></i></button></center></form></td>
                                   <td data-title='Recusar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><button type='submit' id='recusar' name='recusar' class='btn btn-danger'><i class='fa fa-times'></i></button></center></form></td>
                                 </tr>";
                         }
@@ -124,6 +128,10 @@
                     {
                 ?>
                 <section id="no-more-tables">
+                   <form action="imprimir_agendamentos.php" method="post">
+                        <input type="hidden" value="aceito" id="aceito" name="aceito">
+                        <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                   </form>
                   <table class="table table-striped table-condensed cf ">
                       <thead class="cf">
                       <tr>
@@ -151,7 +159,7 @@
                               <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
                               <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                              <td data-title="Cancelar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><input type="hidden" id="cancelar" name="cancelar"><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                              <td data-title="Cancelar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
                             </tr>';
                     }
                   ?>
@@ -173,6 +181,10 @@
                       {
                   ?>
                   <section id="no-more-tables">
+                      <form action="imprimir_agendamentos.php" method="post">
+                        <input type="hidden" value="atrasado" id="atrasado" name="atrasado">
+                          <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                      </form>
                     <table class="table table-striped table-condensed cf">
                         <thead class="cf">
                           <tr>
@@ -200,7 +212,7 @@
                                   <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
                                   <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
                                   <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                                  <td data-title="Recusar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><input type="hidden" id="cancelar" name="cancelar"><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                                  <td data-title="Recusar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
                                 </tr>';
                         }
                     ?>
@@ -223,6 +235,10 @@
                 ?>
                 
                 <section id="no-more-tables">
+                   <form action="imprimir_agendamentos.php" method="post">
+                        <input type="hidden" value="realizado" id="realizado" name="realizado">
+                        <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                   </form>
                    <table class="table table-striped table-condensed cf ">
                       <thead class="cf">
                          <tr>
@@ -271,6 +287,10 @@
                 ?>
                 
                 <section id="no-more-tables">
+                   <form action="imprimir_agendamentos.php" method="post">
+                        <input type="hidden" value="cancelado" id="cancelado" name="cancelado">
+                        <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                   </form>
                    <table class="table table-striped table-condensed cf ">
                       <thead class="cf">
                          <tr>

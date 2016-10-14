@@ -69,7 +69,6 @@
            <div class="row">
               <form action="imprimir_agendamentos.php" method="post">
                   <button class="btn btn-theme03 pull-right" style="margin-right:20px;"><i class="fa fa-print"></i></button>
-
               </form>
               </div>
                  <?php                            
@@ -181,7 +180,7 @@
                                   <div style="margin-top:20px;">
                                       <label class="col-sm-4 control-label">Descreva:</label>
                                       <div class="col-sm-8">
-                                            <textarea name="descricao_just" id="descricao_just"></textarea>
+                                            <textarea name="descricao_just" id="descricao_just" resizable="false"></textarea>
                                       </div>
                                   </div> 
                                   <p>* CAMPO OBRIGATÓRIO</p>  
