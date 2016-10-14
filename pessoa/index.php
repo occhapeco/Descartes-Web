@@ -104,10 +104,46 @@
 <section class="wrapper">
   <div style="width:100%;height:auto;margin-top:10px;">
     <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
-    <a id="btfiltro" class="btn btn-theme03"><i class="fa fa-filter"></i></a>
+    <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
     <div id="map"></div> 
   </div>
 </section>
+
+<!--modal -->
+              <div class="container">
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+       
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Seleção de tipo de lixo</h4>
+                              </div>
+                              <div class="modal-body" style="overflow: auto; max-height: 400px;">
+                                <form action="#" method="post">
+                                  <table class="table table-stripped">                                    
+                                   <?php 
+                                      $dados_json = $service->call('tipo_lixo.select',array(NULL));
+                                      $tipo_lixo = json_decode($dados_json);
+                                      $num = count($tipo_lixo);
+                                      for ($i=0; $i < $num ; $i++) { 
+                                        echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome."</td></tr>";
+                                      }
+                                   ?> 
+                                  </table>
+                              </div>
+                              <div class="modal-footer">
+                                    <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Selecionar</button>
+                                 </form>
+                              </div>
+                          </div>
+       
+                        </div>
+                  </div>
+   
+              </div>
  <script type="text/javascript">
    function initAutocomplete() {
       var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
@@ -249,53 +285,61 @@
               
               $ponto = json_decode($dados_json);
               $num = count($ponto);
-              for ($i=0;$i<1;$i++)
-              {
-                $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
-                $endereco = json_decode($dados_json);
-                $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
-                $tipo_lixo_has_ponto = json_decode($dados_json);
-                $pontos = "";
-                if (count($tipo_lixo_has_ponto) == 0)
-                  $pontos += "Sem tipos de lixo!";
-                else
-                  for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
-                  {
-                    $dados_json1 = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
-                    $tipo_lixo = json_decode($dados_json1);
-                    if ($j != 0)
-                      $pontos .= ", ";
-                    $pontos = $pontos.$tipo_lixo[0]->nome;
+              if (isset($_POST['tipos'])) {
+                  $tipos = $_POST['tipos'];
+                  for ($i=0;$i<1;$i++){
+                    $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
+                    $tipo_lixo_has_ponto = json_decode($dados_json);
                   }
-                ?>
+              }else{
+                for ($i=0;$i<1;$i++)
                 {
-                  position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
-                  type: 'mark1',
-                  info:'<div id="content">'+
-                        '<div id="siteNotice">'+
-                        '</div>'+
-                        '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
-                        '<div id="bodyContent">'+
-                        '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
-                        '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
-                        '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
-                        '<form action="agendamentos.php" method="post">'+
-                        '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
-                        '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
-                        '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
-                        '</form>'+
-                        '<form action="#" method="post">'+
-                        '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
-                        '</form>'+
-                        '</div>'+
-                        '</div>',
-                  draggable:false
+                  $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
+                  $endereco = json_decode($dados_json);
+                  $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
+                  $tipo_lixo_has_ponto = json_decode($dados_json);
+                  $pontos = "";
+                  if (count($tipo_lixo_has_ponto) == 0)
+                    $pontos += "Sem tipos de lixo!";
+                  else
+                    for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
+                    {
+                      $dados_json1 = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
+                      $tipo_lixo = json_decode($dados_json1);
+                      if ($j != 0)
+                        $pontos .= ", ";
+                      $pontos = $pontos.$tipo_lixo[0]->nome;
+                    }
+                  ?>
+                  {
+                    position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
+                    type: 'mark1',
+                    info:'<div id="content">'+
+                          '<div id="siteNotice">'+
+                          '</div>'+
+                          '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
+                          '<div id="bodyContent">'+
+                          '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
+                          '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
+                          '<form action="agendamentos.php" method="post">'+
+                          '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
+                          '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
+                          '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
+                          '</form>'+
+                          '<form action="#" method="post">'+
+                          '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
+                          '</form>'+
+                          '</div>'+
+                          '</div>',
+                    draggable:false
+                  }
+                  <?php
+                  if ($i!=$num-1) {
+                    echo ",";
+                  }
                 }
-                <?php
-                if ($i!=$num-1) {
-                  echo ",";
-                }
-              }
+            }
         ?>
       ];
 
@@ -323,14 +367,6 @@
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="assets/js/jquery.sparkline.js"></script>
-
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-      $('#btfiltro').modal({title: "<h5>Mande sua sugestão!</h5>", content: "<form method='post' action='#'><input type='text' class='form-control' id='msg' name='msg'><br><input type='submit' class='btn btn-sm btn-default btn-round'></form>", html: true});
-       });
-    </script>
-
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
