@@ -57,11 +57,7 @@
       $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirmar</button>';
       $bab = "";
     }
-    
-    //---------------------//
-    //       Cadastro      //
-    //---------------------//
-    if (isset($_POST["cadastrar"]))
+    elseif (isset($_POST["cadastrar"]))
     {
       require_once("../conectar_service.php");
       // Cadastra o endereço e retorna seu id (0 se der bosta)
@@ -442,7 +438,54 @@
         </section>
       </section>
 
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Seleção de tipo de lixo</h4>
+              </div>
+              <div class="modal-body" style="overflow: auto; max-height: 400px;">
+                <form action="#" method="post">
+                  <table class="table table-stripped">                                    
+                   <?php 
+                      $dados_json = $service->call('tipo_lixo.select',array(NULL));
+                      $tipo_lixo = json_decode($dados_json);
+                      $num = count($tipo_lixo);
+                      for ($i=0; $i < $num ; $i++) { 
+                        echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome."</td></tr>";
+                      }
+                   ?> 
+                  </table>
+              </div>
+              <div class="modal-footer">
+                    <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Selecionar</button>
+                 </form>
+              </div>
+          </div>
+        </div>
+      </div>
+
       <script>
+        var geocoder = new google.maps.Geocoder();
+
+        function codeAddress() {
+        var address = document.getElementById( 'cidade' ).value+', '+document.getElementById( 'uf' ).value+ ', '+ document.getElementById( 'rua' ).value+' '+ document.getElementById( 'num' ).value;
+          geocoder.geocode( { 'address' : address }, function( results, status ) {
+            if( status == google.maps.GeocoderStatus.OK ) {
+                document.getElementById( 'lat' ).value = results[0].geometry.location.lat();
+                document.getElementById( 'long' ).value = results[0].geometry.location.lng();
+                document.getElementById('frm').submit();
+            } else {
+                alert( 'Não podemos encontrar sua localização corretamente, por favor, reveja os dados.');
+            }
+        } );
+      }
+      
+      $(document).ready(function(){
+        $('#pop').popover({title: "<h5>Mande sua sugestão!</h5>", content: "<form method='post' action='#'><input type='text' class='form-control' id='msg' name='msg'><br><input type='submit' class='btn btn-sm btn-default btn-round'></form>", html: true, placement: "right"});
+      });
+
       function initAutocomplete() {
         var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
         var map = new google.maps.Map(document.getElementById('map'), {
