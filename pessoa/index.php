@@ -288,8 +288,63 @@
               if (isset($_POST['tipos'])) {
                   $tipos = $_POST['tipos'];
                   for ($i=0;$i<1;$i++){
+                    $verifica = false;
                     $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
                     $tipo_lixo_has_ponto = json_decode($dados_json);
+                    for ($j=0;$j<count($tipo_lixo_has_ponto);$j++){
+                      if (in_array($tipo_lixo_has_ponto[$j]->tipo_lixo_id, $tipos))
+                        $verifica = true;
+                    }
+                    if(!$verifica)
+                      continue;
+                    else{
+                        $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
+                        $endereco = json_decode($dados_json);
+                        $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
+                        $tipo_lixo_has_ponto = json_decode($dados_json);
+                        $pontos = "";
+                        if (count($tipo_lixo_has_ponto) == 0)
+                          $pontos += "Sem tipos de lixo!";
+                        else{
+                          for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
+                          {
+                            $dados_json1 = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
+                            $tipo_lixo = json_decode($dados_json1);
+                            if ($j != 0)
+                              $pontos .= ", ";
+                            $pontos = $pontos.$tipo_lixo[0]->nome;
+                          }
+                        ?>
+                        {
+                          position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
+                          type: 'mark1',
+                          info:'<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
+                                '<div id="bodyContent">'+
+                                '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                                '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
+                                '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
+                                '<form action="agendamentos.php" method="post">'+
+                                '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
+                                '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
+                                '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
+                                '</form>'+
+                                '<form action="#" method="post">'+
+                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
+                                '</form>'+
+                                '</div>'+
+                                '</div>',
+                          draggable:false
+                        }
+                        <?php
+                        if ($i!=$num-1) {
+                          echo ",";
+                        }
+                      }
+
+                    }
                   }
               }else{
                 for ($i=0;$i<1;$i++)
