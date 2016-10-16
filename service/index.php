@@ -664,7 +664,7 @@
 	    }
 		function select_by_usuario($usuario_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = 0 ORDER BY visualizado DESC");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = 0 ORDER BY id ASC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
@@ -690,7 +690,7 @@
 		}
 		function select_by_empresa($empresa_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = 1 ORDER BY visualizado DESC");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = 1 ORDER BY id ASC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;

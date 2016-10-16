@@ -1,4 +1,9 @@
-<?php require_once("permissao.php"); ?>
+<?php 
+  require_once("permissao.php");
+  require_once("../conectar_service.php");
+
+  $service->call("notificacao.visualizar_todos_by_empresa", array($_SESSION["id"]));
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,59 +55,43 @@
         <section class="wrapper">
           <h3><i class="fa fa-angle-right"></i> Central de notificações</h3>
             <div class="col-lg-12 ds">
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>2 Minutes Ago</muted><br>
-                             <a href="#">James Brown</a> subscribed to your newsletter.<br>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Second Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>3 Hours Ago</muted><br>
-                             <a href="#">Diana Kennedy</a> purchased a year subscription.<br>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Third Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                          <p><muted>7 Hours Ago</muted><br>
-                             <a href="#">Brandon Page</a> purchased a year subscription.<br>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Fourth Action -->
-                  <div class="desc">
-                    <div class="thumb">
-                      <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                    </div>
-                    <div class="details">
-                      <p><muted>11 Hours Ago</muted><br>
-                          <a href="#">Mark Twain</a> commented your post.<br>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="desc">
-                    <div class="thumb">
-                      <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                    </div>
-                    <div class="details">
-                      <p><muted>18 Hours Ago</muted><br>
-                        <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br>
-                      </p>
-                    </div>
-                  </div>
+              <?php
+                $json = $service->call("notificacao.select_by_empresa", array($_SESSION["id"]));
+                $notificacao = json_decode($json);
+                $num = count($notificacao);
+                for($i=0;$i<$num;$i++)
+                {
+                    $json_dados = $service->call('usuario.select',array("id = ".$notificacao[$i]->usuario_id));
+                    $usuario = json_decode($json_dados);
+                   if ($notificacao[$i]->tipo == 2) // Novo agendamento
+                        echo '<a href="agendamentos.php">
+                                <div class="desc">
+                                  <div class="thumb">
+                                    <span class="badge bg-theme"><i class="fa fa-plus-circle"></i></span>
+                                  </div>
+                                  <div class="details" style="width: 80%">
+                                    <p style="font-size: 17px">
+                                      <b>'.$usuario[0]->nome.'</b> solicitou um agendamento.<br>
+                                    </p>
+                                  </div>
+                                </div>
+                              </a>';
+                    else{ // Agendamento cancelado
+                        echo '<a href="agendamentos.php">
+                                <div class="desc">
+                                  <div class="thumb">
+                                    <span class="badge bg-theme"><i class="fa fa-calendar-times-o"></i></span>
+                                  </div>
+                                  <div class="details" style="width: 80%">
+                                    <p style="font-size: 17px">
+                                      <b>'.$usuario[0]->nome.'</b> cancelou um agendamento.<br>
+                                    </p>
+                                  </div>
+                                </div>
+                              </a>';
+                    }
+                }
+            ?>
             </div>
         </section>
 
