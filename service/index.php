@@ -645,7 +645,7 @@
 	class notificacao {
 	    function insert($usuario_id,$empresa_id,$tipo,$destino) {
 	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-	    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,$usuario_id,$empresa_id,$tipo,$destino)");
+	    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,$usuario_id,$empresa_id,$tipo,$destino,0)");
 	    	$id = 0;
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
@@ -664,17 +664,33 @@
 	    }
 		function select_by_usuario($usuario_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = 0");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = 0 ORDER BY visualizado DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
 			}
 			$conexao->close();
 			return json_encode($dados);
+		}
+		function select_nao_visualizados_by_usuario($usuario_id) {
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE usuario_id = $usuario_id AND destino = 0 AND visualizado = 0");
+			$dados = array();
+			while($row = mysqli_fetch_assoc($query)) {
+			    $dados[] = $row;
+			}
+			$conexao->close();
+			return json_encode($dados);
+		}
+		function visualizar_todos_by_usuario($usuario_id){
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
+	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE usuario_id = $usuario_id");
+			$conexao->close();
+	     	return $query;
 		}
 		function select_by_empresa($empresa_id) {
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = 1");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = 1 ORDER BY visualizado DESC");
 			$dados = array();
 			while($row = mysqli_fetch_assoc($query)) {
 			    $dados[] = $row;
@@ -682,12 +698,33 @@
 			$conexao->close();
 			return json_encode($dados);
 		}
+		function select_nao_visualizados_by_empresa($empresa_id) {
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
+			$query = $conexao->query("SELECT * FROM notificacao WHERE empresa_id = $empresa_id AND destino = 1 AND visualizado = 0");
+			$dados = array();
+			while($row = mysqli_fetch_assoc($query)) {
+			    $dados[] = $row;
+			}
+			$conexao->close();
+			return json_encode($dados);
+		}
+		function visualizar_todos_by_empresa($empresa_id){
+			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
+	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE empresa_id = $empresa_id");
+			$conexao->close();
+	     	return $query;
+		}
+
 	}
 	// Registro dos métodos da classe notificacao //
 	$server->register('notificacao.insert', array('usuario_id' => 'xsd:string','empresa_id' => 'xsd:string','tipo' => 'xsd:integer','destino' => 'xsd:integer'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na tabela notificacao (retorna o id do registro inserido).');
 	$server->register('notificacao.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela notificacao.');
 	$server->register('notificacao.select_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registro da tabela notificacao por usuario (retorna json).');
+	$server->register('notificacao.select_nao_visualizados_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registros não visualizados da tabela notificacao por usuario (retorna json).');
+	$server->register('notificacao.visualizar_todos_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Visualiza todos as notificações por usuario (retorna json).');
 	$server->register('notificacao.select_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registro da tabela notificacao por empresa (retorna json).');
+	$server->register('notificacao.select_nao_visualizados_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registros não visualizados da tabela notificacao por empresa (retorna json).');
+	$server->register('notificacao.visualizar_todos_by_empresa', array('empresa_id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Visualiza todos as notificações por empresa (retorna json).');
 
 	// Classe da tabela agendamento //
 	class agendamento {
@@ -697,7 +734,7 @@
     		$data_agendamento = $data_agendamento->format('Y-m-d');
 			$horario = preg_replace("![^0-9:]+!",'',$horario);
 	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0,$endereco_id)");
+	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0,$endereco_id,NULL)");
 	    	$id = 0;
 	    	if ($query == true)
 	    	{
@@ -749,14 +786,14 @@
 			$conexao->close();
 	     	return $retorno;
 	    }
-	    function cancelar($id) {
+	    function cancelar($id,$justificativa) {
 	    	$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
 			if ((mysqli_num_rows($query) == 1) && ($row["realizado"] == 0))
 			{
-		    	$query = $conexao->query("UPDATE agendamento SET aceito = 0, realizado = 1 WHERE id = $id");
+		    	$query = $conexao->query("UPDATE agendamento SET aceito = 0, realizado = 1, justificativa = '$justificativa' WHERE id = $id");
 		    	$retorno = true;
 		    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,".$row["usuario_id"].",".$row["empresa_id"].",3,1)");
 			}
@@ -889,7 +926,7 @@
 	$server->register('agendamento.aceitar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Aceita um agendamento.');
 	$server->register('agendamento.recusar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Recusa um agendamento.');
 	$server->register('agendamento.realizar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Realiza um agendamento.');
-	$server->register('agendamento.cancelar', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Aceita um agendamento.');
+	$server->register('agendamento.cancelar', array('id' => 'xsd:integer', 'justificativa' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Aceita um agendamento.');
 	$server->register('agendamento.select_sem_resposta_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos sem reposta da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select_aceitos_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos pendentes da tabela agendamento por usuario (retorna json).');
 	$server->register('agendamento.select_realizados_by_usuario', array('usuario_id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa agendamentos sem reposta da tabela agendamento por usuario (retorna json).');

@@ -49,9 +49,7 @@
       <!--main content start-->
         <section class="wrapper">
           <h3><i class="fa fa-angle-right"></i> Central de notificações</h3>
-          <div class="row mt">
-            <div class="col-lg-12 ds  ">
-              <div class="content-panel">
+            <div class="col-lg-12 ds">
                       <div class="desc">
                         <div class="thumb">
                           <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
@@ -105,9 +103,7 @@
                       </p>
                     </div>
                   </div>
-              </div>
             </div>
-          </div>
         </section>
 
      </section>

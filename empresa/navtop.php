@@ -45,6 +45,9 @@
 	background-color:#606060;
 	}
 </style>
+<?php
+	require_once("../conectar_service.php");
+?>
 <header class="mobile">
   <div class="row">
     <div class="col full">
@@ -60,67 +63,16 @@
           <li><a href="mapa_pontos.php">Meus Pontos</a></li>
           <li><a href="mapa_coletas.php">Coletas</a></li>
           <li><a href="agendamentos.php">Agendamentos</a></li>
-		  <li id="header_inbox_bar" class="dropdown" style="margin-left:250px;margin-right:20px;">
-				<?php
-						require_once("../conectar_service.php");
-
-						$json_dados = $service->call('notificacao.select_by_empresa',array($_SESSION["id"]));
-						$notificacao = json_decode($json_dados);
-						$num = count($notificacao);
-						$n = $num;
-						if ($num > 0) 
-							echo '<span class="badge bg-theme pull-right" style="margin-top:8px;margin-bottom:-40px;">'.$num.'</span>';
-						if($num > 4)
-							$num = 4;
-					?>
-				<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		  <li id="header_inbox_bar" style="margin-left:250px;margin-right:20px;">
+				<a href="notificacoes.php">
+					<?php
+	                    $json_dados = $service->call('notificacao.select_nao_visualizados_by_empresa',array($_SESSION["id"]));
+	                    $notificacao = json_decode($json_dados);
+	                    if (count($notificacao) > 0) 
+	                        echo '<span class="badge bg-theme pull-right">'.count($notificacao).'</span>';
+	                ?>
 					<i class="fa fa-envelope-o" style="margin-bottom:5px;"></i>
 				</a>
-				
-				<ul class="dropdown-menu extended inbox dropdown-menu-right" id="notification_bar">
-					<li>
-						<?php
-							$header = '<p class="green">Você não possui notificações</p>';
-							if ($num > 0)
-								$header = '<button class="btn btn-theme" onclick="window.location.href = `notificacoes.php`;" style="width: 100%">Ver todas as '.$n.' notificações</button>';
-							echo $header;
-						?>
-					</li>
-					<?php
-						for($i=0;$i<$num;$i++)
-						{
-							$json_dados = $service->call('empresa.select_by_id',array($notificacao[$i]->empresa_id));
-							$empresa = json_decode($json_dados);
-						   if ($notificacao[$i]->tipo == 2) // Novo agendamento
-								echo "<li>
-										<form id='form_noti_".$notificacao[$i]->id."' method='POST' action='tratar_notificacoes.php'>
-											<input type='hidden' id='id' name='id' value=".$notificacao[$i]->id.">
-											<input type='hidden' id='pg' name='pg' value='index.php'>
-											<a onclick='document.getElementById(`form_noti_".$notificacao[$i]->id."`).submit();' href='#'>
-												<span class='subject'>
-												<span class='from'>".$empresa[0]->nome_fantasia."</span>
-												</span>
-												<span class='message'>Um agendamento foi solicitado!</span>
-											</a>
-										</form>
-									</li>";
-							else{ // Agendamento cancelado
-								echo "<li>
-										<form id='form_noti_".$notificacao[$i]->id."' method='POST' action='tratar_notificacoes.php'>
-											<input type='hidden' id='id' name='id' value=".$notificacao[$i]->id.">
-											<input type='hidden' id='pg' name='pg' value='agendamento_aceitos.php'>
-											<a onclick='document.getElementById(`form_noti_".$notificacao[$i]->id."`).submit();' href='#'>
-												<span class='subject'>
-												<span class='from'>".$empresa[0]->nome_fantasia."</span>
-												</span>
-												<span class='message'>Um agendamento foi cancelado!</span>
-											</a>
-										</form>
-									</li>";
-							}
-						}
-					?>
-				</ul>
 			</li>
 			<li id="header_inbox_bar" class="dropdown">
 				<a data-toggle="dropdown" class="dropdown-toggle" href="#">
