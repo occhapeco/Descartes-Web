@@ -684,7 +684,7 @@
 		}
 		function visualizar_todos_by_usuario($usuario_id){
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE usuario_id = $usuario_id");
+	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE usuario_id = $usuario_id AND destino = 0");
 			$conexao->close();
 	     	return $query;
 		}
@@ -710,7 +710,7 @@
 		}
 		function visualizar_todos_by_empresa($empresa_id){
 			$conexao = new mysqli("mysql.hostinger.com.br","u601614001_root","oc2016","u601614001_dlab");
-	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE empresa_id = $empresa_id");
+	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE empresa_id = $empresa_id AND destino = 1");
 			$conexao->close();
 	     	return $query;
 		}
