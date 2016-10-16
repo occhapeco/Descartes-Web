@@ -49,8 +49,7 @@
   <section id="container" >
       
       <?php
-          require_once("topnav.php");
-          require_once("sidenav.php");
+          require_once("navtop.php");
       ?>
      
   

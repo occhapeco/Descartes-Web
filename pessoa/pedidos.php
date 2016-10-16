@@ -55,7 +55,7 @@
 
   <section id="container" >
       <?php 
-          require_once("topnav.php");
+          require_once("navtop.php");
       ?>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT  TABELA RESPONSIVA
@@ -99,6 +99,8 @@
                                 $json_dados = $service->call('empresa.select', array('id = '. $agendamento[$i]->empresa_id));
                                 $empresa = json_decode($json_dados);
                                 $status = "";
+								$data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+								$format = $data_agendamento->format('d/m/Y');
 
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
@@ -121,7 +123,7 @@
                                   $status = 'Cancelado';
                                 }
                                 echo '<tr>
-                                        <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
+                                        <td data-title="Data">' . $format . '</td>
                                         <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                                         <td data-title="Endereço">' . $endereco[0]->nome . '</td>
                                         <td data-title="Coletadora">' . $empresa[0]->nome_fantasia . '</td>

@@ -1,16 +1,66 @@
- <header class="header black-bg">
-            <!--logo start-->
-            <a href="index.php" class="logo" style="color:white;"><b>DescartesLab</b></a>
-            <!--logo end-->
-            <div class="nav notify-row" id="top_menu">
-  				<a href="index.php" style="font-size:17px; color:#797979; margin-left:200px; text-decoration:underline;">Mapa</a>
-                <a href="enderecos.php" style="font-size:17px; color:#797979; margin-left:50px; text-decoration:underline;">Endereços</a>
-                <a href="pedidos.php" style="font-size:17px; color:#797979; margin-left:50px; text-decoration:underline;">Agendamentos</a>
-            </div>
-            
-            <div class="top-menu">
-            	<ul class="nav top-menu pull-right">
-                    <li id="header_inbox_bar" class="dropdown pull-left" style="margin-top:15px; margin-right:30px;">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Infinity - Mobile App HTML5 Template">
+	<meta name="keywords" content="keywords">
+	<meta name="author" content="Audain Designs">
+
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- General Style -->
+	<link href="style1.css" rel="stylesheet">
+	
+	<!--Custom CSS-->
+	<link href="custom.css" rel="stylesheet">
+
+	<!-- Animations -->
+	<link href="css/animate.css" rel="stylesheet">
+		
+	<!-- Vendor Styles -->
+	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/jasny-bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/push-menu.css" />
+	<link rel="stylesheet" type="text/css" href="vendor/animated-text/css/style.css" />
+	
+	<!-- Device Styles -->
+	<link rel="stylesheet" type="text/css" href="css/devices/style.css">
+	<script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
+
+	<!-- Cover Styles (Skin) -->
+	<link rel="stylesheet" type="text/css" href="css/landing/landing.css">
+	
+	<!--Fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,500,600,700,800,900' rel='stylesheet' type='text/css'>
+	<link href="css/fonts/font-awesome.css" rel="stylesheet">
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<style>
+.mobile{
+	background-color:#606060;
+	}
+</style>
+<header class="mobile">
+  <div class="row">
+    <div class="col full">
+      <div> <a href="index.php" class="logo"><b>DescartesLab</b></a> </div>
+      <nav id="nav-wrap" style="left: 25%;">
+        <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
+        	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
+        </a> 
+        <a class="mobile-btn" href="#nvv" title="Hide navigation">
+        	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
+        </a>
+        <ul id="nav" class="nav" >
+          <li><a href="index.php">Mapa</a></li>
+          <li><a href="enderecos.php">Endereços</a></li>
+          <li><a href="pedidos.php">Agendamentos</a></li>
+		  <li id="header_inbox_bar" class="dropdown" style="margin-left:300px; margin-right:50px;">
                         <?php
                                 require_once("../conectar_service.php");
 
@@ -19,7 +69,7 @@
                                 $num = count($notificacao);
                                 $n = $num;
                                 if ($num > 0) 
-                                    echo '<span class="badge bg-theme pull-right">'.$num.'</span>';
+                                    echo '<span class="badge bg-theme pull-right" style="margin-top:8px;margin-bottom:-40px;">'.$num.'</span>';
                                 if($num > 4)
                                     $num = 4;
                             ?>
@@ -72,8 +122,8 @@
                             ?>
                         </ul>
                     </li>
-
-                    <li id="header_inbox_bar" class="dropdown" style="margin-top:15px;">
+					
+					<li id="header_inbox_bar" class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                            <?php
                            		$json_dados = $service->call('usuario.select',array('id = '.$_SESSION["id"]));
@@ -92,6 +142,8 @@
                         </ul>
                     </li>
 
-                </ul>
-            </div>
-        </header>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

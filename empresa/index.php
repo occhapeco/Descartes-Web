@@ -110,7 +110,7 @@
 
   <section id="container" class="sidebar-close">
     <?php
-      require_once("topnav.php");
+      require_once("navtop.php");
     ?>    
     <section class="wrapper site-min-height">
       <h4><i class="fa fa-angle-right"></i> Estatísticas</h4>

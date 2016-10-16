@@ -39,7 +39,7 @@
   <section id="container" >
       
       <?php
-          require_once("topnav.php");
+          require_once("navtop.php");
       ?>    
   
   <!-- **********************************************************************************************************************************************************
@@ -96,8 +96,10 @@
                           // Dados do usuário
                           $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                           $usuario = json_decode($json_dados);
+						  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+						  $format = $data_agendamento->format('d/m/Y');
                           echo "<tr class='info'>
-                                  <td data-title='Data'>" . $agendamento[$i]->data_agendamento . "</td>
+                                  <td data-title='Data'>" . $format . "</td>
                                   <td data-title='Horário'>" . $agendamento[$i]->horario . "</td>
                                   <td data-title='Endereço'>" . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . "</td>
                                   <td data-title='Solicitante'>" . $usuario[0]->nome . "</td>
@@ -152,8 +154,10 @@
                       $endereco = json_decode($json_dados);
                       $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                       $usuario = json_decode($json_dados);
+					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+					  $format = $data_agendamento->format('d/m/Y');
                       echo '<tr class="warning">
-                              <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
+                              <td data-title="Data">' . $format . '</td>
                               <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
                               <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
@@ -205,8 +209,10 @@
                           $endereco = json_decode($json_dados);
                           $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                           $usuario = json_decode($json_dados);
+						  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+						  $format = $data_agendamento->format('d/m/Y');
                           echo '<tr class="warning">
-                                  <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
+                                  <td data-title="Data">' . $format . '</td>
                                   <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                                   <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
                                   <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
@@ -258,8 +264,10 @@
                       $endereco = json_decode($json_dados);
                       $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                       $usuario = json_decode($json_dados);
+					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+					  $format = $data_agendamento->format('d/m/Y');
                       echo '<tr class="success">
-                              <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
+                              <td data-title="Data">' . $format . '</td>
                               <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
                               <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
@@ -310,8 +318,10 @@
                       $endereco = json_decode($json_dados);
                       $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                       $usuario = json_decode($json_dados);
+					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+                      $format = $data_agendamento->format('d/m/Y');
                       echo '<tr class="danger">
-                              <td data-title="Data">' . $agendamento[$i]->data_agendamento . '</td>
+                              <td data-title="Data">' . $format . '</td>
                               <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
                               <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
