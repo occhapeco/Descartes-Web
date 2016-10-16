@@ -56,80 +56,71 @@
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT Formulário
       *********************************************************************************************************************************************************** -->
-      <section id="main-content">
-          <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Editar Perfil</h3>
-          	<?php
-              if($alert != '')
-                echo "<br>".$alert;
-            ?>
-          	<div class="row mt">
-          		<div class="col-lg-12">
-                  <div class="form-panel offset1">
-                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Dados da Empresa</h4>
-                      <form class="form-horizontal style-form" method="POST" action="#">
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Razão Social</label>
-                              <div class="col-sm-10">
-                              <?php
-                                echo '<input type="text" id="razao_social" name="razao_social" class="form-control" maxlength="40" value="' . $empresa[0]->razao_social . '" required autofocus>';
-                              ?>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome Fantasia</label>
-                              <div class="col-sm-10">
-                              <?php
-                                echo '<input type="text" id="nome_fantasia" name="nome_fantasia" class="form-control" maxlength="40" value="' . $empresa[0]->nome_fantasia . '"required>';
-                              ?>
-                              </div>
-                          </div>
-						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
-                              <div class="col-sm-10">
-                              <?php
-                                echo '<input type="text" id="email" name="email" class="form-control" maxlength="50" value="' . $empresa[0]->email . '" readonly required>';
-                              ?>
-                              </div>
-                          </div>
-                          <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmar</button>
-                      </form>
-              	         <button class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Alterar Senha</button><br><br>
+    <section class="wrapper">
+    	<h3><i class="fa fa-angle-right"></i> Editar Perfil</h3>
+    	<?php
+        if($alert != '')
+          echo "<br>".$alert;
+      ?>
+        <div class="col-lg-12">
+          <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+          	  <h4 class="mb"><i class="fa fa-angle-right"></i> Dados da Empresa</h4>
+              <form class="form-horizontal style-form" method="POST" action="#">
+                  <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label">Razão Social</label>
+                      <div class="col-sm-10">
+                      <?php
+                        echo '<input type="text" id="razao_social" name="razao_social" class="form-control" maxlength="40" value="' . $empresa[0]->razao_social . '" required autofocus>';
+                      ?>
+                      </div>
                   </div>
-				  
-				  
-				  <div class="form-panel offset1 abc" >
-                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Alteração de Senha</h4>
-                      <form class="form-horizontal style-form" method="POST" action="#">
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Senha Atual</label>
-                              <div class="col-sm-10">
-                                  <input type="password" id="senha_antiga" name="senha_antiga" class="form-control"  maxlength="12" required>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nova Senha</label>
-                              <div class="col-sm-10">
-                                  <input type="password" id="senha_nova1" name="senha_nova1" class="form-control" maxlength="12" required>
-                              </div>
-                          </div>
-						              <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Confirmação da Nova Senha</label>
-                              <div class="col-sm-10">
-                                  <input type="password" id="senha_nova2" name="senha_nova2" class="form-control" maxlength="12" required>
-                              </div>
-                          </div>
-                          <button type="submit" id="editar_senha" name="editar_senha" class="btn btn-sm btn-theme pull-right">Confirmar</button>
-                      </form>
-                      <button class="btn btn-sm btn-theme03 pull-right" id="oiem1" style="margin-right: 10px;">Alterar Perfil</button><br><br>
-              	    </div>
-          		</div>     	
-          	</div>
-			</section>
-      </section>
-
-			
-     </section>
+                  <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label">Nome Fantasia</label>
+                      <div class="col-sm-10">
+                      <?php
+                        echo '<input type="text" id="nome_fantasia" name="nome_fantasia" class="form-control" maxlength="40" value="' . $empresa[0]->nome_fantasia . '"required>';
+                      ?>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
+                      <div class="col-sm-10">
+                      <?php
+                        echo '<input type="text" id="email" name="email" class="form-control" maxlength="50" value="' . $empresa[0]->email . '" readonly required>';
+                      ?>
+                      </div>
+                  </div>
+                  <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmar</button>
+              </form>
+          </div>
+      		<div class="col-lg-1"></div>
+      	  <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+        	  <h4 class="mb"><i class="fa fa-angle-right"></i> Alteração de Senha</h4>
+            <form class="form-horizontal style-form" method="POST" action="#">
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Senha Atual</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="senha_antiga" name="senha_antiga" class="form-control"  maxlength="12" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Nova Senha</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="senha_nova1" name="senha_nova1" class="form-control" maxlength="12" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Confirmação da Nova Senha</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="senha_nova2" name="senha_nova2" class="form-control" maxlength="12" required>
+                    </div>
+                </div>
+                <button type="submit" id="editar_senha" name="editar_senha" class="btn btn-sm btn-theme pull-right">Confirmar</button>
+            </form>
+          </div>
+        </div>
+  	</section>
+  </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
@@ -142,22 +133,6 @@
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-    
-	
-	<script type="application/javascript">
-		
-		$("#oiem").click(function(){
-			$(".offset1").toggle(1000);
-		});
-		$("#oiem1").click(function(){
-			$(".offset1").toggle(1000);
-		});
-
-    $(document).ready(function(){
-      $(".abc").hide();
-    });
-    </script>
   
-
   </body>
 </html>

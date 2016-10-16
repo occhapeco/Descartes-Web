@@ -45,13 +45,11 @@
 	background-color:#606060;
 	}
 </style>
-<?php
-	require_once("../conectar_service.php");
-?>
+<?php require_once("../conectar_service.php"); ?>
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div style="margin-left:30px;"> <a href="index.php" class="logo" style="color:white;"><b>DescartesLab</b></a> </div>
+      <div style="margin-left:30px;"><a href="index.php" class="logo" style="color:white;"><b>DescartesLab</b></a></div>
       <nav id="nav-wrap" style="left: 25%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
@@ -60,7 +58,8 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" >
-          <li><a href="mapa_pontos.php">Meus Pontos</a></li>
+          <li><a href="index.php">Estatísticas</a></li>
+          <li><a href="meus_pontos.php">Meus pontos</a></li>
           <li><a href="mapa_coletas.php">Coletas</a></li>
           <li><a href="agendamentos.php">Agendamentos</a></li>
 		  <li style="margin-left:250px;margin-right:20px;">
@@ -84,11 +83,11 @@
 					<i class="fa fa-angle-down"></i>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-right" id="notification_bar">
-					<li>
-						<a href="editarperfil.php">Editar Perfil</a>
+					<li style="width: 100%;">
+						<a href="editar_perfil.php" style="color: darkgray;">Editar Perfil</a>
 					</li>
-					<li>
-						<a class="logout" href="../inicio/logout.php">Logout</a>
+					<li style="width: 100%;">
+						<a class="logout" href="../inicio/logout.php" style="color: darkgray;">Logout</a>
 					</li>
 				</ul>
 			</li>

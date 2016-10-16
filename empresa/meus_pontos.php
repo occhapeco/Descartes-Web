@@ -232,9 +232,9 @@
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 5px;">
-                  <li class="active"><a data-toggle="pill" href="#home">Mapa</a></li>
-                  <li><a data-toggle="pill" href="#menu1">Lista</a></li>
-                  <li><a data-toggle="pill" href="#menu2">Novo</a></li>
+                  <li class="active"><a data-toggle="pill" href="#home" style="color: black;">Mapa</a></li>
+                  <li><a data-toggle="pill" href="#menu1" style="color: black;">Lista</a></li>
+                  <li><a data-toggle="pill" href="#menu2" style="color: black;">Novo</a></li>
                 </ul>
                   
                 <div class="tab-content" style="margin-top: 20px;">
@@ -294,10 +294,10 @@
                         <input type="hidden" name="long" id="long">
                         <?php echo $bab; ?>
                         <!-- Confirmação e Complemento do endereço do ponto -->
-                        <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
+                        <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
                           <h5 class="mb"><i class="fa fa-angle-right"></i> Endereço</h5>
                             <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">CEP</label>
+                                  <label class="col-sm-2 col-sm-2 control-label">*CEP</label>
                                   <div class="col-sm-10">
                                      <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus placeholder="Ex: 89888000">
                                   </div>
@@ -347,7 +347,7 @@
                         </div>
                           
                           <!-- Dados do funcionamento do Ponto -->    
-                          <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
+                          <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
                             <h5 class="mb"><i class="fa fa-angle-right"></i> Dados do Ponto</h5>
                              <div class="form-group">
                                  <label class="col-sm-2 col-sm-2 control-label">*Horário de início do atendimento</label>
@@ -375,13 +375,12 @@
                                   </div>
                               </div>
                            </div>
-                          <div class="col-lg-1"></div>
                            <!-- Tipos de lixo recolhidos pelo Ponto -->    
-                          <div class="col-lg-12" style="padding: 0px 25px 0px 25px;">
+                          <div class="col-lg-4" style="padding: 0px 50px 0px 25px;">
                             <h5 class="mb"><i class="fa fa-angle-right"></i> Selecione quais dos materiais a baixo este ponto recolhe</h5>
                              <div class="form-group">
                                
-                                <table class="table table-striped col-md-6">
+                                <table class="table col-md-6">
                                   <?php
                                      $json_dados = $service->call('tipo_lixo.select',array(NULL));
                                      $tipo_lixo = json_decode($json_dados);
@@ -391,7 +390,7 @@
                                         {
                                             echo '<tr>';
                                         }
-                                        elseif (($i%2)==0) 
+                                        elseif (($i%3)==0) 
                                         {
                                             echo "</tr><tr>";
                                         }
@@ -422,18 +421,15 @@
                                         }                                   
                                   ?>
                                 </table>
-                            
                               </div>
-                              <div class="">
-                              <div class="">
-                                <a type="" href="#" class="btn btn-md" id="pop">Não achou o que queria?</a>
-
-                                <?php
-                                  echo $lat_long;
-                                  echo $input_id;
-                                  echo $btn; 
-                                ?>
-                            </div>
+                          </div>
+                          <div class="col-lg-12" style="padding: 0px 30px 0px 30px;">
+                            <a type="" href="#" class="btn btn-default" id="pop">Não achou o que queria?</a>
+                            <?php
+                              echo $lat_long;
+                              echo $input_id;
+                              echo $btn; 
+                            ?>
                           </div>
                         </div>
                       </form>
