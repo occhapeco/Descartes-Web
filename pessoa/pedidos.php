@@ -156,7 +156,7 @@
               <!--modal -->
               <div class="container">
                   <!-- Modal -->
-                  <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal fade" id="myModal" role="dialog" style="z-index:99999999">
                         <div class="modal-dialog">
        
                           <!-- Modal content-->
@@ -168,7 +168,7 @@
                                  <form action="#" method="post">
                               
                               <div class="modal-body">
-                                  <div>
+                                  
                                       <label class="col-sm-4 control-label">*Justificativa</label>
                                       <div class="col-sm-8">
                                             <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
@@ -176,18 +176,9 @@
                                                 <option value=2>Não estarei no dia agendado</option>
                                                 <option value=4>Lixo já recolhido</option>
                                                 <option value=3>Outro motivo</option>
-
-
                                             </select>
                                       </div>
-                                  </div>
-                                  <div style="margin-top:20px;">
-                                      <label class="col-sm-4 control-label">Descreva:</label>
-                                      <div class="col-sm-8">
-                                            <textarea name="descricao_just" id="descricao_just" resizable="false"></textarea>
-                                      </div>
-                                  </div> 
-                                  <p>* CAMPO OBRIGATÓRIO</p>  
+                                  <br>
                               </div>
                               <div class="modal-footer">
                                     <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Enviar</button>
