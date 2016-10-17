@@ -64,7 +64,7 @@
                     $json_dados = $service->call('usuario.select',array("id = ".$notificacao[$i]->usuario_id));
                     $usuario = json_decode($json_dados);
                    if ($notificacao[$i]->tipo == 2) // Novo agendamento
-                        echo '<a href="agendamentos.php">
+                        echo '<a href="agendamentos.php" style="color: #11ABB0;">
                                 <div class="desc">
                                   <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-plus-circle"></i></span>
@@ -77,7 +77,7 @@
                                 </div>
                               </a>';
                     else{ // Agendamento cancelado
-                        echo '<a href="agendamentos.php">
+                        echo '<a href="agendamentos.php" style="color: #11ABB0;">
                                 <div class="desc">
                                   <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-calendar-times-o"></i></span>

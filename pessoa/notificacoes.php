@@ -19,10 +19,6 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
-    
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
 
     <!-- Custom styles for this template -->
@@ -64,7 +60,7 @@
                     $json_dados = $service->call('empresa.select',array("id = ".$notificacao[$i]->empresa_id));
                     $empresa = json_decode($json_dados);
                    if ($notificacao[$i]->tipo == 2) // Novo agendamento
-                        echo '<a href="agendamentos.php">
+                        echo '<a href="agendamentos.php" style="color: #11ABB0;">
                                 <div class="desc">
                                   <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-plus-circle"></i></span>
@@ -77,7 +73,7 @@
                                 </div>
                               </a>';
                     else{ // Agendamento cancelado
-                        echo '<a href="agendamentos.php">
+                        echo '<a href="agendamentos.php" style="color: #11ABB0;">
                                 <div class="desc">
                                   <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-calendar-times-o"></i></span>
