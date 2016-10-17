@@ -1068,7 +1068,7 @@ a.btn-enter:hover, .btn-enter:focus {
 		ul#nav li:hover > a,
 		ul#nav li.active a { color: #11ABB0; }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 900px) {
 	header.mobile { height: 48px; }
    header.mobile .logo a { top: 22px; }
 
@@ -1149,21 +1149,21 @@ a.btn-enter:hover, .btn-enter:focus {
    }
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 800px) {
 	.logina{
-		margin-left:250px !important;margin-right:20px !important;
+		//margin-left:250px !important;//margin-right:20px !important;
 	}
 }
 @-moz-document url-prefix() {
-   @media only screen and (min-width: 700px) {
+   @media only screen and (min-width: 800px) {
 	.logina{
 		margin-left:250px;margin-right:20px;
 	}
 	}
 }
-@media only screen and (min-width: 1238px) {
+@media only screen and (min-width: 1200px) {
 	.logina{
-		margin-left:250px;margin-right:20px;
+		margin-left:250px !important;margin-right:20px !important;
 	}
 }
 

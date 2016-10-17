@@ -1,10 +1,4 @@
-<!-- Bootstrap -->
-<link href="assets/css/bootstrap.css" rel="stylesheet">
 
-<!-- General Style -->
-<link href="style1.css" rel="stylesheet">
-
-<script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
 <style>
 .mobile{
 	background-color:#606060;
