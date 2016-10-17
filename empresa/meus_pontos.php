@@ -552,16 +552,9 @@
         //criação da infowindow
         var infowindow = new google.maps.InfoWindow(); // variável para criar a tela quando clica no marcador
 
-          <?php
-            $json_dados = $service->call('ponto.select_by_empresa',array($_SESSION["id"]));
-            $ponto = json_decode($json_dados);
-            $num = count($ponto);
-          ?>
+          
         //uso de ícone personalizado e conteúdo de cada marker
         var features = [
-          <?php
-            echo $json_dados;
-          ?>
         ];
 
         //cria as variáveis chamando as funções
