@@ -27,6 +27,7 @@
                 	$pdf->Cell(3,1,$aceito[$i]->horario,1,0);
                         $json_dados = $service->call('usuario.select', array($aceito[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
+                        echo $usuario;
                         $pdf->Cell(4,1,$usuario[0]->nome,1,0);
                         $pdf->Cell(3,1,$usuario[0]->telefone,1,0);
                 	$json_dados = $service->call('endereco.select_by_id',array($aceito[$i]->endereco_id));
