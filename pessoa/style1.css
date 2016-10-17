@@ -980,7 +980,6 @@ a.btn-enter:hover, .btn-enter:focus {
 		   height: 54px;
 		   width: 100%;
 		   z-index: 99999;
-		   background: url(img/k-opacity-70.png);
 
 		   position: fixed;
 		   top: 0;
@@ -1150,44 +1149,21 @@ a.btn-enter:hover, .btn-enter:focus {
    }
 }
 
-.logina:hover{
-	background-color: rgba(255,255,255,1);
-}
-
-
 @media only screen and (min-width: 700px) {
 	.logina{
-		margin-left: 50% !important; 
-		padding-right: 50px !important;
-	    color: #70E5E5 !important;
-	    background-color: rgba(255,255,255,0.5);
-	    text-decoration: none;
-	    line-height: 35px !important;
-	   	border-radius: 5px;
-	   	border: solid !important;
-	   	border-width: 2px !important;
-	   	border-color: white !important;
+		margin-left:250px !important;margin-right:20px !important;
 	}
 }
 @-moz-document url-prefix() {
    @media only screen and (min-width: 700px) {
 	.logina{
-		padding-right: 15px !important;
+		margin-left:250px;margin-right:20px;
 	}
 	}
 }
 @media only screen and (min-width: 1238px) {
 	.logina{
-		//margin-left: 400% !important; 
-		//padding-right: 50px !important;
-	    color: #70E5E5 !important;
-	    background-color: rgba(255,255,255,0.5);
-	    text-decoration: none;
-	    line-height: 35px !important;
-	   	border-radius: 5px;
-	   	border: solid !important;
-	   	border-width: 1px !important;
-	   	border-color: white !important;
+		margin-left:250px;margin-right:20px;
 	}
 }
 
