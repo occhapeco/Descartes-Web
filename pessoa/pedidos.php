@@ -165,6 +165,8 @@
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                                   <h4 class="modal-title">Justificativa do Cancelamento</h4>
                               </div>
+                                 <form action="#" method="post">
+                              
                               <div class="modal-body">
                                   <div>
                                       <label class="col-sm-4 control-label">*Justificativa</label>
@@ -188,11 +190,11 @@
                                   <p>* CAMPO OBRIGATÓRIO</p>  
                               </div>
                               <div class="modal-footer">
-                                 <form action="#" method="post">
                                     <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Enviar</button>
                                     <input type="hidden" name="id" id="agendamento_id" value="0">
-                                 </form>
+                                 
                               </div>
+                              </form>
                           </div>
        
                         </div>

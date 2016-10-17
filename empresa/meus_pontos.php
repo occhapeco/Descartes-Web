@@ -354,13 +354,13 @@
                               <div class="form-group">
                                  <label class="col-sm-2 col-sm-2 control-label">*Horário de final do atendimento</label>
                                   <div class="col-sm-10">
-                                      <input type="time" class="form-control" maxlength="12" OnKeyPress="formatar('##:##', this,event)"  id="atendimento_fim" name="atendimento_fim"<?php echo "value='$atendimento_fim'";?> required>
+                                      <input type="time" class="form-control" maxlength="12" id="atendimento_fim" name="atendimento_fim"<?php echo "value='$atendimento_fim'";?> required>
                                   </div>
                               </div>
                               <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">*Telefone</label>
                                     <div class="col-sm-10">
-                                      <input type="text" maxlength="13" onkeypress="formatar('## ####-####', this)" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> required placeholder="Ex: 44 4444 4444">
+                                      <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> required placeholder="Ex: 44 4444 4444">
                                     </div>
                                 </div>
                               <div class="form-group">
@@ -467,7 +467,8 @@
       </div>
 
       <script>
-        var geocoder = new google.maps.Geocoder();
+        
+        var geocoder;
 
         function codeAddress() {
         var address = document.getElementById( 'cidade' ).value+', '+document.getElementById( 'uf' ).value+ ', '+ document.getElementById( 'rua' ).value+' '+ document.getElementById( 'num' ).value;
@@ -482,11 +483,10 @@
         } );
       }
       
-      $(document).ready(function(){
-        $('#pop').popover({title: "<h5>Mande sua sugestão!</h5>", content: "<form method='post' action='#'><input type='text' class='form-control' id='msg' name='msg'><br><input type='submit' class='btn btn-sm btn-default btn-round'></form>", html: true, placement: "right"});
-      });
+     
 
       function initAutocomplete() {
+        geocoder = new google.maps.Geocoder();
         var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
         var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 2,

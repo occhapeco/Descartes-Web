@@ -978,7 +978,7 @@ a.btn-enter:hover, .btn-enter:focus {
 		header {
 		   height: 54px;
 		   width: 100%;
-		   z-index: 99999;
+		   z-index: 99999
 
 		   position: fixed;
 		   top: 0;
