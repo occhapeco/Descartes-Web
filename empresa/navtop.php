@@ -5,9 +5,6 @@
 	<!-- General Style -->
 	<link href="style1.css" rel="stylesheet">
 	
-	<!--Custom CSS-->
-	<link href="custom.css" rel="stylesheet">
-
 	<!-- Animations -->
 	<link href="css/animate.css" rel="stylesheet">
 		

@@ -25,9 +25,9 @@
                 {
                 	$pdf->Cell(4,1,$aceito[$i]->data_agendamento,1,0);
                 	$pdf->Cell(3,1,$aceito[$i]->horario,1,0);
-                        $json_dados = $service->call('usuario.select', array($aceito[$i]->usuario_id));
+                        $json_dados = $service->call('usuario.select', array('id = ' .$aceito[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
-                        $pdf->Cell(4,1,$usuario[0]->nome,1,0);
+                        $pdf->Cell(4,1,utf8_decode($usuario[0]->nome),1,0);
                         $pdf->Cell(3,1,$usuario[0]->telefone,1,0);
                 	$json_dados = $service->call('endereco.select_by_id',array($aceito[$i]->endereco_id));
                 	$endereco = json_decode($json_dados);
@@ -63,9 +63,9 @@
                 {
                 	$pdf->Cell(4,1,$realizado[$i]->data_agendamento,1,0);
                 	$pdf->Cell(3,1,$realizado[$i]->horario,1,0);
-                        $json_dados = $service->call('usuario.select', array($realizado[$i]->usuario_id));
+                        $json_dados = $service->call('usuario.select', array('id = ' .$realizado[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
-                        $pdf->Cell(4,1,$usuario[0]->nome,1,0);
+                        $pdf->Cell(4,1,utf8_decode($usuario[0]->nome),1,0);
                         $pdf->Cell(3,1,$usuario[0]->telefone,1,0);
                 	$json_dados = $service->call('endereco.select_by_id',array($realizado[$i]->endereco_id));
                 	$endereco = json_decode($json_dados);
@@ -101,9 +101,9 @@
                 {
                 	$pdf->Cell(4,1,$atrasado[$i]->data_agendamento,1,0);
                 	$pdf->Cell(3,1,$atrasado[$i]->horario,1,0);
-                        $json_dados = $service->call('usuario.select', array($atrasado[$i]->usuario_id));
+                        $json_dados = $service->call('usuario.select', array('id = ' .$atrasado[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
-                        $pdf->Cell(4,1,$usuario[0]->nome,1,0);
+                        $pdf->Cell(4,1,utf8_decode($usuario[0]->nome),1,0);
                         $pdf->Cell(3,1,$usuario[0]->telefone,1,0);
                 	$json_dados = $service->call('endereco.select_by_id',array($atrasado[$i]->endereco_id));
                 	$endereco = json_decode($json_dados);
@@ -139,9 +139,9 @@
                 {
                         $pdf->Cell(4,1,$em_espera[$i]->data_agendamento,1,0);
                         $pdf->Cell(3,1,$em_espera[$i]->horario,1,0);
-                        $json_dados = $service->call('usuario.select', array($em_espera[$i]->usuario_id));
+                        $json_dados = $service->call('usuario.select', array('id = ' .$em_espera[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
-                        $pdf->Cell(4,1,$usuario[0]->nome,1,0);
+                        $pdf->Cell(4,1,utf8_decode($usuario[0]->nome),1,0);
                         $pdf->Cell(3,1,$usuario[0]->telefone,1,0);
                         $json_dados = $service->call('endereco.select_by_id',array($em_espera[$i]->endereco_id));
                         $endereco = json_decode($json_dados);
@@ -177,9 +177,9 @@
                 {
                         $pdf->Cell(4,1,$cancelados[$i]->data_agendamento,1,0);
                         $pdf->Cell(3,1,$cancelados[$i]->horario,1,0);
-                        $json_dados = $service->call('usuario.select', array($cancelados[$i]->usuario_id));
+                        $json_dados = $service->call('usuario.select', array('id = ' .$cancelados[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
-                        $pdf->Cell(4,1,$usuario[0]->nome,1,0);
+                        $pdf->Cell(4,1,utf8_decode($usuario[0]->nome),1,0);
                         $pdf->Cell(3,1,$usuario[0]->telefone,1,0);
                         $json_dados = $service->call('endereco.select_by_id',array($cancelados[$i]->endereco_id));
                         $endereco = json_decode($json_dados);
