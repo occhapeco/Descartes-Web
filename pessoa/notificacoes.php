@@ -1,5 +1,5 @@
 <?php 
-  require_once("permissao.php");
+  require_once("permissao_pessoa.php");
   require_once("../conectar_service.php");
 
   $service->call("notificacao.visualizar_todos_by_usuario", array($_SESSION["id"]));
@@ -59,28 +59,28 @@
                 {
                     $json_dados = $service->call('empresa.select',array("id = ".$notificacao[$i]->empresa_id));
                     $empresa = json_decode($json_dados);
-                   if ($notificacao[$i]->tipo == 2) // Novo agendamento
-                        echo '<a href="agendamentos.php" style="color: #11ABB0;">
+                   if ($notificacao[$i]->tipo == 1) // Novo agendamento
+                        echo '<a href="pedidos.php" style="color: #11ABB0;">
                                 <div class="desc">
                                   <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-plus-circle"></i></span>
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$empresa[0]->nome.'</b> solicitou um agendamento.<br>
+                                      <b>'.$empresa[0]->nome_fantasia.'</b> recusou um agendamento.<br>
                                     </p>
                                   </div>
                                 </div>
                               </a>';
                     else{ // Agendamento cancelado
-                        echo '<a href="agendamentos.php" style="color: #11ABB0;">
+                        echo '<a href="pedidos.php" style="color: #11ABB0;">
                                 <div class="desc">
                                   <div class="thumb">
                                     <span class="badge bg-theme"><i class="fa fa-calendar-times-o"></i></span>
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$empresa[0]->nome.'</b> cancelou um agendamento.<br>
+                                      <b>'.$empresa[0]->nome_fantasia.'</b> aceitou um agendamento.<br>
                                     </p>
                                   </div>
                                 </div>
