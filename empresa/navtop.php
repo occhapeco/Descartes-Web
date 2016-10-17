@@ -1,10 +1,3 @@
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Infinity - Mobile App HTML5 Template">
-	<meta name="keywords" content="keywords">
-	<meta name="author" content="Audain Designs">
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,11 +11,6 @@
 	<!-- Animations -->
 	<link href="css/animate.css" rel="stylesheet">
 		
-	<!-- Vendor Styles -->
-	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/jasny-bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/push-menu.css" />
-	<link rel="stylesheet" type="text/css" href="vendor/animated-text/css/style.css" />
-	
 	<!-- Device Styles -->
 	<link rel="stylesheet" type="text/css" href="css/devices/style.css">
 	<script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
@@ -39,7 +27,6 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-</head>
 <style>
 .mobile{
 	background-color:#606060;
@@ -50,7 +37,7 @@
   <div class="row">
     <div class="col full">
       <div style="margin-left:30px;"><a href="index.php" class="logo" style="color:white;"><b>DescartesLab</b></a></div>
-      <nav id="nav-wrap" style="left: 25%;">
+      <nav id="nav-wrap" style="left: 19%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a> 
@@ -62,7 +49,7 @@
           <li><a href="meus_pontos.php">Meus pontos</a></li>
           <li><a href="mapa_coletas.php">Coletas</a></li>
           <li><a href="agendamentos.php">Agendamentos</a></li>
-		  <li style="margin-left:250px;margin-right:20px;">
+		  <li style="margin-left:150px;margin-right:20px;">
 				<a href="notificacoes.php">
 					<?php
 	                    $json_dados = $service->call('notificacao.select_nao_visualizados_by_empresa',array($_SESSION["id"]));
