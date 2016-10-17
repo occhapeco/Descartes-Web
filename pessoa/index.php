@@ -100,50 +100,45 @@
       <?php 
           require_once("navtop.php");
       ?>
-  </section>
-<section class="wrapper">
-  <div style="width:100%;height:auto;margin-top:10px;">
-    <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
-    <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
-    <div id="map"></div> 
-  </div>
-</section>
-
-<!--modal -->
-              <div class="container">
-                  <!-- Modal -->
-                  <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-       
-                          <!-- Modal content-->
-                          <div class="modal-content">
-                              <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Seleção de tipo de lixo</h4>
-                              </div>
-                              <div class="modal-body" style="overflow: auto; max-height: 400px;">
-                                <form action="#" method="post">
-                                  <table class="table table-stripped">                                    
-                                   <?php 
-                                      $dados_json = $service->call('tipo_lixo.select',array(NULL));
-                                      $tipo_lixo = json_decode($dados_json);
-                                      $num = count($tipo_lixo);
-                                      for ($i=0; $i < $num ; $i++) { 
-                                        echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome."</td></tr>";
-                                      }
-                                   ?> 
-                                  </table>
-                              </div>
-                              <div class="modal-footer">
-                                    <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Selecionar</button>
-                                 </form>
-                              </div>
-                          </div>
-       
-                        </div>
-                  </div>
-   
+    <section class="wrapper">
+      <div style="width:100%;height:auto;margin-top:10px;">
+        <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
+        <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
+        <div id="map"></div> 
+      </div>
+    </section>
+    <!-- Modal -->
+    <div class="container">
+      <div class="modal fade" id="myModal" role="dialog" style="z-index: 20000000;">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Seleção de tipo de lixo</h4>
+            </div>
+            <form action="#" method="post">
+              <div class="modal-body" style="overflow: auto; max-height: 400px;">
+                <table class="table table-stripped">                                    
+                 <?php 
+                    $dados_json = $service->call('tipo_lixo.select',array(NULL));
+                    $tipo_lixo = json_decode($dados_json);
+                    $num = count($tipo_lixo);
+                    for ($i=0; $i < $num ; $i++) { 
+                      echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome."</td></tr>";
+                    }
+                 ?> 
+                </table>
               </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Selecionar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
  <script type="text/javascript">
    function initAutocomplete() {
       var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
@@ -287,7 +282,7 @@
               $num = count($ponto);
               if (isset($_POST['tipos'])) {
                   $tipos = $_POST['tipos'];
-                  for ($i=0;$i<1;$i++){
+                  for ($i=0;$i<$num;$i++){
                     $verifica = false;
                     $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
                     $tipo_lixo_has_ponto = json_decode($dados_json);
@@ -314,6 +309,8 @@
                               $pontos .= ", ";
                             $pontos = $pontos.$tipo_lixo[0]->nome;
                           }
+                          if ($i!=0)
+                            echo ",";
                         ?>
                         {
                           position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
@@ -321,7 +318,7 @@
                           info:'<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
-                                '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
+                                '<h3 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h3>'+
                                 '<div id="bodyContent">'+
                                 '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
@@ -339,15 +336,13 @@
                           draggable:false
                         }
                         <?php
-                        if ($i!=$num-1) {
-                          echo ",";
-                        }
+                        
                       }
 
                     }
                   }
               }else{
-                for ($i=0;$i<1;$i++)
+                for ($i=0;$i<$num;$i++)
                 {
                   $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
                   $endereco = json_decode($dados_json);
@@ -365,6 +360,8 @@
                         $pontos .= ", ";
                       $pontos = $pontos.$tipo_lixo[0]->nome;
                     }
+                    if ($i!=0)
+                      echo ",";
                   ?>
                   {
                     position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
@@ -372,7 +369,7 @@
                     info:'<div id="content">'+
                           '<div id="siteNotice">'+
                           '</div>'+
-                          '<h1 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h1>'+
+                          '<h3 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h3>'+
                           '<div id="bodyContent">'+
                           '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
@@ -390,12 +387,9 @@
                     draggable:false
                   }
                   <?php
-                  if ($i!=$num-1) {
-                    echo ",";
-                  }
+                    }
                 }
-            }
-        ?>
+            ?>
       ];
 
       //cria as variáveis chamando as funções
