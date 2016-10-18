@@ -6,19 +6,24 @@
   {
     require_once("../conectar_service.php");
     if (isset($_POST["editar_perfil"]))
+    {
       if ($service->call('empresa.update_perfil',array($_SESSION["id"],$_POST["razao_social"],$_POST["nome_fantasia"],$_POST["email"])))
-        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Seu perfil foi alterado com sucesso!</b></div>';
+        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Profile changed successfully!</b></div>';
       else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
+    }
     if (isset($_POST["editar_senha"]))
     {
-      if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
-        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Sua senha foi alterada com sucesso!</b></div>';
+      if($_POST["senha_nova1"] == $_POST["senha_nova2"])
+        if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
+          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Password changed successfully!</b></div>';
+        else
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
       else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Passwords do not match!</b></div>';  
     }
-    else
-      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Senhas não conferem!</b> Digite novamente.</div>';
+    
+
   }
 ?>
 <!DOCTYPE html>
@@ -30,7 +35,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -61,17 +66,17 @@
       MAIN CONTENT Formulário
       *********************************************************************************************************************************************************** -->
     <section class="wrapper">
-    	<h3><i class="fa fa-angle-right"></i> Editar Perfil</h3>
+    	<h3><i class="fa fa-angle-right"></i> Edit Profile</h3>
     	<?php
         if($alert != '')
           echo "<br>".$alert;
       ?>
         <div class="col-lg-12">
           <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
-          	  <h4 class="mb"><i class="fa fa-angle-right"></i> Dados da Empresa</h4>
+          	  <h4 class="mb"><i class="fa fa-angle-right"></i> Company data</h4>
               <form class="form-horizontal style-form" method="POST" action="#">
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">Razão Social</label>
+                      <label class="col-sm-2 col-sm-2 control-label">Company name</label>
                       <div class="col-sm-10">
                       <?php
                         echo '<input type="text" id="razao_social" name="razao_social" class="form-control" maxlength="40" value="' . $empresa[0]->razao_social . '" required autofocus>';
@@ -79,7 +84,7 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">Nome Fantasia</label>
+                      <label class="col-sm-2 col-sm-2 control-label">Fantasy name</label>
                       <div class="col-sm-10">
                       <?php
                         echo '<input type="text" id="nome_fantasia" name="nome_fantasia" class="form-control" maxlength="40" value="' . $empresa[0]->nome_fantasia . '"required>';
@@ -94,32 +99,32 @@
                       ?>
                       </div>
                   </div>
-                  <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmar</button>
+                  <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirm</button>
               </form>
           </div>
       		<div class="col-lg-1"></div>
       	  <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
-        	  <h4 class="mb"><i class="fa fa-angle-right"></i> Alteração de Senha</h4>
+        	  <h4 class="mb"><i class="fa fa-angle-right"></i> Change password</h4>
             <form class="form-horizontal style-form" method="POST" action="#">
                 <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Senha Atual</label>
+                    <label class="col-sm-2 col-sm-2 control-label">Current password</label>
                     <div class="col-sm-10">
                         <input type="password" id="senha_antiga" name="senha_antiga" class="form-control"  maxlength="12" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Nova Senha</label>
+                    <label class="col-sm-2 col-sm-2 control-label">New password</label>
                     <div class="col-sm-10">
                         <input type="password" id="senha_nova1" name="senha_nova1" class="form-control" maxlength="12" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Confirmação da Nova Senha</label>
+                    <label class="col-sm-2 col-sm-2 control-label">New password confirmation</label>
                     <div class="col-sm-10">
                         <input type="password" id="senha_nova2" name="senha_nova2" class="form-control" maxlength="12" required>
                     </div>
                 </div>
-                <button type="submit" id="editar_senha" name="editar_senha" class="btn btn-sm btn-theme pull-right">Confirmar</button>
+                <button type="submit" id="editar_senha" name="editar_senha" class="btn btn-sm btn-theme pull-right">Confirm</button>
             </form>
           </div>
         </div>

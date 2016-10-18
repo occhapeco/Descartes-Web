@@ -13,7 +13,7 @@
   $atendimento_fim = "";
   $observacao =  "";
   $telefone =  "";
-  $btn = '<a class="btn btn-sm btn-theme pull-right" style="margin-bottom:10px;" onclick="codeAddress();" id="cadastrar" name="cadastrar" style="margin-left:10px">Confirmar</a>';
+  $btn = '<a class="btn btn-sm btn-theme pull-right" style="margin-bottom:10px;" onclick="codeAddress();" id="cadastrar" name="cadastrar" style="margin-left:10px">Confirm</a>';
   $input_id = "";
   $lat_long = "";
   $bab = '<input type="hidden" name="cadastrar">';
@@ -74,13 +74,13 @@
           for($i=0;$i<count($tipo_lixo);$i++)
             if (isset($_POST[$tipo_lixo[$i]->id])) // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
               $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$ponto_id));
-            $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Ponto cadastrado com sucesso!</b></div>';
+            $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Registered spot successfully!</b></div>';
         }
         else
-          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
       }
       else
-          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
     }
    
     //---------------------//
@@ -99,8 +99,7 @@
           $tipo_lixo_has_ponto = json_decode($json_dados);
           for($i=0;$i<count($tipo_lixo_has_ponto);$i++)
           {
-            if ($service->call('tipo_lixo_has_ponto.delete',array($tipo_lixo_has_ponto[$i]->id)))
-              echo "<script>alert('oie');</script>";
+            $delet = $service->call('tipo_lixo_has_ponto.delete',array($tipo_lixo_has_ponto[$i]->id));
           }
           // Seleciono todos os tipos de lixo
           $json_dados = $service->call('tipo_lixo.select',array(NULL));
@@ -223,19 +222,19 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h4><i class="fa fa-angle-right"></i> Meus pontos</h3>
+          <h4><i class="fa fa-angle-right"></i> My Spots</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 5px;">
-                  <li class="active"><a data-toggle="pill" href="#home" style="color: black;">Mapa</a></li>
-                  <li><a data-toggle="pill" href="#menu1" style="color: black;">Lista</a></li>
-                  <li><a data-toggle="pill" href="#menu2" style="color: black;">Novo</a></li>
+                  <li class="active"><a data-toggle="pill" href="#home" style="color: black;">Map</a></li>
+                  <li><a data-toggle="pill" href="#menu1" style="color: black;">List</a></li>
+                  <li><a data-toggle="pill" href="#menu2" style="color: black;">New</a></li>
                 </ul>
                   
                 <div class="tab-content" style="margin-top: 20px;">
                   <div id="home" class="tab-pane fade in active">
-                    <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade"> </input>
+                    <input id="pac-input" class="controls" type="text" placeholder="Search the place"> </input>
                     <div id="map"></div>
                   </div>
                   <div id="menu1" class="tab-pane fade" style="padding-left: 5px; padding-right: 5px;">
@@ -250,12 +249,12 @@
                     <table class="table table-striped table-condensed cf ">
                        <thead class="cf">
                           <tr>
-                             <th>Endereço</th>
-                             <th class="number">Telefone</th>
-                             <th class="time">Horário de atendimento</th>
-                             <th>Observação</th>
-                             <th><center>Editar</center></th>
-                             <th><center>Excluir</center></th>
+                             <th>Address</th>
+                             <th class="number">Telephone</th>
+                             <th class="time">Time of the attendance</th>
+                             <th>Comments</th>
+                             <th><center>Edit</center></th>
+                             <th><center>Delete</center></th>
                           </tr>
                        </thead>
                        <tbody>
@@ -284,96 +283,96 @@
                   </div>
                   <div id="menu2" class="tab-pane fade">
                     <div class="row mt">
-                      <p style="color: red; margin-left: 20px;">*CAMPO REQUERIDO</p>
+                      <p style="color: red; margin-left: 20px;">*REQUIRED FIELD</p>
                       <form class="form-horizontal style-form" method="post" action="#" id="frm">
                         <input type="hidden" name="lat" id="lat">
                         <input type="hidden" name="long" id="long">
                         <?php echo $bab; ?>
                         <!-- Confirmação e Complemento do endereço do ponto -->
                         <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
-                          <h5 class="mb"><i class="fa fa-angle-right"></i> Endereço</h5>
+                          <h5 class="mb"><i class="fa fa-angle-right"></i> Address</h5>
                             <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*CEP</label>
+                                  <label class="col-sm-2 col-sm-2 control-label">*Postal Code</label>
                                   <div class="col-sm-10">
                                      <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus placeholder="Ex: 89888000">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*País</label>
+                                  <label class="col-sm-2 col-sm-2 control-label">*Country</label>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Ex: Brasil">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*UF</label>
+                                  <label class="col-sm-2 col-sm-2 control-label">*State</label>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required placeholder="Ex: SC">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*Cidade</label>
+                                  <label class="col-sm-2 col-sm-2 control-label">*City</label>
                                   <div class="col-sm-10">
                                       <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required placeholder="Ex: São Paulo">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*Bairro</label>
+                                  <label class="col-sm-2 col-sm-2 control-label">*Neighborhood</label>
                                   <div class="col-sm-10">
                                       <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required placeholder="Ex: Centro">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*Rua</label>
+                                  <label class="col-sm-2 col-sm-2 control-label">*Street</label>
                                   <div class="col-sm-10">
                                       <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required placeholder="Ex: Rua das Margaridas.">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 control-label">*Número</label>
+                                  <label class="col-sm-2 control-label">*Number</label>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control"  maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required placeholder="Ex: 402">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2  control-label ">Complemento</label>
+                                  <label class="col-sm-2  control-label ">Complement</label>
                                   <div class="col-sm-10">
-                                      <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> placeholder="Ex: D. Ou ponto de referência Ex: Próximo à escola">
+                                      <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> placeholder="Ex: D. or landmark Ex: Near school">
                                   </div>
                               </div>
                         </div>
                           
                           <!-- Dados do funcionamento do Ponto -->    
                           <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
-                            <h5 class="mb"><i class="fa fa-angle-right"></i> Dados do Ponto</h5>
+                            <h5 class="mb"><i class="fa fa-angle-right"></i> Spot Data</h5>
                              <div class="form-group">
-                                 <label class="col-sm-2 col-sm-2 control-label">*Horário de início do atendimento</label>
+                                 <label class="col-sm-2 col-sm-2 control-label">*Starting time of the attendance</label>
                                   <div class="col-sm-10">
                                       <input type="time" class="form-control" maxlength="12" OnKeyPress="formatar('##:##', this,event)"  id="atendimento_ini" name="atendimento_ini" <?php echo "value='$atendimento_ini'";?> required>
                                   </div>
                               </div>
                               <div class="form-group">
-                                 <label class="col-sm-2 col-sm-2 control-label">*Horário de final do atendimento</label>
+                                 <label class="col-sm-2 col-sm-2 control-label">*Ending  time of the attendance</label>
                                   <div class="col-sm-10">
                                       <input type="time" class="form-control" maxlength="12" id="atendimento_fim" name="atendimento_fim"<?php echo "value='$atendimento_fim'";?> required>
                                   </div>
                               </div>
                               <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">*Telefone</label>
+                                    <label class="col-sm-2 col-sm-2 control-label">*Telephone</label>
                                     <div class="col-sm-10">
                                       <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> required placeholder="Ex: 44 4444 4444">
                                     </div>
                                 </div>
                               <div class="form-group">
-                                 <label class="col-sm-2 col-sm-2 control-label">Observações</label>
+                                 <label class="col-sm-2 col-sm-2 control-label">Comments</label>
                                   <div class="col-sm-10">
-                                      <textarea class="form-control" maxlength="250" id="observacao" name="observacao" placeholder="Ex: Fecha ao meio dia etc."><?php
+                                      <textarea class="form-control" maxlength="250" id="observacao" name="observacao" placeholder="Ex: closes at noon."><?php
                                        echo $observacao; ?></textarea>
                                   </div>
                               </div>
                            </div>
                            <!-- Tipos de lixo recolhidos pelo Ponto -->    
                           <div class="col-lg-4" style="padding: 0px 50px 0px 25px;">
-                            <h5 class="mb"><i class="fa fa-angle-right"></i> Selecione quais dos materiais a baixo este ponto recolhe</h5>
+                            <h5 class="mb"><i class="fa fa-angle-right"></i> Select which of the material below this point collects</h5>
                              <div class="form-group">
                                
                                 <table class="table col-md-6">
@@ -420,7 +419,7 @@
                               </div>
                           </div>
                           <div class="col-lg-12" style="padding: 0px 30px 0px 30px;">
-                            <a type="" href="#" class="btn btn-default" id="pop">Não achou o que queria?</a>
+                            <a type="" href="#" class="btn btn-default" id="pop">not found what you wanted?</a>
                             <?php
                               echo $lat_long;
                               echo $input_id;
@@ -443,7 +442,7 @@
           <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Seleção de tipo de lixo</h4>
+                  <h4 class="modal-title">Garbage type selection</h4>
               </div>
               <div class="modal-body" style="overflow: auto; max-height: 400px;">
                 <form action="#" method="post">
@@ -704,7 +703,7 @@
       }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete&language=en" async defer></script>  
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>

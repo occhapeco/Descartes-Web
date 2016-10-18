@@ -77,7 +77,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -105,7 +105,7 @@
       require_once("navtop.php");
     ?>    
     <section class="wrapper site-min-height">
-      <h3><i class="fa fa-angle-right"></i> Estatísticas</h3>
+      <h3><i class="fa fa-angle-right"></i> Statistics</h3>
       <div class="col-md-1">
       </div>
       <a href="agendamentos.php">
@@ -114,7 +114,7 @@
             <span class="fa fa-plus-circle"></span>
             <h3><?php echo $num_solicitados; ?></h3>
                   </div>
-            <p><?php echo $num_solicitados; ?> agendamentos solicitados.</p>
+            <p><?php echo $num_solicitados; ?> schedules requested.</p>
         </div>
       </a>
       <a href="agendamentos.php">
@@ -123,7 +123,7 @@
             <span class="fa fa-hourglass-start"></span>
             <h3><?php echo $num_pendentes; ?></h3>
                   </div>
-            <p><?php echo $num_pendentes; ?> agendamentos pendentes.</p>
+            <p><?php echo $num_pendentes; ?> schedules pending.</p>
         </div>
       </a>
       <a href="agendamentos.php">
@@ -132,7 +132,7 @@
             <span class="fa fa-hourglass-end"></span>
             <h3><?php echo $num_atrasados; ?></h3>
                   </div>
-            <p><?php echo $num_atrasados; ?> agendamentos atrasados.</p>
+            <p><?php echo $num_atrasados; ?> schedules late.</p>
         </div>
       </a>
       <a href="agendamentos.php">
@@ -141,7 +141,7 @@
             <span class="fa fa-calendar-check-o"></span>
             <h3><?php echo $num_realizados; ?></h3>
                   </div>
-            <p><?php echo $num_realizados; ?> agendamentos relizados.</p>
+            <p><?php echo $num_realizados; ?> schedules performed.</p>
         </div>
       </a>
       <a href="agendamentos.php">
@@ -150,20 +150,20 @@
             <span class="fa fa-calendar-times-o"></span>
             <h3><?php echo $num_cancelados; ?></h3>
                   </div>
-            <p><?php echo $num_cancelados; ?> agendamentos cancelados.</p>
+            <p><?php echo $num_cancelados; ?> schedules canceled.</p>
         </div>
       </a>
       <div class="col-md-1">
       </div>
       <div class="col-md-5" style="margin-top: 10px">
         <div class="content-panel">
-          <center><h4>Agendamentos finalizados</h4></center>
+          <center><h4>Schedules finalized</h4></center>
           <div id="finalizados" class="graph"></div>
         </div>
       </div>
       <div class="col-md-7" style="margin-top: 10px">
         <div class="content-panel" style="padding-bottom: 46px;">
-          <center><h4>Agendamentos realizados no mês</h4></center>
+          <center><h4>Schedules performed in the month</h4></center>
           <div id="finalizados_mes" class="graph" style="height: 300px; margin-left: 10px;"></div>
         </div>
       </div>
@@ -192,14 +192,14 @@
           <?php 
             if($total_finalizados > 0)
               echo "data: [
-                      {label: 'Realizados', value: $realizados},
-                      {label: 'Cancelados', value: $cancelados}
+                      {label: 'Performed', value: $realizados},
+                      {label: 'Cancelled', value: $cancelados}
                     ],
                       colors: ['#0288D1', '#D32F2F'],
                     formatter: function (y) { return y + `%` }";
             else
               echo "data: [
-                      {label: 'Sem agendamentos', value: 100}
+                      {label: 'Without schedules', value: 100}
                     ],
                       colors: ['#0288D1'],
                     formatter: function (y) {return 'finalizados'}";
@@ -216,9 +216,9 @@
                 if($i > 1)
                   $data = ",".$data;
                 if(isset($realizados_semana["semana$i"]))
-                  $data = "{ 'week': '${i}º semana', value: ".$realizados_semana["semana$i"]." }".$data;
+                  $data = "{ 'week': '${i}º week', value: ".$realizados_semana["semana$i"]." }".$data;
                 else
-                  $data = "{ 'week': '${i}º semana', value: 0 }".$data;
+                  $data = "{ 'week': '${i}º week', value: 0 }".$data;
               }
               echo $data;
             ?>

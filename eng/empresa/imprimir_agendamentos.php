@@ -15,11 +15,11 @@
                 $json_dados = $service->call('agendamento.select_aceitos_by_empresa',array($_SESSION["id"]));
                 $aceito = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
-                $pdf->Cell(4,1,"Data",1,0);
-                $pdf->Cell(3,1,utf8_decode("Horário"),1,0);
-                $pdf->cell(4,1,"Solicitante",1,0);
-                $pdf->cell(3,1,"Telefone",1,0);
-                $pdf->cell(13,1,utf8_decode("Endereço"),1,1);
+                $pdf->Cell(4,1,"Date",1,0);
+                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
+                $pdf->cell(4,1,"Requester",1,0);
+                $pdf->cell(3,1,"Telephone",1,0);
+                $pdf->cell(13,1,utf8_decode("Address"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($aceito);$i++)
                 {
@@ -53,11 +53,11 @@
                 $json_dados = $service->call('agendamento.select_realizados_by_empresa',array($_SESSION["id"]));
                 $realizado = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
-                $pdf->Cell(4,1,"Data",1,0);
-                $pdf->Cell(3,1,utf8_decode("Horário"),1,0);
-                $pdf->cell(4,1,"Solicitante",1,0);
-                $pdf->cell(3,1,"Telefone",1,0);
-                $pdf->cell(13,1,utf8_decode("Endereço"),1,1);
+                $pdf->Cell(4,1,"Date",1,0);
+                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
+                $pdf->cell(4,1,"Requester",1,0);
+                $pdf->cell(3,1,"Telephone",1,0);
+                $pdf->cell(13,1,utf8_decode("Address"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($realizado);$i++)
                 {
@@ -91,11 +91,11 @@
                 $json_dados = $service->call('agendamento.select_atrasados_by_empresa',array($_SESSION["id"]));
                 $atrasado = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
-                $pdf->Cell(4,1,"Data",1,0);
-                $pdf->Cell(3,1,utf8_decode("Horário"),1,0);
-                $pdf->cell(4,1,"Solicitante",1,0);
-                $pdf->cell(3,1,"Telefone",1,0);
-                $pdf->cell(13,1,utf8_decode("Endereço"),1,1);
+                $pdf->Cell(4,1,"Date",1,0);
+                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
+                $pdf->cell(4,1,"Requester",1,0);
+                $pdf->cell(3,1,"Telephone",1,0);
+                $pdf->cell(13,1,utf8_decode("Address"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($atrasado);$i++)
                 {
@@ -129,11 +129,11 @@
                 $json_dados = $service->call('agendamento.select_sem_resposta_by_empresa',array($_SESSION["id"]));
                 $em_espera = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
-                $pdf->Cell(4,1,"Data",1,0);
-                $pdf->Cell(3,1,utf8_decode("Horário"),1,0);
-                $pdf->cell(4,1,"Solicitante",1,0);
-                $pdf->cell(3,1,"Telefone",1,0);
-                $pdf->cell(13,1,utf8_decode("Endereço"),1,1);
+                $pdf->Cell(4,1,"Date",1,0);
+                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
+                $pdf->cell(4,1,"Requester",1,0);
+                $pdf->cell(3,1,"Telephone",1,0);
+                $pdf->cell(13,1,utf8_decode("Address"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($em_espera);$i++)
                 {
@@ -167,11 +167,11 @@
                 $json_dados = $service->call('agendamento.select_cancelados_by_empresa',array($_SESSION["id"]));
                 $cancelados = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
-                $pdf->Cell(4,1,"Data",1,0);
-                $pdf->Cell(3,1,utf8_decode("Horário"),1,0);
-                $pdf->cell(4,1,"Solicitante",1,0);
-                $pdf->cell(3,1,"Telefone",1,0);
-                $pdf->cell(13,1,utf8_decode("Endereço"),1,1);
+                $pdf->Cell(4,1,"Date",1,0);
+                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
+                $pdf->cell(4,1,"Requester",1,0);
+                $pdf->cell(3,1,"Telephone",1,0);
+                $pdf->cell(13,1,utf8_decode("Address"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($cancelados);$i++)
                 {

@@ -14,7 +14,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -53,7 +53,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right"></i> Central de notificações</h3>
+          <h3><i class="fa fa-angle-right"></i> Central notifications</h3>
             <div class="col-lg-12 ds">
               <?php
                 $json = $service->call("notificacao.select_by_empresa", array($_SESSION["id"]));

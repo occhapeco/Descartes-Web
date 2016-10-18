@@ -42,10 +42,10 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" >
-          <li><a href="index.php">Estatísticas</a></li>
-          <li><a href="meus_pontos.php">Meus pontos</a></li>
-          <li><a href="mapa_coletas.php">Coletas</a></li>
-          <li><a href="agendamentos.php">Agendamentos</a></li>
+          <li><a href="index.php">Statistics</a></li>
+          <li><a href="meus_pontos.php">My Spots</a></li>
+          <li><a href="mapa_coletas.php">Collections</a></li>
+          <li><a href="agendamentos.php">Schedules</a></li>
 		  <li style="margin-left:150px;margin-right:20px;">
 				<a href="notificacoes.php">
 					<?php
@@ -68,7 +68,7 @@
 				</a>
 				<ul class="dropdown-menu dropdown-menu-right" id="notification_bar">
 					<li style="width: 100%;">
-						<a href="editar_perfil.php" style="color: darkgray;">Editar Perfil</a>
+						<a href="editar_perfil.php" style="color: darkgray;">Edit Profile</a>
 					</li>
 					<li style="width: 100%;">
 						<a class="logout" href="../inicio/logout.php" style="color: darkgray;">Logout</a>

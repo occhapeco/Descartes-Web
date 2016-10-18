@@ -11,7 +11,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -107,7 +107,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right"></i> Mapa de coletas</h3>
+          <h3><i class="fa fa-angle-right"></i> Map collections</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="panel">
@@ -115,7 +115,7 @@
                   <input type="hidden" name="lat" id="lat" value="e">
                   <input type="hidden" name="long" id="long" value="e">
                 </form>
-                <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade"> </input>
+                <input id="pac-input" class="controls" type="text" placeholder="Search the locale"> </input>
                 <div id="map"></div>                  
               </div><!-- /content-panel -->
             </div><!-- /col-lg-12 -->
@@ -344,7 +344,7 @@
       }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete&language=en" async defer></script>  
 
         <!-- js placed at the end of the document so the pages load faster -->
 

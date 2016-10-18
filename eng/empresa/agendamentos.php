@@ -9,7 +9,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -72,7 +72,7 @@
                             <th class="time">Schedule</th>  
                             <th>Address</th>
                             <th>Requester</th>
-                            <th>Phone</th>
+                            <th>Telephone</th>
                             <th>E-mail</th>
                             <th><center>Accept</center></th>
                             <th><center>Refuse</center></th>
@@ -88,8 +88,8 @@
                           // Dados do usuário
                           $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
                           $usuario = json_decode($json_dados);
-						  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
-						  $format = $data_agendamento->format('d/m/Y');
+						              $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+						              $format = $data_agendamento->format('d/m/Y');
                           echo "<tr class='info'>
                                   <td data-title='Data'>" . $format . "</td>
                                   <td data-title='Horário'>" . $agendamento[$i]->horario . "</td>
@@ -133,7 +133,7 @@
                           <th class="time">Schedule</th>  
                           <th>Address</th>  
                           <th>Requester</th>
-                          <th>Phone</th>  
+                          <th>Telephone</th>  
                           <th>E-mail</th>
                           <th><center>Refuse</center></th>
                       </tr>
@@ -188,7 +188,7 @@
                             <th class="time">Schedule</th>  
                             <th>Address</th>
                             <th>Requester</th>
-                            <th>Phone</th>
+                            <th>Telephone</th>
                             <th>E-mail</th>
                             <th>Refuse</th>
                           </tr>
@@ -244,7 +244,7 @@
                             <th class="time">Schedule</th>  
                             <th>Address</th>
                             <th>Requester</th>
-                            <th>Phone</th>
+                            <th>Telephone</th>
                             <th>E-mail</th>
                          </tr>
                         </thead>
@@ -298,7 +298,7 @@
                             <th class="time">Schedule</th>  
                             <th>Address</th>
                             <th>Requester</th>
-                            <th>Phone</th>
+                            <th>Telephone</th>
                             <th>E-mail</th>
                          </tr>
                         </thead>
