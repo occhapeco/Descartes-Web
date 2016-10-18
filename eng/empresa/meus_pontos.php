@@ -18,6 +18,7 @@
   $lat_long = "";
   $bab = '<input type="hidden" name="cadastrar">';
   $alert = '';
+  $active = "home";
 
   if (isset($_POST))
   {
@@ -53,6 +54,7 @@
       $observacao = $ponto[0]->observacao;
       $telefone = $ponto[0]->telefone;
       $ponto_id = $_POST["id"];
+      $active = "menu2";
       $input_id = "<input type='hidden' id='lat' name='lat' value=" . $endereco[0]->latitude . "><input type='hidden' id='long' name='long' value=" . $endereco[0]->longitude . "><input type='hidden' id='id' name='id' value=" . $_POST["id"] . "><input type='hidden' id='endereco_id' name='endereco_id' value=" . $ponto[0]->endereco_id . ">";
       $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirmar</button>';
       $bab = "";
@@ -227,13 +229,13 @@
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 5px;">
-                  <li class="active"><a data-toggle="pill" href="#home" style="color: black;">Map</a></li>
+                  <li<?php if($active == "home") echo ' class="active"'; ?>><a data-toggle="pill" href="#home" style="color: black;">Map</a></li>
                   <li><a data-toggle="pill" href="#menu1" style="color: black;">List</a></li>
-                  <li><a data-toggle="pill" href="#menu2" style="color: black;">New</a></li>
+                  <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: black;">New</a></li>
                 </ul>
                   
                 <div class="tab-content" style="margin-top: 20px;">
-                  <div id="home" class="tab-pane fade in active">
+                  <div id="home" class="tab-pane fade <?php if($active == "home") echo 'in active'; ?>">
                     <input id="pac-input" class="controls" type="text" placeholder="Search the place"> </input>
                     <div id="map"></div>
                   </div>
@@ -268,7 +270,7 @@
                                 <td data-title="Telefone">' . $ponto[$i]->telefone . '</td>
                                 <td data-title="Horário">' . $ponto[$i]->atendimento_ini . ' - ' . $ponto[$i]->atendimento_fim . '</td>
                                 <td data-title="Observação">' . $ponto[$i]->observacao . '</td>
-                                <td data-title="Editar"><form method="POST" action="cadastro_pontos.php"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><button type="submit" id="editar" name="editar" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></form></td>
+                                <td data-title="Editar"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><button type="submit" id="editar" name="editar" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></form></td>
                                 <td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
                       }
                   ?>
@@ -281,7 +283,7 @@
                       echo "<center><h4>Você não possui pontos. Para cadastrar um, <a href='mapa_pontos.php'>clique aqui!</a></h4></center><br>";
                   ?>
                   </div>
-                  <div id="menu2" class="tab-pane fade">
+                  <div id="menu2" class="tab-pane fade <?php if($active == "menu2") echo 'in active'; ?>">
                     <div class="row mt">
                       <p style="color: red; margin-left: 20px;">*REQUIRED FIELD</p>
                       <form class="form-horizontal style-form" method="post" action="#" id="frm">
@@ -289,7 +291,7 @@
                         <input type="hidden" name="long" id="long">
                         <?php echo $bab; ?>
                         <!-- Confirmação e Complemento do endereço do ponto -->
-                        <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
+                        <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
                           <h5 class="mb"><i class="fa fa-angle-right"></i> Address</h5>
                             <div class="form-group">
                                   <label class="col-sm-2 col-sm-2 control-label">*Postal Code</label>
@@ -342,7 +344,7 @@
                         </div>
                           
                           <!-- Dados do funcionamento do Ponto -->    
-                          <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
+                          <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
                             <h5 class="mb"><i class="fa fa-angle-right"></i> Spot Data</h5>
                              <div class="form-group">
                                  <label class="col-sm-2 col-sm-2 control-label">*Starting time of the attendance</label>
@@ -371,7 +373,7 @@
                               </div>
                            </div>
                            <!-- Tipos de lixo recolhidos pelo Ponto -->    
-                          <div class="col-lg-4" style="padding: 0px 50px 0px 25px;">
+                          <div class="col-lg-12" style="padding: 0px 50px 0px 50px;">
                             <h5 class="mb"><i class="fa fa-angle-right"></i> Select which of the material below this point collects</h5>
                              <div class="form-group">
                                
