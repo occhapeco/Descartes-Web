@@ -292,7 +292,7 @@
                         <input type="hidden" name="long" id="long">
                         <?php echo $bab; ?>
                         <!-- Confirmação e Complemento do endereço do ponto -->
-                        <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
+                        <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
                           <h5 class="mb"><i class="fa fa-angle-right"></i> Endereço</h5>
                             <div class="form-group">
                                   <label class="col-sm-2 col-sm-2 control-label">*CEP</label>
@@ -345,7 +345,7 @@
                         </div>
                           
                           <!-- Dados do funcionamento do Ponto -->    
-                          <div class="col-lg-4" style="padding: 0px 25px 0px 25px;">
+                          <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
                             <h5 class="mb"><i class="fa fa-angle-right"></i> Dados do Ponto</h5>
                              <div class="form-group">
                                  <label class="col-sm-2 col-sm-2 control-label">*Horário de início do atendimento</label>
@@ -374,7 +374,7 @@
                               </div>
                            </div>
                            <!-- Tipos de lixo recolhidos pelo Ponto -->    
-                          <div class="col-lg-4" style="padding: 0px 50px 0px 25px;">
+                          <div class="col-lg-12" style="padding: 0px 50px 0px 50px;">
                             <h5 class="mb"><i class="fa fa-angle-right"></i> Selecione quais dos materiais a baixo este ponto recolhe</h5>
                              <div class="form-group">
                                
@@ -388,7 +388,7 @@
                                         {
                                             echo '<tr>';
                                         }
-                                        elseif (($i%3)==0) 
+                                        elseif (($i%4)==0) 
                                         {
                                             echo "</tr><tr>";
                                         }
