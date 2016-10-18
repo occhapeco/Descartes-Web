@@ -81,13 +81,11 @@
     <title>Descartes</title>
 
     <!-- Bootstrap core CSS -->
-   <link href="assets/css/bootstrap.css" rel="stylesheet">
-    
-    <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">    
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
     
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places"></script> 

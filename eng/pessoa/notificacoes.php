@@ -14,7 +14,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -49,7 +49,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right"></i> Central de notificações</h3>
+          <h3><i class="fa fa-angle-right"></i> Notifications central</h3>
             <div class="col-lg-12 ds">
               <?php
                 $json = $service->call("notificacao.select_by_usuario", array($_SESSION["id"]));
@@ -67,7 +67,7 @@
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$empresa[0]->nome_fantasia.'</b> recusou um agendamento.<br>
+                                      <b>'.$empresa[0]->nome_fantasia.'</b> refused an scheduling.<br>
                                     </p>
                                   </div>
                                 </div>
@@ -80,7 +80,7 @@
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$empresa[0]->nome_fantasia.'</b> aceitou um agendamento.<br>
+                                      <b>'.$empresa[0]->nome_fantasia.'</b> accepted an scheduling.<br>
                                     </p>
                                   </div>
                                 </div>

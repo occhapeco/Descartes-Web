@@ -10,7 +10,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -115,7 +115,7 @@
           <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Seleção de tipo de lixo</h4>
+                <h4 class="modal-title">Trash type selection</h4>
             </div>
             <form action="#" method="post">
               <div class="modal-body" style="overflow: auto; max-height: 400px;">
@@ -131,7 +131,7 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Selecionar</button>
+                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Select</button>
               </div>
             </form>
           </div>
@@ -326,10 +326,10 @@
                                 '<form action="agendamentos.php" method="post">'+
                                 '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                                 '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
-                                '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
+                                '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Schedule pickup</button>'+  
                                 '</form>'+
                                 '<form action="#" method="post">'+
-                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
+                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Route mapping</a><br>'+
                                 '</form>'+
                                 '</div>'+
                                 '</div>',
@@ -377,10 +377,10 @@
                           '<form action="agendamentos.php" method="post">'+
                           '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                           '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
-                          '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
+                          '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Schedule pickup</button>'+  
                           '</form>'+
                           '<form action="#" method="post">'+
-                          '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
+                          '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Route mapping</a><br>'+
                           '</form>'+
                           '</div>'+
                           '</div>',

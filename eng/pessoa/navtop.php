@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" type="text/css" href="style1.css">
 <style>
 .mobile{
 	background-color:#606060;
@@ -17,9 +17,9 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" >
-            <li><a href="index.php">Mapa</a></li>
-            <li><a href="enderecos.php">Endereços</a></li>
-            <li><a href="pedidos.php">Agendamentos</a></li>
+            <li><a href="index.php">Map</a></li>
+            <li><a href="enderecos.php">Addresses</a></li>
+            <li><a href="pedidos.php">Schedulings</a></li>
             <li style="" class="logina">
                 <a href="notificacoes.php">
                     <?php
@@ -43,7 +43,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" id="notification_bar">
                     <li style="width: 100%;">
-                        <a href="editar_perfil.php" style="color: darkgray;">Editar Perfil</a>
+                        <a href="editar_perfil.php" style="color: darkgray;">Edit Profile</a>
                     </li>
                     <li style="width: 100%;">
                         <a class="logout" href="../inicio/logout.php" style="color: darkgray;">Logout</a>

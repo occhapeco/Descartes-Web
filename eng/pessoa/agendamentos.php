@@ -27,7 +27,7 @@
       }
 
       //$notificacao = $service->call('notificacao.insert', array($_SESSION["id"],$_POST["empresa_id"],2,true));
-      echo "<script>alert('Agendamento efetuado com sucesso');</script>";
+      echo "<script>alert('Successfully performed scheduling.');</script>";
       header("location:pedidos.php");
     }
   }
@@ -46,7 +46,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -84,8 +84,8 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
           <section class="wrapper">
-          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Novo Endereço</a>
-          	<h3><i class="fa fa-angle-right"></i> Efetuar Agendamento</h3>
+          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">New Address</a>
+          	<h3><i class="fa fa-angle-right"></i> Perform scheduling</h3>
             
           	
           	<!-- BASIC FORM ELELEMNTS -->
@@ -96,21 +96,21 @@
                       <form class="form-horizontal style-form" method="post" action="#">
                           
                           <div class="form-group">
-                              <label class="col-sm-2 control-label">*Data do Recolhimento</label>
+                              <label class="col-sm-2 control-label">*Pickup date</label>
                               <div class="col-sm-10">
                                 <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Informe a data desejada para o recolhimento">
 						                  </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 control-label">*Horário</label>
+                              <label class="col-sm-2 control-label">*Time</label>
                               <div class="col-sm-10">
                                  <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Informe o horário desejado para o recolhimento" required autofocus>
 					                     </div>
                           </div>
 
 						              <div class="form-group">
-                              <label class="col-sm-2 control-label">*Endereço para o Recolhimento</label>
+                              <label class="col-sm-2 control-label">*Address to the Pickup</label>
                               <div class="container">
                                 
                                   <div class="form-group">
@@ -131,7 +131,7 @@
                               </div>
 
                               <div>
-                                <label class="col-sm-2 control-label">*Tipo de Lixo a ser Recolhido</label>
+                                <label class="col-sm-2 control-label">*Trash tipe to be picked up</label>
                                 <div class="col-sm-10">
                                    <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="true">
                                       <?php
@@ -151,7 +151,7 @@
                           <div class="form-group"></div>
                           
                           <div>
-                              <label class="col-sm-2 control-label">*Quantidade de lixo a ser Recolhida</label>
+                              <label class="col-sm-2 control-label">*Amount of trash to be picked</label>
                               <div class="col-sm-10">
                                   <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Informe a quantidade de lixo que será descartado" required autofocus>
                                  <span class="help-block">Valor em Kg</span>
@@ -161,7 +161,7 @@
                           <div class="form-group"></div>
                           
                           <div>
-                              <label class="col-sm-2 control-label">*Telefone para Contato</label>
+                              <label class="col-sm-2 control-label">*Telephone for contact</label>
                               <div class="col-sm-10">
                                  <?php
                                     echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
@@ -180,9 +180,9 @@
                                </div>
                           </div>
                        </div>
-                       <span class="help-block">*CAMPO REQUERIDO.</span>     
-                          <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
-                        <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
+                       <span class="help-block">*REQUIRED FIELD.</span>     
+                          <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirm</button>    
+                        <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancel</a><br><br>    
                          
                           <?php
                           echo $input;

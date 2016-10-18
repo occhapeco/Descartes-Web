@@ -9,10 +9,10 @@
 	//$pdf->Open();
 	$pdf->AddPage();
 	$pdf->SetFont('Arial','b','12');
-        $pdf->Cell(3,0.7,"Data",1,0);
-        $pdf->Cell(3,0.7,utf8_decode("Horário"),1,0);
-        $pdf->Cell(4,0.7,utf8_decode("Endereço"),1,0);
-        $pdf->Cell(4,0.7,"Coletadora",1,0);
+        $pdf->Cell(3,0.7,"Date",1,0);
+        $pdf->Cell(3,0.7,utf8_decode("Time"),1,0);
+        $pdf->Cell(4,0.7,utf8_decode("ADdress"),1,0);
+        $pdf->Cell(4,0.7,"Collecting company",1,0);
         $pdf->Cell(4,0.7,"Status",1,1);
         $pdf->SetFont('Arial','','12');
 
@@ -30,23 +30,23 @@
 
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
-                                  $status = 'Não Confirmado'; 
+                                  $status = 'NOt confirmed'; 
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento <= date("Y-m-d"))
                                 {
-                                  $status = 'Em Espera';
+                                  $status = 'Waiting';
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento > date("Y-m-d"))
                                 {
-                                  $status = 'Atrasado';
+                                  $status = 'Overdue';
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 1)
                                 {
-                                  $status = 'Realizado';
+                                  $status = 'Finished';
                                 }
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 1)
                                 {
-                                  $status = 'Cancelado';
+                                  $status = 'Cancelled';
                                 }
 
                                 $pdf->Cell(3,0.7,$agendamento[$i]->data_agendamento,1,0);

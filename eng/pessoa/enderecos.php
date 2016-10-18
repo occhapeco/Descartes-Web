@@ -6,19 +6,19 @@
   if(isset($_POST["excluir"]))
   {
     if($service->call('endereco.delete',array($_POST["id"])))
-        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Endereço deletado com sucesso!</b></div>';
+        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Successfully deleted your address!</b></div>';
     else
-      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something gone wrong!</b> Check your connection and try again.</div>';
   }
   elseif(isset($_POST["edit"]))
   {
     if ($service->call('endereco.update',array($_POST["id"],$_POST["rua"],$_POST["num"],$_POST["complemento"],$_POST["cep"],$_POST["bairro"],$_POST["uf"],$_POST["cidade"],$_POST["pais"],$_POST["lat"],$_POST["long"])))
     {
       header("location: enderecos.php");
-      $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Sua endereço foi alterado com sucesso!</b></div>';
+      $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Your address has been successfully edited!</b></div>';
    }
     else
-      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something gone wrong!</b> Check your connection and try again.</div>';
   }
 
    $id_input = "";
@@ -48,7 +48,7 @@
     $pais = $endereco[0]->pais;
 
     $id_input = "<input type='hidden' id='id' name='id' value=" . $id . ">";
-    $btn = ' <a href="enderecos.php"><button type="submit" id="edit" name="edit" class="btn btn-sm btn-theme pull-right">Confirmar</button></a>';
+    $btn = ' <a href="enderecos.php"><button type="submit" id="edit" name="edit" class="btn btn-sm btn-theme pull-right">Confirm</button></a>';
 
     $json_dados = $service->call('usuario_has_endereco.select', array("endereco_id = " . $endereco[0]->id));
     $endereco_usu = json_decode($json_dados);
@@ -64,13 +64,13 @@
     if($endereco_id != 0)
     {
       $endereco_has_usuario = $service -> call('usuario_has_endereco.insert', array($_SESSION["id"], $endereco_id, $_POST["nome_endereco1"]));
-      $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Endereço inserido com sucesso!</b></div>';
+      $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Address was successfully inserted!</b></div>';
       header("location: enderecos.php");
     }
     else
     {
       $deletar = $service->call('endereco.delete', array("id = " . $endereco_id));
-      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something gone wrong!</b> Check your connection and try again.</div>';
     }
   }
   
@@ -84,7 +84,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -117,7 +117,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
     <section class="wrapper">
-      <h3><i class="fa fa-angle-right"></i> Endereços</h3>
+      <h3><i class="fa fa-angle-right"></i> Addresses</h3>
       <?php
         if($alert != '')
           echo "<br>".$alert;
@@ -126,8 +126,8 @@
         <div class="col-lg-12">
           <div class="content-panel">
             <ul class="nav nav-tabs" style="margin-left: 20px;">
-              <li class="active"><a data-toggle="pill" href="#home" style="color: black;">Ver todos</a></li>
-              <li><a data-toggle="pill" href="#menu1" style="color: black;">Criar novo</a></li>
+              <li class="active"><a data-toggle="pill" href="#home" style="color: black;">See all</a></li>
+              <li><a data-toggle="pill" href="#menu1" style="color: black;">Create new</a></li>
             </ul>
           <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
@@ -162,16 +162,16 @@
                                  <table class="table table-striped table-condensed cf" style="">
                                    <thead class="cf">
                                      <tr>
-                                       <th>Rua</th>
-                                       <th>Número</th>  
-                                       <th>Complemento</th>  
-				                               <th>CEP</th>
-                                       <th>Bairro</th>  
-                                       <th>UF</th>
-              												 <th>Cidade</th>
-              												 <th>País</th>
-                                       <th><center>Editar</center></th>
-							                         <th><center>Excluir</center></th>
+                                       <th>Street</th>
+                                       <th>Number</th>  
+                                       <th>Complement</th>  
+				                               <th>Postal Code</th>
+                                       <th>Neighbourhood</th>  
+                                       <th>State</th>
+              												 <th>City</th>
+              												 <th>Country</th>
+                                       <th><center>Edit</center></th>
+							                         <th><center>Delete</center></th>
                                      </tr>
                                    </thead>
                                    <tbody>
@@ -208,19 +208,19 @@
                       }
                      } 
                       else
-                        echo "<center><h4>Você não possui endereços cadastrados.</h4></center><br>";
+                        echo "<center><h4>You do not have any registered addresses.</h4></center><br>";
                     ?>
                 </div>
       	        </div>
             </div>
             <div id="menu1" class="tab-pane fade">
               <form class="form-horizontal style-form" method="post" action="#" id="form_sub">
-                   <span class="help-block" style="color: red;">*CAMPO REQUERIDO</span> 
+                   <span class="help-block" style="color: red;">*REQUIRED FIELD</span> 
                   <?php echo $id_input; ?>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*Nome do Endereço</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*Name of the address</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control " maxlength="20" id="nome_endereco" placeholder="Atribua um nome a este endereço para acha-lo mais facilmente" <?php echo "value='$nome_endereco'"; 
+                          <input type="text" class="form-control " maxlength="20" id="nome_endereco" placeholder="Give this address a name to find it easily" <?php echo "value='$nome_endereco'"; 
                               if(isset($_POST["editar"]))
                                 echo 'disabled name="nome_endereco"';
                               else
@@ -230,51 +230,51 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*CEP</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*Postal Code</label>
                       <div class="col-sm-10">
-                        <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this,event)" class="form-control" placeholder="Informe o CEP deste endereço" <?php echo "value='$cep'"; ?> required>
+                        <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this,event)" class="form-control" placeholder="Enter this address Postal Code" <?php echo "value='$cep'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*País</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*Country</label>
                       <div class="col-sm-10">
-                         <input type="text" class="form-control" maxlength="20" id="pais" name="pais" placeholder="Informe o país" <?php echo "value='$pais'"; ?> required>
+                         <input type="text" class="form-control" maxlength="20" id="pais" name="pais" placeholder="Enter the country" <?php echo "value='$pais'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*UF</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*State</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control" maxlength="2" id="uf" name="uf"  placeholder="Informe o estado" <?php echo "value='$uf'";?> required>
+                          <input type="text" class="form-control" maxlength="2" id="uf" name="uf"  placeholder="Enter the state" <?php echo "value='$uf'";?> required>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*Cidade</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*City</label>
                       <div class="col-sm-10">
-                          <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade" placeholder="Informe a cidade" <?php echo "value='$cidade'"; ?> required>
+                          <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade" placeholder="Enter the city" <?php echo "value='$cidade'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*Bairro</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*Neighbourhood</label>
                       <div class="col-sm-10">
-                        <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro" placeholder="Informe o bairro" <?php echo "value='$bairro'"; ?> required>
+                        <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro" placeholder="Enter the neighbourhood" <?php echo "value='$bairro'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*Rua</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*Street</label>
                       <div class="col-sm-10">
-                        <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua" placeholder="Informe a rua" <?php echo "value='$rua'"; ?> required>
+                        <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua" placeholder="Enter the street" <?php echo "value='$rua'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">*Número</label>
+                      <label class="col-sm-2 col-sm-2 control-label">*Number</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control" onkeypress="return numbro(event)" onload="return numbro(event)" maxlength="6" id="num" name="num" placeholder="Informe o número do endereço" <?php echo "value='$num'"; ?> required>
+                          <input type="text" class="form-control" onkeypress="return numbro(event)" onload="return numbro(event)" maxlength="6" id="num" name="num" placeholder="Enter the number of the address" <?php echo "value='$num'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">Complemento</label>
+                      <label class="col-sm-2 col-sm-2 control-label">Complement</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" placeholder="Informe o complemento do endereço" <?php echo "value='$complemento'"; ?>>
+                          <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" placeholder="Enter the complement of the address" <?php echo "value='$complemento'"; ?>>
                       </div>
                   </div>
                   <?php
