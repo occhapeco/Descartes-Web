@@ -2,6 +2,7 @@
   require_once("permissao_pessoa.php"); 
   require_once("../conectar_service.php");
   $alert='';
+   $active = "home";  
 
   if(isset($_POST["excluir"]))
   {
@@ -31,7 +32,8 @@
    $cidade = "";
    $pais = "";
    $nome_endereco = "";
-   $btn = '<a onclick="codeAddress();" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Confirmar</a>';
+
+   $btn = '<a onclick="codeAddress();" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right" style="margin-right:10px;">Confirm</a><br><br>';
 
   if(isset($_POST["editar"]))
   {
@@ -46,9 +48,10 @@
     $uf = $endereco[0]->uf;
     $cidade = $endereco[0]->cidade;
     $pais = $endereco[0]->pais;
+    $active = "menu1";
 
     $id_input = "<input type='hidden' id='id' name='id' value=" . $id . ">";
-    $btn = ' <a href="enderecos.php"><button type="submit" id="edit" name="edit" class="btn btn-sm btn-theme pull-right">Confirm</button></a>';
+    $btn = ' <a href="enderecos.php"><button type="submit" id="edit" name="edit" class="btn btn-sm btn-theme pull-right" style="margin-right:10px;">Confirm</button></a><br><br>';
 
     $json_dados = $service->call('usuario_has_endereco.select', array("endereco_id = " . $endereco[0]->id));
     $endereco_usu = json_decode($json_dados);
@@ -126,11 +129,11 @@
         <div class="col-lg-12">
           <div class="content-panel">
             <ul class="nav nav-tabs" style="margin-left: 20px;">
-              <li class="active"><a data-toggle="pill" href="#home" style="color: black;">See all</a></li>
-              <li><a data-toggle="pill" href="#menu1" style="color: black;">Create new</a></li>
+              <li <?php if($active == "home") echo ' class="active"'; ?>><a data-toggle="pill" href="#home" style="color: black;">See all</a></li>
+              <li <?php if($active == "menu1") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu1" style="color: black;">Create new</a></li>
             </ul>
           <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
+            <div id="home" class="tab-pane fade <?php if($active == "home") echo 'in active'; ?>">
               <div class="form-panel offset1" >
                 
               <div class="panel-group" id="accordion">
@@ -185,7 +188,7 @@
         									            <td data-title="Cidade"><?php echo $endereco[0]->cidade; ?></td>
         									            <td data-title="País"><?php echo $endereco[0]->pais; ?></td>
         									            <td data-title="Editar">
-                                        <form method="POST" action="novo_endereco.php" id="formeditar">
+                                        <form method="POST" action="#" id="formeditar">
                                           <input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>">
                                           <center>
                                           <button type="submit" id="editar" name="editar" class="btn btn-theme">
@@ -213,8 +216,8 @@
                 </div>
       	        </div>
             </div>
-            <div id="menu1" class="tab-pane fade">
-              <form class="form-horizontal style-form" method="post" action="#" id="form_sub">
+            <div id="menu1" class="tab-pane fade <?php if($active == "menu1") echo 'in active'; ?>">
+              <form class="form-horizontal style-form" method="post" action="#" id="form_sub" style="margin-left:10px; margin-right:10px;">
                    <span class="help-block" style="color: red;">*REQUIRED FIELD</span> 
                   <?php echo $id_input; ?>
                   <div class="form-group">
