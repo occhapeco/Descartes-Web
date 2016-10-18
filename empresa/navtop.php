@@ -1,7 +1,4 @@
 
-	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-
 	<!-- General Style -->
 	<link href="style1.css" rel="stylesheet">
 	
