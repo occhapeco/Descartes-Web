@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" type="text/css" href="style1.css">
 <style>
 .mobile{
 	background-color:#606060;
