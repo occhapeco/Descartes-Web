@@ -32,6 +32,8 @@
    $cidade = "";
    $pais = "";
    $nome_endereco = "";
+   $disabled = ' data-toggle="pill"';
+   $ativo = '';
 
    $btn = '<a onclick="codeAddress();" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right" style="margin-right:10px;">Confirm</a><br><br>';
 
@@ -49,6 +51,8 @@
     $cidade = $endereco[0]->cidade;
     $pais = $endereco[0]->pais;
     $active = "menu1";
+    $disabled = "";
+    $ativo = ' disabled';
 
     $id_input = "<input type='hidden' id='id' name='id' value=" . $id . ">";
     $btn = ' <a href="enderecos.php"><button type="submit" id="edit" name="edit" class="btn btn-sm btn-theme pull-right" style="margin-right:10px;">Confirm</button></a><br><br>';
@@ -129,7 +133,7 @@
         <div class="col-lg-12">
           <div class="content-panel">
             <ul class="nav nav-tabs" style="margin-left: 20px;">
-              <li <?php if($active == "home") echo ' class="active"'; ?>><a data-toggle="pill" href="#home" style="color: black;">See all</a></li>
+              <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: black;">See all</a></li>
               <li <?php if($active == "menu1") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu1" style="color: black;">Create new</a></li>
             </ul>
           <div class="tab-content">

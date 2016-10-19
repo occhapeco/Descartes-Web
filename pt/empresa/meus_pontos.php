@@ -19,6 +19,8 @@
   $bab = '<input type="hidden" name="cadastrar">';
   $alert = '';
   $active = "home";
+  $disabled = ' data-toggle="pill"';
+  $ativo = '';
 
   if (isset($_POST))
   {
@@ -58,6 +60,9 @@
       $input_id = "<input type='hidden' id='lat' name='lat' value=" . $endereco[0]->latitude . "><input type='hidden' id='long' name='long' value=" . $endereco[0]->longitude . "><input type='hidden' id='id' name='id' value=" . $_POST["id"] . "><input type='hidden' id='endereco_id' name='endereco_id' value=" . $ponto[0]->endereco_id . ">";
       $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirmar</button>';
       $bab = "";
+      $disabled = "";
+      $ativo = ' disabled';
+
     }
     elseif (isset($_POST["cadastrar"]))
     {
@@ -90,6 +95,7 @@
     //---------------------//
     if (isset($_POST["edit"]))
     {
+
       require_once("../conectar_service.php");
       // Atuaiza os dados do endereço e retorna booleano
       if ($service->call('endereco.update',array($_POST["endereco_id"],$_POST["rua"],$_POST['num'],$_POST['complemento'],$_POST['cep'],$_POST['bairro'],$_POST['uf'],$_POST['cidade'],$_POST['pais'],$_POST['lat'],$_POST['long'])))
@@ -101,8 +107,7 @@
           $tipo_lixo_has_ponto = json_decode($json_dados);
           for($i=0;$i<count($tipo_lixo_has_ponto);$i++)
           {
-            if ($service->call('tipo_lixo_has_ponto.delete',array($tipo_lixo_has_ponto[$i]->id)))
-              echo "<script>alert('oie');</script>";
+            $delete = $service->call('tipo_lixo_has_ponto.delete',array($tipo_lixo_has_ponto[$i]->id));
           }
           // Seleciono todos os tipos de lixo
           $json_dados = $service->call('tipo_lixo.select',array(NULL));
@@ -225,13 +230,13 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h4><i class="fa fa-angle-right"></i> Meus pontos</h3>
+          <h4><i class="fa fa-angle-right" style="margin-top:60px;"></i> Meus pontos</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 5px;">
-                  <li <?php if($active == "home") echo ' class="active"'; ?>><a data-toggle="pill" href="#home" style="color: black;">Mapa</a></li>
-                  <li><a data-toggle="pill" href="#menu1" style="color: black;">Lista</a></li>
+                  <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: black;">Mapa</a></li>
+                  <li <?php echo "class='$ativo'";?> ><a <?php echo $disabled; ?> href="#menu1" style="color: black;">Lista</a></li>
                   <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: black;">Novo</a></li>
                 </ul>
                   

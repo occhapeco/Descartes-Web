@@ -91,14 +91,14 @@
 						              $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 						              $format = $data_agendamento->format('d/m/Y');
                           echo "<tr class='info'>
-                                  <td data-title='Data'>" . $format . "</td>
-                                  <td data-title='Horário'>" . $agendamento[$i]->horario . "</td>
-                                  <td data-title='Endereço'>" . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . "</td>
-                                  <td data-title='Solicitante'>" . $usuario[0]->nome . "</td>
-                                  <td data-title='Telefone'>" . $usuario[0]->telefone . "</td>
+                                  <td data-title='Date'>" . $format . "</td>
+                                  <td data-title='Schedule'>" . $agendamento[$i]->horario . "</td>
+                                  <td data-title='Address'>" . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . "</td>
+                                  <td data-title='Requester'>" . $usuario[0]->nome . "</td>
+                                  <td data-title='Telephone'>" . $usuario[0]->telefone . "</td>
                                   <td data-title='E-mail'>" . $usuario[0]->email . "</td>                    
-                                  <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><input type='hidden' id='aceitar' name='aceitar'><center><button type='submit' class='btn btn-theme'><i class='fa fa-check'></i></button></center></form></td>
-                                  <td data-title='Recusar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><button type='submit' id='recusar' name='recusar' class='btn btn-danger'><i class='fa fa-times'></i></button></center></form></td>
+                                  <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><input type='hidden' id='aceitar' name='Accept'><center><button type='submit' class='btn btn-theme'><i class='fa fa-check'></i></button></center></form></td>
+                                  <td data-title='Refuse'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><button type='submit' id='recusar' name='recusar' class='btn btn-danger'><i class='fa fa-times'></i></button></center></form></td>
                                 </tr>";
                         }
                     ?>
@@ -149,13 +149,13 @@
 					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 					  $format = $data_agendamento->format('d/m/Y');
                       echo '<tr class="warning">
-                              <td data-title="Data">' . $format . '</td>
-                              <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
-                              <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                              <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
-                              <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
+                              <td data-title="Date">' . $format . '</td>
+                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
+                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
+                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                              <td data-title="Cancelar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                              <td data-title="Refuse"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
                             </tr>';
                     }
                   ?>
@@ -204,13 +204,13 @@
 						  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 						  $format = $data_agendamento->format('d/m/Y');
                           echo '<tr class="warning">
-                                  <td data-title="Data">' . $format . '</td>
-                                  <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
-                                  <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                                  <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
-                                  <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
+                                  <td data-title="Date">' . $format . '</td>
+                                  <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
+                                  <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                                  <td data-title="Requester">' . $usuario[0]->nome . '</td>
+                                  <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                                   <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                                  <td data-title="Recusar"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                                  <td data-title="Refuse"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
                                 </tr>';
                         }
                     ?>
@@ -259,11 +259,11 @@
 					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 					  $format = $data_agendamento->format('d/m/Y');
                       echo '<tr class="success">
-                              <td data-title="Data">' . $format . '</td>
-                              <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
-                              <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                              <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
-                              <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
+                              <td data-title="Date">' . $format . '</td>
+                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
+                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
+                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
                             </tr>';
                     }
@@ -313,11 +313,11 @@
 					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
                       $format = $data_agendamento->format('d/m/Y');
                       echo '<tr class="danger">
-                              <td data-title="Data">' . $format . '</td>
-                              <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
-                              <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                              <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
-                              <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
+                              <td data-title="Date">' . $format . '</td>
+                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
+                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
+                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
                             </tr>';
                     }

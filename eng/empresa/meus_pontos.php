@@ -19,6 +19,8 @@
   $bab = '<input type="hidden" name="cadastrar">';
   $alert = '';
   $active = "home";
+  $disabled = ' data-toggle="pill"';
+  $ativo = '';
 
   if (isset($_POST))
   {
@@ -56,8 +58,10 @@
       $ponto_id = $_POST["id"];
       $active = "menu2";
       $input_id = "<input type='hidden' id='lat' name='lat' value=" . $endereco[0]->latitude . "><input type='hidden' id='long' name='long' value=" . $endereco[0]->longitude . "><input type='hidden' id='id' name='id' value=" . $_POST["id"] . "><input type='hidden' id='endereco_id' name='endereco_id' value=" . $ponto[0]->endereco_id . ">";
-      $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirmar</button>';
+      $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirm</button>';
       $bab = "";
+      $disabled = "";
+      $ativo = ' disabled';
     }
     elseif (isset($_POST["cadastrar"]))
     {
@@ -224,13 +228,13 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h4><i class="fa fa-angle-right"></i> My Spots</h3>
+          <h4><i class="fa fa-angle-right" style="margin-top:60px;"></i> My Spots</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 5px;">
-                  <li<?php if($active == "home") echo ' class="active"'; ?>><a data-toggle="pill" href="#home" style="color: black;">Map</a></li>
-                  <li><a data-toggle="pill" href="#menu1" style="color: black;">List</a></li>
+                  <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: black;">Map</a></li>
+                  <li <?php echo "class='$ativo'";?> ><a <?php echo $disabled; ?> href="#menu1" style="color: black;">List</a></li>
                   <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: black;">New</a></li>
                 </ul>
                   

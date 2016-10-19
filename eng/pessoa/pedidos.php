@@ -25,16 +25,21 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
-   <link href="assets/css/bootstrap.css" rel="stylesheet">
-    
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->    
+   
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/bootstrap-select.css">
 
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="dist/js/bootstrap-select.js"></script>
  
     <!-- Custom styles for this template -->
@@ -57,7 +62,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
     <section class="wrapper">
-      <h3><i class="fa fa-angle-right"></i> Meus Agendamentos</h3>
+      <h3><i class="fa fa-angle-right"></i> My schedulings</h3>
       <div class="row mt">
         <div class="col-lg-12">
            <div class="content-panel">
@@ -76,13 +81,13 @@
                         <table class="table table-striped table-condensed cf ">
                            <thead class="cf">
                               <tr>
-                                 <th>Data</th>
-                                 <th class="time">Horário</th>
-                                 <th>Endereço</th>
-                                 <th>Coletadora</th>
+                                 <th>Date</th>
+                                 <th class="time">Time</th>
+                                 <th>Address</th>
+                                 <th>Collecting company</th>
                                  <th><center>Status</center></th>
-                                 <th><center>Cancelar</center></th>
-                                 <th><center>Marcar como Realizado</center></th>
+                                 <th><center>Cancel</center></th>
+                                 <th><center>Mark as finished</center></th>
                               </tr>
                            </thead>
                            <tbody>
@@ -94,39 +99,39 @@
                                 $json_dados = $service->call('empresa.select', array('id = '. $agendamento[$i]->empresa_id));
                                 $empresa = json_decode($json_dados);
                                 $status = "";
-								$data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
-								$format = $data_agendamento->format('d/m/Y');
+								                $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+								                $format = $data_agendamento->format('d/m/Y');
 
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
-                                  $status = 'Não Confirmado'; 
+                                  $status = 'Not confirmed'; 
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento >= date("Y-m-d"))
                                 {
-                                  $status = 'Em Espera';
+                                  $status = 'Waiting';
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento < date("Y-m-d"))
                                 {
-                                  $status = 'Atrasado';
+                                  $status = 'Overdue';
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 1)
                                 {
-                                  $status = 'Realizado';
+                                  $status = 'Finished';
                                 }
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 1)
                                 {
-                                  $status = 'Cancelado';
+                                  $status = 'Cancelled';
                                 }
                                 echo '<tr>
-                                        <td data-title="Data">' . $format . '</td>
-                                        <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
-                                        <td data-title="Endereço">' . $endereco[0]->nome . '</td>
-                                        <td data-title="Coletadora">' . $empresa[0]->nome_fantasia . '</td>
-                                        <td data-title="Coletadora"><center>' . $status . '</center></td>';
-                                        if($status != 'Cancelado' and $status != 'Realizado')
+                                        <td data-title="Date">' . $format . '</td>
+                                        <td data-title="Time">' . $agendamento[$i]->horario . '</td>
+                                        <td data-title="Address">' . $endereco[0]->nome . '</td>
+                                        <td data-title="Collecting company">' . $empresa[0]->nome_fantasia . '</td>
+                                        <td data-title="Status"><center>' . $status . '</center></td>';
+                                        if($status != 'Cancelled' and $status != 'Finished')
                                         {
-                                          echo '<td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><button type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></center></form></td>';
-                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="realizar" name="realizar" class="btn btn-theme"><i class="fa fa-check"></i></button></center></form></td></tr>';
+                                          echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><button type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></center></form></td>';
+                                          echo '<td data-title="Mark as finished"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="realizar" name="realizar" class="btn btn-theme"><i class="fa fa-check"></i></button></center></form></td></tr>';
                                         }
                                         else
                                         {
@@ -142,7 +147,7 @@
                   <?php
                     }
                     else
-                      echo "<center><h4>Você não possui agendamentos.</h4></center><br>";
+                      echo "<center><h4>You do not have any registered addresses.</h4></center><br>";
                   ?>
                 </div>
                   </div><!-- /col-lg-12 -->
@@ -158,25 +163,25 @@
                           <div class="modal-content">
                               <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Justificativa do Cancelamento</h4>
+                                  <h4 class="modal-title">Cancelling justification</h4>
                               </div>
                                  <form action="#" method="post">
                               
                               <div class="modal-body">
                                   
-                                      <label class="col-sm-4 control-label">*Justificativa</label>
+                                      <label class="col-sm-4 control-label">*Justification</label>
                                       <div class="col-sm-8">
                                             <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
-                                                <option value=1>Atraso no recolhimento</option>
-                                                <option value=2>Não estarei no dia agendado</option>
-                                                <option value=4>Lixo já recolhido</option>
-                                                <option value=3>Outro motivo</option>
+                                                <option value=1>Overdue on the collection</option>
+                                                <option value=2>I will not be on my address in the scheduled day</option>
+                                                <option value=4>Trash already picked up</option>
+                                                <option value=3>Another reason</option>
                                             </select>
                                       </div>
                                   <br>
                               </div>
                               <div class="modal-footer">
-                                    <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Enviar</button>
+                                    <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
                                     <input type="hidden" name="id" id="agendamento_id" value="0">
                                  
                               </div>
