@@ -114,7 +114,6 @@
           $tipo_lixo = json_decode($json_dados);
           for($i=0;$i<count($tipo_lixo);$i++)
             if (isset($_POST[$tipo_lixo[$i]->id])){ // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
-          echo "<script>alert('caralho')</script>";
               
               $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$_POST["id"]));
             }
