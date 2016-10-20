@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `razao_social` varchar(40) DEFAULT NULL,
   `nome_fantasia` varchar(40) DEFAULT NULL,
-  `cnpj` varchar(13) DEFAULT NULL,
+  `cnpj` varchar(14) DEFAULT NULL,
   `senha` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
