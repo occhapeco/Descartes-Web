@@ -21,6 +21,7 @@
   $active = "home";
   $disabled = ' data-toggle="pill"';
   $ativo = '';
+  $ponto_id = 0;
 
   if (isset($_POST))
   {
@@ -71,15 +72,15 @@
       if ($endereco_id != 0)
       {
         // Cadastra o ponto e retorna seu id (0 se der bosta)
-        $ponto_id = $service->call('ponto.insert',array($_SESSION['id'],$_POST["atendimento_ini"],$_POST["atendimento_fim"],$_POST["observacao"],$_POST["telefone"],$endereco_id));
-        if ($ponto_id != 0)
+        $ponto = $service->call('ponto.insert',array($_SESSION['id'],$_POST["atendimento_ini"],$_POST["atendimento_fim"],$_POST["observacao"],$_POST["telefone"],$endereco_id));
+        if ($ponto != 0)
         {
           // Seleciono todos os tipos de lixo
           $json_dados = $service->call('tipo_lixo.select',array(NULL));
           $tipo_lixo = json_decode($json_dados);
           for($i=0;$i<count($tipo_lixo);$i++)
             if (isset($_POST[$tipo_lixo[$i]->id])) // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
-              $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$ponto_id));
+              $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$ponto));
             $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Registered spot successfully!</b></div>';
         }
         else
