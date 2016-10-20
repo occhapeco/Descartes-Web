@@ -325,7 +325,7 @@
     selectAllText: 'Select All',
     deselectAllText: 'Deselect All',
     doneButton: false,
-    doneButtonText: 'Close',
+    doneButtonText: 'Fechar',
     multipleSeparator: ', ',
     styleBase: 'btn',
     style: 'btn-default',

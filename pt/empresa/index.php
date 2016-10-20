@@ -105,7 +105,7 @@
       require_once("navtop.php");
     ?>    
     <section class="wrapper site-min-height">
-      <h3 style="margin-top: 60px;"><i class="fa fa-angle-right"></i> Estatísticas</h3>
+      <h3><i class="fa fa-angle-right"></i> Estatísticas</h3>
       <div class="col-md-1">
       </div>
       <a href="agendamentos.php">

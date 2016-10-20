@@ -21,6 +21,7 @@
   $active = "home";
   $disabled = ' data-toggle="pill"';
   $ativo = '';
+  $ponto_id = 0;
 
   if (isset($_POST))
   {
@@ -230,7 +231,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h4><i class="fa fa-angle-right" style="margin-top:60px;"></i> Meus pontos</h3>
+          <h4><i class="fa fa-angle-right"></i> Meus pontos</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
@@ -365,9 +366,9 @@
                                   </div>
                               </div>
                               <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">*Telefone</label>
+                                    <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                                     <div class="col-sm-10">
-                                      <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> required placeholder="Ex: 44 4444 4444">
+                                      <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> placeholder="Ex: 44 4444 4444">
                                     </div>
                                 </div>
                               <div class="form-group">
@@ -388,40 +389,40 @@
                                      $json_dados = $service->call('tipo_lixo.select',array(NULL));
                                      $tipo_lixo = json_decode($json_dados);
                                      for($i=0;$i<count($tipo_lixo);$i++)
+                                    {
+                                      if($i==0)
                                       {
-                                        if($i==0)
-                                        {
-                                            echo '<tr>';
-                                        }
-                                        elseif (($i%4)==0) 
-                                        {
-                                            echo "</tr><tr>";
-                                        }
-                                        echo '
-                                                <td>
-                                                <center> 
-                                                ' . $tipo_lixo[$i]->nome . '
-                                                </center>
-                                                </td>
-                                                <td><center>
+                                          echo '<tr>';
+                                      }
+                                      elseif (($i%4)==0) 
+                                      {
+                                          echo "</tr><tr>";
+                                      }
+                                      echo '
+                                              <td>
+                                              <center> 
+                                              ' . $tipo_lixo[$i]->nome . '
+                                              </center>
+                                              </td>
+                                              <td><center>
 
-                                                  <input type="checkbox" id="' . $tipo_lixo[$i]->id . '" name="' . $tipo_lixo[$i]->id . '" style="height:20px; width:20px;"';
-                                                if (isset($ponto_id))
-                                                {
+                                                <input type="checkbox" id="' . $tipo_lixo[$i]->id . '" name="' . $tipo_lixo[$i]->id . '" style="height:20px; width:20px;"';
+                                              if ($ponto_id != 0)
+                                              {
                                                   $json_dados = $service->call('tipo_lixo_has_ponto.select',array("ponto_id = $ponto_id AND tipo_lixo_id = " . $tipo_lixo[$i]->id));
-                                            $tipo_lixo_has_ponto = json_decode($json_dados);
-                                            if (count($tipo_lixo_has_ponto) == 0)
-                                            {
-                                              echo ' unchecked></center></td>';
-                                            }
+                                                  $tipo_lixo_has_ponto = json_decode($json_dados);
+                                                  if (count($tipo_lixo_has_ponto) == 0)
+                                                  {
+                                                    echo ' unchecked></center></td>';
+                                                  }
                                                   else
                                                   {
-                                                    echo ' checked></center></td>'; 
+                                                      echo ' checked></center></td>'; 
                                                   }
-                                                }
-                                                else
-                                                  echo ' unchecked></center></td>';
-                                        }                                   
+                                              }
+                                              else
+                                                echo ' unchecked></center></td>';
+                                    }
                                   ?>
                                 </table>
                               </div>

@@ -23,7 +23,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Descartes</title>
+    <title>DescartesLab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -58,7 +58,7 @@
       <!--main content start-->
       <section >
           <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Lixo</h3>
+          	<h3><i class="fa fa-angle-right"></i> Trash</h3>
           	
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
@@ -66,13 +66,13 @@
                   <div class="form-panel offset1">
                       <form class="form-horizontal style-form" method="post" action="#">
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome do Lixo</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Waste name</label>
                               <div class="col-sm-10">
                                 <input type="text" id="nome_lixo" name="nome_lixo" maxlength="20"  class="form-control" autofocus required>
                               </div>
                           </div>
-                          <button type="submit" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Cadastrar</button>
-                          <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;" onclick="document.getElementById('nome_lixo').value=' ';">Cancelar</a><br><br>
+                          <button type="submit" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Register</button>
+                          <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;" onclick="document.getElementById('nome_lixo').value=' ';">Cancel</a><br><br>
                       </form>
                   </div>
 				      </div><!-- col-lg-12-->      	
@@ -87,8 +87,8 @@
                               <table class="table table-striped table-condensed cf ">
                                  <thead class="cf">
                                     <tr>
-                                       <th>Nome do Lixo</th>
-                                       <th><center>Excluir</center></th>
+                                       <th>Waste name</th>
+                                       <th><center>Delete</center></th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -98,8 +98,8 @@
                                     for($i=0;$i<(count($lixo));$i++)
                                     {
                                       echo '<tr>
-                                              <td data-title="Data">' . $lixo[$i]->nome . '</td>
-                                              <td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
+                                              <td data-title="Waste name">' . $lixo[$i]->nome . '</td>
+                                              <td data-title="Delete"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
                                     }
                                 ?>
                               </tbody>

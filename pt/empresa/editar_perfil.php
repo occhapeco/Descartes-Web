@@ -12,13 +12,16 @@
         $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
     if (isset($_POST["editar_senha"]))
     {
-      if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
-        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Sua senha foi alterada com sucesso!</b></div>';
-      else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
-    }
-    else
+       if($_POST["senha_nova1"] == $_POST["senha_nova2"])
+       {
+            if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
+              $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Sua senha foi alterada com sucesso!</b></div>';
+            else
+              $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+      }
+       else
       $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Senhas não conferem!</b> Digite novamente.</div>';
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -66,8 +69,8 @@
         if($alert != '')
           echo "<br>".$alert;
       ?>
-        <div class="col-lg-12">
-          <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+        <div class="form-panel col-lg-12">
+          <div class="col-lg-5" style="padding-bottom: 35px;">
           	  <h4 class="mb"><i class="fa fa-angle-right"></i> Dados da Empresa</h4>
               <form class="form-horizontal style-form" method="POST" action="#">
                   <div class="form-group">
@@ -98,7 +101,7 @@
               </form>
           </div>
       		<div class="col-lg-1"></div>
-      	  <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+      	  <div class="col-lg-5" style="padding-bottom: 35px;">
         	  <h4 class="mb"><i class="fa fa-angle-right"></i> Alteração de Senha</h4>
             <form class="form-horizontal style-form" method="POST" action="#">
                 <div class="form-group">

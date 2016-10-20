@@ -363,9 +363,9 @@
                                   </div>
                               </div>
                               <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">*Telephone</label>
+                                    <label class="col-sm-2 col-sm-2 control-label">Telephone</label>
                                     <div class="col-sm-10">
-                                      <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> required placeholder="Ex: 44 4444 4444">
+                                      <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> placeholder="Ex: 44 4444 4444">
                                     </div>
                                 </div>
                               <div class="form-group">

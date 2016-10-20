@@ -60,7 +60,7 @@
                       if ($num > 0)
                       {
                     ?>
-                    <section id="no-more-tables">
+                    <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                        <form action="imprimir_agendamentos.php" method="post">
                           <input type="hidden" value="em_espera" id="em_espera" name="em_espera">
                           <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
@@ -121,7 +121,7 @@
                     if ($num > 0)
                     {
                 ?>
-                <section id="no-more-tables">
+                <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                    <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="aceito" id="aceito" name="aceito">
                         <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
@@ -176,7 +176,7 @@
                       if ($num > 0)
                       {
                   ?>
-                  <section id="no-more-tables">
+                  <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                       <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="atrasado" id="atrasado" name="atrasado">
                           <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
@@ -232,7 +232,7 @@
                   {
                 ?>
                 
-                <section id="no-more-tables">
+                <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                    <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="realizado" id="realizado" name="realizado">
                         <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
@@ -286,7 +286,7 @@
                   {
                 ?>
                 
-                <section id="no-more-tables">
+                <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                    <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="cancelado" id="cancelado" name="cancelado">
                         <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>

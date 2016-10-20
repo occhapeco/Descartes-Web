@@ -77,7 +77,7 @@
                     if (count($agendamento) > 0)
                     {
                  ?>
-                      <section id="no-more-tables">
+                      <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                         <table class="table table-striped table-condensed cf ">
                            <thead class="cf">
                               <tr>

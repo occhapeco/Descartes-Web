@@ -71,8 +71,8 @@
         if($alert != '')
           echo "<br>".$alert;
       ?>
-        <div class="col-lg-12">
-          <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+        <div class="form-panel col-lg-12">
+          <div class="col-lg-5" style="padding-bottom: 35px;">
           	  <h4 class="mb"><i class="fa fa-angle-right"></i> Company data</h4>
               <form class="form-horizontal style-form" method="POST" action="#">
                   <div class="form-group">
@@ -103,7 +103,7 @@
               </form>
           </div>
       		<div class="col-lg-1"></div>
-      	  <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+      	  <div class="col-lg-5" style="padding-bottom: 35px;">
         	  <h4 class="mb"><i class="fa fa-angle-right"></i> Change password</h4>
             <form class="form-horizontal style-form" method="POST" action="#">
                 <div class="form-group">

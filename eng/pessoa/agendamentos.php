@@ -92,6 +92,7 @@
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
+                    <p style="color: red; margin-left: 20px;">*REQUIRED FIELD</p>
 
                       <form class="form-horizontal style-form" method="post" action="#">
                           
@@ -133,7 +134,7 @@
                               <div>
                                 <label class="col-sm-2 control-label">*Trash tipe to be picked up</label>
                                 <div class="col-sm-10">
-                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="true">
+                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false">
                                       <?php
                                         $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["ponto_id"]));
                                         $tipo_lixo_has_ponto = json_decode($json_dados);
@@ -179,8 +180,7 @@
                                  ?>
                                </div>
                           </div>
-                       </div>
-                       <span class="help-block">*REQUIRED FIELD.</span>     
+                       </div> 
                           <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirm</button>    
                         <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancel</a><br><br>    
                          

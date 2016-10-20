@@ -7,20 +7,25 @@
   {
     require_once("../conectar_service.php");
     if (isset($_POST["editar_perfil"]))
+    {
       if ($service->call('usuario.update_perfil',array($_SESSION["id"],$_POST["nome"],$_POST["email"],$_POST["telefone"])))
         $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Successfully edited profile!</b></div>';
       else
         $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something gone wrong!</b> Check your connection and try again.</div>';
+    }
     if (isset($_POST["editar_senha"]))
     {
-      if ($_POST["senha_nova1"] == $_POST["senha_nova2"] && $service->call('usuario.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
-        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Your password has been successfully edited!</b></div>';
+      if($_POST["senha_nova1"] == $_POST["senha_nova2"])
+      {
+        if ($_POST["senha_nova1"] == $_POST["senha_nova2"] && $service->call('usuario.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
+          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Your password has been successfully edited!</b></div>';
+        else
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something gone wrong!</b> Check your connection and try again.</div>';
+      }
       else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something gone wrong!</b> Check your connection and try again.</div>';
-    }
-    else
-      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Passwords are not even!</b> Type again.</div>';
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Passwords are not even!</b> Type again.</div>';
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,8 +75,8 @@
         echo "<br>".$alert;
     ?>
   	<!-- BASIC FORM ELELEMNTS -->
-  		<div class="col-lg-12">
-          <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+  		<div class="form-panel col-lg-12">
+          <div class="col-lg-5" style="padding-bottom: 35px;">
           	  <h4 class="mb"><i class="fa fa-angle-right"></i> Personal Data</h4>
               <form class="form-horizontal style-form" method="post" action="#">
                 <div class="form-group">
@@ -104,7 +109,7 @@
               </form>
           </div>
 				  <div class="col-lg-1"></div>
-				  <div class="form-panel col-lg-5" style="padding-bottom: 35px;">
+				  <div class="col-lg-5" style="padding-bottom: 35px;">
         	  <h4 class="mb"><i class="fa fa-angle-right"></i> Password change</h4>
             <form class="form-horizontal style-form" method="post" action="#">
               <div class="form-group">
