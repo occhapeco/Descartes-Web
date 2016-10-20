@@ -107,8 +107,8 @@
         <div id="map"></div> 
       </div>
 
-      <input type='hidden' id="latt">
-      <input type='hidden' id="lonn">
+      <input type='hidden' id="latt" value="e">
+      <input type='hidden' id="lonn" value="e">
     </section>
     <!-- Modal -->
     <div class="container">
@@ -161,7 +161,7 @@
                     for ($i=0; $i < $num ; $i++) { 
                       $dados_json = $service->call('endereco.select_by_id',array($ush[$i]->endereco_id));
                       $end = json_decode($dados_json);
-                      echo "<tr><td><a class='btn btn btn-theme03' href='#' style='width:100%;' onclick='pegain(".$end[0]->latitude.",".$end[0]->latitude.")'>".$ush[$i]->nome."</a></td></tr>";
+                      echo "<tr><td><a class='btn btn btn-theme03' href='#' style='width:100%;' onclick='pegain(".$end[0]->latitude.",".$end[0]->longitude.")'data-dismiss='modal'>".$ush[$i]->nome."</a></td></tr>";
                     }
                  ?>
                 </table>
@@ -177,6 +177,7 @@
  var map;
  var infowindow;
  var markers = [];
+ var markerCluster;
    function initAutocomplete() {
       var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
       map = new google.maps.Map(document.getElementById('map'), {
@@ -332,6 +333,8 @@
                           }
                           if ($i!=0)
                             echo ",";
+                          $dados_json1 = $service->call('empresa.select_by_id',array($ponto[$i]->empresa_id));
+                          $emp = json_decode($dados_json1);
                         ?>
                         {
                           position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
@@ -339,9 +342,9 @@
                           info:'<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
-                                '<h3 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h3>'+
+                                '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                                 '<div id="bodyContent">'+
-                                '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                                '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                                 '<form action="agendamentos.php" method="post">'+
@@ -350,7 +353,7 @@
                                 '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                                 '</form>'+
                                 '<form action="#" method="post">'+
-                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>)" data-dismiss="modal">Traçar Rota</a><br>'+
+                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>)">Traçar Rota</a><br>'+
                                 '</form>'+
                                 '</div>'+
                                 '</div>',
@@ -383,6 +386,8 @@
                     }
                     if ($i!=0)
                       echo ",";
+                     $dados_json1 = $service->call('empresa.select_by_id',array($ponto[$i]->empresa_id));
+                     $emp = json_decode($dados_json1);
                   ?>
                   {
                     position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
@@ -390,9 +395,9 @@
                     info:'<div id="content">'+
                           '<div id="siteNotice">'+
                           '</div>'+
-                          '<h3 id="firstHeading" class="firstHeading"><?php echo $pontos; ?></h3>'+
+                          '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                           '<div id="bodyContent">'+
-                          '<p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                           '<form action="agendamentos.php" method="post">'+
@@ -401,7 +406,7 @@
                           '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                           '</form>'+
                           '<form action="#" method="post">'+
-                          '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>) " data-dismiss="modal">Traçar Rota</a><br>'+
+                          '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>) " >Traçar Rota</a><br>'+
                           '</form>'+
                           '</div>'+
                           '</div>',
@@ -423,7 +428,7 @@
                 imagePath: 'images/m'
       };
 
-      var markerCluster = new MarkerClusterer(map, markers, options); // cria cluster
+      markerCluster = new MarkerClusterer(map, markers, options); // cria cluster
       ds = new google.maps.DirectionsRenderer;
     }
 
@@ -434,27 +439,17 @@ function rota(lat,long)
 }
 
 function pegain(lati,longi) {
-   var latt = document.getElementById('latt').value;
-  var lonn = document.getElementById('lonn').value;
+  var directionsDisplay = new google.maps.DirectionsRenderer;
   var directionsService = new google.maps.DirectionsService;
-  var directionsDisplay = new google.maps.DirectionsRenderer; 
   ds.setMap(null);
   realiza_rota();
   directionsDisplay.setMap(map);
-
-  //directionsDisplay.setPanel(document.getElementById("rightpanel"));
-
-  ////document.getElementById("rightpanel").style.height = 'calc(40% - 56px)';
-  //document.getElementById("rightpanel").style.zIndex = '9999999999999';
-  //document.getElementById("rightpanel").style.overflow = 'auto';
- // document.getElementById("map").style.height = '60%';
   infowindow.close();
 
   setMapOnAll(false);
-
   directionsService.route({
     origin: new google.maps.LatLng(lati,longi),
-    destination: new google.maps.LatLng(latt,lonn),
+    destination: new google.maps.LatLng(document.getElementById('latt').value,document.getElementById('lonn').value),
     travelMode: google.maps.TravelMode.DRIVING
   }, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
@@ -465,16 +460,32 @@ function pegain(lati,longi) {
   });
   ds = directionsDisplay;
 }
-
-function realiza_rota()
-{
-
-}
-
 function setMapOnAll(mapi) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setVisible(mapi);
   }
+}
+
+function realiza_rota(){  
+    markerCluster.clearMarkers();
+    markerCluster.resetViewport();
+    markerCluster.repaint();
+    document.getElementById('btfiltro').innerHTML = '<i class="fa fa-remove"></i> Remover rota';
+    document.getElementById('btfiltro').setAttribute('data-target', ' ');
+    document.getElementById('btfiltro').setAttribute('onclick', 'remover_rota()');
+}
+
+function remover_rota()
+{
+    ds.setMap(null);
+    document.getElementById('btfiltro').setAttribute('onclick', '');
+    document.getElementById('btfiltro').innerHTML = '<i class="fa fa-filter"></i>';
+    document.getElementById('btfiltro').setAttribute('data-target', '#myModal');
+    $('#myModal').modal('toggle');
+    setMapOnAll(true);
+    markerCluster.addMarkers(markers);
+    markerCluster.resetViewport();
+    markerCluster.repaint();
 }
  </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
