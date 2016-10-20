@@ -106,6 +106,9 @@
         <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
         <div id="map"></div> 
       </div>
+
+      <input type='hidden' id="latt">
+      <input type='hidden' id="lonn">
     </section>
     <!-- Modal -->
     <div class="container">
@@ -120,7 +123,7 @@
             <form action="#" method="post">
               <div class="modal-body" style="overflow: auto; max-height: 400px;">
                 <table class="table table-stripped">                                    
-                 <?php 
+                  <?php 
                     $dados_json = $service->call('tipo_lixo.select',array(NULL));
                     $tipo_lixo = json_decode($dados_json);
                     $num = count($tipo_lixo);
@@ -138,11 +141,45 @@
         </div>
       </div>
     </div>
+
+    <div class="container">
+      <div class="modal fade" id="modalend" role="dialog" style="z-index: 20000000;">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Seleção de endereço para criar rota</h4>
+            </div>
+            <form action="#" method="post">
+              <div class="modal-body" style="overflow: auto; max-height: 400px;">
+                <table class="table table-stripped">   
+                <?php 
+                    $dados_json = $service->call('usuario_has_endereco.select',array("usuario_id = ". $_SESSION['id']));
+                    $ush = json_decode($dados_json);
+                    $num = count($ush);
+                    for ($i=0; $i < $num ; $i++) { 
+                      $dados_json = $service->call('endereco.select_by_id',array($ush[$i]->endereco_id));
+                      $end = json_decode($dados_json);
+                      echo "<tr><td><a class='btn btn btn-theme03' href='#' style='width:100%;' onclick='pegain(".$end[0]->latitude.",".$end[0]->latitude.")'>".$ush[$i]->nome."</a></td></tr>";
+                    }
+                 ?>
+                </table>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
  <script type="text/javascript">
+ var ds;
+ var map;
+ var infowindow;
+ var markers = [];
    function initAutocomplete() {
       var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
-      var map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map(document.getElementById('map'), {
               zoom: 2,
               center: new google.maps.LatLng(16.770881080415, 12.3046875),
               mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -197,7 +234,6 @@
         searchBox.setBounds(map.getBounds());
       });
 
-      var markers = [];
       searchBox.addListener('places_changed', function() {
         var places = searchBox.getPlaces();
 
@@ -255,22 +291,7 @@
       }
 
       //criação da infowindow
-      var infowindow = new google.maps.InfoWindow(); // variável para criar a tela quando clica no marcador
-
-      //variáveis de conteudo, substituir depois pela info no features
-      var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">NOME DO PONTO '+1+'</h1>'+
-        '<div id="bodyContent" class="col-sm-12">'+
-        '<p class="col-sm-6"> OLHA O CONTEÚDO DO PONTO MAHOE</p>'+
-        '<p class="col-sm-6"> OEIOEIOEIOEOEIOEIEOIEOEI </p><p>'+
-        '<p>'+
-        '<button class="btn btn-primary" onclick="submeter();">SUCESSO!</button>'+
-        ''+
-        '</p>'+'</p>'+
-        '</div>'+
-        '</div>';
+     infowindow = new google.maps.InfoWindow(); // variável para criar a tela quando clica no marcador
 
       //uso de ícone personalizado e conteúdo de cada marker
       var features = [
@@ -329,7 +350,7 @@
                                 '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                                 '</form>'+
                                 '<form action="#" method="post">'+
-                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
+                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>)" data-dismiss="modal">Traçar Rota</a><br>'+
                                 '</form>'+
                                 '</div>'+
                                 '</div>',
@@ -380,7 +401,7 @@
                           '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                           '</form>'+
                           '<form action="#" method="post">'+
-                          '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;">Traçar Rota</a><br>'+
+                          '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>) " data-dismiss="modal">Traçar Rota</a><br>'+
                           '</form>'+
                           '</div>'+
                           '</div>',
@@ -403,7 +424,58 @@
       };
 
       var markerCluster = new MarkerClusterer(map, markers, options); // cria cluster
+      ds = new google.maps.DirectionsRenderer;
     }
+
+function rota(lat,long)
+{
+    document.getElementById('latt').value = lat;
+    document.getElementById('lonn').value = long;
+}
+
+function pegain(lati,longi) {
+   var latt = document.getElementById('latt').value;
+  var lonn = document.getElementById('lonn').value;
+  var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer; 
+  ds.setMap(null);
+  realiza_rota();
+  directionsDisplay.setMap(map);
+
+  //directionsDisplay.setPanel(document.getElementById("rightpanel"));
+
+  ////document.getElementById("rightpanel").style.height = 'calc(40% - 56px)';
+  //document.getElementById("rightpanel").style.zIndex = '9999999999999';
+  //document.getElementById("rightpanel").style.overflow = 'auto';
+ // document.getElementById("map").style.height = '60%';
+  infowindow.close();
+
+  setMapOnAll(false);
+
+  directionsService.route({
+    origin: new google.maps.LatLng(lati,longi),
+    destination: new google.maps.LatLng(latt,lonn),
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      alert('Não foi possível criar a rota que você requisitou.');
+    }
+  });
+  ds = directionsDisplay;
+}
+
+function realiza_rota()
+{
+
+}
+
+function setMapOnAll(mapi) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setVisible(mapi);
+  }
+}
  </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
 
