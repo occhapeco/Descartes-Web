@@ -233,9 +233,9 @@
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 5px;">
-                  <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: black;">Map</a></li>
-                  <li <?php echo "class='$ativo'";?> ><a <?php echo $disabled; ?> href="#menu1" style="color: black;">List</a></li>
-                  <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: black;">New</a></li>
+                  <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: #797979;">Map</a></li>
+                  <li <?php echo "class='$ativo'";?> ><a <?php echo $disabled; ?> href="#menu1" style="color: #797979;">List</a></li>
+                  <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: #797979;">New</a></li>
                 </ul>
                   
                 <div class="tab-content" style="margin-top: 20px;">

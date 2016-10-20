@@ -6,6 +6,7 @@
     if (isset($_POST['cancelar']))
     {
       require_once("../conectar_service.php"); 
+      echo "<script>alert(".$_POST['id'],$_POST['justificativa'].")</script>";
       $batata = $service->call('agendamento.cancelar',array($_POST['id'],$_POST['justificativa']));
     }
     if (isset($_POST['realizar']))
@@ -125,7 +126,7 @@
                                         <td data-title="Coletadora"><center>' . $status . '</center></td>';
                                         if($status != 'Cancelado' and $status != 'Realizado')
                                         {
-                                          echo '<td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><button type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></center></form></td>';
+                                          echo '<td data-title="Cancelar"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><button type="button" id="cancelar" name="cancelar" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></center></form></td>';
                                           echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="realizar" name="realizar" class="btn btn-theme"><i class="fa fa-check"></i></button></center></form></td></tr>';
                                         }
                                         else
@@ -161,25 +162,22 @@
                                   <h4 class="modal-title">Justificativa do Cancelamento</h4>
                               </div>
                                  <form action="#" method="post">
-                              
-                              <div class="modal-body">
-                                  
-                                      <label class="col-sm-4 control-label">*Justificativa</label>
-                                      <div class="col-sm-8">
-                                            <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
-                                                <option value=1>Atraso no recolhimento</option>
-                                                <option value=2>Não estarei no dia agendado</option>
-                                                <option value=4>Lixo já recolhido</option>
-                                                <option value=3>Outro motivo</option>
-                                            </select>
-                                      </div>
-                                  <br>
-                              </div>
-                              <div class="modal-footer">
-                                    <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Enviar</button>
-                                    <input type="hidden" name="id" id="agendamento_id" value="0">
-                                 
-                              </div>
+                                    <div class="modal-body">
+                                        <label class="col-sm-4 control-label">*Justificativa</label>
+                                        <div class="col-sm-8">
+                                              <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
+                                                  <option value=1>Atraso no recolhimento</option>
+                                                  <option value=2>Não estarei no dia agendado</option>
+                                                  <option value=4>Lixo já recolhido</option>
+                                                  <option value=3>Outro motivo</option>
+                                              </select>
+                                        </div>
+                                        <br>
+                                  </div>
+                                  <div class="modal-footer">
+                                        <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Enviar</button>
+                                        <input type="hidden" name="id" id="agendamento_id">
+                                  </div>
                               </form>
                           </div>
        

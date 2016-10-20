@@ -132,8 +132,8 @@
         <div class="col-lg-12">
           <div class="content-panel">
             <ul class="nav nav-tabs" style="margin-left: 20px;">
-              <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: black;">Ver todos</a></li>
-              <li <?php if($active == "menu1") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu1" style="color: black;">Criar novo</a></li>
+              <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: #797979;">Ver todos</a></li>
+              <li <?php if($active == "menu1") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu1" style="color: #797979;">Criar novo</a></li>
             </ul>
           <div class="tab-content">
             <div id="home" class="tab-pane fade <?php if($active == "home") echo 'in active'; ?>">

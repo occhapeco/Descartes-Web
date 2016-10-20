@@ -44,11 +44,11 @@
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 20px;">
-                  <li class="active"><a data-toggle="pill" href="#home" style="color: black;"><span class="fa fa-plus-circle"></span> Novos</a></li>
-                  <li><a data-toggle="pill" href="#menu1" style="color: black;"><span class="fa fa-hourglass-start"></span> Pendentes</a></li>
-                  <li><a data-toggle="pill" href="#menu2" style="color: black;"><span class="fa fa-hourglass-end"></span> Atrasados</a></li>
-                  <li><a data-toggle="pill" href="#menu3" style="color: black;"><span class="fa fa-calendar-check-o"></span> Realizados</a></li>
-                  <li><a data-toggle="pill" href="#menu4" style="color: black;"><span class="fa fa-calendar-times-o"></span> Cancelados</a></li>
+                  <li class="active"><a data-toggle="pill" href="#home" style="color: #797979;"><span class="fa fa-plus-circle"></span> Novos</a></li>
+                  <li><a data-toggle="pill" href="#menu1" style="color: #797979;"><span class="fa fa-hourglass-start"></span> Pendentes</a></li>
+                  <li><a data-toggle="pill" href="#menu2" style="color: #797979;"><span class="fa fa-hourglass-end"></span> Atrasados</a></li>
+                  <li><a data-toggle="pill" href="#menu3" style="color: #797979;"><span class="fa fa-calendar-check-o"></span> Realizados</a></li>
+                  <li><a data-toggle="pill" href="#menu4" style="color: #797979;"><span class="fa fa-calendar-times-o"></span> Cancelados</a></li>
                 </ul>
                   
                 <div class="tab-content">
