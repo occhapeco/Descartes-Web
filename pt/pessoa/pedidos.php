@@ -64,7 +64,7 @@
            <div class="content-panel">
            <div class="row">
               <form action="imprimir_agendamentos.php" method="post">
-                  <button class="btn btn-theme03 pull-right" style="margin-right:20px;"><i class="fa fa-print"></i></button>
+                  <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='height:25px; width:25px;'></a>
               </form>
               </div>
                  <?php                            
@@ -126,8 +126,8 @@
                                         <td data-title="Coletadora"><center>' . $status . '</center></td>';
                                         if($status != 'Cancelado' and $status != 'Realizado')
                                         {
-                                          echo '<td data-title="Cancelar"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><button type="button" id="cancelar" name="cancelar" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></center></form></td>';
-                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="realizar" name="realizar" class="btn btn-theme"><i class="fa fa-check"></i></button></center></form></td></tr>';
+                                          echo '<td data-title="Cancelar"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a type="button" id="cancelar" name="cancelar" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
+                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><a type="submit" id="realizar" name="realizar"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td></tr>';
                                         }
                                         else
                                         {

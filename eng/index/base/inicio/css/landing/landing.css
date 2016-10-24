@@ -45,7 +45,10 @@ section#landing {
 	background-size: cover;
 }
 .bg4{
-	background-color:#11ABB0;
+	background-color:#FFD449;
+}
+.bg5{
+	background-color: #21D97B;
 }
 .grey {
 	background:#F7F7F7;
@@ -270,7 +273,7 @@ li.push-menu-social-item a:hover, li.push-menu-social-item a:focus, li.footer-so
 	Owl Caousel
 ------------------------*/
 .owl-theme .owl-controls .owl-page span, .device-container .owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span {
-	background:#70E5E5;
+	background:#21D97B;
 }
 .device-container .owl-theme .owl-controls .owl-page span {
 	background:#fff;

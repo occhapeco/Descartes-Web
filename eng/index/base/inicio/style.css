@@ -276,7 +276,7 @@ ul.cover-available-on-menu li i.fa, ul.available-on-menu li i.fa {
 }
 .h-quote{
 	line-height: 1.5;
-	color:#8CD5D5;
+	color:#21D97B;
 	margin:50px 0px;
 	position:relative;
 	top:0;
@@ -1045,7 +1045,7 @@ a.btn-enter:hover, .btn-enter:focus {
 		   display: inline-block;
 		}
 		ul#nav > li.active a {
-		   background: #11ABB0;
+		   background: #21d97b;
 		   color: #fff !important;
 		}
 
@@ -1067,7 +1067,7 @@ a.btn-enter:hover, .btn-enter:focus {
 
 		ul#nav li a:active { background-color: transparent !important; }
 		ul#nav li:hover > a,
-		ul#nav li.active a { color: #11ABB0; }
+		ul#nav li.active a { color: #21d97b; }
 
 @media only screen and (max-width: 767px) {
 	header.mobile { height: 48px; }
@@ -1089,7 +1089,7 @@ a.btn-enter:hover, .btn-enter:focus {
 	   width: 48px;
 		height: 40px;
 		text-align: left;
-		background-color: #11ABB0;
+		background-color: #FFD449;
 		position: relative;
       border: none;
       float: right;

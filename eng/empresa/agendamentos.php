@@ -63,7 +63,7 @@
                     <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                        <form action="imprimir_agendamentos.php" method="post">
                           <input type="hidden" value="em_espera" id="em_espera" name="em_espera">
-                          <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                          <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='margin-top:5px;height:25px; width:25px;'></a>
                        </form>
                       <table class="table table-striped table-condensed cf ">
                         <thead class="cf">
@@ -90,15 +90,15 @@
                           $usuario = json_decode($json_dados);
 						              $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 						              $format = $data_agendamento->format('d/m/Y');
-                          echo "<tr class='info'>
+                          echo "<tr>
                                   <td data-title='Date'>" . $format . "</td>
                                   <td data-title='Schedule'>" . $agendamento[$i]->horario . "</td>
                                   <td data-title='Address'>" . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . "</td>
                                   <td data-title='Requester'>" . $usuario[0]->nome . "</td>
                                   <td data-title='Telephone'>" . $usuario[0]->telefone . "</td>
                                   <td data-title='E-mail'>" . $usuario[0]->email . "</td>                    
-                                  <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><input type='hidden' id='aceitar' name='Accept'><center><button type='submit' class='btn btn-theme'><i class='fa fa-check'></i></button></center></form></td>
-                                  <td data-title='Refuse'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><button type='submit' id='recusar' name='recusar' class='btn btn-danger'><i class='fa fa-times'></i></button></center></form></td>
+                                  <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><input type='hidden' id='aceitar' name='Accept'><center><a type='submit'><img src='images/icones/icone-02.png' style='height:25px; width:25px;'></a></center></form></td>
+                                  <td data-title='Refuse'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><a type='submit' id='recusar' name='recusar'><img src='images/icones/icone-01.png' style='height:25px; width:25px;'></a></center></form></td>
                                 </tr>";
                         }
                     ?>
@@ -124,7 +124,7 @@
                 <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                    <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="aceito" id="aceito" name="aceito">
-                        <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                        <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='margin-top:5px;height:25px; width:25px;'></a>
                    </form>
                   <table class="table table-striped table-condensed cf ">
                       <thead class="cf">
@@ -148,14 +148,14 @@
                       $usuario = json_decode($json_dados);
 					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 					  $format = $data_agendamento->format('d/m/Y');
-                      echo '<tr class="warning">
+                      echo '<tr>
                               <td data-title="Date">' . $format . '</td>
                               <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
                               <td data-title="Requester">' . $usuario[0]->nome . '</td>
                               <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                              <td data-title="Refuse"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                              <td data-title="Refuse"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><a type="submit"><img src="images/icones/icone-01.png" style="height:25px; width:25px;"></a></center></form></td>
                             </tr>';
                     }
                   ?>
@@ -179,7 +179,7 @@
                   <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                       <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="atrasado" id="atrasado" name="atrasado">
-                          <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                        <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='margin-top:5px;height:25px; width:25px;'></a>
                       </form>
                     <table class="table table-striped table-condensed cf">
                         <thead class="cf">
@@ -190,7 +190,7 @@
                             <th>Requester</th>
                             <th>Telephone</th>
                             <th>E-mail</th>
-                            <th>Refuse</th>
+                            <th><center>Refuse</center></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -203,14 +203,14 @@
                           $usuario = json_decode($json_dados);
 						  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 						  $format = $data_agendamento->format('d/m/Y');
-                          echo '<tr class="warning">
+                          echo '<tr>
                                   <td data-title="Date">' . $format . '</td>
                                   <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
                                   <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
                                   <td data-title="Requester">' . $usuario[0]->nome . '</td>
                                   <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                                   <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                                  <td data-title="Refuse"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                                  <td data-title="Refuse"><form method="POST" action="tratar_agendamento.php"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="cancelar" name="cancelar"><center><a type="submit"><img src="images/icones/icone-01.png" style="height:25px; width:25px;"></a></center></form></td>
                                 </tr>';
                         }
                     ?>
@@ -235,7 +235,7 @@
                 <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                    <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="realizado" id="realizado" name="realizado">
-                        <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                        <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='margin-top:5px;height:25px; width:25px;'></a>
                    </form>
                    <table class="table table-striped table-condensed cf ">
                       <thead class="cf">
@@ -258,7 +258,7 @@
                       $usuario = json_decode($json_dados);
 					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 					  $format = $data_agendamento->format('d/m/Y');
-                      echo '<tr class="success">
+                      echo '<tr>
                               <td data-title="Date">' . $format . '</td>
                               <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
@@ -289,7 +289,7 @@
                 <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                    <form action="imprimir_agendamentos.php" method="post">
                         <input type="hidden" value="cancelado" id="cancelado" name="cancelado">
-                        <button class="btn btn-theme03 pull-right" style="margin-right:30px;"><i class="fa fa-print"></i></button>
+                        <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='margin-top:5px;height:25px; width:25px;'></a>
                    </form>
                    <table class="table table-striped table-condensed cf ">
                       <thead class="cf">
@@ -312,7 +312,7 @@
                       $usuario = json_decode($json_dados);
 					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
                       $format = $data_agendamento->format('d/m/Y');
-                      echo '<tr class="danger">
+                      echo '<tr>
                               <td data-title="Date">' . $format . '</td>
                               <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>

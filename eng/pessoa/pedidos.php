@@ -6,7 +6,7 @@
     if (isset($_POST['cancelar']))
     {
       require_once("../conectar_service.php"); 
-      $batata = $service->call('agendamento.cancelar',array($_POST['id'],$_POST['justificativa']));
+      $batata = $service->call('agendamento.cancelar',array($_POST['agendamento_id'],$_POST['justificativa']));
     }
     if (isset($_POST['realizar']))
     {
@@ -68,7 +68,7 @@
            <div class="content-panel">
            <div class="row">
               <form action="imprimir_agendamentos.php" method="post">
-                  <button class="btn btn-theme03 pull-right" style="margin-right:20px;"><i class="fa fa-print"></i></button>
+                  <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='height:25px; width:25px;'></a>
               </form>
               </div>
                  <?php                            
@@ -130,8 +130,8 @@
                                         <td data-title="Status"><center>' . $status . '</center></td>';
                                         if($status != 'Cancelled' and $status != 'Finished')
                                         {
-                                          echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><button type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></center></form></td>';
-                                          echo '<td data-title="Mark as finished"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><button type="submit" id="realizar" name="realizar" class="btn btn-theme"><i class="fa fa-check"></i></button></center></form></td></tr>';
+                                          echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
+                                          echo '<td data-title="Mark as finished"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><a type="submit" id="realizar" name="realizar"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td></tr>';
                                         }
                                         else
                                         {
@@ -165,26 +165,24 @@
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                                   <h4 class="modal-title">Cancelling justification</h4>
                               </div>
-                                 <form action="#" method="post">
-                              
-                              <div class="modal-body">
-                                  
-                                      <label class="col-sm-4 control-label">*Justification</label>
-                                      <div class="col-sm-8">
-                                            <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
-                                                <option value=1>Overdue on the collection</option>
-                                                <option value=2>I will not be on my address in the scheduled day</option>
-                                                <option value=4>Trash already picked up</option>
-                                                <option value=3>Another reason</option>
-                                            </select>
-                                      </div>
-                                  <br>
-                              </div>
-                              <div class="modal-footer">
-                                    <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
-                                    <input type="hidden" name="id" id="agendamento_id" value="0">
-                                 
-                              </div>
+                              <form action="#" method="post">
+                                <div class="modal-body">
+                                    
+                                        <label class="col-sm-4 control-label">*Justification</label>
+                                        <div class="col-sm-8">
+                                              <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
+                                                  <option value="Overdue on the collection">Overdue on the collection</option>
+                                                  <option value="I will not be on my address in the scheduled day">I will not be on my address in the scheduled day</option>
+                                                  <option value="Trash already picked up">Trash already picked up</option>
+                                                  <option value="Another reason">Another reason</option>
+                                              </select>
+                                              <input type="hidden" name="agendamento_id" id="agendamento_id" value=0>
+                                        </div>
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                      <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
+                                </div>
                               </form>
                           </div>
        

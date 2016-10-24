@@ -993,7 +993,7 @@ a.btn-enter:hover, .btn-enter:focus {
 		/* header logo */
 		header .logo {
 		   position: relative;
-		   height: 44px;
+		   height: 40px;
 		   width: 150px;
 		   float: left;
 		}
@@ -1044,7 +1044,7 @@ a.btn-enter:hover, .btn-enter:focus {
 		   display: inline-block;
 		}
 		ul#nav > li.active a {
-		   background: #11ABB0;
+		   background: #21d97b;
 		   color: #fff !important;
 		}
 
@@ -1066,7 +1066,7 @@ a.btn-enter:hover, .btn-enter:focus {
 
 		ul#nav li a:active { background-color: transparent !important; }
 		ul#nav li:hover > a,
-		ul#nav li.active a { color: #11ABB0; }
+		ul#nav li.active a { color: #21d97b; }
 
 @media only screen and (max-width: 900px) {
 	header.mobile { height: 48px; }
@@ -1087,7 +1087,7 @@ a.btn-enter:hover, .btn-enter:focus {
 	   width: 48px;
 		height: 40px;
 		text-align: left;
-		background-color: #11ABB0;
+		background-color: #21d97b;
 		position: relative;
       border: none;
       float: right;
@@ -1126,7 +1126,7 @@ a.btn-enter:hover, .btn-enter:focus {
       text-align: left;
    }
    .mobile #nav-wrap ul#nav > li.active a {
-      color: #11ABB0 !important;
+      color: #21d97b !important;
       background: none;
    }
 

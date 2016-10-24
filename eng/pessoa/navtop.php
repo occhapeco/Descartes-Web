@@ -28,7 +28,7 @@
                         if (count($notificacao) > 0) 
                             echo '<span class="badge bg-theme pull-right">'.count($notificacao).'</span>';
                     ?>
-                    <i class="fa fa-envelope-o hidden-xm" style="margin-bottom:5px;"></i>
+                    <img src="images/icones/icone-03.png" style="margin-bottom:5px;height:17px;width:25px;">
                 </a>
             </li>
 					
