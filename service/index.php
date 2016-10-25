@@ -172,7 +172,7 @@
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
 			{
-		    	$query = $conexao->query("UPDATE endereco SET rua = '$rua',num = '$num',complemento = '$complemento',cep = '$cep',bairro = '$bairro',estado = '$estado',cidade = '$cidade',pais = '$pais',latitude = $latitude,longitude = $longitude WHERE id = $id");
+		    	$query = $conexao->query("UPDATE endereco SET rua = '$rua',num = '$num',complemento = '$complemento',cep = '$cep',bairro = '$bairro',uf = '$estado',cidade = '$cidade',pais = '$pais',latitude = $latitude,longitude = $longitude WHERE id = $id");
 				$query = $conexao->query("SELECT * FROM endereco WHERE id = $id");
 				$row = mysqli_fetch_assoc($query);
 				$retorno = true;
