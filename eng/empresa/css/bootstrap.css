@@ -1227,7 +1227,7 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 60px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 h1 small,
@@ -3891,6 +3891,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
+  background-color: #eee;
 }
 .nav > li.disabled > a {
   color: #777;

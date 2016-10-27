@@ -310,6 +310,10 @@ li.push-menu-social-item a:hover, li.push-menu-social-item a:focus, li.footer-so
 /*-----------------------
 	Buttons
 ------------------------*/
+button.btn-store {
+	background: rgba(255, 255, 255, 0.5);
+	border: 2px solid #FFFFFF;
+}
 a.btn-store {
 	background: rgba(255, 255, 255, 0.5);
 	border: 2px solid #FFFFFF;

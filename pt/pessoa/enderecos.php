@@ -194,13 +194,13 @@
                                         <form method="POST" action="#" id="formeditar">
                                           <input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>">
                                           <center>
-                                          <button type="submit" id="editar" name="editar" class="btn btn-theme">
-                                            <i class="fa fa-pencil"></i>
-                                          </button>
+                                          <a type="submit" id="editar" name="editar">
+                                            <img src="images/editar.png" height="25px" width="25px">
+                                          </a>
                                           </center>
                                         </form>
                                       </td>
-                                      <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>"><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td>
+                                      <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>"><center><a type="submit" id="excluir" name="excluir"><img src="images/excluir.png" height="25px" width="25px"></a></center></form></td>
                                     </tr>
                                    </tbody>
                                  </table>

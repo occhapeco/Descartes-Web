@@ -112,7 +112,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <span class="fa fa-plus-circle"></span>
+            <img src="images/agenda5.png" height="35px" width="35px">
             <h3><?php echo $num_solicitados; ?></h3>
                   </div>
             <p><?php echo $num_solicitados; ?> schedules requested.</p>
@@ -121,7 +121,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <span class="fa fa-hourglass-start"></span>
+            <img src="images/agenda1.png" height="35px" width="35px">
             <h3><?php echo $num_pendentes; ?></h3>
                   </div>
             <p><?php echo $num_pendentes; ?> schedules pending.</p>
@@ -130,7 +130,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <span class="fa fa-hourglass-end"></span>
+            <img src="images/agenda3.png" height="35px" width="35px">
             <h3><?php echo $num_atrasados; ?></h3>
                   </div>
             <p><?php echo $num_atrasados; ?> schedules late.</p>
@@ -139,7 +139,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <span class="fa fa-calendar-check-o"></span>
+            <img src="images/agenda2.png" height="35px" width="35px">
             <h3><?php echo $num_realizados; ?></h3>
                   </div>
             <p><?php echo $num_realizados; ?> schedules performed.</p>
@@ -148,7 +148,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <span class="fa fa-calendar-times-o"></span>
+            <img src="images/agenda4.png" height="35px" width="35px">
             <h3><?php echo $num_cancelados; ?></h3>
                   </div>
             <p><?php echo $num_cancelados; ?> schedules canceled.</p>

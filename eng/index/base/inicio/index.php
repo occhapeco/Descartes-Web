@@ -74,7 +74,7 @@
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div class="logo"> <a href="#"><img alt=""></a> </div>
+      <div class="logo"><img src="logo2.png" height="55px" width="150px" style="margin-left:30px"> </div>
       <nav id="nav-wrap" style="left: 25%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
@@ -97,14 +97,14 @@
                     <ul class="dropdown-menu" style="min-width: 200px;min-height: 180px;">
                         <li>                               
 							<div class="container-fluid text-center" style="  margin-top:20px;">
-                                <form method="POST" action="#">
+                                <form class="form-signin" action="logar.php" method="POST">
 									<div class="esp1" align="center">
 										<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus style="margin-bottom:10px;">
 										<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required style="margin-bottom:20px;">	
 									</div>
 									<div class="col-xs-12 col-sm-12">
                                         <div class="btn-group">
-                                            <button type="submit" class="btn btn-primary" id="login" name="login">Entrar</button>
+                                            <button type="submit" class="btn btn-primary">Entrar</button>
                                         </div>
                                     </div>  
                                 </form>
@@ -233,7 +233,7 @@
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Agende o recolhimento do lixo.</h4>
 							<div class="row">
 								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 30px;">
-									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_pessoa">Cadastre-se</a>
+									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_pessoa.php">Cadastre-se</a>
 								</div>
 							</div>
 						</div>
@@ -248,7 +248,7 @@
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Mapa com os recolhimentos agendados.</h4>
 							<div class="row">
 								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 40px;">
-									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_empresa">Cadastre-se</a>
+									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_empresa.php">Cadastre-se</a>
 								</div>
 							</div>
 						</div>
@@ -269,7 +269,7 @@
 				    	<div class="col-md-4">
 							<img src="img/Andrew.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
-							<label for="form_name" style="color: #393939">Andrew Malta Silva</label>
+							<label for="form_name" style="color: white;">Andrew Malta Silva</label>
 							<br>
 							<label for="form_name" style="color: white">Soluções de software para negócios</label>
 							<p style="color: white">Técnico em Informática</p>
@@ -323,38 +323,45 @@
 					</center>
 				</div>
 			</div>
+			<div class="row" style="margin-bottom:20px; margin-top:20px;">
+			   <center><div class="section-title" style="font-size: 28px; padding-left:0;color: white">Vídeos</div></center>
+				<div class="col-md-12">
+				  <center>
+					<div class="col-md-6">
+						<video width="100%" height="auto";  controls style="border:solid;border-color:##FFD449; max-width:500px;">
+							<source src="movie.mp4" type="video/mp4">
+						</video>
+					</div>
+					<div class="col-md-6">
+						<video width="100%" height="auto";  controls style="border:solid;border-color:##FFD449; max-width:500px;">
+							<source src="movie.mp4" type="video/mp4">
+						</video>
+					</div>
+					</center>
+				</div>
+			</div>
 		</div>
 	</section>
 	<section id="contato" class="bg4">
 		<div class="container-fluid">
 			<div class="col-md-6">
-				<p style="color:white;margin-top:30px;font-size:20px;">Desenvolvido pelos competidores da olimpíada do conhecimento da ocupação de técnologia da informação e comunicação<p>
-			 	<p style="color:white;margin-top:170px;font-size:20px;">Realização:<p>
+				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Desenvolvido pelos competidores da olimpíada do conhecimento da ocupação de técnologia da informação e comunicação<p>
+			 	<p style="color:white;margin-top:120px;font-size:20px;color:#393939;">Realização:<p>
 				<img src="img/olimpiada.png" class="img-responsive" style="margin-left:30px; margin-top:10px;">
-				<img src="img/senai.png" class="img-responsive" style="margin-left:30px;margin-top:30px;" >
+				<img src="img/senai.png" class="img-responsive" style="margin-left:30px;margin-top:30px; height:100px; weight:200px;" >
 			</div>
 			<div class="col-md-6" style="padding-bottom: 20px">
 				<form id="contact-form" method="post" action="validar.php" role="form" >
 
 			    <div class="messages"></div>
-			    <div class="section-title" style="font-size: 28px; padding-left:0;color: white">Entre em contato</div>
-
-			    <div class="controls" style="box-shadow:none !important">
-
+			      <div class="section-title" style="font-size: 28px; padding-left:0;color: white">Entre em contato</div>
+				   <div class="controls" style="box-shadow:none !important">
+	
 			        <div class="row">
-			            <div class="col-md-6">
+			            <div class="col-md-12">
 			                <div class="form-group">
-			                    <label for="form_name" style="color: white">Nome</label>
-			                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Nome" required="required" data-error="Firstname is required.">
-			                    <div class="help-block with-errors"></div>
-			                </div>
-			            </div>
-			        </div>
-			        <div class="row">
-			            <div class="col-md-6">
-			                <div class="form-group">
-			                    <label for="form_email" style="color: white">Email</label>
-			                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Email" required="required" data-error="Valid email is required.">
+			                    <label for="form_name" style="color: white; font-size:17px;">Nome</label>
+			                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Nome" required="required">
 			                    <div class="help-block with-errors"></div>
 			                </div>
 			            </div>
@@ -362,18 +369,36 @@
 			        <div class="row">
 			            <div class="col-md-12">
 			                <div class="form-group">
-			                    <label for="form_message" style="color: white">Mensagem</label>
-			                    <textarea id="form_message" name="message" class="form-control" placeholder="Mensagem" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+			                    <label for="form_email" style="color: white; font-size:17px;">Email</label>
+			                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Email" required="required">
 			                    <div class="help-block with-errors"></div>
 			                </div>
 			            </div>
-					    <img src="captcha.php?l=150&a=50&tf=20&ql=5" class="pull-left" style="margin-left:15px; margin-top:15px;">
-						<div class="col-md-6">
-							<label for="form_message" style="color: white">Palavra</label>
-					        <input type="text" name="palavra" class="form-control" placeholder="Insira aqui a palavra ao lado" />
-					    </div>
-					    <div class="col-md-12" style="margin-bottom: 20px;margin-top: 20px;margin-left: 15px;">
-							<button type="submit" class="btn-store" style="padding: 15px 20px;" value="Validar Captcha">Enviar</button>
+			        </div>
+			        <div class="row">
+			            <div class="col-md-12">
+			                <div class="form-group">
+			                    <label for="form_message" style="color: white; font-size:17px;">Mensagem</label>
+			                    <textarea id="form_message" name="message" class="form-control" placeholder="Mensagem" rows="4" required="required"></textarea>
+			                    <div class="help-block with-errors"></div>
+			                </div>
+			            </div>
+						
+						<div class="col-md-12 pull-left">
+							<div class="col-md-3 pull-left">
+								<img src="captcha.php?l=150&a=50&tf=20&ql=5" class="pull-left" style=" margin-top:15px;">
+							</div>
+							<div class="col-md-9 pull-left">
+								<div class="form-group">
+									<label for="form_palavra" style="color: white; font-size:17px;">Palavra</label>
+									<input id="form_palavra" type="text" name="palavra" class="form-control" placeholder="Insira aqui a palavra ao lado" />
+								</div>
+							</div>
+						</div>
+					    <div class="col-md-12" style="margin-top: 20px; margin-bottom:0px">
+						   <div class="form-group">    
+							  <button type="submit" class="btn btn-store" style="padding: 15px 20px;color:#393939;" value="Validar Captcha">Enviar</button>
+	                       </div>					
 						</div>
 			        </div>
 			    </div>

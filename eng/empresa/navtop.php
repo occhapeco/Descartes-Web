@@ -33,7 +33,7 @@
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div style="margin-left:30px;"><a href="index.php" class="logo" style="color:white;"><b>DescartesLab</b></a></div>
+      <div style="margin-left:30px;"><a href="index.php" class="logo" style="color:white;"><img src="images/logo2.png" height="53px" width="150px" style="margin-top:-9px"></a></div>
       <nav id="nav-wrap" style="left: 19%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>

@@ -44,11 +44,11 @@
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 20px;">
-                  <li class="active"><a data-toggle="pill" href="#home" style="color: #797979;"><span class="fa fa-plus-circle"></span> Novos</a></li>
-                  <li><a data-toggle="pill" href="#menu1" style="color: #797979;"><span class="fa fa-hourglass-start"></span> Pendentes</a></li>
-                  <li><a data-toggle="pill" href="#menu2" style="color: #797979;"><span class="fa fa-hourglass-end"></span> Atrasados</a></li>
-                  <li><a data-toggle="pill" href="#menu3" style="color: #797979;"><span class="fa fa-calendar-check-o"></span> Realizados</a></li>
-                  <li><a data-toggle="pill" href="#menu4" style="color: #797979;"><span class="fa fa-calendar-times-o"></span> Cancelados</a></li>
+                  <li class="active"><a data-toggle="pill" href="#home" style="color: #797979;"><img src="images/agenda5.png" height="15px" width="15px"> Novos</a></li>
+                  <li><a data-toggle="pill" href="#menu1" style="color: #797979;"><img src="images/agenda1.png" height="15px" width="15px"> Pendentes</a></li>
+                  <li><a data-toggle="pill" href="#menu2" style="color: #797979;"><img src="images/agenda3.png" height="15px" width="15px"> Atrasados</a></li>
+                  <li><a data-toggle="pill" href="#menu3" style="color: #797979;"><img src="images/agenda2.png" height="15px" width="15px"> Realizados</a></li>
+                  <li><a data-toggle="pill" href="#menu4" style="color: #797979;"><img src="images/agenda4.png" height="15px" width="15px"> Cancelados</a></li>
                 </ul>
                   
                 <div class="tab-content">
@@ -90,7 +90,7 @@
                           $usuario = json_decode($json_dados);
 						              $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 						              $format = $data_agendamento->format('d/m/Y');
-                          echo "<tr class='info'>
+                          echo "<tr>
                                   <td data-title='Data'>" . $format . "</td>
                                   <td data-title='Horário'>" . $agendamento[$i]->horario . "</td>
                                   <td data-title='Endereço'>" . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . "</td>
@@ -148,7 +148,7 @@
                       $usuario = json_decode($json_dados);
 					            $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 					            $format = $data_agendamento->format('d/m/Y');
-                      echo '<tr class="warning">
+                      echo '<tr>
                               <td data-title="Data">' . $format . '</td>
                               <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
@@ -203,7 +203,7 @@
                           $usuario = json_decode($json_dados);
 						              $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 						              $format = $data_agendamento->format('d/m/Y');
-                          echo '<tr class="warning">
+                          echo '<tr>
                                   <td data-title="Data">' . $format . '</td>
                                   <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                                   <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
@@ -258,7 +258,7 @@
                       $usuario = json_decode($json_dados);
 					            $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
 					            $format = $data_agendamento->format('d/m/Y');
-                      echo '<tr class="success">
+                      echo '<tr>
                               <td data-title="Data">' . $format . '</td>
                               <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
@@ -312,7 +312,7 @@
                       $usuario = json_decode($json_dados);
 					            $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
                       $format = $data_agendamento->format('d/m/Y');
-                      echo '<tr class="danger">
+                      echo '<tr>
                               <td data-title="Data">' . $format . '</td>
                               <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                               <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>

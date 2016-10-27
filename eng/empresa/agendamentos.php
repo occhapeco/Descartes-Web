@@ -44,11 +44,11 @@
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 20px;">
-                  <li class="active"><a data-toggle="pill" href="#home" style="color: #797979;"><span class="fa fa-plus-circle"></span> New</a></li>
-                  <li><a data-toggle="pill" href="#menu1" style="color: #797979;"><span class="fa fa-hourglass-start"></span> Pending</a></li>
-                  <li><a data-toggle="pill" href="#menu2" style="color: #797979;"><span class="fa fa-hourglass-end"></span> Late</a></li>
-                  <li><a data-toggle="pill" href="#menu3" style="color: #797979;"><span class="fa fa-calendar-check-o"></span> Accomplished</a></li>
-                  <li><a data-toggle="pill" href="#menu4" style="color: #797979;"><span class="fa fa-calendar-times-o"></span> Canceled</a></li>
+                  <li class="active"><a data-toggle="pill" href="#home" style="color: #797979;"><img src="images/agenda5.png" height="15px" width="15px"> New</a></li>
+                  <li><a data-toggle="pill" href="#menu1" style="color: #797979;"><img src="images/agenda1.png" height="15px" width="15px"> Pending</a></li>
+                  <li><a data-toggle="pill" href="#menu2" style="color: #797979"><img src="images/agenda3.png" height="15px" width="15px"> Late</a></li>
+                  <li><a data-toggle="pill" href="#menu3" style="color: #797979;"><img src="images/agenda2.png" height="15px" width="15px"> Accomplished</a></li>
+                  <li><a data-toggle="pill" href="#menu4" style="color: #797979;"><img src="images/agenda4.png" height="15px" width="15px"> Canceled</a></li>
                 </ul>
                   
                 <div class="tab-content">
