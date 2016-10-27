@@ -10,10 +10,12 @@
     return date("w", mktime(0,0,0,$mes,$dia,$ano) );
   }
 
-  function semanas_mes ($ano, $mes) 
+  function semanas_mes() 
   {
-    $data = new DateTime("$ano-$mes-01");
-    $dataFimMes = new DateTime($data->format('Y-m-t'));
+    $data = new DateTime();
+    $data->setDate(date("Y"),date("m"),01);
+    $dataFimMes = new DateTime();
+    $dataFimMes->setDate(date("Y"),date("m"),date("t"));
 
     $numSemanaInicio = $data->format('W');
     $numSemanaFinal  = $dataFimMes->format('W') + 1;
@@ -22,7 +24,6 @@
     $numeroSemanas = ($numSemanaFinal < $numSemanaInicio)  
         ? (52 + $numSemanaFinal) - $numSemanaInicio
         : $numSemanaFinal - $numSemanaInicio;
-
     return $numeroSemanas;
   }
 
