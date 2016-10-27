@@ -97,8 +97,8 @@
                                   <td data-title='Requester'>" . $usuario[0]->nome . "</td>
                                   <td data-title='Telephone'>" . $usuario[0]->telefone . "</td>
                                   <td data-title='E-mail'>" . $usuario[0]->email . "</td>                    
-                                  <td data-title='Aceitar'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><input type='hidden' id='aceitar' name='Accept'><center><a type='submit'><img src='images/icones/icone-02.png' style='height:25px; width:25px;'></a></center></form></td>
-                                  <td data-title='Refuse'><form method='POST' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><a type='submit' id='recusar' name='recusar'><img src='images/icones/icone-01.png' style='height:25px; width:25px;'></a></center></form></td>
+                                  <td data-title='Aceitar'><form method='POST'id='aceitar_agendamento' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><input type='hidden' id='aceitar' name='Accept'><center><a type='submit'><img src='images/icones/icone-02.png' style='height:25px; width:25px;'></a></center></form></td>
+                                  <td data-title='Refuse'><form method='POST' id='recusar_agendamento' action='tratar_agendamento.php'><input type='hidden' id='id' name='id' value=" . $agendamento[$i]->id . "><center><a type='submit' id='recusar' name='recusar'><img src='images/icones/icone-01.png' style='height:25px; width:25px;'></a></center></form></td>
                                 </tr>";
                         }
                     ?>
