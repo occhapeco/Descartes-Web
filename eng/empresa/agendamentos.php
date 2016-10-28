@@ -118,7 +118,7 @@ if (isset($_POST["cancelar"]))
                                   <td data-title='Telephone'>" . $usuario[0]->telefone . "</td>
                                   <td data-title='E-mail'>" . $usuario[0]->email . "</td>                    
                                   <td data-title='Accept'><form method='POST' id='aceitar_agendamento". $agendamento[$i]->id ."' action='#'><input type='hidden' id='id' name='aceitar' value=" . $agendamento[$i]->id . "><center><a href='#' onclick=\"aceitara('aceitar_agendamento". $agendamento[$i]->id ."');\"><img src='images/icones/icone-02.png' style='height:25px; width:25px;'></a></center></form></td>
-                                  <td data-title='Refuse'><form method='POST' id='recusar_agendamento". $agendamento[$i]->id ."' action='#'><input type='hidden' id='id' name='recusar' value=" . $agendamento[$i]->id . "><center><a href='#' onclick=\"aceitara('recusar_agendamento". $agendamento[$i]->id ."');\" id='recusar' name='recusar'><img src='images/icones/icone-01.png' style='height:25px; width:25px;'></a></center></form></td>
+                                  <td data-title='Refuse'><form method='POST' action='#' id='recusar_agendamento". $agendamento[$i]->id ."'><input type='hidden' id='recusar' name='recusar' value='".$agendamento[$i]->id."'><input type='hidden' id='excluir' name='excluir'><center><a href='#' onclick=\"document.getElementById('recusar_agendamento". $agendamento[$i]->id ."').submit();\"><img src='images/icones/icone-13.png' style='height:25px; width:25px;'></a></center></form></td>
                                 </tr>";
                         }
                     ?>
@@ -155,7 +155,7 @@ if (isset($_POST["cancelar"]))
                           <th>Requester</th>
                           <th>Telephone</th>  
                           <th>E-mail</th>
-                          <th><center>Refuse</center></th>
+                          <th><center>Cancel</center></th>
                       </tr>
                       </thead>
                       <tbody>
@@ -175,7 +175,7 @@ if (isset($_POST["cancelar"]))
                               <td data-title="Requester">' . $usuario[0]->nome . '</td>
                               <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                              <td data-title="Refuse"><form method="POST" id="cancelar_agendamento'. $agendamento[$i]->id .'" action="#"><input type="hidden" id="id" name="cancelar" value="' . $agendamento[$i]->id . '"><center><a href="#" onclick="aceitara(`cancelar_agendamento'. $agendamento[$i]->id .'`);"><img src="images/icones/icone-01.png" style="height:25px; width:25px;"></a></center></form></td>
+                              <td data-title="Cancel"><form method="POST" action="#"><center><a href="#" id="excluir" name="excluir" onclick="document.getElementById(\'agendamento_id\').value = getElementById(\'id'.$agendamento[$i]->id.'\').value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>
                             </tr>';
                     }
                   ?>
@@ -210,7 +210,7 @@ if (isset($_POST["cancelar"]))
                             <th>Requester</th>
                             <th>Telephone</th>
                             <th>E-mail</th>
-                            <th><center>Refuse</center></th>
+                            <th><center>Cancel</center></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -357,7 +357,44 @@ if (isset($_POST["cancelar"]))
 									      
               </div>
             </div>
-          </div>
+			
+			<!--modal -->
+              <div class="container">
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog" style="z-index:99999999">
+                        <div class="modal-dialog">
+       
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Cancelling justification</h4>
+                              </div>
+                              <form action="#" method="post" id="just">
+                                <div class="modal-body">
+                                    
+                                        <label class="col-sm-4 control-label">*Justification</label>
+                                        <div class="col-sm-8">
+                                              <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
+                                                  <option value="Overdue on the collection">Overdue on the collection</option>
+                                                  <option value="No sufficient collectors">No sufficient collectors</option>
+                                                  <option value="Unavailable time">Unavailable time</option>
+                                                  <option value="Another reason">Another reason</option>
+                                              </select>
+                                              <input type="hidden" name="agendamento_id" id="agendamento_id" value='0'>
+                                        </div>
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                      <button onclick="document.getElementById('just').submit();" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
+                                </div>
+                              </form>
+                          </div>
+       
+                        </div>
+                  </div>
+   
+              </div>
         </section>
       </section>
     <!-- js placed at the end of the document so the pages load faster -->

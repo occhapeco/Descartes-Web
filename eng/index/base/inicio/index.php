@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	$alert = "";
+	if(isset($_POST["palavra"]))
+		if ($_POST["palavra"] == $_SESSION["palavra"])
+			$alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Mensagem enviada com sucesso</b></div>';
+		else
+			$alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Captha não confere!</b></div>';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +84,7 @@
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div class="logo"><img src="logo2.png" height="55px" width="150px" style="margin-left:30px"> </div>
+      <div class="logo"><img src="logo2.png" height="45px" width="130px" style="margin-left:30px; margin-top:5px;"> </div>
       <nav id="nav-wrap" style="left: 25%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
@@ -124,9 +134,11 @@
 			<!-- Main Content Inner -->
 			<div class="row margin-lg" style="margin-top: 55px;">
 			<!--Visible on LG MD-->
+			<?php echo $alert; ?>
 				<div class="col-lg-4 col-md-4 visible-lg visible-md">
 					<div class="cd-intro">
 						<div class="cd-headline letters rotate-3">
+							
 							<div class="landing-heading padding-sm" style="//background-color: rgba(0,0,0,0.5);color: white">
 								<span class="txt-lg" style="margin-left: 10px;">DescartesLab: </span>
 								<span class="txt-lg cd-words-wrapper text-right">
@@ -328,12 +340,12 @@
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
-						<video width="100%" height="auto";  controls style="border:solid;border-color:##FFD449; max-width:500px;">
+						<video width="100%" height="auto";  controls style="border:solid;border-color:white; max-width:500px;">
 							<source src="movie.mp4" type="video/mp4">
 						</video>
 					</div>
 					<div class="col-md-6">
-						<video width="100%" height="auto";  controls style="border:solid;border-color:##FFD449; max-width:500px;">
+						<video width="100%" height="auto";  controls style="border:solid;border-color:white; max-width:500px;">
 							<source src="movie.mp4" type="video/mp4">
 						</video>
 					</div>
@@ -351,7 +363,7 @@
 				<img src="img/senai.png" class="img-responsive" style="margin-left:30px;margin-top:30px; height:100px; weight:200px;" >
 			</div>
 			<div class="col-md-6" style="padding-bottom: 20px">
-				<form id="contact-form" method="post" action="validar.php" role="form" >
+				<form id="contact-form" method="post" action="#" role="form" >
 
 			    <div class="messages"></div>
 			      <div class="section-title" style="font-size: 28px; padding-left:0;color: white">Entre em contato</div>

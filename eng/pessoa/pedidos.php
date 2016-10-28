@@ -3,7 +3,7 @@
 
   if (isset($_POST))
   {
-    if (isset($_POST['cancelar']))
+    if (isset($_POST['agendamento_id']))
     {
       require_once("../conectar_service.php"); 
       $batata = $service->call('agendamento.cancelar',array($_POST['agendamento_id'],$_POST['justificativa']));
@@ -67,8 +67,8 @@
         <div class="col-lg-12">
            <div class="content-panel">
            <div class="row">
-              <form action="imprimir_agendamentos.php" method="post">
-                  <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='height:25px; width:25px;'></a>
+              <form action="imprimir_agendamentos.php" method="post" id="form_imprimir">
+                  <a href="#" onclick="document.getElementById('form_imprimir').submit();" class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='height:25px; width:25px;'></a>
               </form>
               </div>
                  <?php                            
@@ -130,8 +130,8 @@
                                         <td data-title="Status"><center>' . $status . '</center></td>';
                                         if($status != 'Cancelled' and $status != 'Finished')
                                         {
-                                          echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
-                                          echo '<td data-title="Mark as finished"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><a type="submit" id="realizar" name="realizar"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td></tr>';
+                                          echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a type="button" id="excluir" name="excluir" onclick="document.getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
+                                          echo '<td data-title="Mark as finished"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="realizar" name="realizar"><center><a href="#" onclick="document.getElementById(\'finalizar'.$agendamento[$i]->id.'\').submit();"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td></tr>';
                                         }
                                         else
                                         {
@@ -165,7 +165,7 @@
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                                   <h4 class="modal-title">Cancelling justification</h4>
                               </div>
-                              <form action="#" method="post">
+                              <form action="#" method="post" id="just">
                                 <div class="modal-body">
                                     
                                         <label class="col-sm-4 control-label">*Justification</label>
@@ -176,12 +176,12 @@
                                                   <option value="Trash already picked up">Trash already picked up</option>
                                                   <option value="Another reason">Another reason</option>
                                               </select>
-                                              <input type="hidden" name="agendamento_id" id="agendamento_id" value=0>
+                                              <input type="hidden" name="agendamento_id" id="agendamento_id" value='0'>
                                         </div>
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                      <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
+                                      <button onclick="document.getElementById('just').submit();" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
                                 </div>
                               </form>
                           </div>

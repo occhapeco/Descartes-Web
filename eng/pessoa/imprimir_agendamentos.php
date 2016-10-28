@@ -11,8 +11,8 @@
 	$pdf->SetFont('Arial','b','12');
         $pdf->Cell(3,0.7,"Date",1,0);
         $pdf->Cell(3,0.7,utf8_decode("Time"),1,0);
-        $pdf->Cell(4,0.7,utf8_decode("ADdress"),1,0);
-        $pdf->Cell(4,0.7,"Collecting company",1,0);
+        $pdf->Cell(4,0.7,utf8_decode("Address"),1,0);
+        $pdf->Cell(5,0.7,"Collecting company",1,0);
         $pdf->Cell(4,0.7,"Status",1,1);
         $pdf->SetFont('Arial','','12');
 
@@ -54,7 +54,7 @@
                                 $pdf->Cell(4,0.7,$endereco[0]->nome,1,0);
                                 $json_dados = $service->call('empresa.select_by_id', array($agendamento[$i]->empresa_id));
                                 $empresa = json_decode($json_dados);
-                                $pdf->cell(4,0.7,$empresa[0]->nome_fantasia,1,0);
+                                $pdf->cell(5,0.7,$empresa[0]->nome_fantasia,1,0);
                                 $pdf->cell(4,0.7,$status,1,1);
                         }
                         $pdf->OutPut();

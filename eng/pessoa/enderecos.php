@@ -192,16 +192,27 @@
         									            <td data-title="Cidade"><?php echo $endereco[0]->cidade; ?></td>
         									            <td data-title="País"><?php echo $endereco[0]->pais; ?></td>
         									            <td data-title="Editar">
-                                        <form method="POST" action="#" id="formeditar">
+                                        <form method="POST" action="#" id="formeditar<?php echo $endereco[0]->id ?>">
                                           <input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>">
+										  <input type="hidden" id="editar" name="editar">
                                           <center>
-                                          <a type="submit" id="editar" name="editar">
+                                          <a <?php echo 'onclick="document.getElementById(`formeditar'. $endereco[0]->id .'`).submit();"'; ?> href="#">
                                             <img src="images/editar.png" height="25px" width="25px">
                                           </a>
                                           </center>
                                         </form>
                                       </td>
-                                      <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>"><center><a type="submit" id="excluir" name="excluir"><img src="images/excluir.png" height="25px" width="25px"></a></center></form></td>
+                                      <td data-title="excluir">
+										<form method="POST" action="#" id="formexcluir<?php echo $endereco[0]->id ?>">
+											<input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>">
+											<input type="hidden" id="excluir" name="excluir">
+											<center>
+												<a <?php echo 'onclick="document.getElementById(`formexcluir'. $endereco[0]->id .'`).submit();"'; ?> href="#">
+													<img src="images/excluir.png" height="25px" width="25px">
+												</a>
+											</center>
+										</form>
+									  </td>
                                     </tr>
                                    </tbody>
                                  </table>
