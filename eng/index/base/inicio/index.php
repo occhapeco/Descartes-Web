@@ -7,6 +7,8 @@
 		else
 			$alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Captha não confere!</b></div>';
 
+	require_once("../../../conectar_service.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +31,7 @@
 	<link href="custom.css" rel="stylesheet">
 
 	<!-- Animations -->
-	<link href="css/animate.css" rel="stylesheet">
+	<link href="assets/css/style.css" rel="stylesheet">
 	
 	<!-- Owl Carousel -->
 	<link href="css/owl.carousel.css" rel="stylesheet">
@@ -51,6 +53,7 @@
 	<!--Fonts-->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<link href="css/fonts/font-awesome.css" rel="stylesheet">
+	    <script src="js/markerclusterer.js"></script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -66,6 +69,14 @@
 	.verde{
 		color:#11ABB0;
 	}
+
+      #btfiltro{
+        padding: 15px;
+        //background-color: #00FFFF;
+        color: white;
+        margin-bottom: 15px;
+        margin-right: 15px;
+      }
 
         input.form-control
         {
@@ -206,6 +217,36 @@
 		</div>
 		</div>		
 	</section>
+	<div class="container">
+      <div class="modal fade" id="myModal" role="dialog" style="z-index: 20000000;">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Seleção de tipo de lixo</h4>
+            </div>
+            <form action="#" method="post">
+              <div class="modal-body" style="overflow: auto; max-height: 400px;">
+                <table class="table table-stripped">                                    
+                  <?php 
+                    $dados_json = $service->call('tipo_lixo.select',array(NULL));
+                    $tipo_lixo = json_decode($dados_json);
+                    $num = count($tipo_lixo);
+                    for ($i=0; $i < $num ; $i++) { 
+                      echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome."</td></tr>";
+                    }
+                 ?> 
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Selecionar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
 	<section id="pesquise" class="">
 	<div class="">
@@ -216,6 +257,7 @@
 				</div>
 			<div class="col-lg-12">
 			<input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
+			 <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
     		<div id="map"></div>
 
 			</div>
@@ -223,6 +265,7 @@
 		</div>
 	</div>
 	</section>
+
 	<!-- /Main Content -->
 	<section id="descubra" class="bg3">
 	<div class="bg2" style="width:100%">
@@ -455,270 +498,252 @@
 });
 </script>
 <script>
-      function initAutocomplete() {
-        var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
-        var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 11,
-                center: new google.maps.LatLng(-23.5833158, -46.6339829),
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: [
-                  {
-                    "stylers": [
-                      { "visibility": "on" },
-                      { "weight": 1 },
-                      { "hue": "#64B5F6" },
-                      { "gamma": 0.75 }
-                    ]
-                  },
-                  {
-                    featureType: 'landscape',
-                    elementType: 'geometry',
-                    stylers: [
-                      { hue: '#00ff00' }
-                    ]
-                  },
-                  {
-                    featureType: 'poi.park',
-                    elementType: 'geometry',
-                    stylers: [
-                      { hue: '#00ff00' }
-                    ]
-                  }
-                ]
-        });
-
-        //responsivo
-        google.maps.event.addDomListener(window, "resize", function() {
-           var center = map.getCenter();
-           google.maps.event.trigger(map, "resize");
-           map.setCenter(center);
-        });
-
-        //usuário clica e cria marcador - evento de clique
-        google.maps.event.addListener(map, 'click', function(event) {
-          if(poder)
-          {
-            var temp =[
-              {
-                position: event.latLng,
-                type: 'mark1',
-                info: contentString,
-                draggable:true
-              }
-            ];
-            addMarker(temp[0]);
-            poder = false;
-          }else{
-            alert("ponto já adicionado!");
-          }
-        });
-
-        //cria o input para pesquisar no mapa
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Encontra o lugar pesquisado
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            //coloca o lugar em uma variável para dar fit no mapa
-            if (place.geometry.viewport) {
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
-        });
-
-        //local dos ícones utilizados
-        var icons = {
-                mark1: {
-                  icon: 'images/mark1.png'
+      var ds;
+ var map;
+ var infowindow;
+ var markers = [];
+ var markerCluster;
+   function initAutocomplete() {
+      var poder = true; // somente utilizada quando a empresa for criar um ponto para selecionar o local
+      map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 2,
+              center: new google.maps.LatLng(16.770881080415, 12.3046875),
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              streetViewControlOptions: {
+                  position: google.maps.ControlPosition.BOTTOM_CENTER
+              },
+              zoomControlOptions: {
+                  position: google.maps.ControlPosition.LEFT_BOTTOM
+              },
+              styles: [
+                {
+                  "stylers": [
+                    { "visibility": "on" },
+                    { "weight": 1 },
+                    { "hue": "#64B5F6" },
+                    { "gamma": 0.75 }
+                  ]
                 },
-                mark2: {
-                  icon: 'images/mark2.png'
+                {
+                  featureType: 'landscape',
+                  elementType: 'geometry',
+                  stylers: [
+                    { hue: '#00ff00' }
+                  ]
+                },
+                {
+                  featureType: 'poi.park',
+                  elementType: 'geometry',
+                  stylers: [
+                    { hue: '#00ff00' }
+                  ]
                 }
-        };
+              ]
+      });
 
-        //função que adiciona marcadores
-        function addMarker(feature) {
-          var marker = new google.maps.Marker({
-            position: feature.position,
-            icon: icons[feature.type].icon,
-            map: map,
-            draggable:feature.draggable, // se pode ser arrastado
-            info: feature.info //conteudo do marcador
-          });
+      //responsivo
+      google.maps.event.addDomListener(window, "resize", function() {
+         var center = map.getCenter();
+         google.maps.event.trigger(map, "resize");
+         map.setCenter(center);
+      });
 
-          google.maps.event.addListener(marker, 'click', function () {
-            infowindow.setContent(this.info); //conteúdo do marcador
-            infowindow.open(map, this);
-          });
+      //cria o input para pesquisar no mapa
+      var input = document.getElementById('pac-input');
+      var fil = document.getElementById('btfiltro');
+      var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(fil);
 
-          if (feature.draggable == true) {
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+      });
 
-            document.getElementById('lat').value = marker.position.lat();
-            document.getElementById('long').value = marker.position.lng();
+      searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
 
-            google.maps.event.addListener(marker,'dragend', function() {
-                document.getElementById('lat').value = marker.position.lat();
-                document.getElementById('long').value = marker.position.lng();
-            });
-          }
-
-          markers.push(marker);
+        if (places.length == 0) {
+          return;
         }
 
-        //criação da infowindow
-        var infowindow = new google.maps.InfoWindow(); // variável para criar a tela quando clica no marcador
+        // Encontra o lugar pesquisado
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+          var icon = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+          };
 
-        //variáveis de conteudo, substituir depois pela info no features
-        var contentString = '<div id="content">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<h1 id="firstHeading" class="firstHeading">NOME DO PONTO '+1+'</h1>'+
-          '<div id="bodyContent" class="col-sm-12">'+
-          '<p class="col-sm-6"> OLHA O CONTEÚDO DO PONTO MAHOE</p>'+
-          '<p class="col-sm-6"> OEIOEIOEIOEOEIOEIEOIEOEI </p><p>'+
-          '<p>'+
-          '<button class="btn btn-primary" onclick="submeter();">SUCESSO!</button>'+
-          ''+
-          '</p>'+'</p>'+
-          '</div>'+
-          '</div>';
+          //coloca o lugar em uma variável para dar fit no mapa
+          if (place.geometry.viewport) {
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        map.fitBounds(bounds);
+      });
 
-          var contentString1 = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">NOME DO PONTO '+2+'</h1>'+
-            '<div id="bodyContent" class="col-sm-12">'+
-            '<p class="col-sm-6"> OLHA O CONTEÚDO DO PONTO MAHOE</p>'+
-            '<p class="col-sm-6"> OEIOEIOEIOEOEIOEIEOIEOEI </p><p><a href="index.php"><button class="btn btn-primary">SUCÉSSO!</button></a></p>'+
-            '</div>'+
-            '</div>';
+      //local dos ícones utilizados
+      var icons = {
+              mark1: {
+                icon: 'images/mark1.png'
+              },
+              mark2: {
+                icon: 'images/mark2.png'
+              }
+      };
 
-        //uso de ícone personalizado e conteúdo de cada marker
-        var features = [
+      //função que adiciona marcadores
+      function addMarker(feature) {
+        var marker = new google.maps.Marker({
+          position: feature.position,
+          icon: icons[feature.type].icon,
+          map: map,
+          draggable:feature.draggable, // se pode ser arrastado
+          info: feature.info //conteudo do marcador
+        });
 
-         /* <?php
-                $pontos = mysql_query("SELECT * FROM pontos order by id");
-                $lin = mysql_num_rows($pontos);
+        google.maps.event.addListener(marker, 'click', function () {
+          infowindow.setContent(this.info); //conteúdo do marcador
+          infowindow.open(map, this);
+        });
 
-                for ($i=0; $i <$lin ; $i++)
+        markers.push(marker);
+      }
+
+      //criação da infowindow
+     infowindow = new google.maps.InfoWindow(); // variável para criar a tela quando clica no marcador
+
+      //uso de ícone personalizado e conteúdo de cada marker
+      var features = [
+
+        <?php
+              $dados_json = $service->call('ponto.select',array(NULL));
+              
+              $ponto = json_decode($dados_json);
+              $num = count($ponto);
+              if (isset($_POST['tipos'])) {
+                  $tipos = $_POST['tipos'];
+                  $a = 0;
+                  for ($i=0;$i<$num;$i++){
+                    $verifica = false;
+                    $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
+                    $tipo_lixo_has_ponto = json_decode($dados_json);
+                    for ($j=0;$j<count($tipo_lixo_has_ponto);$j++){
+                      if (in_array($tipo_lixo_has_ponto[$j]->tipo_lixo_id, $tipos))
+                        $verifica = true;
+                    }
+                    if(!$verifica)
+                      continue;
+                    else{
+                        $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
+                        $endereco = json_decode($dados_json);
+                        $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
+                        $tipo_lixo_has_ponto = json_decode($dados_json);
+                        $pontos = "";
+                        if (count($tipo_lixo_has_ponto) == 0)
+                          $pontos += "Sem tipos de lixo!";
+                        else{
+                          for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
+                          {
+                            $dados_json1 = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
+                            $tipo_lixo = json_decode($dados_json1);
+                            if ($j != 0)
+                              $pontos .= ", ";
+                            $pontos = $pontos.$tipo_lixo[0]->nome;
+                          }
+                          if ($i != 0 && $a != 0){
+                          	echo ",";
+                          }
+                          $a = 1;
+                            
+                          $dados_json1 = $service->call('empresa.select_by_id',array($ponto[$i]->empresa_id));
+                          $emp = json_decode($dados_json1);
+                        ?>
+                        {
+                          position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
+                          type: 'mark1',
+                          info:'<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
+                                '<div id="bodyContent">'+
+                                '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                                '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
+                                '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
+                                '</div>'+
+                                '</div>',
+                          draggable:false
+                        }
+                        <?php
+                        
+                      }
+
+                    }
+                  }
+              }else{
+                for ($i=0;$i<$num;$i++)
                 {
-                  $reg=mysql_fetch_row($pontos);
+                  $dados_json = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
+                  $endereco = json_decode($dados_json);
+                  $dados_json = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($ponto[$i]->id));
+                  $tipo_lixo_has_ponto = json_decode($dados_json);
+                  $pontos = "";
+                  if (count($tipo_lixo_has_ponto) == 0)
+                    $pontos += "Sem tipos de lixo!";
+                  else
+                    for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
+                    {
+                      $dados_json1 = $service->call('tipo_lixo.select_by_id',array($tipo_lixo_has_ponto[$j]->tipo_lixo_id));
+                      $tipo_lixo = json_decode($dados_json1);
+                      if ($j != 0)
+                        $pontos .= ", ";
+                      $pontos = $pontos.$tipo_lixo[0]->nome;
+                    }
+                    if ($i!=0)
+                      echo ",";
+                     $dados_json1 = $service->call('empresa.select_by_id',array($ponto[$i]->empresa_id));
+                     $emp = json_decode($dados_json1);
                   ?>
                   {
-                    position: new google.maps.LatLng(<?php echo "$reg[2],$reg[3]" ?>),
+                    position: new google.maps.LatLng(<?php echo $endereco[0]->latitude . "," . $endereco[0]->longitude; ?>), 
                     type: 'mark1',
                     info:'<div id="content">'+
                           '<div id="siteNotice">'+
                           '</div>'+
-                          '<h1 id="firstHeading" class="firstHeading"><?php echo utf8_encode($reg[1]); ?></h1>'+
-                          '<div id="bodyContent" class="col-sm-12">'+
-                          '<p class="col-sm-6"> <?php echo utf8_encode($reg[1]); ?></p>'+
-                          '<p class="col-sm-6"> <?php echo utf8_encode($reg[4]); ?> </p>'+
-                          '<form action="#" method="post">'+
-                          '<p>'+
-                          '<button class="btn btn-primary" type="submit">SUCESSO!</button>'+
-                          ''+
-                          '</p></form>'+
+                          '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
+                          '<div id="bodyContent">'+
+                          '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
+                          '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                           '</div>'+
                           '</div>',
                     draggable:false
                   }
                   <?php
-                  if ($i!=$lin-1) {
-                    echo ",";
-                  }
+                    }
                 }
-          ?>*/
-        ];
+            ?>
+      ];
 
-        //cria as variáveis chamando as funções
-        for (var i = 0, feature; feature = features[i]; i++) {
-          addMarker(feature);
-        }
-
-        //cluster de marcadores
-        var options = {
-                  imagePath: 'images/m'
-        };
-
-       // var markerCluster = new MarkerClusterer(map, markers, options); // cria cluster
+      //cria as variáveis chamando as funções
+      for (var i = 0, feature; feature = features[i]; i++) {
+        addMarker(feature);
       }
 
-      function submeter()
-      {
-        var geocoder = new google.maps.Geocoder;
-        var lati = document.getElementById('lat').value;
-        var long = document.getElementById('long').value;
-        var latlng = {lat: parseFloat(lati), lng: parseFloat(long)};
+      //cluster de marcadores
+      var options = {
+                imagePath: 'images/m'
+      };
 
-        geocoder.geocode({'location': latlng}, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            if (results[1]) {
-              alert(results[1].formatted_address);
-              var address = "", city = "", state = "", zip = "", country = "", formattedAddress = "";
-              for (var i = 0; i < results[0].address_components.length; i++) {
-                          var addr = results[0].address_components[i];
-                          // check if this entry in address_components has a type of country
-                          if (addr.types[0] == 'country')
-                              country = addr.long_name;
-                          else if (addr.types[0] == 'street_address') // address 1
-                              address = address + addr.long_name;
-                          else if (addr.types[0] == 'establishment')
-                              address = address + addr.long_name;
-                          else if (addr.types[0] == 'route')  // address 2
-                              address = address + addr.long_name;
-                          else if (addr.types[0] == 'postal_code')       // Zip
-                              zip = addr.short_name;
-                          else if (addr.types[0] == ['administrative_area_level_1'])       // State
-                              state = addr.long_name;
-                          else if (addr.types[0] == ['locality'])       // City
-                              city = addr.long_name;
-              }
-              alert(country);
-              alert(address);
-              alert(zip);
-              alert(state);
-              alert(city);
-              document.getElementById('estado').value = state;
-              document.getElementById('endereco').value = address;
-              document.getElementById('cep').value = zip;
-              document.getElementById('pais').value = country;
-              document.getElementById('cidade').value = city;
-            } else {
-             //window.alert('No results found');
-            }
-          } else {
-            //window.alert('Geocoder failed due to: ' + status);
-          }
-        });
-       //document.getElementById("submete").submit();
-      }
+      markerCluster = new MarkerClusterer(map, markers, options); // cria cluster
+      ds = new google.maps.DirectionsRenderer;
+    }
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>
