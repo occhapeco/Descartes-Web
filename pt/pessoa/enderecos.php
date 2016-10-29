@@ -191,16 +191,27 @@
         									            <td data-title="Cidade"><?php echo $endereco[0]->cidade; ?></td>
         									            <td data-title="País"><?php echo $endereco[0]->pais; ?></td>
         									            <td data-title="Editar">
-                                        <form method="POST" action="#" id="formeditar">
+                                        <form method="POST" action="#" id="formeditar<?php echo $endereco[0]->id ?>">
                                           <input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>">
+                                          <input type="hidden" id="editar" name="editar">
                                           <center>
-                                          <a type="submit" id="editar" name="editar">
+                                          <a <?php echo 'onclick="document.getElementById(`formeditar'. $endereco[0]->id .'`).submit();"'; ?> href="#">
                                             <img src="images/editar.png" height="25px" width="25px">
                                           </a>
                                           </center>
                                         </form>
                                       </td>
-                                      <td data-title="excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>"><center><a type="submit" id="excluir" name="excluir"><img src="images/excluir.png" height="25px" width="25px"></a></center></form></td>
+                                      <td data-title="excluir">
+                                        <form method="POST" action="#" id="formexcluir<?php echo $endereco[0]->id ?>">
+                                          <input type="hidden" id="id" name="id" value="<?php echo $endereco[0]->id; ?>">
+                                          <input type="hidden" id="excluir" name="excluir">
+                                          <center>
+                                            <a <?php echo 'onclick="document.getElementById(`formexcluir'. $endereco[0]->id .'`).submit();"'; ?> href="#">
+                                              <img src="images/excluir.png" height="25px" width="25px">
+                                            </a>
+                                          </center>
+                                        </form>
+                                        </td>
                                     </tr>
                                    </tbody>
                                  </table>
@@ -274,7 +285,7 @@
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Número</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control" onkeypress="return numbro(event)" onload="return numbro(event)" maxlength="6" id="num" name="num" placeholder="Informe o número do endereço" <?php echo "value='$num'"; ?> required>
+                          <input type="text" class="form-control" maxlength="6" id="num" name="num" placeholder="Informe o número do endereço" <?php echo "value='$num'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
@@ -304,16 +315,18 @@
     <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places" async defer></script>
 
 	<script type="application/javascript">
 
         function codeAddress() {
+          var geocoder = new google.maps.Geocoder();
         var address = document.getElementById( 'cidade' ).value+', '+document.getElementById( 'uf' ).value+ ', '+ document.getElementById( 'rua' ).value+' '+ document.getElementById( 'num' ).value;
           geocoder.geocode( { 'address' : address }, function( results, status ) {
             if( status == google.maps.GeocoderStatus.OK ) {
                 document.getElementById( 'lat' ).value = results[0].geometry.location.lat();
                 document.getElementById( 'long' ).value = results[0].geometry.location.lng();
-                document.getElementById('frm').submit();
+                document.getElementById('form_sub').submit();
             } else {
                 alert( 'Não podemos encontrar sua localização corretamente, por favor, reveja os dados.');
             }
