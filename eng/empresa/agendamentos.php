@@ -322,6 +322,7 @@ if (isset($_POST["cancelar"]))
                             <th>Requester</th>
                             <th>Telephone</th>
                             <th>E-mail</th>
+                            <th>Reason</th>
                          </tr>
                         </thead>
                          <tbody>
@@ -341,6 +342,7 @@ if (isset($_POST["cancelar"]))
                               <td data-title="Requester">' . $usuario[0]->nome . '</td>
                               <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
+                              <td data-title="Justificativa">' . $agendamento[$i]->justificativa . '</td>
                             </tr>';
                     }
                 ?>
