@@ -86,9 +86,6 @@
                                     <p style="font-size: 17px">
                                       <b>'.$usuario[0]->nome.'</b> cancelou um agendamento.<br>
                                     </p>
-                                    <p style="font-size: 17px">
-                                      <b>Justificativa: </b>'.$notificacao[$i]->justificativa.'
-                                    </p>
                                   </div>
                                 </div>
                               </a>';

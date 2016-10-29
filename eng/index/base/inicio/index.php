@@ -197,8 +197,8 @@
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 					<div class="app-availability">
-						<a href="#" class="btn btn-store"><img src="img/stores/btn-app-store.png" class="img-responsive" alt="app store"></a>
-						<a href="#" class="btn btn-store"><img src="img/stores/btn-google-play.png" class="img-responsive" alt="google store"></a>
+						<a href="#" class="btn btn-store"><img src="img/stores/app.png" class="img-responsive" alt="app store"></a>
+						<a href="#" class="btn btn-store"><img src="img/stores/play.png" class="img-responsive" alt="google store"></a>
 					</div>
 				</div>
 			</div>
@@ -399,7 +399,8 @@
 							<div class="col-md-3 pull-left">
 								<img src="captcha.php?l=150&a=50&tf=20&ql=5" class="pull-left" style=" margin-top:15px;">
 							</div>
-							<div class="col-md-9 pull-left">
+							<div class="col-md-2"></div>
+							<div class="col-md-7 pull-left">
 								<div class="form-group">
 									<label for="form_palavra" style="color: white; font-size:17px;">Palavra</label>
 									<input id="form_palavra" type="text" name="palavra" class="form-control" placeholder="Insira aqui a palavra ao lado" />
