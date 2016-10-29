@@ -84,7 +84,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
           <section class="wrapper">
-          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">New Address</a>
+          <a href="enderecos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">New Address</a>
           	<h3><i class="fa fa-angle-right"></i> Perform scheduling</h3>
             
           	
@@ -99,14 +99,14 @@
                           <div class="form-group">
                               <label class="col-sm-2 control-label">*Pickup date</label>
                               <div class="col-sm-10">
-                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Informe a data desejada para o recolhimento">
+                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Enter the desired date for payment">
 						                  </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 control-label">*Time</label>
                               <div class="col-sm-10">
-                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Informe o horário desejado para o recolhimento" required autofocus>
+                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Enter the desired time for the gathering" required autofocus>
 					                     </div>
                           </div>
 
@@ -116,7 +116,7 @@
                                 
                                   <div class="form-group">
                                   <div class="col-sm-10">
-                                    <select id="endereco" name="endereco" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
+                                    <select id="endereco" name="endereco" class="selectpicker" data-live-search="true" title="Select a address...">
                                     <?php
                                       $json_dados = $service->call('usuario_has_endereco.select', array("usuario_id = " .$_SESSION["id"]));
                                       $endereco = json_decode($json_dados);
@@ -134,7 +134,7 @@
                               <div>
                                 <label class="col-sm-2 control-label">*Trash tipe to be picked up</label>
                                 <div class="col-sm-10">
-                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false">
+                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false" title="Nothing Selected">
                                       <?php
                                         $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["ponto_id"]));
                                         $tipo_lixo_has_ponto = json_decode($json_dados);
@@ -154,8 +154,8 @@
                           <div>
                               <label class="col-sm-2 control-label">*Amount of trash to be picked</label>
                               <div class="col-sm-10">
-                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Informe a quantidade de lixo que será descartado" required autofocus>
-                                 <span class="help-block">Valor em Kg</span>
+                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Enter the amount of waste that will be collected" required autofocus>
+                                 <span class="help-block">Value in kg</span>
                                </div>
                           </div>
 

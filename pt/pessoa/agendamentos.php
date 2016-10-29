@@ -83,7 +83,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
           <section class="wrapper">
-          <a href="novo_endereco.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Novo Endereço</a>
+          <a href="enderecos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Novo Endereço</a>
           	<h3><i class="fa fa-angle-right"></i> Efetuar Agendamento</h3>
             
           	
