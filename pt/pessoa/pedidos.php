@@ -83,6 +83,7 @@
                                  <th><center>Status</center></th>
                                  <th><center>Cancelar</center></th>
                                  <th><center>Marcar como Realizado</center></th>
+                                 <th><center>Justificativa</center></th>
                               </tr>
                            </thead>
                            <tbody>
@@ -126,12 +127,16 @@
                                         if($status != 'Cancelado' and $status != 'Realizado')
                                         {
                                           echo '<td data-title="Cancelar"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
-                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><a type="submit" id="realizar" name="realizar"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td></tr>';
+                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><a type="submit" id="realizar" name="realizar"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td><td><center>-</center></td></tr>';
                                         }
                                         else
                                         {
-                                          echo '<td></td>';
-                                          echo '<td></td></tr>';
+                                          echo '<td><center>-</center></td>';
+                                          echo '<td><center>-</center></td>';
+                                          if ($status == 'Cancelado') {
+                                            echo "<td><center>".$agendamento[$i]->justificativa."</center></td>";
+                                          }
+                                          echo "</tr>";
                                         }
                                        
                               }

@@ -57,7 +57,7 @@ if (isset($_POST["cancelar"]))
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right" style="margin-top:50px;"></i> Agendamentos</h3>
+          <h3><i class="fa fa-angle-right"></i> Agendamentos</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
@@ -318,6 +318,7 @@ if (isset($_POST["cancelar"]))
                             <th>Solicitante</th>
                             <th>Telefone</th>
                             <th>E-mail</th>
+                            <th>Justificativa</th>
                          </tr>
                         </thead>
                          <tbody>
@@ -337,6 +338,7 @@ if (isset($_POST["cancelar"]))
                               <td data-title="Solicitante">' . $usuario[0]->nome . '</td>
                               <td data-title="Telefone">' . $usuario[0]->telefone . '</td>
                               <td data-title="E-mail">' . $usuario[0]->email . '</td>
+                              <td data-title="Justificativa">' . $agendamento[$i]->justificativa . '</td>
                             </tr>';
                     }
                 ?>
