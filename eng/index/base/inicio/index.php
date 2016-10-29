@@ -287,8 +287,8 @@
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Procure o ponto de coleta mais próximo a você;</h4>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Agende o recolhimento do lixo.</h4>
 							<div class="row">
-								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 30px;">
-									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_pessoa.php">Cadastre-se</a>
+								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 70px;">
+									<a class="btn-store" style="padding: 15px 20px; text-decoration: none;" href="cadastro_pessoa.php">Cadastre-se</a>
 								</div>
 							</div>
 						</div>

@@ -44,7 +44,7 @@ a, a:hover, a:focus {
 
 /* Bootstrap Modifications */
 .modal-header {
-	background: #11ABB0;
+	background: #FFD449;
 }
 
 .modal-title {
@@ -92,8 +92,8 @@ a, a:hover, a:focus {
 
 .btn-theme {
   color: #fff;
-  background-color: #11ABB0;
-  border-color: #48bcb4;
+  background-color: #21D97B;
+  border-color: #21D97B;
 }
 .btn-theme:hover,
 .btn-theme:focus,
@@ -101,8 +101,8 @@ a, a:hover, a:focus {
 .btn-theme.active,
 .open .dropdown-toggle.btn-theme {
   color: #fff;
-  background-color: #48bcb4;
-  border-color: #48bcb4;
+  background-color: #21D97B;
+  border-color: #21D97B;
 }
 
 .btn-theme02 {
