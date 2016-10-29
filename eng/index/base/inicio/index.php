@@ -187,9 +187,9 @@
 					<div class="device-container i6 iphone-silver">
 						<div class="device-container-inner">
 							<div id="app-showcase" class="owl-carousel owl-theme">
-							  <div class="item"><img src="img/cover/batata.png" class="img-responsive" alt="Iphone Application 1"></div>
-							  <div class="item"><img src="img/cover/batata.png" class="img-responsive" alt="Iphone Application 2"></div>
-							  <div class="item"><img src="img/cover/batata.png" class="img-responsive" alt="Iphone Application 3"></div>
+							  <div class="item"><img src="img/cover/4.jpg" class="img-responsive" alt="Iphone Application 1"></div>
+							  <div class="item"><img src="img/cover/5.jpg" class="img-responsive" alt="Iphone Application 2"></div>
+							  <div class="item"><img src="img/cover/1.jpg" class="img-responsive" alt="Iphone Application 3"></div>
 							</div>
 						</div>
 					</div>
@@ -274,7 +274,7 @@
 
 	<section  id="sobre">
 		<div class="container-fluid">
-			<center><div class="section-title" style="font-size: 28px; padding-left:0;color: white">Sobre Nós</div></center>
+			<center><div class="section-title" style="padding-left:0;color: white">Sobre Nós</div></center>
 			<div class="row">
 				<div class="col-md-12">
 				    <center>
@@ -336,7 +336,6 @@
 				</div>
 			</div>
 			<div class="row" style="margin-bottom:20px; margin-top:20px;">
-			   <center><div class="section-title" style="font-size: 28px; padding-left:0;color: white">Vídeos</div></center>
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
@@ -357,10 +356,10 @@
 	<section id="contato" class="bg4">
 		<div class="container-fluid">
 			<div class="col-md-6">
-				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Desenvolvido pelos competidores da olimpíada do conhecimento da ocupação de técnologia da informação e comunicação<p>
+				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Desenvolvido pela equipe que representa Santa Catarina no desafio por equipe, na área de técnologia da Inofrmação e Comunicação na Olimpíada do Conhecimento 2016.<p>
 			 	<p style="color:white;margin-top:120px;font-size:20px;color:#393939;">Realização:<p>
-				<img src="img/olimpiada.png" class="img-responsive" style="margin-left:30px; margin-top:10px;">
-				<img src="img/senai.png" class="img-responsive" style="margin-left:30px;margin-top:30px; height:100px; weight:200px;" >
+				<img src="img/olimpiada.png" class="img-responsive" style="margin-left:10px; margin-top:10px;">
+				<img src="img/senai.png" class="img-responsive" style="margin-left:10px;margin-top:30px; height:70px; weight:100px;" >
 			</div>
 			<div class="col-md-6" style="padding-bottom: 20px">
 				<form id="contact-form" method="post" action="#" role="form" >

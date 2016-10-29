@@ -230,7 +230,7 @@ if (isset($_POST["cancelar"]))
                                   <td data-title="Requester">' . $usuario[0]->nome . '</td>
                                   <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
                                   <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                                  <td data-title="Refuse"><form method="POST" id="cancelar_agendamento'. $agendamento[$i]->id .'" action="#"><input type="hidden" id="id" name="cancelar" value="' . $agendamento[$i]->id . '"><center><a href="#" onclick="aceitara(`cancelar_agendamento'. $agendamento[$i]->id .'`);");\"><img src="images/icones/icone-01.png" style="height:25px; width:25px;"></a></center></form></td>
+                                  <td data-title="Refuse"><form method="POST" id="cancelar_agendamento'. $agendamento[$i]->id .'" action="#"><input type="hidden" id="id" name="cancelar" value="' . $agendamento[$i]->id . '"><center><a href="#" onclick="aceitara(`cancelar_agendamento'. $agendamento[$i]->id .'`);");\"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>
                                 </tr>';
                         }
                     ?>
@@ -243,68 +243,70 @@ if (isset($_POST["cancelar"]))
                         echo "<center><h4>You do not have delayed schedules. :)</h4></center><br>";
                     ?>
                   </div>
+                  
+
                   <div id="menu3" class="tab-pane fade <?php if($active == "menu3") echo 'in active'; ?>">
-                <?php                            
-                  $json_dados = $service->call('agendamento.select_realizados_by_empresa',array($_SESSION["id"]));
-                  $agendamento = json_decode($json_dados);
-                  $num = count($agendamento);
-                  if ($num > 0)
-                  {
-                ?>
-                
-                <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
-                   <form action="imprimir_agendamentos.php" method="post" id="form_imprimir3">
-                        <input type="hidden" value="realizado" id="realizado" name="realizado">
-                        <a href="#" onclick="document.getElementById('form_imprimir3').submit();" class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='margin-top:5px;height:25px; width:25px;'></a>
-                   </form>
-                   <table class="table table-striped table-condensed cf ">
-                      <thead class="cf">
-                         <tr>
-                            <th class="date">Date</th>
-                            <th class="time">Schedule</th>  
-                            <th>Address</th>
-                            <th>Requester</th>
-                            <th>Telephone</th>
-                            <th>E-mail</th>
-                         </tr>
-                        </thead>
-                         <tbody>
-                <?php
-                    for($i=0;$i<$num;$i++)
-                    {
-                      $json_dados = $service->call('endereco.select_by_id',array($agendamento[$i]->endereco_id));
-                      $endereco = json_decode($json_dados);
-                      $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
-                      $usuario = json_decode($json_dados);
-					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
-					  $format = $data_agendamento->format('d/m/Y');
-                      echo '<tr>
-                              <td data-title="Date">' . $format . '</td>
-                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
-                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
-                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
-                              <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                            </tr>';
-                    }
-                ?>
-                    </tbody>
-                  </table>
-                </section>
-                <?php
-                  }
-                  else
-                    echo "<center><h4>Any appointment made.</h4></center><br>";
-                ?>
-                  </div>
-                  <div id="menu4" class="tab-pane fade <?php if($active == "menu4") echo 'in active'; ?>">
                     <?php                            
-                  $json_dados = $service->call('agendamento.select_cancelados_by_empresa',array($_SESSION["id"]));
-                  $agendamento = json_decode($json_dados);
-                  $num = count($agendamento);
-                  if ($num > 0)
-                  {
-                ?>
+                      $json_dados = $service->call('agendamento.select_realizados_by_empresa',array($_SESSION["id"]));
+                      $agendamento = json_decode($json_dados);
+                      $num = count($agendamento);
+                      if ($num > 0)
+                      {
+                    ?>
+                
+                    <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
+                       <form action="imprimir_agendamentos.php" method="post" id="form_imprimir3">
+                            <input type="hidden" value="realizado" id="realizado" name="realizado">
+                            <a href="#" onclick="document.getElementById('form_imprimir3').submit();" class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='margin-top:5px;height:25px; width:25px;'></a>
+                       </form>
+                       <table class="table table-striped table-condensed cf ">
+                          <thead class="cf">
+                             <tr>
+                                <th class="date">Date</th>
+                                <th class="time">Schedule</th>  
+                                <th>Address</th>
+                                <th>Requester</th>
+                                <th>Telephone</th>
+                                <th>E-mail</th>
+                             </tr>
+                            </thead>
+                             <tbody>
+                                <?php
+                                    for($i=0;$i<$num;$i++)
+                                    {
+                                      $json_dados = $service->call('endereco.select_by_id',array($agendamento[$i]->endereco_id));
+                                      $endereco = json_decode($json_dados);
+                                      $json_dados = $service->call('usuario.select',array("id = ".$agendamento[$i]->usuario_id));
+                                      $usuario = json_decode($json_dados);
+                          					  $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+                          					  $format = $data_agendamento->format('d/m/Y');
+                                      echo '<tr>
+                                              <td data-title="Date">' . $format . '</td>
+                                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
+                                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
+                                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
+                                              <td data-title="E-mail">' . $usuario[0]->email . '</td>
+                                            </tr>';
+                                    }
+                                ?>
+                        </tbody>
+                      </table>
+                  </section>
+                  <?php
+                    }
+                    else
+                      echo "<center><h4>Any appointment made.</h4></center><br>";
+                  ?>
+                    </div>
+                    <div id="menu4" class="tab-pane fade <?php if($active == "menu4") echo 'in active'; ?>">
+                      <?php                            
+                    $json_dados = $service->call('agendamento.select_cancelados_by_empresa',array($_SESSION["id"]));
+                    $agendamento = json_decode($json_dados);
+                    $num = count($agendamento);
+                    if ($num > 0)
+                    {
+                  ?>
                 
                 <section id="no-more-tables" style="margin-right:10px;margin-left:10px;">
                    <form action="imprimir_agendamentos.php" method="post" id="form_imprimir4">
@@ -401,7 +403,7 @@ if (isset($_POST["cancelar"]))
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	  <script src="assets/js/bootstrap.min.js"></script>
 
 	
 	<script>
