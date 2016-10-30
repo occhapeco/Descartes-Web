@@ -78,24 +78,24 @@
 
 	// Classe da tabela tipo_lixo //
 	class tipo_lixo {
-	    function insert($nome) {
+	    function insert($nome,$nome_eng) {
 	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
 	    	$conexao = new mysqli("dbdescarteslab.mysql.dbaas.com.br","dbdescarteslab","D3sc4rt3s-Lab","dbdescarteslab");
-	    	$query = $conexao->query("INSERT INTO tipo_lixo VALUES(NULL,'$nome')");
+	    	$query = $conexao->query("INSERT INTO tipo_lixo VALUES(NULL,'$nome','$nome_eng')");
 	    	$id = 0;
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
 			$conexao->close();
 	      	return $id;
 	    }
-	    function update($id,$nome) {
+	    function update($id,$nome,$nome_eng) {
 	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
 	    	$conexao = new mysqli("dbdescarteslab.mysql.dbaas.com.br","dbdescarteslab","D3sc4rt3s-Lab","dbdescarteslab");
 	    	$query = $conexao->query("SELECT * FROM tipo_lixo WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
 			{
-		    	$query = $conexao->query("UPDATE tipo_lixo SET nome = '$nome' WHERE id = $id");
+		    	$query = $conexao->query("UPDATE tipo_lixo SET nome = '$nome',nome_eng = '$nome_eng' WHERE id = $id");
 				$retorno = true;
 			}
 			$conexao->close();
@@ -135,8 +135,8 @@
 		}
 	}
 	// Registro dos métodos da classe tipo_lixo //
-	$server->register('tipo_lixo.insert', array('nome' => 'xsd:string'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na table tipo_lixo (retorna o id do registro inserido).');
-	$server->register('tipo_lixo.update', array('id' => 'xsd:integer','nome' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro da tabela tipo_lixo.');
+	$server->register('tipo_lixo.insert', array('nome' => 'xsd:string','nome_eng' => 'xsd:string'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na table tipo_lixo (retorna o id do registro inserido).');
+	$server->register('tipo_lixo.update', array('id' => 'xsd:integer','nome' => 'xsd:string','nome_eng' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro da tabela tipo_lixo.');
 	$server->register('tipo_lixo.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela tipo_lixo.');
 	$server->register('tipo_lixo.select_by_id', array('id' => 'xsd:integer'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela tipo_lixo por id (retorna json).');
 	$server->register('tipo_lixo.select', array('condicoes' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa registros da tabela tipo_lixo com condições definidas ou indefinidas (retorna json).');

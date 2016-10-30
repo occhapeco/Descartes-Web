@@ -245,6 +245,7 @@ INSERT INTO `ponto` (`id`, `empresa_id`, `atendimento_ini`, `atendimento_fim`, `
 CREATE TABLE IF NOT EXISTS `tipo_lixo` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(20) DEFAULT NULL,
+  `nome_eng` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
@@ -253,29 +254,29 @@ CREATE TABLE IF NOT EXISTS `tipo_lixo` (
 --
 
 INSERT INTO `tipo_lixo` (`id`, `nome`) VALUES
-(1, 'Plástico'),
-(2, 'Metal'),
-(3, 'Vidro'),
-(4, 'Eletrônico'),
-(5, 'Borracha'),
-(10, 'Madeira'),
-(7, 'Hospitalar'),
-(8, 'Radioativo'),
-(9, 'Tóxico'),
-(17, 'Óleo (lubrificante)'),
-(16, 'Orgânico'),
-(13, 'Isopor'),
-(15, 'Corrosivo'),
-(18, 'Óleo (cozinha)'),
-(19, 'Baterias e pilhas'),
-(20, 'Alvenaria (entulho)'),
-(21, 'Lâmpadas'),
-(22, 'Fiação elétrica'),
-(23, 'Aviamento'),
-(24, 'Botijão de gás'),
-(26, 'Toner'),
-(27, 'Químico (em geral)'),
-(28, 'Ferragem');
+(1, 'Plástico','Plastic'),
+(2, 'Metal','Metal'),
+(3, 'Vidro','Glass'),
+(4, 'Eletrônico','Electronic'),
+(5, 'Borracha','Rubbee'),
+(10, 'Madeira','Wood'),
+(7, 'Hospitalar','Hospital'),
+(8, 'Radioativo','Radioactive'),
+(9, 'Tóxico','Toxic'),
+(17, 'Óleo (lubrificante)','Lubricating Oil'),
+(16, 'Orgânico','Organic'),
+(13, 'Isopor','Styrofoam'),
+(15, 'Corrosivo','Corrosive'),
+(18, 'Óleo (cozinha)','Kitchen Oil'),
+(19, 'Baterias e pilhas','Batteries'),
+(20, 'Alvenaria (entulho)','Rubble'),
+(21, 'Lâmpadas','Lamps'),
+(22, 'Fiação elétrica','Electrical wiring'),
+(23, 'Aviamento','Threads(Strings)'),
+(24, 'Botijão de gás','Gas cylinder'),
+(26, 'Toner','Toner'),
+(27, 'Químico (em geral)','Chemical (General)'),
+(28, 'Ferragem','Metal hardware');
 
 -- --------------------------------------------------------
 
@@ -361,7 +362,7 @@ INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `cpf`, `telefone`) VALUES
 (27, 'Katharyne Oliveira ', 'katharynebeatryz@gmail.com', '71d98a1753bc49c5dd2ecfd10da62d09ab76ab7b', '05884774435', '82987217599'),
 (26, 'wagner', 'wagner@oi.com', '8cb2237d0679ca88db6464eac60da96345513964', '02598156080', '5533221144'),
 (25, 'Andrew Malta', 'andrewsaxx@gmail.com', 'b348abb335f4e54649b53f95d3ac4371390bce58', '44768438830', '4998259128'),
-(24, 'José ', 'jose@oi.com', '06f58c80bb949467a59aeeb0fd54cdb28070290b', '44768438830', '4555443322');
+(24, 'José ', 'oie@oie', '06f58c80bb949467a59aeeb0fd54cdb28070290b', '44768438830', '4555443322');
 
 -- --------------------------------------------------------
 
