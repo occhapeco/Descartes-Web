@@ -2,5 +2,5 @@
 	if (!isset($_SESSION))
 		session_start();
 	if ($_SESSION["tabela"] != "empresa")
-		header("location: ../index/base/inicio/index.php");
+		header("location: ../index/");
 ?>

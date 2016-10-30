@@ -63,7 +63,7 @@
 						<a href="editar_perfil.php" style="color: darkgray;">Editar Perfil</a>
 					</li>
 					<li style="width: 100%;">
-						<a class="logout" href="../inicio/logout.php" style="color: darkgray;">Logout</a>
+						<a class="logout" href="../index/logout.php" style="color: darkgray;">Logout</a>
 					</li>
 				</ul>
 			</li>
