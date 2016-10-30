@@ -107,7 +107,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right"></i> Map collections</h3>
+          <h3><i class="fa fa-angle-right" style="margin-top:50px;"></i> Map collections</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="panel">

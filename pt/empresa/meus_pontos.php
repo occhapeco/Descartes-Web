@@ -300,51 +300,51 @@
                         <?php echo $bab; ?>
                         <!-- Confirmação e Complemento do endereço do ponto -->
                         <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
-                          <h5 class="mb"><i class="fa fa-angle-right"></i> Endereço</h5>
+                          <h5 class="mb"><b><i class="fa fa-angle-right"></i> Endereço</b></h5>
                             <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*CEP</label>
+                                  <p class="col-sm-2 col-sm-2 control-label">*CEP</p>
                                   <div class="col-sm-10">
                                      <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus placeholder="Ex: 89888000">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*País</label>
+                                  <p class="col-sm-2 col-sm-2 control-label">*País</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Ex: Brasil">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*UF</label>
+                                  <p class="col-sm-2 col-sm-2 control-label">*UF</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required placeholder="Ex: SC">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*Cidade</label>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Cidade</p>
                                   <div class="col-sm-10">
                                       <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required placeholder="Ex: São Paulo">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*Bairro</label>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Bairro</p>
                                   <div class="col-sm-10">
                                       <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required placeholder="Ex: Centro">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 col-sm-2 control-label">*Rua</label>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Rua</p>
                                   <div class="col-sm-10">
                                       <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required placeholder="Ex: Rua das Margaridas.">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2 control-label">*Número</label>
+                                  <p class="col-sm-2 control-label">*Número</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control"  maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required placeholder="Ex: 402">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <label class="col-sm-2  control-label ">Complemento</label>
+                                  <p class="col-sm-2  control-label ">Complemento</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> placeholder="Ex: D. Ou ponto de referência Ex: Próximo à escola">
                                   </div>
@@ -353,27 +353,27 @@
                           
                           <!-- Dados do funcionamento do Ponto -->    
                           <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
-                            <h5 class="mb"><i class="fa fa-angle-right"></i> Dados do Ponto</h5>
+                            <h5 class="mb"><b><i class="fa fa-angle-right"></i> Dados do Ponto</b></h5>
                              <div class="form-group">
-                                 <label class="col-sm-2 col-sm-2 control-label">*Horário de início do atendimento</label>
+                                 <p class="col-sm-2 col-sm-2 control-label">*Horário de início do atendimento</p>
                                   <div class="col-sm-10">
                                       <input type="time" class="form-control" maxlength="12" OnKeyPress="formatar('##:##', this,event)"  id="atendimento_ini" name="atendimento_ini" <?php echo "value='$atendimento_ini'";?> required>
                                   </div>
                               </div>
                               <div class="form-group">
-                                 <label class="col-sm-2 col-sm-2 control-label">*Horário de final do atendimento</label>
+                                 <p class="col-sm-2 col-sm-2 control-label">*Horário de final do atendimento</p>
                                   <div class="col-sm-10">
                                       <input type="time" class="form-control" maxlength="12" id="atendimento_fim" name="atendimento_fim"<?php echo "value='$atendimento_fim'";?> required>
                                   </div>
                               </div>
                               <div class="form-group">
-                                    <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
+                                    <p class="col-sm-2 col-sm-2 control-label">Telefone</p>
                                     <div class="col-sm-10">
                                       <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> placeholder="Ex: 44 4444 4444">
                                     </div>
                                 </div>
                               <div class="form-group">
-                                 <label class="col-sm-2 col-sm-2 control-label">Observações</label>
+                                 <p class="col-sm-2 col-sm-2 control-label">Observações</p>
                                   <div class="col-sm-10">
                                       <textarea class="form-control" maxlength="250" id="observacao" name="observacao" placeholder="Ex: Fecha ao meio dia etc."><?php
                                        echo $observacao; ?></textarea>
@@ -382,7 +382,7 @@
                            </div>
                            <!-- Tipos de lixo recolhidos pelo Ponto -->    
                           <div class="col-lg-12" style="padding: 0px 50px 0px 50px;">
-                            <h5 class="mb"><i class="fa fa-angle-right"></i> Selecione quais dos materiais a baixo este ponto recolhe</h5>
+                            <h5 class="mb"><b><i class="fa fa-angle-right"></i> Selecione quais dos materiais a baixo este ponto recolhe</b></h5>
                              <div class="form-group">
                                
                                 <table class="table col-md-6">
@@ -429,7 +429,6 @@
                               </div>
                           </div>
                           <div class="col-lg-12" style="padding: 0px 30px 0px 30px;">
-                            <a type="" href="#" class="btn btn-default" id="pop">Não achou o que queria?</a>
                             <?php
                               echo $lat_long;
                               echo $input_id;
