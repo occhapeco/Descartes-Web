@@ -232,7 +232,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h4><i class="fa fa-angle-right"></i> Meus pontos</h3>
+          <h3><i class="fa fa-angle-right"></i> Meus pontos</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
