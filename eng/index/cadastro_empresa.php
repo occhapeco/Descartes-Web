@@ -114,7 +114,7 @@
                               </div>
                           </div>
                           <button type="submit" id="cadastrar_empresa" name="cadastrar_empresa" class="btn btn-sm btn-theme pull-right">Cadastrar</button>
-                          <a href="indee.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>
+                          <a href="index.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>
                       </form>
                   </div>
               </div><!-- col-lg-12-->       

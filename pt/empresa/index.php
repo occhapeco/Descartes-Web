@@ -211,9 +211,6 @@
           element: 'finalizados_mes',
           data: [
             <?php
-              echo "oie";
-              echo semanas_mes();
-              echo "oie";
               $data = '';
               for($i=1;$i<=semanas_mes();$i++)
               {
