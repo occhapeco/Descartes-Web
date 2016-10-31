@@ -278,8 +278,8 @@
                                 <td data-title="Telefone">' . $ponto[$i]->telefone . '</td>
                                 <td data-title="Horário">' . $ponto[$i]->atendimento_ini . ' - ' . $ponto[$i]->atendimento_fim . '</td>
                                 <td data-title="Observação">' . $ponto[$i]->observacao . '</td>
-                                <td data-title="Editar"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><button type="submit" id="editar" name="editar" class="btn btn-theme"><i class="fa fa-pencil"></i></button></center></form></td>
-                                <td data-title="Excluir"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><button type="submit" id="excluir" name="excluir" class="btn btn-danger"><i class="fa fa-times"></i></button></center></form></td></tr>';
+                                <td data-title="Editar"><form method="POST" id="editar'. $ponto[$i]->id .'" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><input type="hidden" id="editar" name="editar"><a href="#" onclick="document.getElementById(`editar'. $ponto[$i]->id .'`).submit();"><img src="images/editar.png" height="25px" width="25px"></a></center></form></td>
+                                <td data-title="Excluir"><form method="POST" id="excluir'. $ponto[$i]->id .'" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><input type="hidden" id="excluir" name="excluir"><a href="#" onclick="document.getElementById(`excluir'. $ponto[$i]->id .'`).submit();"><img src="images/excluir.png" height="25px" width="25px"></a></center></form></td></tr>';
                       }
                   ?>
                         </tbody>

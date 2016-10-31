@@ -5,7 +5,7 @@
   if (isset($_POST["cadastrar"]))
   {
     // Cadastra o endereço e retorna seu id (0 se der bosta)
-    $lixo_id = $service->call('tipo_lixo.insert',array($_POST["nome_lixo"]));
+    $lixo_id = $service->call('tipo_lixo.insert',array($_POST["nome_lixo"],$_POST["nome_eng"]));
   }
 
   if(isset($_POST["excluir"]))
@@ -71,6 +71,12 @@
                                 <input type="text" id="nome_lixo" name="nome_lixo" maxlength="20"  class="form-control" autofocus required>
                               </div>
                           </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Nome do Lixo em inglês</label>
+                              <div class="col-sm-10">
+                                <input type="text" id="nome_lixo" name="nome_eng" maxlength="20"  class="form-control" autofocus required>
+                              </div>
+                          </div>
                           <button type="submit" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Cadastrar</button>
                           <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;" onclick="document.getElementById('nome_lixo').value=' ';">Cancelar</a><br><br>
                       </form>
@@ -81,33 +87,33 @@
            <div class="row mt">
               <div class="col-lg-12">
                   <div class="form-panel offset1">
-                      <form class="form-horizontal style-form" method="post" action="#">
-                         <div class="content-panel">
-                            <section id="no-more-tables">
-                              <table class="table table-striped table-condensed cf ">
-                                 <thead class="cf">
-                                    <tr>
-                                       <th>Nome do Lixo</th>
-                                       <th><center>Excluir</center></th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                  <?php
-                                    $json_dados = $service->call('tipo_lixo.select', array(NULL));
-                                    $lixo = json_decode($json_dados);
-                                    for($i=0;$i<(count($lixo));$i++)
-                                    {
-                                      echo '<tr>
-                                              <td data-title="Data">' . $lixo[$i]->nome . '</td>
-                                              <td data-title="Excluir"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
-                                    }
-                                ?>
-                              </tbody>
-                            </table>
-                          </section>
-                        </div>
-                      </form>
+                   <div class="content-panel">
+                      <section id="no-more-tables">
+                        <table class="table table-striped table-condensed cf ">
+                           <thead class="cf">
+                              <tr>
+                                 <th>Nome do Lixo</th>
+                                 <th>Nome em inglês</th>
+                                 <th><center>Excluir</center></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                            <?php
+                              $json_dados = $service->call('tipo_lixo.select', array(NULL));
+                              $lixo = json_decode($json_dados);
+                              for($i=0;$i<(count($lixo));$i++)
+                              {
+                                echo '<tr>
+                                        <td data-title="Nome do lixo">' . $lixo[$i]->nome . '</td>
+                                        <td data-title="Nome em inglês">' . $lixo[$i]->nome_eng . '</td>
+                                        <td data-title="Excluir"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
+                              }
+                          ?>
+                        </tbody>
+                      </table>
+                    </section>
                   </div>
+                </div>
               </div><!-- col-lg-12-->       
            </div><!-- /row -->
 			</section><! --/wrapper -->

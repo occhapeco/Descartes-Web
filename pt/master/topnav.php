@@ -56,5 +56,20 @@
     <div class="col full">
       <div class="logo"><img src="images/logo2.png" height="43px" width="130px" style="margin-top:5px; margin-left:30px;"></div>
     </div>
+    <li id="header_inbox_bar" class="dropdown">
+				<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+				   <?php
+						$json_dados = $service->call('empresa.select_by_id',array($_SESSION["id"])); //Fazer select na tabela admin
+						$admin = json_decode($json_dados);
+						echo  $admin[0]->nome;
+					?>
+					<i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-right" id="notification_bar">
+					<li style="width: 100%;">
+						<a class="logout" href="../index/logout.php" style="color: darkgray;">Logout</a>
+					</li>
+				</ul>
+			</li>
   </div>
 </header>

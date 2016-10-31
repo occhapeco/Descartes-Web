@@ -81,33 +81,31 @@
            <div class="row mt">
               <div class="col-lg-12">
                   <div class="form-panel offset1">
-                      <form class="form-horizontal style-form" method="post" action="#">
-                         <div class="content-panel">
-                            <section id="no-more-tables">
-                              <table class="table table-striped table-condensed cf ">
-                                 <thead class="cf">
-                                    <tr>
-                                       <th>Waste name</th>
-                                       <th><center>Delete</center></th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                  <?php
-                                    $json_dados = $service->call('tipo_lixo.select', array(NULL));
-                                    $lixo = json_decode($json_dados);
-                                    for($i=0;$i<(count($lixo));$i++)
-                                    {
-                                      echo '<tr>
-                                              <td data-title="Waste name">' . $lixo[$i]->nome . '</td>
-                                              <td data-title="Delete"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
-                                    }
-                                ?>
-                              </tbody>
-                            </table>
-                          </section>
-                        </div>
-                      </form>
-                  </div>
+	                <div class="content-panel">
+	                    <section id="no-more-tables">
+	                      <table class="table table-striped table-condensed cf ">
+	                         <thead class="cf">
+	                            <tr>
+	                               <th>Waste name</th>
+	                               <th><center>Delete</center></th>
+	                            </tr>
+	                         </thead>
+	                         <tbody>
+	                          <?php
+	                            $json_dados = $service->call('tipo_lixo.select', array(NULL));
+	                            $lixo = json_decode($json_dados);
+	                            for($i=0;$i<(count($lixo));$i++)
+	                            {
+	                              echo '<tr>
+	                                      <td data-title="Waste name">' . $lixo[$i]->nome . '</td>
+	                                      <td data-title="Delete"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
+	                            }
+	                        ?>
+	                      </tbody>
+	                    </table>
+	                  </section>
+	                </div>
+                </div>
               </div><!-- col-lg-12-->       
            </div><!-- /row -->
 			</section><! --/wrapper -->
