@@ -232,7 +232,7 @@
             </div>
             <div id="menu1" class="tab-pane fade <?php if($active == "menu1") echo 'in active'; ?>">
               <form class="form-horizontal style-form" method="post" action="#" id="form_sub" style="margin-left:10px; margin-right:10px;">
-                  <p style="color: red; margin-left: 20px;">*REQUIRED FIELD</p>
+                  <p style="color: red; margin-left: 20px;">*CAMPO OBRIGATÓRIO</p>
                   <?php echo $id_input; ?>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Nome do Endereço</label>

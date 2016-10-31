@@ -74,11 +74,11 @@
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nome do Lixo em inglês</label>
                               <div class="col-sm-10">
-                                <input type="text" id="nome_lixo" name="nome_eng" maxlength="20"  class="form-control" autofocus required>
+                                <input type="text" id="lixo" name="nome_eng" maxlength="20"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <button type="submit" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Cadastrar</button>
-                          <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;" onclick="document.getElementById('nome_lixo').value=' ';">Cancelar</a><br><br>
+                          <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;" onclick="document.getElementById('nome_lixo').value=' ';document.getElementById('lixo').value=' ';">Cancelar</a><br><br>
                       </form>
                   </div>
 				      </div><!-- col-lg-12-->      	
