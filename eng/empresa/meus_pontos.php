@@ -399,7 +399,7 @@
                                         echo '
                                                 <td>
                                                 <center> 
-                                                ' . $tipo_lixo[$i]->nome . '
+                                                ' . $tipo_lixo[$i]->nome_eng . '
                                                 </center>
                                                 </td>
                                                 <td><center>
@@ -458,7 +458,7 @@
                       $tipo_lixo = json_decode($dados_json);
                       $num = count($tipo_lixo);
                       for ($i=0; $i < $num ; $i++) { 
-                        echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome."</td></tr>";
+                        echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome_eng."</td></tr>";
                       }
                    ?> 
                   </table>
@@ -625,7 +625,7 @@
                   $tipo_lixo = json_decode($json_dados);
                   if ($j != 0)
                     $tipos_lixo .= ", ";
-                  $tipos_lixo .= $tipo_lixo[0]->nome;
+                  $tipos_lixo .= $tipo_lixo[0]->nome_eng;
                 }
               if ($i != 0)
                 echo ",";

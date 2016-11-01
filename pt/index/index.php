@@ -287,7 +287,7 @@
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Procure o ponto de coleta mais próximo a você;</h4>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Agende o recolhimento do lixo.</h4>
 							<div class="row">
-								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 70px;">
+								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 40px;">
 									<a class="btn-store" style="padding: 15px 20px; text-decoration: none;" href="cadastro_pessoa.php">Cadastre-se</a>
 								</div>
 							</div>
@@ -324,7 +324,7 @@
 				    	<div class="col-md-4">
 							<img src="img/Andrew.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
-							<label for="form_name" style="color: white;">Andrew Malta Silva</label>
+							<label for="form_name" style="color: white;font-size:14px;"><b>Andrew Malta Silva</b></label>
 							<br>
 							<label for="form_name" style="color: white">Soluções de software para negócios</label>
 							<p style="color: white">Técnico em Informática</p>
@@ -332,20 +332,20 @@
 						<div class="col-md-4">
 							<img src="img/Diovanna.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
-							<label for="form_name" style="color: white">Diovanna Caroline Schell</label>
+							<label for="form_name" style="color: white;font-size:14px;"><b>Diovanna Caroline Schell</b></label>
 							<br>
 							<label for="form_name" style="color: white">Web Design</label>
-							<p style="color: white">Aprendizagem industrial em informática</p>
+							<p style="color: white">Aprendiz industrial em informática</p>
 							<p style="color: white">Técnico em informática</p>
 						</div>
 						<div class="col-md-4">
 							<img src="img/Edenilson.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
-							<label for="form_name" style="color: white">Edenilson Gonçalves</label>
+							<label for="form_name" style="color: white;font-size:14px;"><b>Edenilson Gonçalves</b></label>
 							<br>
 							<label for="form_name" style="color: white">Infraestrutura e redes locais</label>
-							<p style="color: white">Aprendizagem industrial em suporte e manutenção de microcomputadores e redes locais</p>
-							<p style="color: white">Aprendizagem industrial em informática</p>
+							<p style="color: white">Aprendiz industrial em suporte e manutenção de microcomputadores e redes locais</p>
+							<p style="color: white">Aprendiz industrial em informática</p>
 						</div>
 				 	</center>
 				 </div>
@@ -358,17 +358,17 @@
 					<div class="col-md-4">
 						<img src="img/Gabriel.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 						<br>
-						<label for="form_name" style="color: white">Gabriel Vassoler</label>
+						<label for="form_name" style="color: white; font-size:14px;"><b>Gabriel Vassoler</b></label>
 						<br>
 						<label for="form_name" style="color: white">Soluções de software para negócios</label>
-						<p style="color:white;">Aprendizagem industrial em suporte e manutenção de microcomputadores e redes locais</p>
-					    <p style="color:white;">Aprendizagem industrial em informática</p>
+						<p style="color:white;">Aprendiz industrial em suporte e manutenção de microcomputadores e redes locais</p>
+					    <p style="color:white;">Aprendiz industrial em informática</p>
 						<p style="color:white;">Técnico em informática</p>
 					</div>
 					<div class="col-md-4">
 						<img src="img/Wagner.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 						<br>
-						<label for="form_name" style="color: white;font-decoration:bold;">Wagner Titon</label>
+						<label for="form_name" style="color: white;font-size:14px;"><b>Wagner Titon</b></label>
 						<br>
 						<label for="form_name" style="color: white">Gestor do Projeto</label>
 						<p style="color: white">Especialista de ensino SENAI/SC<p>

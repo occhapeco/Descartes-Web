@@ -2242,12 +2242,12 @@ a:hover{
 
 a:active{
 	text-decoration: none;
-	color:#2A3F54;
+	color:black;
 }
 
 a:link{
 	text-decoration: none;
-	color:#2A3F54;
+	color:black;
 }
 
 .botao03:link{
