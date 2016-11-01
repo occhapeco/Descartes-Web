@@ -24,6 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `master`
+--
+
+CREATE TABLE IF NOT EXISTS `master` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(30) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `senha` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `agendamento`
 --
 
@@ -253,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `tipo_lixo` (
 -- Extraindo dados da tabela `tipo_lixo`
 --
 
-INSERT INTO `tipo_lixo` (`id`, `nome`) VALUES
+INSERT INTO `tipo_lixo` (`id`, `nome`, `nome_eng`) VALUES
 (1, 'Plástico','Plastic'),
 (2, 'Metal','Metal'),
 (3, 'Vidro','Glass'),
