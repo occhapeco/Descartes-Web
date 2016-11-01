@@ -35,6 +35,12 @@ CREATE TABLE IF NOT EXISTS `master` (
   PRIMARY KEY (`id`)
 );
 
+INSERT INTO `master` VALUES 
+(NULL,'Andrew Malta','andrewsaxx@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae'),
+(NULL,'Diovanna Schell','diovannacschell@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae'),
+(NULL,'Edenilson Gonçalves','barp9675@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae'),
+(NULL,'Gabriel Vassoler','gabiv98@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae');
+
 
 -- --------------------------------------------------------
 
@@ -56,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `agendamento` (
   KEY `empresa_id` (`empresa_id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `endereco_id` (`endereco_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) AUTO_INCREMENT=57 ;
 
 --
 -- Extraindo dados da tabela `agendamento`
@@ -85,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `agendamento_has_tipo_lixo` (
   PRIMARY KEY (`id`),
   KEY `tipo_lixo_id` (`tipo_lixo_id`),
   KEY `agendamento_id` (`agendamento_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=79 ;
+) AUTO_INCREMENT=79 ;
 
 --
 -- Extraindo dados da tabela `agendamento_has_tipo_lixo`
@@ -123,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `senha` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `empresa`
@@ -151,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) AUTO_INCREMENT=35 ;
 
 --
 -- Extraindo dados da tabela `endereco`
@@ -189,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `notificacao` (
   PRIMARY KEY (`id`),
   KEY `empresa_id` (`empresa_id`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) AUTO_INCREMENT=46 ;
 
 --
 -- Extraindo dados da tabela `notificacao`
@@ -236,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `ponto` (
   PRIMARY KEY (`id`),
   KEY `empresa_id` (`empresa_id`),
   KEY `endereco_id` (`endereco_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) AUTO_INCREMENT=15 ;
 
 --
 -- Extraindo dados da tabela `ponto`
@@ -262,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `tipo_lixo` (
   `nome` varchar(20) DEFAULT NULL,
   `nome_eng` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) AUTO_INCREMENT=29 ;
 
 --
 -- Extraindo dados da tabela `tipo_lixo`
@@ -306,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `tipo_lixo_has_ponto` (
   PRIMARY KEY (`id`),
   KEY `tipo_lixo_id` (`tipo_lixo_id`),
   KEY `ponto_id` (`ponto_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+) AUTO_INCREMENT=73 ;
 
 --
 -- Extraindo dados da tabela `tipo_lixo_has_ponto`
@@ -367,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `cpf` varchar(11) DEFAULT NULL,
   `telefone` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) AUTO_INCREMENT=28 ;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -393,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `usuario_has_endereco` (
   PRIMARY KEY (`id`),
   KEY `endereco_id` (`endereco_id`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) AUTO_INCREMENT=18 ;
 
 --
 -- Extraindo dados da tabela `usuario_has_endereco`
