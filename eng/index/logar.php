@@ -33,6 +33,7 @@
                     session_start();
                     $_SESSION["id"] = $master;
                     $_SESSION["tabela"] = "master";
+                    header("location: ../master/");
                 }
                 else            
                     header("location: index.php");
