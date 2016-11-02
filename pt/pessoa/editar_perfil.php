@@ -7,15 +7,18 @@
   {
     require_once("../conectar_service.php");
     if (isset($_POST["editar_perfil"]))
-      if ($service->call('empresa.update_perfil',array($_SESSION["id"],$_POST["razao_social"],$_POST["nome_fantasia"],$_POST["email"])))
+    {
+      if ($service->call('usuario.update_perfil',array($_SESSION["id"],$_POST["nome"],$_POST["email"],$_POST["telefone"])))
         $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Seu perfil foi alterado com sucesso!</b></div>';
       else
         $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+    }
     if (isset($_POST["editar_senha"]))
     {
        if($_POST["senha_nova1"] == $_POST["senha_nova2"])
        {
-            if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
+
+            if ($_POST["senha_nova1"] == $_POST["senha_nova2"] && $service->call('usuario.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
               $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Sua senha foi alterada com sucesso!</b></div>';
             else
               $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
@@ -90,7 +93,7 @@
                     <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                     <div class="col-sm-10">
   						        <?php
-                        echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required onkeypress="formatar("## ####-####", this)">';
+                        echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required>';
                       ?>
                     </div>
                 </div>
@@ -99,7 +102,7 @@
                   <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
                   <div class="col-sm-10">
                       <?php
-                        echo '<input type="text" id="email" name="email" class="form-control" maxlength="40" value="' . $usuario[0]->email . '" disabled required>';
+                        echo '<input type="email" id="email" name="email" class="form-control" maxlength="40" value="' . $usuario[0]->email . '" readonly required>';
                   ?>
                   </div>
                 </div>

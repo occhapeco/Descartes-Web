@@ -3,17 +3,17 @@
 
   if (isset($_POST))
   {
-    if (isset($_POST['cancelar']))
+    if (isset($_POST['agendamento_id']))
     {
       require_once("../conectar_service.php"); 
-      $batata = $service->call('agendamento.cancelar',array($_POST['agendamento_id'],$_POST['justificativa']));
+      $result = $service->call('agendamento.cancelar',array($_POST['agendamento_id'],$_POST['justificativa']));
     }
     if (isset($_POST['realizar']))
     {
       require_once("../conectar_service.php"); 
-      $batata = $service->call('agendamento.realizar',array($_POST['id']));
+      $result = $service->call('agendamento.realizar',array($_POST['id']));
+      echo "<script>alert('".$_POST['id']."');</script>";
     }
-
   }
 ?>
 <!DOCTYPE html>
@@ -35,8 +35,8 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <script src="dist/js/bootstrap-select.js"></script>
- 
+    <link rel="stylesheet" href="dist/css/bootstrap-select.css">
+
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
@@ -62,8 +62,8 @@
         <div class="col-lg-12">
            <div class="content-panel">
            <div class="row">
-              <form action="imprimir_agendamentos.php" method="post">
-                  <a class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='height:25px; width:25px;'></a>
+              <form action="imprimir_agendamentos.php" method="post" id="form_imprimir">
+                  <a href="#" onclick="document.getElementById('form_imprimir').submit();" class="pull-right" style="margin-right:30px;"><img src='images/icones/icone-08.png' style='height:25px; width:25px;'></a>
               </form>
               </div>
                  <?php                            
@@ -100,7 +100,7 @@
 
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
-                                  $status = 'Não Confirmado'; 
+                                  $status = 'Não confirmado'; 
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento >= date("Y-m-d"))
                                 {
@@ -126,8 +126,11 @@
                                         <td data-title="Coletadora"><center>' . $status . '</center></td>';
                                         if($status != 'Cancelado' and $status != 'Realizado')
                                         {
-                                          echo '<td data-title="Cancelar"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a href="#" type="button" id="excluir" name="excluir" onclick="getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
-                                          echo '<td data-title="Marcar como Realizado"><form method="POST" action="#"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><center><a type="submit" id="realizar" name="realizar"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td><td><center>-</center></td></tr>';
+                                          echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a href="#" type="button" id="excluir" name="excluir" onclick="document.getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
+                                          if($status != 'Não confirmado')
+                                            echo '<td data-title="Mark as finished"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="realizar" name="realizar"><center><a href="#" onclick="document.getElementById(\'finalizar'.$agendamento[$i]->id.'\').submit();"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td><td><center>-</center></td></tr>';
+                                          else
+                                            echo '<td><center>-</center></td><td><center>-</center></td></tr>';
                                         }
                                         else
                                         {
@@ -165,11 +168,12 @@
                           <div class="modal-content">
                               <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Justificativa do Cancelamento</h4>
+                                  <h4 class="modal-title">Cancelling justification</h4>
                               </div>
-                                 <form action="#" method="post">
-                                    <div class="modal-body">
-                                        <label class="col-sm-4 control-label">*Justificativa</label>
+                              <form action="#" method="post" id="just">
+                                <div class="modal-body">
+                                    
+                                        <label class="col-sm-4 control-label">*Justification</label>
                                         <div class="col-sm-8">
                                               <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
                                                   <option value="Atraso no recolhimento">Atraso no recolhimento</option>
@@ -177,12 +181,13 @@
                                                   <option value="Lixo já recolhido">Lixo já recolhido</option>
                                                   <option value="Outro motivo">Outro motivo</option>
                                               </select>
+                                              <input type="hidden" name="agendamento_id" id="agendamento_id" value='0'>
                                         </div>
-                                        <br>
-                                  </div>
-                                  <div class="modal-footer">
-                                        <button type="submit" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Enviar</button>
-                                  </div>
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                      <button onclick="document.getElementById('just').submit();" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
+                                </div>
                               </form>
                           </div>
        
@@ -201,6 +206,7 @@
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="dist/js/bootstrap-select.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>

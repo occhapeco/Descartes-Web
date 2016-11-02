@@ -28,9 +28,12 @@
                                 $usuario = json_decode($json_dados);
                                 $status = "";
 
+                                $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+                                $format = $data_agendamento->format('d/m/Y');
+
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
-                                  $status = 'NOt confirmed'; 
+                                  $status = 'Not confirmed'; 
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento <= date("Y-m-d"))
                                 {
@@ -49,7 +52,7 @@
                                   $status = 'Cancelled';
                                 }
 
-                                $pdf->Cell(3,0.7,$agendamento[$i]->data_agendamento,1,0);
+                                $pdf->Cell(3,0.7,$format,1,0);
                                 $pdf->Cell(3,0.7,$agendamento[$i]->horario,1,0);
                                 $pdf->Cell(4,0.7,$endereco[0]->nome,1,0);
                                 $json_dados = $service->call('empresa.select_by_id', array($agendamento[$i]->empresa_id));

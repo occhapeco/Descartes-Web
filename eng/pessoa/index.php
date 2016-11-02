@@ -127,7 +127,7 @@
                     $tipo_lixo = json_decode($dados_json);
                     $num = count($tipo_lixo);
                     for ($i=0; $i < $num ; $i++) { 
-                      echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome."</td></tr>";
+                      echo "<tr><td><input type='checkbox' name='tipos[]' value='".$tipo_lixo[$i]->id."'></td><td>".$tipo_lixo[$i]->nome_eng."</td></tr>";
                     }
                  ?> 
                 </table>
@@ -343,7 +343,7 @@ var ds;
                                 '</div>'+
                                 '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                                 '<div id="bodyContent">'+
-                                '<p>picks up:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                                '<p>Picks up: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                                 '<form action="agendamentos.php" method="post">'+
@@ -381,7 +381,7 @@ var ds;
                       $tipo_lixo = json_decode($dados_json1);
                       if ($j != 0)
                         $pontos .= ", ";
-                      $pontos = $pontos.$tipo_lixo[0]->nome;
+                      $pontos = $pontos.$tipo_lixo[0]->nome_eng;
                     }
                     if ($i!=0)
                       echo ",";
@@ -396,7 +396,7 @@ var ds;
                           '</div>'+
                           '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                           '<div id="bodyContent">'+
-                          '<p>picks up:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p>Picks up: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                           '<form action="agendamentos.php" method="post">'+

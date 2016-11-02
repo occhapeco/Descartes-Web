@@ -344,7 +344,7 @@
                                 '</div>'+
                                 '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                                 '<div id="bodyContent">'+
-                                '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                                '<p>Recolhe: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                                 '<form action="agendamentos.php" method="post">'+
@@ -397,7 +397,7 @@
                           '</div>'+
                           '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                           '<div id="bodyContent">'+
-                          '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p>Recolhe: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                           '<form action="agendamentos.php" method="post">'+

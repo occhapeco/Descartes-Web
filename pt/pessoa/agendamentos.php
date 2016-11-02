@@ -16,7 +16,9 @@
     
   elseif (isset($_POST["confirmar"]))
   {
-    $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],$_POST["endereco"]));
+    $data_agendamento = DateTime::createFromFormat('Y-m-d',$_POST["data_agendamento"]);
+    $data_agendamento = $data_agendamento->format('d/m/Y');
+    $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$data_agendamento,$_POST["horario"],$_POST["endereco"]));
     if($id_agendamento!=0)
     {
       $tipo_lixo = $_POST["lixo"];
@@ -25,8 +27,6 @@
         // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
         $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($tipo_lixo[$i],$id_agendamento,$_POST["quantidade_lixo"]));
       }
-
-      //$notificacao = $service->call('notificacao.insert', array($_SESSION["id"],$_POST["empresa_id"],2,true));
       echo "<script>alert('Agendamento efetuado com sucesso');</script>";
       header("location:pedidos.php");
     }
@@ -98,14 +98,14 @@
                           <div class="form-group">
                               <label class="col-sm-2 control-label">*Data do Recolhimento</label>
                               <div class="col-sm-10">
-                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Informe a data desejada para o recolhimento">
+                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="9" value="" required autofocus placeholder="Informe a data desejada para o recolhimento">
 						                  </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 control-label">*Horário</label>
                               <div class="col-sm-10">
-                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Informe o horário desejado para o recolhimento" required autofocus>
+                                 <input type="time" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Informe o horário desejado para o recolhimento" required autofocus>
 					                     </div>
                           </div>
 
@@ -158,32 +158,10 @@
                                </div>
                           </div>
 
-                          <div class="form-group"></div>
-                          
-                          <div>
-                              <label class="col-sm-2 control-label">*Telefone para Contato</label>
-                              <div class="col-sm-10">
-                                 <?php
-                                    echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
-                                 ?>
-                               </div>
-                          </div>
-
-                          <div class="form-group"></div>
-
-                          <div>
-                              <label class="col-sm-2 control-label">*E-mail</label>
-                              <div class="col-sm-10">
-                                 <?php
-                                    echo '<input type="text" id="email" name="email" class="form-control" maxlength="13" value="' . $usuario[0]->email . '" required autofocus>';
-                                 ?>
-                               </div>
-                          </div>
                        </div> 
                           <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
                         <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
-                         
-                          <?php
+                        <?php
                           echo $input;
                         ?>
                     </form>

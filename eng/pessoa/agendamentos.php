@@ -16,7 +16,9 @@
     
   elseif (isset($_POST["confirmar"]))
   {
-    $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$_POST["data_agendamento"],$_POST["horario"],$_POST["endereco"]));
+    $data_agendamento = DateTime::createFromFormat('Y-m-d',$_POST["data_agendamento"]);
+    $data_agendamento = $data_agendamento->format('d/m/Y');
+    $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$data_agendamento,$_POST["horario"],$_POST["endereco"]));
     if($id_agendamento!=0)
     {
       $tipo_lixo = $_POST["lixo"];
@@ -155,28 +157,7 @@
                                  <span class="help-block">Value in kg</span>
                                </div>
                           </div>
-
-                          <div class="form-group"></div>
                           
-                          <div>
-                              <label class="col-sm-2 control-label">*Telephone for contact</label>
-                              <div class="col-sm-10">
-                                 <?php
-                                    echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required autofocus onkeypress="formatar("## ####-####", this)">';
-                                 ?>
-                               </div>
-                          </div>
-
-                          <div class="form-group"></div>
-
-                          <div>
-                              <label class="col-sm-2 control-label">*E-mail</label>
-                              <div class="col-sm-10">
-                                 <?php
-                                    echo '<input type="text" id="email" name="email" class="form-control" maxlength="13" value="' . $usuario[0]->email . '" required autofocus>';
-                                 ?>
-                               </div>
-                          </div>
                        </div> 
                           <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirm</button>    
                         <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancel</a><br><br>    

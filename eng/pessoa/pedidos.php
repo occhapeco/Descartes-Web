@@ -13,7 +13,6 @@
       require_once("../conectar_service.php"); 
       $batata = $service->call('agendamento.realizar',array($_POST['id']));
     }
-
   }
 ?>
 <!DOCTYPE html>
@@ -132,7 +131,10 @@
                                         if($status != 'Cancelled' and $status != 'Finished')
                                         {
                                           echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a href="#" type="button" id="excluir" name="excluir" onclick="document.getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
-                                          echo '<td data-title="Mark as finished"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="realizar" name="realizar"><center><a href="#" onclick="document.getElementById(\'finalizar'.$agendamento[$i]->id.'\').submit();"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td><td><center>-</center></td></tr>';
+                                          if($status == 'Not confirmed')
+                                            echo '<td data-title="Mark as finished"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="realizar" name="realizar"><center><a href="#" onclick="document.getElementById(\'finalizar'.$agendamento[$i]->id.'\').submit();"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td><td><center>-</center></td></tr>';
+                                          else
+                                            echo '<td><center>-</center></td><td><center>-</center></td></tr>';
                                         }
                                         else
                                         {

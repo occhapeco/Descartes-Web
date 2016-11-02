@@ -23,7 +23,10 @@
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($aceito);$i++)
                 {
-                	$pdf->Cell(4,1,$aceito[$i]->data_agendamento,1,0);
+                        $data_agendamento = DateTime::createFromFormat('Y-m-d',$aceito[$i]->data_agendamento);
+                        $format = $data_agendamento->format('d/m/Y');
+
+                	$pdf->Cell(4,1,$format,1,0);
                 	$pdf->Cell(3,1,$aceito[$i]->horario,1,0);
                         $json_dados = $service->call('usuario.select', array('id = ' .$aceito[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
@@ -61,7 +64,10 @@
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($realizado);$i++)
                 {
-                	$pdf->Cell(4,1,$realizado[$i]->data_agendamento,1,0);
+                	$data_agendamento = DateTime::createFromFormat('Y-m-d',$realizado[$i]->data_agendamento);
+                        $format = $data_agendamento->format('d/m/Y');
+
+                        $pdf->Cell(4,1,$format,1,0);
                 	$pdf->Cell(3,1,$realizado[$i]->horario,1,0);
                         $json_dados = $service->call('usuario.select', array('id = ' .$realizado[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
@@ -99,7 +105,10 @@
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($atrasado);$i++)
                 {
-                	$pdf->Cell(4,1,$atrasado[$i]->data_agendamento,1,0);
+                	$data_agendamento = DateTime::createFromFormat('Y-m-d',$atrasado[$i]->data_agendamento);
+                        $format = $data_agendamento->format('d/m/Y');
+
+                        $pdf->Cell(4,1,$format,1,0);
                 	$pdf->Cell(3,1,$atrasado[$i]->horario,1,0);
                         $json_dados = $service->call('usuario.select', array('id = ' .$atrasado[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
@@ -137,7 +146,10 @@
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($em_espera);$i++)
                 {
-                        $pdf->Cell(4,1,$em_espera[$i]->data_agendamento,1,0);
+                        $data_agendamento = DateTime::createFromFormat('Y-m-d',$em_espera[$i]->data_agendamento);
+                        $format = $data_agendamento->format('d/m/Y');
+
+                        $pdf->Cell(4,1,$format,1,0);
                         $pdf->Cell(3,1,$em_espera[$i]->horario,1,0);
                         $json_dados = $service->call('usuario.select', array('id = ' .$em_espera[$i]->usuario_id));
                         $usuario = json_decode($json_dados);
@@ -175,7 +187,10 @@
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($cancelados);$i++)
                 {
-                        $pdf->Cell(4,1,$cancelados[$i]->data_agendamento,1,0);
+                        $data_agendamento = DateTime::createFromFormat('Y-m-d',$cancelados[$i]->data_agendamento);
+                        $format = $data_agendamento->format('d/m/Y');
+
+                        $pdf->Cell(4,1,$format,1,0);
                         $pdf->Cell(3,1,$cancelados[$i]->horario,1,0);
                         $json_dados = $service->call('usuario.select', array('id = ' .$cancelados[$i]->usuario_id));
                         $usuario = json_decode($json_dados);

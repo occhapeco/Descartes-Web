@@ -82,6 +82,7 @@
 			$email = preg_replace('![*#/\"´`]+!','',$email);
 			$senha = sha1(md5($senha));
 			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 			$query = $conexao->query("SELECT * FROM master WHERE email = '$email' AND senha = '$senha'");
 			$retorno = 0;
 			if (mysqli_num_rows($query) == 1)
@@ -101,6 +102,7 @@
 	    function insert($nome,$nome_eng) {
 	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO tipo_lixo VALUES(NULL,'$nome','$nome_eng')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -111,6 +113,7 @@
 	    function update($id,$nome,$nome_eng) {
 	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("SELECT * FROM tipo_lixo WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -123,6 +126,7 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("DELETE FROM tipo_lixo_has_ponto WHERE tipo_lixo_id = $id");
 	    	$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE tipo_lixo_id = $id");
 	    	$query = $conexao->query("DELETE FROM tipo_lixo WHERE id = $id");
@@ -175,6 +179,7 @@
 			$pais = preg_replace('![*#/\"´`]+!','',$pais);
 			$id = 0;
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO endereco VALUES(NULL,'$rua','$num','$complemento','$cep','$bairro','$estado','$cidade','$pais',$latitude,$longitude)");
 	    	if ($query == true)
 	    		$id = $conexao->insert_id;
@@ -190,6 +195,7 @@
 			$cidade = preg_replace('![*#/\"´`]+!','',$cidade);
 			$pais = preg_replace('![*#/\"´`]+!','',$pais);
 			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("SELECT * FROM endereco WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -204,6 +210,7 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("DELETE FROM ponto WHERE endereco_id = $id");
 	    	$query = $conexao->query("DELETE FROM agendamento WHERE endereco_id = $id");
 	    	$query = $conexao->query("DELETE FROM usuario_has_endereco WHERE endereco_id = $id");
@@ -255,6 +262,7 @@
     			return 0;
     		$senha = sha1($senha);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO usuario VALUES(NULL,'$nome','$email','$senha','$cpf','$telefone')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -266,6 +274,7 @@
 	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
 			$email = preg_replace('![*#/\"´`]+!','',$email);
 	      	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("SELECT * FROM usuario WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -280,6 +289,7 @@
 		function update_senha($id,$senha_antiga,$senha_nova) {
     		$senha_antiga = sha1($senha_antiga);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM usuario WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -298,6 +308,7 @@
 
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("DELETE FROM usuario_has_endereco WHERE usuario_id = $id");
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE usuario_id = $id");
 	    	while ($row = $query->fetch_assoc())
@@ -318,6 +329,7 @@
 			$email = preg_replace('![*#/\"´`]+!','',$email);
 			$senha = sha1($senha);
 			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 			$query = $conexao->query("SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'");
 			$retorno = 0;
 			if (mysqli_num_rows($query) == 1)
@@ -354,6 +366,7 @@
 		function insert($usuario_id,$endereco_id,$nome) {
 			$nome = preg_replace('![*#/\"´`]+!','',$nome);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO usuario_has_endereco VALUES(NULL,$usuario_id,$endereco_id,'$nome')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -363,6 +376,7 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
     		$query = $conexao->query("DELETE FROM usuario_has_endereco WHERE id = $id");
     		$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM usuario_has_endereco WHERE id = $id");
@@ -400,6 +414,7 @@
     			return 0;
     		$senha = sha1($senha);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO empresa VALUES(NULL,'$razao_social','$nome_fantasia','$cnpj','$senha','$email')");
 	    	$id = 0;
 	    	if ($query == true)
@@ -412,6 +427,7 @@
 			$nome_fantasia = preg_replace('![*#/\"´`]+!','',$nome_fantasia);
 			$email = preg_replace('![*#/\"´`]+!','',$email);
 	      	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("SELECT * FROM empresa WHERE id = $id");
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
@@ -425,6 +441,7 @@
 		function update_senha($id,$senha_antiga,$senha_nova) {
 	      	$senha_antiga = sha1($senha_antiga);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM empresa WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -442,6 +459,7 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE empresa_id = $id");
 	    	while ($row = $query->fetch_assoc()){
 	    		$agendamento_id = $row["id"];
@@ -467,6 +485,7 @@
 			$email = preg_replace('![*#/\"´`]+!','',$email);
 			$senha = sha1($senha);
 			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 			$query = $conexao->query("SELECT * FROM empresa WHERE email = '$email' AND senha = '$senha'");
 			$retorno = 0;
 			if (mysqli_num_rows($query) == 1)
@@ -516,6 +535,7 @@
 			$atendimento_fim = preg_replace("![^0-9:]+!",'',$atendimento_fim);
 			$observacao = preg_replace('![*#/\"´`]+!','',$observacao);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO ponto VALUES(NULL,$empresa_id,'$atendimento_ini','$atendimento_fim','$observacao','$telefone',$endereco_id)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -528,6 +548,7 @@
 			$atendimento_fim = preg_replace("![^0-9:]+!",'',$atendimento_fim);
 			$observacao = preg_replace('![*#/\"´`]+!','',$observacao);
 	     	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM ponto WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -540,6 +561,7 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
     		$query = $conexao->query("DELETE FROM tipo_lixo_has_ponto WHERE ponto_id = $id");
     		$query = $conexao->query("SELECT endereco_id FROM ponto WHERE id = $id");
     		$endereco_id = mysqli_fetch_assoc($query);
@@ -620,7 +642,8 @@
 	class tipo_lixo_has_ponto {
 		function insert($tipo_lixo_id,$ponto_id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
-	    	$query = $conexao->query('SET CHARACTER SET utf8');
+			$query = $conexao->query('SET CHARACTER SET utf8');
+	 
 	    	$query = $conexao->query("INSERT INTO tipo_lixo_has_ponto VALUES(NULL,$tipo_lixo_id,$ponto_id)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -630,7 +653,8 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
-	    	$query = $conexao->query('SET CHARACTER SET utf8');
+			$query = $conexao->query('SET CHARACTER SET utf8');
+	 
     		$query = $conexao->query("DELETE FROM tipo_lixo_has_ponto WHERE id = $id");
     		$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM tipo_lixo_has_ponto WHERE id = $id");
@@ -683,6 +707,7 @@
 	class notificacao {
 	    function insert($usuario_id,$empresa_id,$tipo,$destino) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO notificacao VALUES(NULL,$usuario_id,$empresa_id,$tipo,$destino,0)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -692,6 +717,7 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("DELETE FROM notificacao WHERE id = $id");
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM notificacao WHERE id = $id");
@@ -724,6 +750,7 @@
 		}
 		function visualizar_todos_by_usuario($usuario_id){
 			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE usuario_id = $usuario_id AND destino = 0");
 			$conexao->close();
 	     	return $query;
@@ -752,6 +779,7 @@
 		}
 		function visualizar_todos_by_empresa($empresa_id){
 			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("UPDATE notificacao SET visualizado = 1 WHERE empresa_id = $empresa_id AND destino = 1");
 			$conexao->close();
 	     	return $query;
@@ -776,6 +804,7 @@
     		$data_agendamento = $data_agendamento->format('Y-m-d');
 			$horario = preg_replace("![^0-9:]+!",'',$horario);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO agendamento VALUES(NULL,$empresa_id,$usuario_id,'$data_agendamento','$horario',0,0,$endereco_id,NULL)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -788,6 +817,7 @@
 	    }
 	    function aceitar($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -802,6 +832,7 @@
 	    }
 	    function recusar($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -817,6 +848,7 @@
 	    }
 	    function realizar($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -830,6 +862,7 @@
 	    }
 	    function cancelar($id,$justificativa) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento WHERE id = $id");
 	    	$row = mysqli_fetch_assoc($query);
@@ -997,6 +1030,7 @@
 	    function insert($tipo_lixo_id,$agendamento_id,$quantidade) {
 	    	$quantidade = ereg_replace("[^0-9.]", '',$quantidade);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("INSERT INTO agendamento_has_tipo_lixo VALUES(NULL,$tipo_lixo_id,$agendamento_id,$quantidade)");
 	    	$id = 0;
 	    	if ($query == true)
@@ -1007,6 +1041,7 @@
 	    function update($id,$quantidade) {
 	    	$quantidade = ereg_replace("[^0-9.]", '',$quantidade);
 	     	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	     	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento_has_tipo_lixo WHERE id = $id");
 			if (mysqli_num_rows($query) == 1)
@@ -1019,6 +1054,7 @@
 	    }
 	    function delete($id) {
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("DELETE FROM agendamento_has_tipo_lixo WHERE id = $id");
 	    	$retorno = false;
 	    	$query = $conexao->query("SELECT * FROM agendamento_has_tipo_lixo WHERE id = $id");

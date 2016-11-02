@@ -13,10 +13,7 @@
   elseif(isset($_POST["edit"]))
   {
     if ($service->call('endereco.update',array($_POST["id"],$_POST["rua"],$_POST["num"],$_POST["complemento"],$_POST["cep"],$_POST["bairro"],$_POST["uf"],$_POST["cidade"],$_POST["pais"],$_POST["lat"],$_POST["long"])))
-    {
-      header("location: enderecos.php");
       $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Seu endereço foi alterado com sucesso!</b></div>';
-   }
     else
       $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
   }
@@ -125,8 +122,7 @@
     <section class="wrapper">
       <h3><i class="fa fa-angle-right"></i> Endereços</h3>
       <?php
-        if($alert != '')
-          echo "<br>".$alert;
+        echo $alert;
       ?>
       <div class="row mt">
         <div class="col-lg-12">

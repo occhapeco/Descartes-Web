@@ -20,6 +20,7 @@
         
                         $json_dados = $service->call('agendamento.select',array('usuario_id = '. $_SESSION["id"]));
                         $agendamento = json_decode($json_dados);
+                       
                         for($i=0;$i<count($agendamento);$i++)
                         {
                                 $json_dados = $service->call('usuario_has_endereco.select', array('usuario_id = '.$_SESSION["id"].' AND endereco_id = '. $agendamento[$i]->endereco_id));
@@ -28,9 +29,12 @@
                                 $usuario = json_decode($json_dados);
                                 $status = "";
 
+                                $data_agendamento = DateTime::createFromFormat('Y-m-d',$agendamento[$i]->data_agendamento);
+                                $format = $data_agendamento->format('d/m/Y');
+
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
-                                  $status = 'Não Confirmado'; 
+                                  $status = utf8_decode('Não confirmado');
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento <= date("Y-m-d"))
                                 {
@@ -49,7 +53,7 @@
                                   $status = 'Cancelado';
                                 }
 
-                                $pdf->Cell(3,0.7,$agendamento[$i]->data_agendamento,1,0);
+                                $pdf->Cell(3,0.7,$format,1,0);
                                 $pdf->Cell(3,0.7,$agendamento[$i]->horario,1,0);
                                 $pdf->Cell(4,0.7,$endereco[0]->nome,1,0);
                                 $json_dados = $service->call('empresa.select_by_id', array($agendamento[$i]->empresa_id));
