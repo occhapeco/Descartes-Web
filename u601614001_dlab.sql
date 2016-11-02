@@ -36,10 +36,7 @@ CREATE TABLE IF NOT EXISTS `master` (
 );
 
 INSERT INTO `master` VALUES 
-(NULL,'Andrew Malta','andrewsaxx@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae'),
-(NULL,'Diovanna Schell','diovannacschell@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae'),
-(NULL,'Edenilson Gonçalves','barp9675@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae'),
-(NULL,'Gabriel Vassoler','gabiv98@gmail.com','68c72b048292efb327508f81e1afcd30ec5c88ae');
+(NULL,'Root','root@gmail.com','06f58c80bb949467a59aeeb0fd54cdb28070290b');
 
 
 -- --------------------------------------------------------
@@ -125,9 +122,9 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `razao_social` varchar(40) DEFAULT NULL,
   `nome_fantasia` varchar(40) DEFAULT NULL,
-  `cnpj` varchar(14) DEFAULT NULL,
+  `cnpj` varchar(14) DEFAULT NULL UNIQUE KEY,
   `senha` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL UNIQUE KEY,
   PRIMARY KEY (`id`)
 ) AUTO_INCREMENT=3 ;
 
@@ -368,9 +365,9 @@ INSERT INTO `tipo_lixo_has_ponto` (`id`, `tipo_lixo_id`, `ponto_id`) VALUES
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) DEFAULT NULL,
-  `email` varchar(40) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL UNIQUE KEY,
   `senha` varchar(50) DEFAULT NULL,
-  `cpf` varchar(11) DEFAULT NULL,
+  `cpf` varchar(11) DEFAULT NULL UNIQUE KEY,
   `telefone` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) AUTO_INCREMENT=28 ;
@@ -382,7 +379,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `cpf`, `telefone`) VALUES
 (27, 'Katharyne Oliveira ', 'katharynebeatryz@gmail.com', '71d98a1753bc49c5dd2ecfd10da62d09ab76ab7b', '05884774435', '82987217599'),
 (26, 'wagner', 'wagner@oi.com', '8cb2237d0679ca88db6464eac60da96345513964', '02598156080', '5533221144'),
-(25, 'Andrew Malta', 'andrewsaxx@gmail.com', 'b348abb335f4e54649b53f95d3ac4371390bce58', '44768438830', '4998259128'),
 (24, 'José ', 'oie@oie', '06f58c80bb949467a59aeeb0fd54cdb28070290b', '44768438830', '4555443322');
 
 -- --------------------------------------------------------

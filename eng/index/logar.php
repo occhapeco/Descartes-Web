@@ -26,7 +26,17 @@
                 header("location: ../pessoa/");
             }
             else
-                header("location: index.php");
+            {
+                $master = $service->call('master.login',array($email,$senha));
+                if ($master != 0)
+                {
+                    session_start();
+                    $_SESSION["id"] = $master;
+                    $_SESSION["tabela"] = "master";
+                }
+                else            
+                    header("location: index.php");
+            }
         }     
     }
 ?>

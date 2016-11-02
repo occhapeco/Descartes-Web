@@ -80,7 +80,7 @@
 	class master {
 		function login($email,$senha) {
 			$email = preg_replace('![*#/\"´`]+!','',$email);
-			$senha = sha1(md5($senha));
+			$senha = sha1($senha);
 			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
 			$query = $conexao->query('SET CHARACTER SET utf8');
 			$query = $conexao->query("SELECT * FROM master WHERE email = '$email' AND senha = '$senha'");
@@ -263,10 +263,16 @@
     		$senha = sha1($senha);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
 			$query = $conexao->query('SET CHARACTER SET utf8');
-	    	$query = $conexao->query("INSERT INTO usuario VALUES(NULL,'$nome','$email','$senha','$cpf','$telefone')");
-	    	$id = 0;
-	    	if ($query == true)
-	    		$id = $conexao->insert_id;
+			$query = $conexao->query("SELECT * FROM empresa WHERE email = '$email'");
+			if (mysqli_num_rows($query) == 0)
+			{
+				$query = $conexao->query("INSERT INTO usuario VALUES(NULL,'$nome','$email','$senha','$cpf','$telefone')");
+		    	$id = 0;
+		    	if ($query == true)
+		    		$id = $conexao->insert_id;
+			}
+	    	else
+	    		return 0;
 			$conexao->close();
 			return $id;
 	    }
@@ -415,10 +421,16 @@
     		$senha = sha1($senha);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
 			$query = $conexao->query('SET CHARACTER SET utf8');
-	    	$query = $conexao->query("INSERT INTO empresa VALUES(NULL,'$razao_social','$nome_fantasia','$cnpj','$senha','$email')");
-	    	$id = 0;
-	    	if ($query == true)
-	    		$id = $conexao->insert_id;
+			$query = $conexao->query("SELECT * FROM usuario WHERE email = '$email'");
+			if (mysqli_num_rows($query) == 0)
+			{
+				$query = $conexao->query("INSERT INTO empresa VALUES(NULL,'$razao_social','$nome_fantasia','$cnpj','$senha','$email')");
+		    	$id = 0;
+		    	if ($query == true)
+		    		$id = $conexao->insert_id;
+			}
+	    	else
+	    		return 0;
 			$conexao->close();
 			return $id;
 	    }
