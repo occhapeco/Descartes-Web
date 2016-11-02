@@ -52,30 +52,6 @@
 	    }
 	}
 
-	function validar_cnpj($cnpj){
-		$cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
-		// Valida tamanho
-		if (strlen($cnpj) != 14)
-			return false;
-		// Valida primeiro dígito verificador
-		for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++)
-		{
-			$soma += $cnpj{$i} * $j;
-			$j = ($j == 2) ? 9 : $j - 1;
-		}
-		$resto = $soma % 11;
-		if ($cnpj{12} != ($resto < 2 ? 0 : 11 - $resto))
-			return false;
-		// Valida segundo dígito verificador
-		for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++)
-		{
-			$soma += $cnpj{$i} * $j;
-			$j = ($j == 2) ? 9 : $j - 1;
-		}
-		$resto = $soma % 11;
-		return $cnpj{13} == ($resto < 2 ? 0 : 11 - $resto);
-	}
-
 	//-------Classes do server-------//
 	class master {
 		function login($email,$senha) {
@@ -423,19 +399,18 @@
 
 	// Classe da tabela empresa //
 	class empresa {
-	    function insert($razao_social,$nome_fantasia,$cnpj,$senha,$email) {
+	    function insert($razao_social,$nome_fantasia,$cnpj,$senha,$email,$agendamento) {
 	    	$razao_social = preg_replace('![*#/\"´`]+!','',$razao_social);
 			$nome_fantasia = preg_replace('![*#/\"´`]+!','',$nome_fantasia);
+			$cnpj = preg_replace("![^0-9]+!",'',$cnpj);
 			$email = preg_replace('![*#/\"´`]+!','',$email);
-	    	if (!validar_cnpj($cnpj))
-    			return 0;
     		$senha = sha1($senha);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
 			$query = $conexao->query('SET CHARACTER SET utf8');
 			$query = $conexao->query("SELECT * FROM usuario WHERE email = '$email'");
 			if (mysqli_num_rows($query) == 0)
 			{
-				$query = $conexao->query("INSERT INTO empresa VALUES(NULL,'$razao_social','$nome_fantasia','$cnpj','$senha','$email')");
+				$query = $conexao->query("INSERT INTO empresa VALUES(NULL,'$razao_social','$nome_fantasia','$cnpj','$senha','$email',$agendamento)");
 		    	$id = 0;
 		    	if ($query == true)
 		    		$id = $conexao->insert_id;
@@ -445,7 +420,7 @@
 			$conexao->close();
 			return $id;
 	    }
-	    function update_perfil($id,$razao_social,$nome_fantasia,$email) {
+	    function update_perfil($id,$razao_social,$nome_fantasia,$email,$agendamento) {
 	    	$razao_social = preg_replace('![*#/\"´`]+!','',$razao_social);
 			$nome_fantasia = preg_replace('![*#/\"´`]+!','',$nome_fantasia);
 			$email = preg_replace('![*#/\"´`]+!','',$email);
@@ -455,7 +430,7 @@
 	    	$retorno = false;
 			if (mysqli_num_rows($query) == 1)
 			{
-		    	$query = $conexao->query("UPDATE empresa SET razao_social = '$razao_social',nome_fantasia = '$nome_fantasia',email = '$email' WHERE id = $id");
+		    	$query = $conexao->query("UPDATE empresa SET razao_social = '$razao_social',nome_fantasia = '$nome_fantasia',email = '$email',agendamento = $agendamento WHERE id = $id");
 				$retorno = true;
 			}
 			$conexao->close();
@@ -543,8 +518,8 @@
 		}
 	}
 	// Registro dos métodos da classe empresa //
-	$server->register('empresa.insert', array('razao_social' => 'xsd:string','nome_fantasia' => 'xsd:string','cnpj' => 'xsd:string','senha' => 'xsd:string','email' => 'xsd:string'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na table empresa (retorna o id do registro inserido).');
-	$server->register('empresa.update_perfil', array('id' => 'xsd:integer','razao_social' => 'xsd:string','nome_fantasia' => 'xsd:string','email' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro da tabela empresa.');
+	$server->register('empresa.insert', array('razao_social' => 'xsd:string','nome_fantasia' => 'xsd:string','cnpj' => 'xsd:string','senha' => 'xsd:string','email' => 'xsd:string','agendamento' => 'xsd:integer'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na table empresa (retorna o id do registro inserido).');
+	$server->register('empresa.update_perfil', array('id' => 'xsd:integer','razao_social' => 'xsd:string','nome_fantasia' => 'xsd:string','email' => 'xsd:string','agendamento' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro da tabela empresa.');
 	$server->register('empresa.update_senha', array('id' => 'xsd:integer','senha_antiga' => 'xsd:string','senha_nova' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera a senha de uma empresa testando se a senha que ela digitou é a que está registrada.');
 	$server->register('empresa.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela empresa.');
 	$server->register('empresa.login', array('email' => 'xsd:string','senha' => 'xsd:string'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Pesquisa um registro da tabela empresa por login e senha (sem criptografia e retorna id).');

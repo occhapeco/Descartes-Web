@@ -32,8 +32,8 @@ INSERT INTO usuario (id, nome, email, senha, cpf, telefone) VALUES
 (26, 'wagner', 'wagner@oi.com', '8cb2237d0679ca88db6464eac60da96345513964', '02598156080', '5533221144'),
 (24, 'José ', 'oie@oie', '06f58c80bb949467a59aeeb0fd54cdb28070290b', '44768438830', '4555443322');
 
-INSERT INTO empresa (id, razao_social, nome_fantasia, cnpj, senha, email) VALUES
-(2, 'Batata', 'Batata Frita', '456123654521', '8467b174e821587c4a0545fd8e57204a398c66d4', 'batata@batata');
+INSERT INTO empresa (id, razao_social, nome_fantasia, cnpj, senha, email, agendamento) VALUES
+(2, 'Batata', 'Batata Frita', '456123654521', '8467b174e821587c4a0545fd8e57204a398c66d4', 'batata@batata',1);
 
 INSERT INTO endereco (id, rua, num, complemento, cep, bairro, uf, cidade, pais, latitude, longitude) VALUES
 (26, 'Avenida José Medeiros Viêira', 222, '2222', '88306800', 'Eldorado', 'Sa', 'Itajaí', 'Brasil', -26.950504372188, -48.629693984985),

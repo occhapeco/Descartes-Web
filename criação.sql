@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS empresa (
   nome_fantasia varchar(40) NOT NULL,
   cnpj varchar(14) NULL,
   senha varchar(50) NOT NULL,
-  email varchar(50) NOT NULL UNIQUE KEY
+  email varchar(50) NOT NULL UNIQUE KEY,
+  agendamento tinyint(1) NOT NULL
 ) AUTO_INCREMENT=3 ;
 
 #############################################################################################################
