@@ -17,7 +17,6 @@
 
 
       $empresa = $service->call('empresa.insert', array($_POST["razao_social"],$_POST["nome_fantasia"],$cnpj,$_POST["senha"],$_POST["email"],$_POST["agendamento"]));
-      echo '<script>alert("'.$empresa.'")</script>';
       if ($empresa > 0)
       {
         session_start();
