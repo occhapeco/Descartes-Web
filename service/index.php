@@ -93,9 +93,20 @@
 			$conexao->close();
 			return $retorno;
 		}
+		function select_by_id($id) {
+			$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
+			$query = $conexao->query('SET CHARACTER SET utf8');
+			$query = $conexao->query("SELECT * FROM master WHERE id = $id");
+			$dados = array();
+			while($row = mysqli_fetch_assoc($query))
+			    $dados[] = $row;
+			$conexao->close();
+			return json_encode($dados);
+		}
 	}
 	// Registro dos métodos da classe master //
 	$server->register('master.login', array('email' => 'xsd:string','senha' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Realiza o login em um master (retorna id).');
+	$server->register('master.select_by_id', array('id' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Pesquisa um registro da tabela master por id (retorna json).');
 
 	// Classe da tabela tipo_lixo //
 	class tipo_lixo {
