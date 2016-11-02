@@ -1,5 +1,6 @@
 <?php 
   require_once("../conectar_service.php");
+  $alert="";
   
   //Cadastro
 
@@ -8,7 +9,7 @@
     // Cadastra o endereço e retorna seu id (0 se der bosta)
     if($_POST["senha"] == $_POST["senha1"])
     {
-      $empresa = $service->call('empresa.insert', array($_POST["razao_social"],$_POST["nome_fantasia"],$_POST["cnpj"],$_POST["senha"],$_POST["email"]));
+      $empresa = $service->call('empresa.insert', array($_POST["razao_social"],$_POST["nome_fantasia"],$_POST["cnpj"],$_POST["senha"],$_POST["email"],$_POST["agendamento"]));
       if ($empresa != 0)
       {
        session_start();
@@ -71,20 +72,21 @@
       <section >
           <section class="wrapper">
           	<h3><i class="fa fa-angle-right"></i> Cadastro</h3>
-          	
+          	<?php echo $alert; ?>
           	<!-- BASIC FORM ELELEMNTS -->
             <div class="row mt">
               <div class="col-lg-12">
                   <div class="form-panel offset1">
+                    <span style="color:red"> *CAMPO OBRIGATÓRIO</span><br>
                       <form class="form-horizontal style-form" method="post" action="#">
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Razão Social</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Razão Social</label>
                               <div class="col-sm-10">
                                 <input type="text" id="razao_social" name="razao_social" maxlength="40"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome Fantasia</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Nome Fantasia</label>
                               <div class="col-sm-10">
                                 <input type="text" id="nome_fantasia" name="nome_fantasia" maxlength="40"  class="form-control" autofocus required>
                               </div>
@@ -92,23 +94,34 @@
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">CNPJ</label>
                               <div class="col-sm-10">
-                                <input type="text" id="cnpj" name="cnpj" maxlength="13"  class="form-control" autofocus required>
+                                <input type="text" id="cnpj" name="cnpj" maxlength="14"  class="form-control" autofocus>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Aceita agendamentos</label>
+                              <div class="col-sm-10">
+                                <div class="col-sm-3">
+                                  <input type="radio" name="agendamento" id="agendamento" value="1" checked>Sim
+                                </div>
+                                <div class="col-sm-3">
+                                  <input type="radio" name="agendamento" id="agendamento" value="0">Não
+                                </div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">*E-mail</label>
                               <div class="col-sm-10">
                                 <input type="email" id="email" name="email" maxlength="50"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Senha</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Senha</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha" name="senha" maxlength="12"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Informe Novamente a Senha</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Informe Novamente a Senha</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha1" name="senha1" maxlength="12"  class="form-control" autofocus required>
                               </div>

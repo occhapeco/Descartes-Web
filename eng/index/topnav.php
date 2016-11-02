@@ -47,14 +47,25 @@
 	
 	<style>
 	.mobile{
-		background-color:#606060;
+		background-color:#dcdcdc;
 	}
 	</style>
 	
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div class="logo"><img src="images/logo2.png" height="43px" width="130px" style="margin-top:5px; margin-left:30px;"></div>
+      <div class="logo"><img src="logo2.png" height="50px" width="130px" style="margin-left:30px; margin-top:3px;"></div>
+      <nav id="nav-wrap" style="left: 25%;">
+        <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
+        	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
+        </a> 
+        <a class="mobile-btn" href="#nvv" title="Hide navigation">
+        	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
+        </a>
+        <ul id="nav" class="nav" >
+          <li><a href="index.php" style="margin-left:700px; color:#21d97b; font-size:16px;">Voltar</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
 </header>

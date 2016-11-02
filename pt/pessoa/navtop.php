@@ -8,7 +8,7 @@
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div><a href="index.php" class="logo"><img src="images/logo2.png" height="43px" width="130px" style="margin-top:-5px"></a></div>
+      <div><a href="index.php" class="logo"><img src="images/logo2.png" height="50px" width="130px" style="margin-top:-6px"></a></div>
       <nav id="nav-wrap" style="left: 25%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
@@ -26,7 +26,7 @@
                         $json_dados = $service->call('notificacao.select_nao_visualizados_by_usuario',array($_SESSION["id"]));
                         $notificacao = json_decode($json_dados);
                         if (count($notificacao) > 0) 
-                            echo '<span class="badge bg-theme pull-right">'.count($notificacao).'</span>';
+                            echo '<span class="badge bg-theme pull-right" style="margin-top:5px;margin-left:-4px;">'.count($notificacao).'</span>';
                     ?>
                     <img src="images/icones/icone-03.png" style="margin-bottom:5px;height:17px;width:25px;">
                 </a>

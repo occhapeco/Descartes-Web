@@ -77,39 +77,40 @@
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
+                    <span style="color: red">*CAMPO OBRIGATÓRIO</span><br>
                       <form class="form-horizontal style-form" method="post" action="#">
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome Completo</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Nome Completo</label>
                               <div class="col-sm-10">
                                 <input type="text" id="nome" name="nome" maxlength="30"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">CPF</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*CPF</label>
                               <div class="col-sm-10">
                                 <input type="text" id="cpf" name="cpf" maxlength="11"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Telefone</label>
                               <div class="col-sm-10">
                                 <input type="text" id="telefone" name="telefone" maxlength="25"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*E-mail</label>
                               <div class="col-sm-10">
                                 <input type="email" id="email" name="email" maxlength="40"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Senha</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Senha</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha" name="senha" maxlength="12"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Informe Novamente a Senha</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Informe Novamente a Senha</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha1" name="senha1" maxlength="12"  class="form-control" autofocus required>
                               </div>

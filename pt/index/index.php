@@ -288,7 +288,7 @@
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Agende o recolhimento do lixo.</h4>
 							<div class="row">
 								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 40px;">
-									<a class="btn-store" style="padding: 15px 20px; text-decoration: none;" href="cadastro_pessoa.php">Cadastre-se</a>
+									<a class="btn-store" style="padding: 15px 20px; color:black" href="cadastro_pessoa.php">Cadastre-se</a>
 								</div>
 							</div>
 						</div>
@@ -303,7 +303,7 @@
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Mapa com os recolhimentos agendados.</h4>
 							<div class="row">
 								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 40px;">
-									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_empresa.php">Cadastre-se</a>
+									<a class="btn-store" style="padding: 15px 20px; color:black;" href="cadastro_empresa.php">Cadastre-se</a>
 								</div>
 							</div>
 						</div>
