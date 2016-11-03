@@ -245,6 +245,7 @@
 	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
 			$email = preg_replace('![*#/\"´`]+!','',$email);
 			$cpf = preg_replace("![^0-9]+!",'',$cpf);
+			$telefone = preg_replace("![^0-9]+!",'',$telefone);
 	    	if (!validar_cpf($cpf))
     			return 0;
     		$senha = sha1($senha);
@@ -266,6 +267,7 @@
 	    function update_perfil($id,$nome,$email,$telefone) {
 	    	$nome = preg_replace('![*#/\"´`]+!','',$nome);
 			$email = preg_replace('![*#/\"´`]+!','',$email);
+			$telefone = preg_replace("![^0-9]+!",'',$telefone);
 	      	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
 			$query = $conexao->query('SET CHARACTER SET utf8');
 	    	$query = $conexao->query("SELECT * FROM usuario WHERE id = $id");
@@ -347,7 +349,7 @@
 		}
 	}
 	// Registro dos métodos da classe usuario //
-	$server->register('usuario.insert', array('nome' => 'xsd:string','email' => 'xsd:string','senha' => 'xsd:string','cpf' => 'xsd:string', 'telefone' => 'xsd:string'), array('return' => 'xsd:integer'),$namespace,false,'rpc','encoded','Insere um registro na table usuario (retorna o id do registro inserido).');
+	$server->register('usuario.insert', array('nome' => 'xsd:string','email' => 'xsd:string','senha' => 'xsd:string','cpf' => 'xsd:string', 'telefone' => 'xsd:string'), array('return' => 'xsd:string'),$namespace,false,'rpc','encoded','Insere um registro na table usuario (retorna o id do registro inserido).');
 	$server->register('usuario.update_perfil', array('id' => 'xsd:integer','nome' => 'xsd:string','email' => 'xsd:string','telefone' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera um registro da tabela usuario.');
 	$server->register('usuario.update_senha', array('id' => 'xsd:integer','senha_antiga' => 'xsd:string','senha_nova' => 'xsd:string'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Altera a senha de um usuario testando se a senha que ele digitou é a que está registrada.');
 	$server->register('usuario.delete', array('id' => 'xsd:integer'), array('return' => 'xsd:boolean'),$namespace,false,'rpc','encoded','Deleta um registro da tabela usuario.');

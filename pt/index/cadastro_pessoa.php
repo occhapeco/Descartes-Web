@@ -1,4 +1,6 @@
 <?php 
+  require_once("permissao.php");
+
   require_once("../conectar_service.php");
   
   $alert = "";
@@ -55,7 +57,7 @@
     <link href="assets/css/table-responsive.css" rel="stylesheet">
 
     <script src="assets/js/chart-master/Chart.js"></script>
-	
+  
   </head>
 
   <body>
@@ -71,11 +73,11 @@
       <!--main content start-->
       <section >
           <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Cadastro</h3>
-          	<?php echo $alert; ?>
-          	<!-- BASIC FORM ELELEMNTS -->
-          	<div class="row mt">
-          		<div class="col-lg-12">
+            <h3><i class="fa fa-angle-right"></i> Cadastro</h3>
+            <?php echo $alert; ?>
+            <!-- BASIC FORM ELELEMNTS -->
+            <div class="row mt">
+              <div class="col-lg-12">
                   <div class="form-panel offset1">
                     <span style="color: red">*CAMPO OBRIGATÓRIO</span><br>
                       <form class="form-horizontal style-form" method="post" action="#">
@@ -119,12 +121,12 @@
                           <a href="index.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>
                       </form>
                   </div>
-				      </div><!-- col-lg-12-->      	
+              </div><!-- col-lg-12-->       
            </div><!-- /row -->
         </section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
-			
+      
      </section><!-- Conteiner-->
 
     <!-- js placed at the end of the document so the pages load faster -->
@@ -145,68 +147,6 @@
 
     <!--script for this page-->
     <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
-	
-	<script type="text/javascript">
-   	function numbro(e){
-			var tecla=(window.event)?event.keyCode:e.which;
-			if((tecla>47)&&(tecla<58)) return true;
-			else{
-				if((tecla==8)||(tecla==0)) return true;
-				else return false;
-			}
-		}
-	</script>
-	
-	<script type="application/javascript">
-        $(document).ready(function () {
-            $("#date-popover").popover({html: true, trigger: "manual"});
-            $("#date-popover").hide();
-            $("#date-popover").click(function (e) {
-                $(this).hide();
-            });
-        
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
-        });
 
-
-        function myNavFunction(id) {
-            $("#date-popover").hide();
-            var nav = $("#" + id).data("navigation");
-            var to = $("#" + id).data("to");
-            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        }
-    </script>
-  
-   <script>
-     function formatar(mascara, documento,e){
-     var i = documento.value.length;
-     var saida = mascara.substring(0,1);
-     var texto = mascara.substring(i);
-	 var tecla=(window.event)?event.keyCode:e.which;
-
-	if(tecla!=8){
-		 if (texto.substring(0,1) != saida){
-				documento.value += texto.substring(0,1);
-		 }
-	}
-  
-    }
-	</script>
-	</body>
+  </body>
 </html>

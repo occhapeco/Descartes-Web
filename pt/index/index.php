@@ -1,5 +1,6 @@
 <?php
-	session_start();
+  	require_once("permissao.php");
+	
 	$alert = "";
 	if(isset($_POST["palavra"]))
 		if ($_POST["palavra"] == $_SESSION["palavra"])
