@@ -164,7 +164,7 @@
 						</div>
 						<div class="text-right h-quote">
 							<div class="landing-quote quote-text">
-								<span>"Encontre os pontos de coleta e facilite sua vida, além de ajudar o meio ambiente"</span>
+								<span>"Encontre os pontos de coleta e facilite sua vida, além de ajudar o meio ambiente."</span>
 							</div>
 						</div>
 					</div>
@@ -673,7 +673,7 @@
                                 '</div>'+
                                 '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                                 '<div id="bodyContent">'+
-                                '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                                '<p>Recolhe: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                                 '</div>'+
@@ -718,7 +718,7 @@
                           '</div>'+
                           '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                           '<div id="bodyContent">'+
-                          '<p>Recolhe:<?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p>Recolhe: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                           '</div>'+

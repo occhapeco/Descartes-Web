@@ -347,11 +347,16 @@
                                 '<p>Recolhe: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
+                                <?php
+                                  if($emp[0]->agendamento == 1)
+                                  {
+                                ?>
                                 '<form action="agendamentos.php" method="post">'+
                                 '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                                 '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
                                 '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                                 '</form>'+
+                                <?php } ?>
                                 '<form action="#" method="post">'+
                                 '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>)">Traçar Rota</a><br>'+
                                 '</form>'+
@@ -400,11 +405,16 @@
                           '<p>Recolhe: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
+                          <?php
+                            if($emp[0]->agendamento == 1)
+                            {
+                          ?>
                           '<form action="agendamentos.php" method="post">'+
                           '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                           '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
                           '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Agendar Recolhimento</button>'+  
                           '</form>'+
+                          <?php } ?>
                           '<form action="#" method="post">'+
                           '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>) " >Traçar Rota</a><br>'+
                           '</form>'+

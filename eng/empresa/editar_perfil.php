@@ -7,7 +7,7 @@
     require_once("../conectar_service.php");
     if (isset($_POST["editar_perfil"]))
     {
-      if ($service->call('empresa.update_perfil',array($_SESSION["id"],$_POST["razao_social"],$_POST["nome_fantasia"],$_POST["email"])))
+      if ($service->call('empresa.update_perfil',array($_SESSION["id"],$_POST["razao_social"],$_POST["nome_fantasia"],$_POST["email"],$_POST["agendamento"])))
         $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Profile changed successfully!</b></div>';
       else
         $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
@@ -98,6 +98,27 @@
                         echo '<input type="text" id="email" name="email" class="form-control" maxlength="50" value="' . $empresa[0]->email . '" readonly required>';
                       ?>
                       </div>
+                  </div>
+                  <div class="form-group">
+                    <?php 
+                      $sim = "checked";
+                      $nao = "";
+                      if($empresa[0]->agendamento == 0)
+                      {
+                        $nao = "checked";
+                        $sim = "";
+                      }
+                    ?>
+                    <label class="col-sm-2 col-sm-2 control-label">*Aceitar agendamentos</label>
+                    <div class="col-sm-10">
+                      <div class="col-sm-2"></div>
+                      <div class="col-sm-4">
+                        <input type="radio" name="agendamento" id="agendamento" value="1" <?php echo $sim; ?>> Yes
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="radio" name="agendamento" id="agendamento" value="0" <?php echo $nao; ?>> No
+                      </div>
+                    </div>
                   </div>
                   <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirm</button>
               </form>
