@@ -16,11 +16,11 @@
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<link href="css/fonts/font-awesome.css" rel="stylesheet">
 
-<style>
-.mobile{
-	background-color:#606060;
-	}
-</style>
+	<style>
+	.mobile{
+		background-color:#606060;
+		}
+	</style>
 <?php require_once("../conectar_service.php"); ?>
 <header class="mobile">
   <div class="row">
