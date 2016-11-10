@@ -109,31 +109,10 @@
           <li><a href="#descubra">Cadastre-se</a></li>
           <li><a href="#sobre">Sobre nós</a></li>
           <li><a href="#contato">Contato</a></li>
-          <li class="visible-xs-block portfolio-item">
-                    <a class="portfolio-link btn" data-toggle="modal" href="#login_modal">Login</a>
-                </li>
+          <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">Login</a></li>
 				<!--Login dropdown-->
-				<li class="dropdown">
-                    <a href="#" class="dropdown-toggle btn hidden-xs" data-toggle="dropdown">Login <b class="caret"></b></a>
-                    <ul class="dropdown-menu" style="min-width: 200px;min-height: 200px;">
-                        <li>                               
-							<div class="container-fluid text-center" style="  margin-top:20px;">
-                                <form class="form-signin" action="logar.php" method="POST">
-									<div class="esp1" align="center">
-										<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus style="margin-bottom:10px;">
-										<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required style="margin-bottom:20px;">	
-									</div>
-									<div class="col-xs-12 col-sm-12">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-primary">Entrar</button>
-                                        </div>
-                                        <a href="#descubra" style="color:#21D97B; margin-left:15px;">Cadastre-se</a>
-                                    </div>  
-                                </form>
-							</div>
-                        </li>
-                    </ul>
-                </li>
+				
+                	
         </ul>
       </nav>
     </div>
@@ -458,7 +437,34 @@
 				</form>
 			</div>
 		</div>
+
+		<div class="container">
+		  <div class="modal fade" id="login_modal" role="dialog" style="z-index: 20000000;">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		            <button type="button" class="close" data-dismiss="modal">&times;</button>
+		            <h4 class="modal-title">Login</h4>
+		        </div>
+		        <form action="logar.php" method="post">
+		          <div class="esp1" align="center">
+						<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus style="margin: 5px 10px 5px 10px;">
+						<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required style="margin: 5px 10px 5px 10px;">	
+				  </div>
+		          <div class="modal-footer">
+		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Entrar</button>
+		            <a href="#descubra" style="color:#21D97B; margin-left:15px;" data-dismiss="modal">Cadastre-se</a>
+		          </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 	</section>
+
+
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
