@@ -115,7 +115,7 @@
 				<!--Login dropdown-->
 				<li class="dropdown">
                     <a href="#" class="dropdown-toggle btn hidden-xs" data-toggle="dropdown">Login <b class="caret"></b></a>
-                    <ul class="dropdown-menu" style="min-width: 200px;min-height: 180px;">
+                    <ul class="dropdown-menu" style="min-width: 200px;min-height: 200px;">
                         <li>                               
 							<div class="container-fluid text-center" style="  margin-top:20px;">
                                 <form class="form-signin" action="logar.php" method="POST">
@@ -127,6 +127,7 @@
                                         <div class="btn-group">
                                             <button type="submit" class="btn btn-primary">Entrar</button>
                                         </div>
+                                        <a href="#descubra" style="color:#21D97B; margin-left:15px;">Cadastre-se</a>
                                     </div>  
                                 </form>
 							</div>
@@ -208,8 +209,8 @@
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 					<div class="app-availability">
-						<a href="#" class="btn btn-store"><img src="img/stores/app.png" class="img-responsive" alt="app store"></a>
-						<a href="#" class="btn btn-store"><img src="img/stores/play.png" class="img-responsive" alt="google store"></a>
+						<a href="https://itunes.apple.com/br/app/descarteslab/id1169096438?l=en&mt=8" class="btn btn-store"><img src="img/stores/app.png" class="img-responsive" alt="app store"></a>
+						<a href="https://play.google.com/store/apps/details?id=br.senai.sc.descarteslab" class="btn btn-store"><img src="img/stores/play.png" class="img-responsive" alt="google store"></a>
 					</div>
 				</div>
 			</div>
@@ -382,14 +383,10 @@
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
-						<video width="100%" height="auto";  controls style="border:solid;border-color:white; max-width:500px;">
-							<source src="movie.mp4" type="video/mp4">
-						</video>
+						<iframe width="100%" height="250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					<div class="col-md-6">
-						<video width="100%" height="auto";  controls style="border:solid;border-color:white; max-width:500px;">
-							<source src="movie.mp4" type="video/mp4">
-						</video>
+						<iframe width="100%" height="250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					</center>
 				</div>
