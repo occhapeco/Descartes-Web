@@ -11,9 +11,9 @@
 	Sections
 ------------------------*/
 section#landing {
-	//background: url('../../img/bg.jpg');
-	//background-size: cover;
-	//background-position: center;
+	background: url('../../img/bg.jpg');
+	background-size: cover;
+	background-position: center;
 }
 .bg{
 	background: url('../../img/floresta.png');
@@ -54,7 +54,8 @@ section#landing {
 	background:#F7F7F7;
 }
 .divider-vertical {
-//height: 100%;//border-right: 1px solid #FFF;
+	height: 100%;
+	border-right: 1px solid #FFF;
 }
 .cta {
 	background:url('../../img/landing/landing-bg.png');
@@ -62,10 +63,10 @@ section#landing {
 	background-position: center;
 }
 #testimonials {
-	//background:url('../../img/bg.jpg');
-	//background-size: cover;
-	//background-position: center;
-	//color: #fff;
+	background:url('../../img/bg.jpg');
+	background-size: cover;
+	background-position: center;
+	color: #fff;
 }
 #subscribe {
 	color:#fff;

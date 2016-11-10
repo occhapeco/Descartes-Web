@@ -1,4 +1,5 @@
 
+
 	<!-- General Style -->
 	<link href="style1.css" rel="stylesheet">
 	
@@ -8,9 +9,6 @@
 	<!-- Device Styles -->
 	<link rel="stylesheet" type="text/css" href="css/devices/style.css">
 	<script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
-
-	<!-- Cover Styles (Skin) -->
-	<link rel="stylesheet" type="text/css" href="css/landing/landing.css">
 	
 	<!--Fonts-->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,500,600,700,800,900' rel='stylesheet' type='text/css'>
