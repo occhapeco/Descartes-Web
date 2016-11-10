@@ -151,7 +151,7 @@
 					<div class="cd-intro">
 						<div class="cd-headline letters rotate-3">
 							
-							<div class="landing-heading padding-sm" style="//background-color: rgba(0,0,0,0.5);color: white">
+							<div class="landing-heading padding-sm" style="color: white">
 								<span class="txt-lg" style="margin-left: 10px;">DescartesLab: </span>
 								<span class="txt-lg cd-words-wrapper text-right">
 									<b class="is-visible">Pense</b>
@@ -249,8 +249,8 @@
       </div>
     </div>
 
-	<section id="pesquise" class="">
-	<div class="">
+	<section id="pesquise">
+	<div>
 		<div class="container">
 			<div class="row margin-lg text-center">
 				<div class="col-lg-12 text-center no-margin-top">
@@ -399,7 +399,7 @@
 				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Desenvolvido pela equipe que representa Santa Catarina no desafio por equipe, na área de técnologia da Inofrmação e Comunicação na Olimpíada do Conhecimento 2016.<p>
 			 	<p style="color:white;margin-top:120px;font-size:20px;color:#393939;">Realização:<p>
 				<img src="img/olimpiada.png" class="img-responsive" style="margin-left:10px; margin-top:10px;">
-				<img src="img/senai.png" class="img-responsive" style="margin-left:10px;margin-top:30px; height:70px; weight:100px;" >
+				<img src="img/senai.png" class="img-responsive" style="margin-left:10px;margin-top:30px; height:70px; width:390px;" >
 			</div>
 			<div class="col-md-6" style="padding-bottom: 20px">
 				<form id="contact-form" method="post" action="#" role="form" >

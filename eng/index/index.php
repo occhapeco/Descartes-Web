@@ -248,8 +248,8 @@
       </div>
     </div>
 
-	<section id="pesquise" class="">
-	<div class="">
+	<section id="pesquise">
+	<div>
 		<div class="container">
 			<div class="row margin-lg text-center">
 				<div class="col-lg-12 text-center no-margin-top">
