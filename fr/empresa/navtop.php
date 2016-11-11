@@ -12,8 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="css/devices/style.css">
 	<script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
 
-	<!-- Cover Styles (Skin) -->
-	<link rel="stylesheet" type="text/css" href="css/landing/landing.css">
+	<!-- Cover Styles (Skin) 
+	<link rel="stylesheet" type="text/css" href="css/landing/landing.css">-->
 	
 	<!--Fonts-->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,500,600,700,800,900' rel='stylesheet' type='text/css'>
@@ -46,7 +46,7 @@
           <li><a href="meus_pontos.php">Mes taches</a></li>
           <li><a href="mapa_coletas.php">Collections</a></li>
           <li><a href="agendamentos.php">Des horaires</a></li>
-		  <li style="margin-left:150px;margin-right:20px;">
+		  <li style="margin-right:20px;" class="marg">
 				<a href="notificacoes.php">
 					<?php
 	                    $json_dados = $service->call('notificacao.select_nao_visualizados_by_empresa',array($_SESSION["id"]));
