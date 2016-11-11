@@ -44,7 +44,7 @@
         <ul id="nav" class="nav" >
           <li><a href="index.php">Statistiques</a></li>
           <li><a href="meus_pontos.php">Mes taches</a></li>
-          <li><a href="mapa_coletas.php">Collections</a></li>
+          <li><a href="mapa_coletas.php">Recueille</a></li>
           <li><a href="agendamentos.php">Des horaires</a></li>
 		  <li style="margin-right:20px;" class="marg">
 				<a href="notificacoes.php">
