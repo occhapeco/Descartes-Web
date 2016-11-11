@@ -33,7 +33,8 @@
         <a class="mobile-btn" href="#nvv" title="Hide navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
-        <ul id="nav" class="nav" >
+        <ul id="nav" class="nav" style="margin-left:430px" >
+          <li><center><a href="../../fr/empresa/"><img src="images/bndbr.png" width="20px;"></a></center></li>
           <li><a href="../index/logout.php">Se déconnecter</a></li>
         </ul>
       </nav>
