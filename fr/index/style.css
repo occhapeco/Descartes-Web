@@ -359,7 +359,7 @@ span.quote-person-company {
 		font-size:30px;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: 950px) {
 	.cover-heading {
 		padding-top: 0px;
 	}
@@ -411,7 +411,7 @@ span.quote-person-company {
 		height:480px;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: 950px) {
 	.cd-intro {
 		text-align:center;
 	}
@@ -937,7 +937,7 @@ a.btn-enter:hover, .btn-enter:focus {
 		height:60px;
 	}
 }
-@media (max-width: 767px) {
+@media (max-width: 950px) {
 	.apple-btn {
 		background:url('img/stores/btn-app-store.png');
 		width:200px;
@@ -1069,7 +1069,7 @@ a.btn-enter:hover, .btn-enter:focus {
 		ul#nav li:hover > a,
 		ul#nav li.active a { color: #21d97b; }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 950px) {
 	header.mobile { height: 48px; }
    header.mobile .logo a { top: 22px; }
 
@@ -1156,7 +1156,7 @@ a.btn-enter:hover, .btn-enter:focus {
 }
 
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 950px) {
 	.logina{
 		margin-left: 50% !important; 
 		padding-right: 50px !important;
@@ -1171,7 +1171,7 @@ a.btn-enter:hover, .btn-enter:focus {
 	}
 }
 @-moz-document url-prefix() {
-   @media only screen and (min-width: 700px) {
+   @media only screen and (min-width: 800px) {
 	.logina{
 		padding-right: 15px !important;
 	}
