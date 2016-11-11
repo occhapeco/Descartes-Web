@@ -110,6 +110,7 @@
           <li><a href="#sobre">Sobre nós</a></li>
           <li><a href="#contato">Contato</a></li>
           <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">Login</a></li>
+          <li><a href="../../fr/index/"><img src="img/bndfr.png" width="20px;"></a></li>
 				<!--Login dropdown-->
 				
                 	

@@ -241,7 +241,7 @@
                   
                 <div class="tab-content" style="margin-top: 20px;">
                   <div id="home" class="tab-pane fade <?php if($active == "home") echo 'in active'; ?>">
-                    <input id="pac-input" class="controls" type="text" placeholder="Search the place"> </input>
+                    <input id="pac-input" class="controls" type="text" placeholder="Rechercher dans le lieu"> </input>
                     <div id="map"></div>
                   </div>
                   <div id="menu1" class="tab-pane fade" style="padding-left: 5px; padding-right: 5px;">
@@ -307,7 +307,7 @@
                               <div class="form-group">
                                   <p class="col-sm-2 col-sm-2 control-label">*Pays</p>
                                   <div class="col-sm-10">
-                                      <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Ex: Brasil">
+                                      <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Ex: Brazil">
                                   </div>
                               </div>
                               <div class="form-group">

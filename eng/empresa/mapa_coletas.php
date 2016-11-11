@@ -115,7 +115,7 @@
                   <input type="hidden" name="lat" id="lat" value="e">
                   <input type="hidden" name="long" id="long" value="e">
                 </form>
-                <input id="pac-input" class="controls" type="text" placeholder="Search the locale"> </input>
+                <input id="pac-input" class="controls" type="text" placeholder="Rechercher dans le lieu"> </input>
                 <div id="map"></div>                  
               </div><!-- /content-panel -->
             </div><!-- /col-lg-12 -->
