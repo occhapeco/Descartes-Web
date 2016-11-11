@@ -234,7 +234,7 @@
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Nom de l'adresse</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control " maxlength="20" id="nome_endereco" placeholder="Give this address a name to find it easily" <?php echo "value='$nome_endereco'"; 
+                          <input type="text" class="form-control " maxlength="20" id="nome_endereco" placeholder="Donnez un nom à cette adresse pour la trouver facilement" <?php echo "value='$nome_endereco'"; 
                               if(isset($_POST["editar"]))
                                 echo 'disabled name="nome_endereco"';
                               else
@@ -246,49 +246,49 @@
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Code postal</label>
                       <div class="col-sm-10">
-                        <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this,event)" class="form-control" placeholder="Enter this address Postal Code" <?php echo "value='$cep'"; ?> required>
+                        <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this,event)" class="form-control" placeholder="Entrez cette adresse Code postal" <?php echo "value='$cep'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Pays</label>
                       <div class="col-sm-10">
-                         <input type="text" class="form-control" maxlength="20" id="pais" name="pais" placeholder="Enter the country" <?php echo "value='$pais'"; ?> required>
+                         <input type="text" class="form-control" maxlength="20" id="pais" name="pais" placeholder="Entrer dans le pays" <?php echo "value='$pais'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Etat</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control" maxlength="2" id="uf" name="uf"  placeholder="Enter the state" <?php echo "value='$uf'";?> required>
+                          <input type="text" class="form-control" maxlength="2" id="uf" name="uf"  placeholder="Entrez l'état" <?php echo "value='$uf'";?> required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Ville</label>
                       <div class="col-sm-10">
-                          <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade" placeholder="Enter the city" <?php echo "value='$cidade'"; ?> required>
+                          <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade" placeholder="Entrez dans la ville" <?php echo "value='$cidade'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Quartier</label>
                       <div class="col-sm-10">
-                        <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro" placeholder="Enter the neighbourhood" <?php echo "value='$bairro'"; ?> required>
+                        <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro" placeholder="Entrez dans le quartier" <?php echo "value='$bairro'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Rue</label>
                       <div class="col-sm-10">
-                        <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua" placeholder="Enter the street" <?php echo "value='$rua'"; ?> required>
+                        <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua" placeholder="Entrez dans la rue" <?php echo "value='$rua'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">*Nombre</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control" maxlength="6" id="num" name="num" placeholder="Enter the number of the address" <?php echo "value='$num'"; ?> required>
+                          <input type="text" class="form-control" maxlength="6" id="num" name="num" placeholder="Entrez le numéro de l'adresse" <?php echo "value='$num'"; ?> required>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Complément</label>
                       <div class="col-sm-10">
-                          <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" placeholder="Enter the complement of the address" <?php echo "value='$complemento'"; ?>>
+                          <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" placeholder="Entrez le complément de l'adresse" <?php echo "value='$complemento'"; ?>>
                       </div>
                   </div>
                   <?php

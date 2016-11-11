@@ -98,14 +98,14 @@
                           <div class="form-group">
                               <label class="col-sm-2 control-label">*Date de ramassage</label>
                               <div class="col-sm-10">
-                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Enter the desired date for payment">
+                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Entrez la date souhaitée pour le paiement">
 						                  </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 control-label">*Time</label>
                               <div class="col-sm-10">
-                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Enter the desired time for the gathering" required autofocus>
+                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Entrez l'heure souhaitée pour le rassemblement" required autofocus>
 					                     </div>
                           </div>
 
@@ -115,7 +115,7 @@
                                 
                                   <div class="form-group">
                                   <div class="col-sm-10">
-                                    <select id="endereco" name="endereco" class="selectpicker" data-live-search="true" title="Select a address...">
+                                    <select id="endereco" name="endereco" class="selectpicker" data-live-search="true" title="Sélectionnez une adresse ...">
                                     <?php
                                       $json_dados = $service->call('usuario_has_endereco.select', array("usuario_id = " .$_SESSION["id"]));
                                       $endereco = json_decode($json_dados);
@@ -133,7 +133,7 @@
                               <div>
                                 <label class="col-sm-2 control-label">* Trash à ramasser</label>
                                 <div class="col-sm-10">
-                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false" title="Nothing Selected">
+                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false" title="Rien sélectionné">
                                       <?php
                                         $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["ponto_id"]));
                                         $tipo_lixo_has_ponto = json_decode($json_dados);
@@ -153,7 +153,7 @@
                           <div>
                               <label class="col-sm-2 control-label">*Quantité de détritus à cueillir</label>
                               <div class="col-sm-10">
-                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Enter the amount of waste that will be collected" required autofocus>
+                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Entrez la quantité de déchets qui seront collectés" required autofocus>
                                  <span class="help-block">Valeur en kg</span>
                                </div>
                           </div>

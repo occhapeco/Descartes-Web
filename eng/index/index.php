@@ -3,9 +3,9 @@
 	$alert = "";
 	if(isset($_POST["palavra"]))
 		if ($_POST["palavra"] == $_SESSION["palavra"])
-			$alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Mensagem enviada com sucesso</b></div>';
+			$alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Message envoyé avec succès</b></div>';
 		else
-			$alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Captha não confere!</b></div>';
+			$alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Captha ne donne pas!</b></div>';
 
 	require_once("../conectar_service.php");
 
@@ -103,12 +103,12 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" >
-          <li><a href="#landing">Home</a></li>
-          <li><a href="#pesquise">Search</a></li>
-          <li><a href="#descubra">Register</a></li>
-          <li><a href="#sobre">About</a></li>
+          <li><a href="#landing">Accueil</a></li>
+          <li><a href="#pesquise">Chercher</a></li>
+          <li><a href="#descubra">Registre</a></li>
+          <li><a href="#sobre">Sur</a></li>
           <li><a href="#contato">Contact</a></li>
-          <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">Login</a></li>
+          <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">S'identifier</a></li>
         </ul>
       </nav>
     </div>
@@ -126,21 +126,21 @@
 					<div class="cd-intro">
 						<div class="cd-headline letters rotate-3">
 							
-							<div class="landing-heading padding-sm" style="//background-color: rgba(0,0,0,0.5);color: white">
+							<div class="landing-heading padding-sm" style="background-color: rgba(0,0,0,0.5);color: white">
 								<span class="txt-lg" style="margin-left: 10px;">DescartesLab: </span>
 								<span class="txt-lg cd-words-wrapper text-right">
-									<b class="is-visible">Think</b>
-									<b>Look</b>
-									<b>Discard</b>
+									<b class="is-visible">Penser</b>
+									<b>Regarde</b>
+									<b>Jeter</b>
 								</span>
 							</div>
 							<div class="landing-text text-right">
-								<span class="txt-md">A simple and easy to use application to find collection sites near you.</span>
+								<span class="txt-md">Une application simple et facile à utiliser pour trouver des sites de collecte près de chez vous.</span>
 							</div>
 						</div>
 						<div class="text-right h-quote">
 							<div class="landing-quote quote-text">
-								<span>"Find the collection points and make your life easier, and help the environment."</span>
+								<span>"Trouvez les points de collecte et rendez votre vie plus facile, et aider l'environnement."</span>
 							</div>
 						</div>
 					</div>
@@ -153,17 +153,17 @@
 							<div class="landing-heading text-center padding-sm" style="background-color: rgba(0,0,0,0.5);color:white;">
 								<span class="txt-lg">DescartesLab </span>
 								<span class="txt-lg cd-words-wrapper center">
-									<b class="is-visible">Think</b>
-									<b>Look</b>
-									<b>Discard</b>
+									<b class="is-visible">Penser</b>
+									<b>Regarde</b>
+									<b>Jeter</b>
 							</div>
 							<div class="landing-text text-right">
-								<span class="txt-md">A simple and easy to use application to find collection sites near you.</span>
+								<span class="txt-md">Une application simple et facile à utiliser pour trouver des sites de collecte près de chez vous.</span>
 							</div>
 						</div>
 						<div class="text-center h-quote">
 							<div class="landing-quote quote-text">
-								<span>"Find the collection points and make your life easier, and help the environment."</span>
+								<span>"Trouvez les points de collecte et rendez votre vie plus facile, et aider l'environnement."</span>
 							</div>
 						</div>
 					</div>
@@ -200,7 +200,7 @@
           <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Garbage type selection</h4>
+                <h4 class="modal-title">Sélection du type d'ordures</h4>
             </div>
             <form action="#" method="post">
               <div class="modal-body" style="overflow: auto; max-height: 400px;">
@@ -216,7 +216,7 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Select</button>
+                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Sélectionner</button>
               </div>
             </form>
           </div>
@@ -229,10 +229,10 @@
 		<div class="container">
 			<div class="row margin-lg text-center">
 				<div class="col-lg-12 text-center no-margin-top">
-						<span class="section-title" style="color:white">Search</span>
+						<span class="section-title" style="color:white">Chercher</span>
 				</div>
 			<div class="col-lg-12">
-			<input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
+			<input id="pac-input" class="controls" type="text" placeholder="rechercher les paramètres régionaux">
 			 <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
     		<div id="map"></div>
 
@@ -249,7 +249,7 @@
 			<!-- testimonials Content Inner -->
 			<div class="row margin-lg text-center">
 				<div class="col-lg-12 text-center margin-lg no-margin-top">
-					<span class="section-title" style="color:white">Register</span>
+					<span class="section-title" style="color:white">Registre</span>
 				</div>
 				
 					<div class="col-lg-12 bg2">
@@ -259,12 +259,12 @@
 									<img src="img/landing/testimonials/pessoa.png" class="img-responsive img-circle" alt="person" height="150px" width="150px">
 								</div>
 							</center>
-							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Filter collection points from the type of trash you want to discard;</h4>
-							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Look for the nearest point of collection to you;</h4>
-							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Schedule the collection of waste.</h4>
+							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Filtrer les points de collecte à partir du type de détritus que vous souhaitez jeter;</h4>
+							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Recherchez le point de collecte le plus proche;</h4>
+							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Planifier la collecte des déchets.</h4>
 							<div class="row">
 								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 70px;">
-									<a class="btn-store" style="padding: 15px 20px; text-decoration: none;" href="cadastro_pessoa.php">Register</a>
+									<a class="btn-store" style="padding: 15px 20px; text-decoration: none;" href="cadastro_pessoa.php">Registre</a>
 								</div>
 							</div>
 						</div>
@@ -274,12 +274,12 @@
 								<img src="img/landing/testimonials/ind3.png" class="img-responsive img-circle" alt="person" height="150px" width="150px">
 							</div>
 						</center>
-							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Register all collection points of your company;</h4>
-							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Choose whether to receive schedules or not;</h4>
-							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Map with scheduled gatherings.</h4>
+							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Enregistrez tous les points de collecte de votre entreprise;</h4>
+							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Choisissez de recevoir ou non des horaires;</h4>
+							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Carte avec des rassemblements programmés.</h4>
 							<div class="row">
 								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 40px;">
-									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_empresa.php">Register</a>
+									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_empresa.php">Registre</a>
 								</div>
 							</div>
 						</div>
@@ -293,7 +293,7 @@
 
 	<section  id="sobre">
 		<div class="container-fluid">
-			<center><div class="section-title" style="padding-left:0;color: white">About</div></center>
+			<center><div class="section-title" style="padding-left:0;color: white">Sur</div></center>
 			<div class="row">
 				<div class="col-md-12">
 				    <center>
@@ -302,26 +302,26 @@
 							<br>
 							<label for="form_name" style="color: white;">Andrew Malta Silva</label>
 							<br>
-							<label for="form_name" style="color: white">Software solutions for business</label>
-							<p style="color: white">Computer Technician</p>
+							<label for="form_name" style="color: white">Solutions logicielles pour les entreprises</label>
+							<p style="color: white">Technicien informatique</p>
 						</div>
 						<div class="col-md-4">
 							<img src="img/Diovanna.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white">Diovanna Caroline Schell</label>
 							<br>
-							<label for="form_name" style="color: white">Web Design</label>
-							<p style="color: white">Industrial training in computer</p>
-							<p style="color: white">Computer Technician</p>
+							<label for="form_name" style="color: white">Création de sites web</label>
+							<p style="color: white">Formation industrielle en informatique</p>
+							<p style="color: white">Technicien informatique</p>
 						</div>
 						<div class="col-md-4">
 							<img src="img/Edenilson.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white">Edenilson Gonçalves</label>
 							<br>
-							<label for="form_name" style="color: white">Infrastructure and local networks</label>
-							<p style="color: white">Industrial learning support and maintenance of personal computers and local area networks</p>
-							<p style="color: white">Industrial training in computer</p>
+							<label for="form_name" style="color: white">Infrastructure et réseaux locaux</label>
+							<p style="color: white">Appui à l'apprentissage industriel et à la maintenance des ordinateurs personnels et des réseaux locaux</p>
+							<p style="color: white">Formation industrielle en informatique</p>
 						</div>
 				 	</center>
 				 </div>
@@ -336,18 +336,18 @@
 						<br>
 						<label for="form_name" style="color: white">Gabriel Vassoler</label>
 						<br>
-						<label for="form_name" style="color: white">Software solutions for business</label>
-						<p style="color:white;">Industrial learning support and maintenance of personal computers and local area networks</p>
-					    <p style="color:white;">Industrial training in computer</p>
-						<p style="color:white;">Computer Technician</p>
+						<label for="form_name" style="color: white">Solutions logicielles pour les entreprises</label>
+						<p style="color:white;">Appui à l'apprentissage industriel et à la maintenance des ordinateurs personnels et des réseaux locaux</p>
+					    <p style="color:white;">Formation industrielle en informatique</p>
+						<p style="color:white;">Technicien informatique</p>
 					</div>
 					<div class="col-md-4">
 						<img src="img/Wagner.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
 						<br>
 						<label for="form_name" style="color: white;font-decoration:bold;">Wagner Titon</label>
 						<br>
-						<label for="form_name" style="color: white">Project manager</label>
-						<p style="color: white">Education specialist SENAI / SC<p>
+						<label for="form_name" style="color: white">Chef de projet</label>
+						<p style="color: white">Spécialiste de l'éducation SENAI / SC<p>
 					</div>
 					<div class="col-md-2">
 					</div>
@@ -371,8 +371,8 @@
 	<section id="contato" class="bg4">
 		<div class="container-fluid">
 			<div class="col-md-6">
-				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Developed by the team representing Santa Catarina in the challenge by staff in the technology area of ​​Inofrmação and Communication in the Knowledge Olympics in 2016.<p>
-			 	<p style="color:white;margin-top:120px;font-size:20px;color:#393939;">Achievement:<p>
+				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Développé par l'équipe représentant Santa Catarina dans le défi lancé par le personnel du domaine technologique de l'Inofrmação et de la Communication dans les Olympiades de la Connaissance en 2016.<p>
+			 	<p style="color:white;margin-top:120px;font-size:20px;color:#393939;">Exploit:<p>
 				<img src="img/olimpiada.png" class="img-responsive" style="margin-left:10px; margin-top:10px;">
 				<img src="img/senai.png" class="img-responsive" style="margin-left:10px;margin-top:30px; height:70px; weight:100px;" >
 			</div>
@@ -386,7 +386,7 @@
 			        <div class="row">
 			            <div class="col-md-12">
 			                <div class="form-group">
-			                    <label for="form_name" style="color: white; font-size:17px;">Name</label>
+			                    <label for="form_name" style="color: white; font-size:17px;">prénom</label>
 			                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Name" required="required">
 			                    <div class="help-block with-errors"></div>
 			                </div>
@@ -417,14 +417,14 @@
 							<div class="col-md-2"></div>
 							<div class="col-md-7 pull-left">
 								<div class="form-group">
-									<label for="form_palavra" style="color: white; font-size:17px;">Word</label>
-									<input id="form_palavra" type="text" name="palavra" class="form-control" placeholder="Enter here the word next to" />
+									<label for="form_palavra" style="color: white; font-size:17px;">Mot</label>
+									<input id="form_palavra" type="text" name="palavra" class="form-control" placeholder="Entrez ici le mot à côté de" />
 								</div>
 							</div>
 						</div>
 					    <div class="col-md-12" style="margin-top: 20px; margin-bottom:0px">
 						   <div class="form-group">    
-							  <button type="submit" class="btn btn-store" style="padding: 15px 20px;color:#393939;" value="Validar Captcha">Send</button>
+							  <button type="submit" class="btn btn-store" style="padding: 15px 20px;color:#393939;" value="Validar Captcha">Envoyer</button>
 	                       </div>					
 						</div>
 			        </div>
@@ -441,7 +441,7 @@
 		      <div class="modal-content">
 		        <div class="modal-header">
 		            <button type="button" class="close" data-dismiss="modal">&times;</button>
-		            <h4 class="modal-title">Login</h4>
+		            <h4 class="modal-title">S'identifier</h4>
 		        </div>
 		        <form action="logar.php" method="post">
 		          <div class="esp1" align="center">
@@ -449,8 +449,8 @@
 						<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required style="margin: 5px 10px 5px 10px;">	
 				  </div>
 		          <div class="modal-footer">
-		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Entrar</button>
-		            <a href="#descubra" style="color:#21D97B; margin-left:15px;" data-dismiss="modal">Cadastre-se</a>
+		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">entrer</button>
+		            <a href="#descubra" style="color:#21D97B; margin-left:15px;" data-dismiss="modal">Inscription</a>
 		          </div>
 		        </form>
 		      </div>
@@ -669,7 +669,7 @@
                                 '</div>'+
                                 '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                                 '<div id="bodyContent">'+
-                                '<p>Collects: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                                '<p>Recueille: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                                 '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                                 '</div>'+
@@ -742,7 +742,7 @@
     }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete&language=en" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete&language=fr" async defer></script>
 
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
