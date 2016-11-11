@@ -107,7 +107,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right" style="margin-top:50px;"></i> Map collections</h3>
+          <h3><i class="fa fa-angle-right" style="margin-top:50px;"></i> Carte des collections</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="panel">
@@ -270,7 +270,7 @@
                     info:'<div id="content">'+
                           '<div id="siteNotice">'+
                           '</div>'+
-                          '<h1 id="firstHeading" class="firstHeading"><?php echo $Usuarioponto[0]->nome; ?> - Aceitos</h1>'+
+                          '<h1 id="firstHeading" class="firstHeading"><?php echo $Usuarioponto[0]->nome; ?> - Accepté</h1>'+
                           '<div id="bodyContent" class="col-sm-12">'+
                           '<p name="nome" class="col-sm-6"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="data_agendamento" class="col-sm-6"> <?php echo $aceitos[$i]->data_agendamento; ?> </p>'+
@@ -305,7 +305,7 @@
                     info:'<div id="content">'+
                           '<div id="siteNotice">'+
                           '</div>'+
-                          '<h1 id="firstHeading" class="firstHeading"><?php echo $Usuarioponto[0]->nome; ?> - Atrasados</h1>'+
+                          '<h1 id="firstHeading" class="firstHeading"><?php echo $Usuarioponto[0]->nome; ?> - arrérages</h1>'+
                           '<div id="bodyContent" class="col-sm-12">'+
                           '<p name="nome" class="col-sm-6"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="data_agendamento" class="col-sm-6"> <?php echo $atrasados[$i]->data_agendamento; ?> </p>'+

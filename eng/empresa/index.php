@@ -106,7 +106,7 @@
       require_once("navtop.php");
     ?>    
     <section class="wrapper site-min-height">
-      <h3><i class="fa fa-angle-right"></i> Statistics</h3>
+      <h3><i class="fa fa-angle-right"></i> Statistiques</h3>
       <div class="col-md-1">
       </div>
       <a href="agendamentos.php">
@@ -115,7 +115,7 @@
             <img src="images/agenda5.png" height="35px" width="35px">
             <h3><?php echo $num_solicitados; ?></h3>
                   </div>
-            <p><?php echo $num_solicitados; ?> schedules requested.</p>
+            <p><?php echo $num_solicitados; ?> horaires demandés.</p>
         </div>
       </a>
       <a href="agendamentos.php">
@@ -124,7 +124,7 @@
             <img src="images/agenda1.png" height="35px" width="35px">
             <h3><?php echo $num_pendentes; ?></h3>
                   </div>
-            <p><?php echo $num_pendentes; ?> schedules pending.</p>
+            <p><?php echo $num_pendentes; ?> calendriers en attente.</p>
         </div>
       </a>
       <a href="agendamentos.php">
@@ -142,7 +142,7 @@
             <img src="images/agenda2.png" height="35px" width="35px">
             <h3><?php echo $num_realizados; ?></h3>
                   </div>
-            <p><?php echo $num_realizados; ?> schedules performed.</p>
+            <p><?php echo $num_realizados; ?> calendriers effectués.</p>
         </div>
       </a>
       <a href="agendamentos.php">
@@ -151,20 +151,20 @@
             <img src="images/agenda4.png" height="35px" width="35px">
             <h3><?php echo $num_cancelados; ?></h3>
                   </div>
-            <p><?php echo $num_cancelados; ?> schedules canceled.</p>
+            <p><?php echo $num_cancelados; ?> horaires annulés.</p>
         </div>
       </a>
       <div class="col-md-1">
       </div>
       <div class="col-md-5" style="margin-top: 10px">
         <div class="content-panel">
-          <center><h4>Schedules finalized</h4></center>
+          <center><h4>Calendrier finalisé</h4></center>
           <div id="finalizados" class="graph"></div>
         </div>
       </div>
       <div class="col-md-7" style="margin-top: 10px">
         <div class="content-panel" style="padding-bottom: 46px;">
-          <center><h4>Schedules performed in the month</h4></center>
+          <center><h4>Programmes effectués dans le mois</h4></center>
           <div id="finalizados_mes" class="graph" style="height: 300px; margin-left: 10px;"></div>
         </div>
       </div>
@@ -193,14 +193,14 @@
           <?php 
             if($total_finalizados > 0)
               echo "data: [
-                      {label: 'Performed', value: $realizados},
-                      {label: 'Cancelled', value: $cancelados}
+                      {label: 'Réalisé', value: $realizados},
+                      {label: 'Annulé', value: $cancelados}
                     ],
                       colors: ['#0288D1', '#D32F2F'],
                     formatter: function (y) { return y + `%` }";
             else
               echo "data: [
-                      {label: 'Without schedules', value: 100}
+                      {label: 'Sans horaires', value: 100}
                     ],
                       colors: ['#0288D1'],
                     formatter: function (y) {return 'finalizados'}";
@@ -217,14 +217,14 @@
                 if($i > 1)
                   $data = ",".$data;
                 if(isset($realizados_semana["semana$i"]))
-                  $data = "{ 'week': '${i}º week', value: ".$realizados_semana["semana$i"]." }".$data;
+                  $data = "{ 'semaine': '${i}º semaine', value: ".$realizados_semana["semana$i"]." }".$data;
                 else
-                  $data = "{ 'week': '${i}º week', value: 0 }".$data;
+                  $data = "{ 'semaine': '${i}º semaine', value: 0 }".$data;
               }
               echo $data;
             ?>
           ],
-          xkey: 'week',
+          xkey: 'semaine',
           ykeys: ['value'],
           ymin: 0,
           yLabelFormat: function(y){return y != Math.round(y)?'':y;},

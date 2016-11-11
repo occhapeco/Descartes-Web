@@ -58,16 +58,16 @@ if (isset($_POST["cancelar"]))
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right" style="margin-top:50px;"></i> Schedules</h3>
+          <h3><i class="fa fa-angle-right" style="margin-top:50px;"></i> Des horaires</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 20px;">
-                  <li class="<?php if($active == "home") echo ' active';?>"><a data-toggle="pill" href="#home" style="color: #797979;"><img src="images/agenda5.png" height="15px" width="15px"> New</a></li>
-                  <li <?php if($active == "menu1") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu1" style="color: #797979;"><img src="images/agenda1.png" height="15px" width="15px"> Pending</a></li>
-                  <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: #797979"><img src="images/agenda3.png" height="15px" width="15px"> Late</a></li>
-                  <li <?php if($active == "menu3") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu3" style="color: #797979;"><img src="images/agenda2.png" height="15px" width="15px"> Accomplished</a></li>
-                  <li <?php if($active == "menu4") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu4" style="color: #797979;"><img src="images/agenda4.png" height="15px" width="15px"> Canceled</a></li>
+                  <li class="<?php if($active == "home") echo ' active';?>"><a data-toggle="pill" href="#home" style="color: #797979;"><img src="images/agenda5.png" height="15px" width="15px"> Nouveau</a></li>
+                  <li <?php if($active == "menu1") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu1" style="color: #797979;"><img src="images/agenda1.png" height="15px" width="15px"> En attendant</a></li>
+                  <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: #797979"><img src="images/agenda3.png" height="15px" width="15px"> En retard</a></li>
+                  <li <?php if($active == "menu3") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu3" style="color: #797979;"><img src="images/agenda2.png" height="15px" width="15px"> Accompli</a></li>
+                  <li <?php if($active == "menu4") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu4" style="color: #797979;"><img src="images/agenda4.png" height="15px" width="15px"> Annulé</a></li>
                 </ul>
                   
                 <div class="tab-content">
@@ -88,13 +88,13 @@ if (isset($_POST["cancelar"]))
                         <thead class="cf">
                         <tr>
                             <th class="date">Date</th>
-                            <th class="time">Schedule</th>  
-                            <th>Address</th>
-                            <th>Requester</th>
-                            <th>Telephone</th>
-                            <th>E-mail</th>
-                            <th><center>Accept</center></th>
-                            <th><center>Refuse</center></th>
+                            <th class="time">Temps</th>  
+                            <th>Adresse</th>
+                            <th>Demandeur</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
+                            <th><center>Acceptez</center></th>
+                            <th><center>Refuser</center></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -112,13 +112,13 @@ if (isset($_POST["cancelar"]))
 							$b = "'";
                           echo "<tr>
                                   <td data-title='Date'>" . $format . "</td>
-                                  <td data-title='Schedule'>" . $agendamento[$i]->horario . "</td>
-                                  <td data-title='Address'>" . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . "</td>
-                                  <td data-title='Requester'>" . $usuario[0]->nome . "</td>
-                                  <td data-title='Telephone'>" . $usuario[0]->telefone . "</td>
-                                  <td data-title='E-mail'>" . $usuario[0]->email . "</td>                    
-                                  <td data-title='Accept'><form method='POST' id='aceitar_agendamento". $agendamento[$i]->id ."' action='#'><input type='hidden' id='id' name='aceitar' value=" . $agendamento[$i]->id . "><center><a href='#' onclick=\"aceitara('aceitar_agendamento". $agendamento[$i]->id ."');\"><img src='images/icones/icone-02.png' style='height:25px; width:25px;'></a></center></form></td>
-                                  <td data-title='Refuse'><form method='POST' action='#' id='recusar_agendamento". $agendamento[$i]->id ."'><input type='hidden' id='recusar' name='recusar' value='".$agendamento[$i]->id."'><input type='hidden' id='excluir' name='excluir'><center><a href='#' onclick=\"document.getElementById('recusar_agendamento". $agendamento[$i]->id ."').submit();\"><img src='images/icones/icone-13.png' style='height:25px; width:25px;'></a></center></form></td>
+                                  <td data-title='Temps'>" . $agendamento[$i]->horario . "</td>
+                                  <td data-title='Adresse'>" . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . "</td>
+                                  <td data-title='Demandeur'>" . $usuario[0]->nome . "</td>
+                                  <td data-title='Téléphone'>" . $usuario[0]->telefone . "</td>
+                                  <td data-title='Email'>" . $usuario[0]->email . "</td>                    
+                                  <td data-title='Acceptez'><form method='POST' id='aceitar_agendamento". $agendamento[$i]->id ."' action='#'><input type='hidden' id='id' name='aceitar' value=" . $agendamento[$i]->id . "><center><a href='#' onclick=\"aceitara('aceitar_agendamento". $agendamento[$i]->id ."');\"><img src='images/icones/icone-02.png' style='height:25px; width:25px;'></a></center></form></td>
+                                  <td data-title='Refuser'><form method='POST' action='#' id='recusar_agendamento". $agendamento[$i]->id ."'><input type='hidden' id='recusar' name='recusar' value='".$agendamento[$i]->id."'><input type='hidden' id='excluir' name='excluir'><center><a href='#' onclick=\"document.getElementById('recusar_agendamento". $agendamento[$i]->id ."').submit();\"><img src='images/icones/icone-13.png' style='height:25px; width:25px;'></a></center></form></td>
                                 </tr>";
                         }
                     ?>
@@ -129,7 +129,7 @@ if (isset($_POST["cancelar"]))
                     <?php
                       }
                       else
-                        echo "<center><h4>No schedule waiting.</h4></center><br>";
+                        echo "<center><h4>Aucun horaire en attente.</h4></center><br>";
                     ?>
                   </div>
                   <div id="menu1" class="tab-pane fade <?php if($active == "menu1") echo 'in active'; ?>">
@@ -150,12 +150,12 @@ if (isset($_POST["cancelar"]))
                       <thead class="cf">
                       <tr>
                           <th class="date">Date</th>
-                          <th class="time">Schedule</th>  
-                          <th>Address</th>  
-                          <th>Requester</th>
-                          <th>Telephone</th>  
-                          <th>E-mail</th>
-                          <th><center>Cancel</center></th>
+                          <th class="time">Temps</th>  
+                          <th>Adresse</th>  
+                          <th>Demandeur</th>
+                          <th>Téléphone</th>  
+                          <th>Email</th>
+                          <th><center>Annuler</center></th>
                       </tr>
                       </thead>
                       <tbody>
@@ -170,12 +170,12 @@ if (isset($_POST["cancelar"]))
 					  $format = $data_agendamento->format('d/m/Y');
                       echo '<tr>
                               <td data-title="Date">' . $format . '</td>
-                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
-                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
-                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
-                              <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                              <td data-title="Cancel"><form method="POST" action="#"><center><a href="#" id="excluir" name="excluir" onclick="document.getElementById(\'agendamento_id\').value = getElementById(\'id'.$agendamento[$i]->id.'\').value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>
+                              <td data-title="Temps">' . $agendamento[$i]->horario . '</td>
+                              <td data-title="Adresse">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                              <td data-title="Demandeur">' . $usuario[0]->nome . '</td>
+                              <td data-title="Téléphone">' . $usuario[0]->telefone . '</td>
+                              <td data-title="Email">' . $usuario[0]->email . '</td>
+                              <td data-title="Annuler"><form method="POST" action="#"><center><a href="#" id="excluir" name="excluir" onclick="document.getElementById(\'agendamento_id\').value = getElementById(\'id'.$agendamento[$i]->id.'\').value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>
                             </tr>';
                     }
                   ?>
@@ -185,7 +185,7 @@ if (isset($_POST["cancelar"]))
                   <?php
                     }
                     else
-                      echo "<center><h4>No schedule accepted.</h4></center><br>";
+                      echo "<center><h4>Aucun horaire accepté.</h4></center><br>";
                   ?>
                   </div>
                   <div id="menu2" class="tab-pane fade <?php if($active == "menu2") echo 'in active'; ?>">
@@ -205,12 +205,12 @@ if (isset($_POST["cancelar"]))
                         <thead class="cf">
                           <tr>
                             <th class="date">Date</th>
-                            <th class="time">Schedule</th>  
-                            <th>Address</th>
-                            <th>Requester</th>
-                            <th>Telephone</th>
-                            <th>E-mail</th>
-                            <th><center>Cancel</center></th>
+                            <th class="time">Temps</th>  
+                            <th>Adresse</th>
+                            <th>Demandeur</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
+                            <th><center>Annuler</center></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -225,11 +225,11 @@ if (isset($_POST["cancelar"]))
 						  $format = $data_agendamento->format('d/m/Y');
                           echo '<tr>
                                   <td data-title="Date">' . $format . '</td>
-                                  <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
-                                  <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                                  <td data-title="Requester">' . $usuario[0]->nome . '</td>
-                                  <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
-                                  <td data-title="E-mail">' . $usuario[0]->email . '</td>
+                                  <td data-title="Temps">' . $agendamento[$i]->horario . '</td>
+                                  <td data-title="Adresse">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                                  <td data-title="Demandeur">' . $usuario[0]->nome . '</td>
+                                  <td data-title="Téléphone">' . $usuario[0]->telefone . '</td>
+                                  <td data-title="Email">' . $usuario[0]->email . '</td>
                                   <td data-title="Refuse"><form method="POST" id="cancelar_agendamento'. $agendamento[$i]->id .'" action="#"><input type="hidden" id="id" name="cancelar" value="' . $agendamento[$i]->id . '"><center><a href="#" onclick="aceitara(`cancelar_agendamento'. $agendamento[$i]->id .'`);");\"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>
                                 </tr>';
                         }
@@ -263,11 +263,11 @@ if (isset($_POST["cancelar"]))
                           <thead class="cf">
                              <tr>
                                 <th class="date">Date</th>
-                                <th class="time">Schedule</th>  
-                                <th>Address</th>
-                                <th>Requester</th>
-                                <th>Telephone</th>
-                                <th>E-mail</th>
+                                <th class="time">Temps</th>  
+                                <th>Adresse</th>
+                                <th>Demandeur</th>
+                                <th>Téléphone</th>
+                                <th>Email</th>
                              </tr>
                             </thead>
                              <tbody>
@@ -282,11 +282,11 @@ if (isset($_POST["cancelar"]))
                           					  $format = $data_agendamento->format('d/m/Y');
                                       echo '<tr>
                                               <td data-title="Date">' . $format . '</td>
-                                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
-                                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
-                                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
-                                              <td data-title="E-mail">' . $usuario[0]->email . '</td>
+                                              <td data-title="Temps">' . $agendamento[$i]->horario . '</td>
+                                              <td data-title="Adresse">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                                              <td data-title="Demandeur">' . $usuario[0]->nome . '</td>
+                                              <td data-title="Téléphone">' . $usuario[0]->telefone . '</td>
+                                              <td data-title="Email">' . $usuario[0]->email . '</td>
                                             </tr>';
                                     }
                                 ?>
@@ -296,7 +296,7 @@ if (isset($_POST["cancelar"]))
                   <?php
                     }
                     else
-                      echo "<center><h4>Any appointment made.</h4></center><br>";
+                      echo "<center><h4>Aucun calendrier mené.</h4></center><br>";
                   ?>
                     </div>
                     <div id="menu4" class="tab-pane fade <?php if($active == "menu4") echo 'in active'; ?>">
@@ -317,12 +317,12 @@ if (isset($_POST["cancelar"]))
                       <thead class="cf">
                          <tr>
                             <th class="date">Date</th>
-                            <th class="time">Schedule</th>  
-                            <th>Address</th>
-                            <th>Requester</th>
-                            <th>Telephone</th>
-                            <th>E-mail</th>
-                            <th>Reason</th>
+                            <th class="time">Temps</th>  
+                            <th>Adresse</th>
+                            <th>Demandeur</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
+                            <th>Raison</th>
                          </tr>
                         </thead>
                          <tbody>
@@ -337,12 +337,12 @@ if (isset($_POST["cancelar"]))
                       $format = $data_agendamento->format('d/m/Y');
                       echo '<tr>
                               <td data-title="Date">' . $format . '</td>
-                              <td data-title="Schedule">' . $agendamento[$i]->horario . '</td>
-                              <td data-title="Address">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                              <td data-title="Requester">' . $usuario[0]->nome . '</td>
-                              <td data-title="Telephone">' . $usuario[0]->telefone . '</td>
-                              <td data-title="E-mail">' . $usuario[0]->email . '</td>
-                              <td data-title="Justificativa">' . $agendamento[$i]->justificativa . '</td>
+                              <td data-title="Temps">' . $agendamento[$i]->horario . '</td>
+                              <td data-title="Adresse">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                              <td data-title="Demandeur">' . $usuario[0]->nome . '</td>
+                              <td data-title="Téléphone">' . $usuario[0]->telefone . '</td>
+                              <td data-title="Email">' . $usuario[0]->email . '</td>
+                              <td data-title="Raison">' . $agendamento[$i]->justificativa . '</td>
                             </tr>';
                     }
                 ?>
@@ -352,7 +352,7 @@ if (isset($_POST["cancelar"]))
                 <?php
                   }
                   else
-                    echo "<center><h4>No schedule canceled.</h4></center><br>";
+                    echo "<center><h4>Aucun calendrier annulé.</h4></center><br>";
                 ?>
                   </div>
                 </div>
@@ -372,7 +372,7 @@ if (isset($_POST["cancelar"]))
                           <div class="modal-content">
                               <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Cancelling justification</h4>
+                                  <h4 class="modal-title">Annulation de la justification</h4>
                               </div>
                               <form action="#" method="post" id="just">
                                 <div class="modal-body">
@@ -380,17 +380,17 @@ if (isset($_POST["cancelar"]))
                                         <label class="col-sm-4 control-label">*Justification</label>
                                         <div class="col-sm-8">
                                               <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
-                                                  <option value="Overdue on the collection">Overdue on the collection</option>
-                                                  <option value="No sufficient collectors">No sufficient collectors</option>
-                                                  <option value="Unavailable time">Unavailable time</option>
-                                                  <option value="Another reason">Another reason</option>
+                                                  <option value="Overdue on the collection">En retard sur la collection</option>
+                                                  <option value="No sufficient collectors">Pas de collecteurs suffisants</option>
+                                                  <option value="Unavailable time">Temps indisponible</option>
+                                                  <option value="Another reason">Une autre raison</option>
                                               </select>
                                               <input type="hidden" name="agendamento_id" id="agendamento_id" value='0'>
                                         </div>
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                      <button onclick="document.getElementById('just').submit();" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Send</button>
+                                      <button onclick="document.getElementById('just').submit();" class="btn btn-theme" id="cancelar" name="cancelar" data-dismiss="modal">Envoyer</button>
                                 </div>
                               </form>
                           </div>

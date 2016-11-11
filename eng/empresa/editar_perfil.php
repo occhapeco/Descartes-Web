@@ -8,19 +8,19 @@
     if (isset($_POST["editar_perfil"]))
     {
       if ($service->call('empresa.update_perfil',array($_SESSION["id"],$_POST["razao_social"],$_POST["nome_fantasia"],$_POST["email"],$_POST["agendamento"])))
-        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Profile changed successfully!</b></div>';
+        $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Profil modifié avec succès!</b></div>';
       else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque chose s\'est mal passé! </b> Vérifiez votre connexion et réessayez.</div>';
     }
     if (isset($_POST["editar_senha"]))
     {
       if($_POST["senha_nova1"] == $_POST["senha_nova2"])
         if (($_POST["senha_nova1"] == $_POST["senha_nova2"]) && $service->call('empresa.update_senha',array($_SESSION["id"],$_POST["senha_antiga"],$_POST["senha_nova1"])))
-          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Password changed successfully!</b></div>';
+          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Le mot de passe a été changé avec succès!</b></div>';
         else
-          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque chose s\'est mal passé! </b> Vérifiez votre connexion et réessayez.</div>';
       else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Passwords do not match!</b></div>';  
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Les mots de passe ne correspondent pas!</b></div>';  
     }
     
 
@@ -66,17 +66,17 @@
       MAIN CONTENT Formulário
       *********************************************************************************************************************************************************** -->
     <section class="wrapper">
-    	<h3><i class="fa fa-angle-right"></i> Edit Profile</h3>
+    	<h3><i class="fa fa-angle-right"></i> Modifier le profil</h3>
     	<?php
         if($alert != '')
           echo "<br>".$alert;
       ?>
         <div class="form-panel col-lg-12">
           <div class="col-lg-5" style="padding-bottom: 35px;">
-          	  <h4 class="mb"><i class="fa fa-angle-right"></i> Company data</h4>
+          	  <h4 class="mb"><i class="fa fa-angle-right"></i> Les données de la compagnie</h4>
               <form class="form-horizontal style-form" method="POST" action="#">
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">Company name</label>
+                      <label class="col-sm-2 col-sm-2 control-label">Nom de la compagnie</label>
                       <div class="col-sm-10">
                       <?php
                         echo '<input type="text" id="razao_social" name="razao_social" class="form-control" maxlength="40" value="' . $empresa[0]->razao_social . '" required autofocus>';
@@ -84,7 +84,7 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">Fantasy name</label>
+                      <label class="col-sm-2 col-sm-2 control-label">Nom de fantaisie</label>
                       <div class="col-sm-10">
                       <?php
                         echo '<input type="text" id="nome_fantasia" name="nome_fantasia" class="form-control" maxlength="40" value="' . $empresa[0]->nome_fantasia . '"required>';
@@ -92,7 +92,7 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 col-sm-2 control-label">E-mail</label>
+                      <label class="col-sm-2 col-sm-2 control-label">Email</label>
                       <div class="col-sm-10">
                       <?php
                         echo '<input type="text" id="email" name="email" class="form-control" maxlength="50" value="' . $empresa[0]->email . '" readonly required>';
@@ -109,43 +109,43 @@
                         $sim = "";
                       }
                     ?>
-                    <label class="col-sm-2 col-sm-2 control-label">*Aceitar agendamentos</label>
+                    <label class="col-sm-2 col-sm-2 control-label">*Accepter les horaires</label>
                     <div class="col-sm-10">
                       <div class="col-sm-2"></div>
                       <div class="col-sm-4">
-                        <input type="radio" name="agendamento" id="agendamento" value="1" <?php echo $sim; ?>> Yes
+                        <input type="radio" name="agendamento" id="agendamento" value="1" <?php echo $sim; ?>> Oui
                       </div>
                       <div class="col-sm-4">
-                        <input type="radio" name="agendamento" id="agendamento" value="0" <?php echo $nao; ?>> No
+                        <input type="radio" name="agendamento" id="agendamento" value="0" <?php echo $nao; ?>> Non
                       </div>
                     </div>
                   </div>
-                  <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirm</button>
+                  <button type="submit" id="editar_perfil" name="editar_perfil" class="btn btn-sm btn-theme pull-right">Confirmer</button>
               </form>
           </div>
       		<div class="col-lg-1"></div>
       	  <div class="col-lg-5" style="padding-bottom: 35px;">
-        	  <h4 class="mb"><i class="fa fa-angle-right"></i> Change password</h4>
+        	  <h4 class="mb"><i class="fa fa-angle-right"></i> Changer le mot de passe</h4>
             <form class="form-horizontal style-form" method="POST" action="#">
                 <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">Current password</label>
+                    <label class="col-sm-2 col-sm-2 control-label">Mot de passe actuel</label>
                     <div class="col-sm-10">
                         <input type="password" id="senha_antiga" name="senha_antiga" class="form-control"  maxlength="12" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">New password</label>
+                    <label class="col-sm-2 col-sm-2 control-label">Nouveau mot de passe</label>
                     <div class="col-sm-10">
                         <input type="password" id="senha_nova1" name="senha_nova1" class="form-control" maxlength="12" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 col-sm-2 control-label">New password confirmation</label>
+                    <label class="col-sm-2 col-sm-2 control-label">Confirmation du nouveau mot de passe</label>
                     <div class="col-sm-10">
                         <input type="password" id="senha_nova2" name="senha_nova2" class="form-control" maxlength="12" required>
                     </div>
                 </div>
-                <button type="submit" id="editar_senha" name="editar_senha" class="btn btn-sm btn-theme pull-right">Confirm</button>
+                <button type="submit" id="editar_senha" name="editar_senha" class="btn btn-sm btn-theme pull-right">Confirmer</button>
             </form>
           </div>
         </div>

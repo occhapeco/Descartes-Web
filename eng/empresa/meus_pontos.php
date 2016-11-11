@@ -13,7 +13,7 @@
   $atendimento_fim = "";
   $observacao =  "";
   $telefone =  "";
-  $btn = '<a class="btn btn-sm btn-theme pull-right" style="margin-bottom:10px;" onclick="codeAddress();" id="cadastrar" name="cadastrar" style="margin-left:10px">Confirm</a>';
+  $btn = '<a class="btn btn-sm btn-theme pull-right" style="margin-bottom:10px;" onclick="codeAddress();" id="cadastrar" name="cadastrar" style="margin-left:10px">Confirmer</a>';
   $input_id = "";
   $lat_long = "";
   $bab = '<input type="hidden" name="cadastrar">';
@@ -59,7 +59,7 @@
       $ponto_id = $_POST["id"];
       $active = "menu2";
       $input_id = "<input type='hidden' id='lat' name='lat' value=" . $endereco[0]->latitude . "><input type='hidden' id='long' name='long' value=" . $endereco[0]->longitude . "><input type='hidden' id='id' name='id' value=" . $_POST["id"] . "><input type='hidden' id='endereco_id' name='endereco_id' value=" . $ponto[0]->endereco_id . ">";
-      $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirm</button>';
+      $btn = '<button class="btn btn-sm btn-theme pull-right" type="submit" id="edit" name="edit" style="margin-left:10px;">Confirmer</button>';
       $bab = "";
       $disabled = "";
       $ativo = ' disabled';
@@ -81,13 +81,13 @@
           for($i=0;$i<count($tipo_lixo);$i++)
             if (isset($_POST[$tipo_lixo[$i]->id])) // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
               $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$ponto));
-            $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Registered spot successfully!</b></div>';
+            $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Endroit enregistré avec succès!</b></div>';
         }
         else
-          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque chose n\'a pas </b> Vérifiez votre connexion et essayez à nouveau!.</div>';
       }
       else
-          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque chose n\'a pas </b> Vérifiez votre connexion et essayez à nouveau!.</div>';
     }
    
     //---------------------//
@@ -114,13 +114,13 @@
           for($i=0;$i<count($tipo_lixo);$i++)
             if (isset($_POST[$tipo_lixo[$i]->id])) // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
               $tipo_lixo_has_ponto_id = $service->call('tipo_lixo_has_ponto.insert',array($tipo_lixo[$i]->id,$_POST["id"]));
-          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Ponto editado com sucesso!</b></div>';
+          $alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>édité avec succès le point!</b></div>';
         }
         else
-          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque chose n\'a pas </b> Vérifiez votre connexion et essayez à nouveau!</div>';
       }
       else
-          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+          $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque chose n\'a pas </b> Vérifiez votre connexion et essayez à nouveau!</div>';
     }
   }
 
@@ -229,14 +229,14 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h4><i class="fa fa-angle-right" style="margin-top:60px;"></i> My Spots</h3>
+          <h4><i class="fa fa-angle-right" style="margin-top:60px;"></i> Mes taches</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">
                 <ul class="nav nav-tabs" style="margin-left: 5px;">
-                  <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: #797979;">Map</a></li>
+                  <li class="<?php if($active == "home") echo ' active'; echo $ativo; ?>"><a <?php echo $disabled; ?> href="#home" style="color: #797979;">Carte</a></li>
                   <li <?php echo "class='$ativo'";?> ><a <?php echo $disabled; ?> href="#menu1" style="color: #797979;">List</a></li>
-                  <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: #797979;">New</a></li>
+                  <li <?php if($active == "menu2") echo ' class="active"'; ?>><a data-toggle="pill" href="#menu2" style="color: #797979;">Nouveau</a></li>
                 </ul>
                   
                 <div class="tab-content" style="margin-top: 20px;">
@@ -256,12 +256,12 @@
                     <table class="table table-striped table-condensed cf ">
                        <thead class="cf">
                           <tr>
-                             <th>Address</th>
-                             <th class="number">Telephone</th>
-                             <th class="time">Time of the attendance</th>
-                             <th>Comments</th>
-                             <th><center>Edit</center></th>
-                             <th><center>Delete</center></th>
+                             <th>Adresse</th>
+                             <th class="number">Téléphone</th>
+                             <th class="time">Durée de la participation</th>
+                             <th>commentaires</th>
+                             <th><center>éditer</center></th>
+                             <th><center>Effacer</center></th>
                           </tr>
                        </thead>
                        <tbody>
@@ -271,12 +271,12 @@
                         $json_dados = $service->call('endereco.select_by_id',array($ponto[$i]->endereco_id));
                         $endereco = json_decode($json_dados);
                         echo '<tr>
-                                <td data-title="Endereço">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
-                                <td data-title="Telefone">' . $ponto[$i]->telefone . '</td>
-                                <td data-title="Horário">' . $ponto[$i]->atendimento_ini . ' - ' . $ponto[$i]->atendimento_fim . '</td>
-                                <td data-title="Observação">' . $ponto[$i]->observacao . '</td>
-                                <td data-title="Edit"><form method="POST" id="editar'. $ponto[$i]->id .'" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><input type="hidden" id="editar" name="editar"><a href="#" onclick="document.getElementById(`editar'. $ponto[$i]->id .'`).submit();"><img src="images/editar.png" height="25px" width="25px"></a></center></form></td>
-                                <td data-title="Delete"><form method="POST" id="excluir'. $ponto[$i]->id .'" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><input type="hidden" id="excluir" name="excluir"><a href="#" onclick="document.getElementById(`excluir'. $ponto[$i]->id .'`).submit();"><img src="images/excluir.png" height="25px" width="25px"></a></center></form></td></tr>';
+                                <td data-title="Adresse">' . $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais . '</td>
+                                <td data-title="Téléphone">' . $ponto[$i]->telefone . '</td>
+                                <td data-title="Temps">' . $ponto[$i]->atendimento_ini . ' - ' . $ponto[$i]->atendimento_fim . '</td>
+                                <td data-title="Voir aussi">' . $ponto[$i]->observacao . '</td>
+                                <td data-title="Éditer"><form method="POST" id="editar'. $ponto[$i]->id .'" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><input type="hidden" id="editar" name="editar"><a href="#" onclick="document.getElementById(`editar'. $ponto[$i]->id .'`).submit();"><img src="images/editar.png" height="25px" width="25px"></a></center></form></td>
+                                <td data-title="Effacer"><form method="POST" id="excluir'. $ponto[$i]->id .'" action="#"><input type="hidden" id="id" name="id" value=' . $ponto[$i]->id . '><center><input type="hidden" id="excluir" name="excluir"><a href="#" onclick="document.getElementById(`excluir'. $ponto[$i]->id .'`).submit();"><img src="images/excluir.png" height="25px" width="25px"></a></center></form></td></tr>';
                       }
                   ?>
                         </tbody>
@@ -285,63 +285,63 @@
                   <?php
                     }
                     else
-                      echo "<center><h4>Você não possui pontos. Para cadastrar um, <a href='mapa_pontos.php'>clique aqui!</a></h4></center><br>";
+                      echo "<center><h4>Vous ne disposez pas de points. Pour soumettre une, <a href='mapa_pontos.php'>cliquez ici!</a></h4></center><br>";
                   ?>
                   </div>
                   <div id="menu2" class="tab-pane fade <?php if($active == "menu2") echo 'in active'; ?>">
                     <div class="row mt">
-                      <p style="color: red; margin-left: 20px;">*REQUIRED FIELD</p>
+                      <p style="color: red; margin-left: 20px;">*CHAMPS REQUIS</p>
                       <form class="form-horizontal style-form" method="post" action="#" id="frm">
                         <input type="hidden" name="lat" id="lat">
                         <input type="hidden" name="long" id="long">
                         <?php echo $bab; ?>
                         <!-- Confirmação e Complemento do endereço do ponto -->
                         <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
-                          <h5 class="mb"><b><i class="fa fa-angle-right"></i> Address</b></h5>
+                          <h5 class="mb"><b><i class="fa fa-angle-right"></i> Adresse</b></h5>
                             <div class="form-group">
-                                  <p class="col-sm-2 col-sm-2 control-label">*Postal Code</p>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Code postal</p>
                                   <div class="col-sm-10">
                                      <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus placeholder="Ex: 89888000">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <p class="col-sm-2 col-sm-2 control-label">*Country</p>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Pays</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Ex: Brasil">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <p class="col-sm-2 col-sm-2 control-label">*State</p>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Etat</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required placeholder="Ex: SC">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <p class="col-sm-2 col-sm-2 control-label">*City</p>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Ville</p>
                                   <div class="col-sm-10">
                                       <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required placeholder="Ex: São Paulo">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <p class="col-sm-2 col-sm-2 control-label">*Neighborhood</p>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Quartier</p>
                                   <div class="col-sm-10">
                                       <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required placeholder="Ex: Centro">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <p class="col-sm-2 col-sm-2 control-label">*Street</p>
+                                  <p class="col-sm-2 col-sm-2 control-label">*Rue</p>
                                   <div class="col-sm-10">
                                       <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required placeholder="Ex: Rua das Margaridas.">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <p class="col-sm-2 control-label">*Number</p>
+                                  <p class="col-sm-2 control-label">*Nombre</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control"  maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required placeholder="Ex: 402">
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <p class="col-sm-2  control-label ">Complement</p>
+                                  <p class="col-sm-2  control-label ">Complément</p>
                                   <div class="col-sm-10">
                                       <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> placeholder="Ex: D. or landmark Ex: Near school">
                                   </div>
@@ -350,27 +350,27 @@
                           
                           <!-- Dados do funcionamento do Ponto -->    
                           <div class="col-lg-6" style="padding: 0px 25px 0px 25px;">
-                            <h5 class="mb"><b><i class="fa fa-angle-right"></i> Spot Data</b></h5>
+                            <h5 class="mb"><b><i class="fa fa-angle-right"></i> Données spot</b></h5>
                              <div class="form-group">
-                                 <p class="col-sm-2 col-sm-2 control-label">*Starting time of the attendance</p>
+                                 <p class="col-sm-2 col-sm-2 control-label">*Heure de début de la participation</p>
                                   <div class="col-sm-10">
                                       <input type="time" class="form-control" maxlength="12" OnKeyPress="formatar('##:##', this,event)"  id="atendimento_ini" name="atendimento_ini" <?php echo "value='$atendimento_ini'";?> required>
                                   </div>
                               </div>
                               <div class="form-group">
-                                 <p class="col-sm-2 col-sm-2 control-label">*Ending  time of the attendance</p>
+                                 <p class="col-sm-2 col-sm-2 control-label">*Heure de fin de la participation</p>
                                   <div class="col-sm-10">
                                       <input type="time" class="form-control" maxlength="12" id="atendimento_fim" name="atendimento_fim"<?php echo "value='$atendimento_fim'";?> required>
                                   </div>
                               </div>
                               <div class="form-group">
-                                    <p class="col-sm-2 col-sm-2 control-label">Telephone</p>
+                                    <p class="col-sm-2 col-sm-2 control-label">Téléphone</p>
                                     <div class="col-sm-10">
                                       <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> placeholder="Ex: 44 4444 4444">
                                     </div>
                                 </div>
                               <div class="form-group">
-                                 <p class="col-sm-2 col-sm-2 control-label">Comments</p>
+                                 <p class="col-sm-2 col-sm-2 control-label">Commentaires</p>
                                   <div class="col-sm-10">
                                       <textarea class="form-control" maxlength="250" id="observacao" name="observacao" placeholder="Ex: closes at noon."><?php
                                        echo $observacao; ?></textarea>
@@ -379,7 +379,7 @@
                            </div>
                            <!-- Tipos de lixo recolhidos pelo Ponto -->    
                           <div class="col-lg-12" style="padding: 0px 50px 0px 50px;">
-                            <h5 class="mb"><b><i class="fa fa-angle-right"></i> Select which of the material below this point collects</b></h5>
+                            <h5 class="mb"><b><i class="fa fa-angle-right"></i> Sélectionnez lequel des documents ci-dessous recueille</b></h5>
                              <div class="form-group">
                                
                                 <table class="table col-md-6">
@@ -448,7 +448,7 @@
           <div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Garbage type selection</h4>
+                  <h4 class="modal-title">Sélection du type d'ordures</h4>
               </div>
               <div class="modal-body" style="overflow: auto; max-height: 400px;">
                 <form action="#" method="post">
@@ -464,7 +464,7 @@
                   </table>
               </div>
               <div class="modal-footer">
-                    <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Selecionar</button>
+                    <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Sélectionner</button>
                  </form>
               </div>
           </div>
@@ -483,7 +483,7 @@
                 document.getElementById( 'long' ).value = results[0].geometry.location.lng();
                 document.getElementById('frm').submit();
             } else {
-                alert( 'Não podemos encontrar sua localização corretamente, por favor, reveja os dados.');
+                alert( 'Vous ne pouvez pas trouver votre site correctement, par favor, reveja os dados.');
             }
         } );
       }
@@ -617,7 +617,7 @@
               $tipo_lixo_has_ponto = json_decode($json_dados);
               $tipos_lixo = "";
               if (count($tipo_lixo_has_ponto) == 0)
-                $tipos_lixo = "Sem tipos de lixo!";
+                $tipos_lixo = "Aucun type de déchets!";
               else
                 for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
                 {

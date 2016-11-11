@@ -34,7 +34,7 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" >
-          <li><a href="../index/logout.php">Logout</a></li>
+          <li><a href="../index/logout.php">Se déconnecter</a></li>
         </ul>
       </nav>
     </div>

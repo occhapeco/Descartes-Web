@@ -16,10 +16,10 @@
                 $aceito = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
                 $pdf->Cell(4,1,"Date",1,0);
-                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
-                $pdf->cell(4,1,"Requester",1,0);
-                $pdf->cell(3,1,"Telephone",1,0);
-                $pdf->cell(13,1,utf8_decode("Address"),1,1);
+                $pdf->Cell(3,1,utf8_decode("Temps"),1,0);
+                $pdf->cell(4,1,"Demandeur",1,0);
+                $pdf->cell(3,1,"Téléphone",1,0);
+                $pdf->cell(13,1,utf8_decode("Adresse"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($aceito);$i++)
                 {
@@ -58,10 +58,10 @@
                 $realizado = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
                 $pdf->Cell(4,1,"Date",1,0);
-                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
-                $pdf->cell(4,1,"Requester",1,0);
-                $pdf->cell(3,1,"Telephone",1,0);
-                $pdf->cell(13,1,utf8_decode("Address"),1,1);
+                $pdf->Cell(3,1,utf8_decode("Temps"),1,0);
+                $pdf->cell(4,1,"Demandeur",1,0);
+                $pdf->cell(3,1,"Téléphone",1,0);
+                $pdf->cell(13,1,utf8_decode("Adresse"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($realizado);$i++)
                 {
@@ -100,10 +100,10 @@
                 $atrasado = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
                 $pdf->Cell(4,1,"Date",1,0);
-                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
-                $pdf->cell(4,1,"Requester",1,0);
-                $pdf->cell(3,1,"Telephone",1,0);
-                $pdf->cell(13,1,utf8_decode("Address"),1,1);
+                $pdf->Cell(3,1,utf8_decode("Temps"),1,0);
+                $pdf->cell(4,1,"Demandeur",1,0);
+                $pdf->cell(3,1,"Téléphone",1,0);
+                $pdf->cell(13,1,utf8_decode("Adresse"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($atrasado);$i++)
                 {
@@ -142,10 +142,10 @@
                 $em_espera = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
                 $pdf->Cell(4,1,"Date",1,0);
-                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
-                $pdf->cell(4,1,"Requester",1,0);
-                $pdf->cell(3,1,"Telephone",1,0);
-                $pdf->cell(13,1,utf8_decode("Address"),1,1);
+                $pdf->Cell(3,1,utf8_decode("Temps"),1,0);
+                $pdf->cell(4,1,"Demandeur",1,0);
+                $pdf->cell(3,1,"Téléphone",1,0);
+                $pdf->cell(13,1,utf8_decode("Adresse"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($em_espera);$i++)
                 {
@@ -184,10 +184,10 @@
                 $cancelados = json_decode($json_dados);
                 $pdf->SetFont('Arial','b','12');
                 $pdf->Cell(4,1,"Date",1,0);
-                $pdf->Cell(3,1,utf8_decode("Schedule"),1,0);
-                $pdf->cell(4,1,"Requester",1,0);
-                $pdf->cell(3,1,"Telephone",1,0);
-                $pdf->cell(13,1,utf8_decode("Address"),1,1);
+                $pdf->Cell(3,1,utf8_decode("Temps"),1,0);
+                $pdf->cell(4,1,"Demandeur",1,0);
+                $pdf->cell(3,1,"Téléphone",1,0);
+                $pdf->cell(13,1,utf8_decode("Adresse"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($cancelados);$i++)
                 {

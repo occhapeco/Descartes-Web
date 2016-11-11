@@ -53,7 +53,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right"></i> Central notifications</h3>
+          <h3><i class="fa fa-angle-right"></i> Notifications central</h3>
             <div class="col-lg-12 ds">
               <?php
                 $json = $service->call("notificacao.select_by_empresa", array($_SESSION["id"]));
@@ -71,7 +71,7 @@
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$usuario[0]->nome.'</b> solicitou um agendamento.<br>
+                                      <b>'.$usuario[0]->nome.'</b> a demandé un calendrier.<br>
                                     </p>
                                   </div>
                                 </div>
@@ -84,7 +84,7 @@
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$usuario[0]->nome.'</b> cancelou um agendamento.<br>
+                                      <b>'.$usuario[0]->nome.'</b> annulé un calendrier.<br>
                                     </p>
                                   </div>
                                 </div>

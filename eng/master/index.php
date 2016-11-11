@@ -56,7 +56,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <section class="wrapper">
-      	<h3><i class="fa fa-angle-right"></i> Waste types</h3>
+      	<h3><i class="fa fa-angle-right"></i> Les types de déchets</h3>
       	
       	<!-- BASIC FORM ELELEMNTS -->
       	<div class="row mt">
@@ -64,19 +64,19 @@
               <div class="form-panel offset1">
                   <form class="form-horizontal style-form" method="post" action="#">
                       <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Waste name</label>
+                          <label class="col-sm-2 col-sm-2 control-label">Nom de déchets</label>
                           <div class="col-sm-10">
                             <input type="text" id="nome_lixo" name="nome_eng" maxlength="20"  class="form-control" autofocus required>
                           </div>
                       </div>
                       <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Waste name (portuguese)</label>
+                          <label class="col-sm-2 col-sm-2 control-label">Nom du déchet (portugais)</label>
                           <div class="col-sm-10">
                             <input type="text" id="lixo" name="nome_lixo" maxlength="20"  class="form-control" autofocus required>
                           </div>
                       </div>
-                      <button type="submit" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Register</button>
-                      <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;" onclick="document.getElementById('nome_lixo').value=' ';document.getElementById('lixo').value=' ';">Cancel</a><br><br>
+                      <button type="submit" id="cadastrar" name="cadastrar" class="btn btn-sm btn-theme pull-right">Registre</button>
+                      <a class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;" onclick="document.getElementById('nome_lixo').value=' ';document.getElementById('lixo').value=' ';">Annuler</a><br><br>
                   </form>
               </div>
 		      </div><!-- col-lg-12-->      	
@@ -90,9 +90,9 @@
                     <table class="table table-striped table-condensed cf ">
                        <thead class="cf">
                           <tr>
-                             <th>Waste name</th>
-                             <th>Waste name (portuguese)</th>
-                             <th><center>Delete</center></th>
+                             <th>Nom du déchet</th>
+                             <th>Nom du déchet (portugais)</th>
+                             <th><center>Effacer</center></th>
                           </tr>
                        </thead>
                        <tbody>
