@@ -106,7 +106,7 @@
           <li><a href="#landing">Accueil</a></li>
           <li><a href="#pesquise">Chercher</a></li>
           <li><a href="#descubra">Registre</a></li>
-          <li><a href="#sobre">Sur</a></li>
+          <li><a href="#sobre">Propos</a></li>
           <li><a href="#contato">Contact</a></li>
           <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">S'identifier</a></li>
           <li><a href="../../pt/index/"><img src="img/bndbr.png" width="20px;"></a></li>
@@ -387,8 +387,8 @@
 			        <div class="row">
 			            <div class="col-md-12">
 			                <div class="form-group">
-			                    <label for="form_name" style="color: white; font-size:17px;">Prénom</label>
-			                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Prénom" required="required">
+			                    <label for="form_name" style="color: white; font-size:17px;">Nom</label>
+			                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Nom" required="required">
 			                    <div class="help-block with-errors"></div>
 			                </div>
 			            </div>
@@ -450,7 +450,7 @@
 						<input type="password" id="senha" name="senha" class="form-control" placeholder="mot de passe" required>	
 				  </div>
 		          <div class="modal-footer">
-		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">entrer</button>
+		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Entrer</button>
 		            <a href="#descubra" style="color:#21D97B; margin-left:15px;" data-dismiss="modal">Inscription</a>
 		          </div>
 		        </form>
@@ -644,7 +644,7 @@
                         $tipo_lixo_has_ponto = json_decode($dados_json);
                         $pontos = "";
                         if (count($tipo_lixo_has_ponto) == 0)
-                          $pontos += "Sem tipos de lixo!";
+                          $pontos += "Pas de types d'ordures!";
                         else{
                           for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
                           {
@@ -692,7 +692,7 @@
                   $tipo_lixo_has_ponto = json_decode($dados_json);
                   $pontos = "";
                   if (count($tipo_lixo_has_ponto) == 0)
-                    $pontos += "Sem tipos de lixo!";
+                    $pontos += "Pas de types d'ordures!";
                   else
                     for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
                     {
@@ -700,7 +700,7 @@
                       $tipo_lixo = json_decode($dados_json1);
                       if ($j != 0)
                         $pontos .= ", ";
-                      $pontos = $pontos.$tipo_lixo[0]->nome;
+                      $pontos = $pontos.$tipo_lixo[0]->nome_eng;
                     }
                     if ($i!=0)
                       echo ",";
@@ -715,7 +715,7 @@
                           '</div>'+
                           '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                           '<div id="bodyContent">'+
-                          '<p>Picks up: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p>Recueille: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                           '</div>'+
