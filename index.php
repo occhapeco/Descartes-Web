@@ -4,5 +4,5 @@
 	if($idioma == 'pt')
 	    header('Location: pt/');
 	else
-	    header('Location: eng/');
+	    header('Location: fr/');
 ?>
