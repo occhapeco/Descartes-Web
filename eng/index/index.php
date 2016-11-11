@@ -109,6 +109,7 @@
           <li><a href="#sobre">Sur</a></li>
           <li><a href="#contato">Contact</a></li>
           <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">S'identifier</a></li>
+          <li><a href="../../pt/index/"><img src="img/bndbr.png" width="20px;"></a></li>
         </ul>
       </nav>
     </div>
