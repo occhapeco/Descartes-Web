@@ -353,7 +353,7 @@ var ds;
                                 '<form action="agendamentos.php" method="post">'+
                                 '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                                 '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
-                                '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Retrait d'horaire</button>'+  
+                                '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Retrait d\'horaire</button>'+  
                                 '</form>'+
                                 <?php } ?>
                                 '<form action="#" method="post">'+
@@ -411,7 +411,7 @@ var ds;
                           '<form action="agendamentos.php" method="post">'+
                           '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                           '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
-                          '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Retrait d'horaire</button>'+  
+                          '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Retrait d\'horaire</button>'+  
                           '</form>'+
                           <?php } ?>
                           '<form action="#" method="post">'+
@@ -497,7 +497,7 @@ function remover_rota()
     markerCluster.repaint();
 }
  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete&language=fr" async defer></script>  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete&language=en" async defer></script>  
 
 
  

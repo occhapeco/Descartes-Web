@@ -102,9 +102,9 @@
                           for($i=0;$i<(count($lixo));$i++)
                           {
                             echo '<tr>
-                                    <td data-title="Nome em inglês">' . $lixo[$i]->nome_eng . '</td>
-                                    <td data-title="Nome do lixo">' . $lixo[$i]->nome . '</td>
-                                    <td data-title="Excluir"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
+                                    <td data-title="Nom du déchet">' . $lixo[$i]->nome_eng . '</td>
+                                    <td data-title="Nom du déchet (portugais)">' . $lixo[$i]->nome . '</td>
+                                    <td data-title="Effacer"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
                           }
                       ?>
                     </tbody>

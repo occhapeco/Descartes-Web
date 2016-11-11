@@ -70,7 +70,7 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Nome do lixo (inglês)</label>
+                          <label class="col-sm-2 col-sm-2 control-label">Nome do lixo (francês)</label>
                           <div class="col-sm-10">
                             <input type="text" id="lixo" name="nome_eng" maxlength="20"  class="form-control" autofocus required>
                           </div>
@@ -91,7 +91,7 @@
                        <thead class="cf">
                           <tr>
                              <th>Nome do Lixo</th>
-                             <th>Nome do lixo (inglês)</th>
+                             <th>Nome do lixo (francês)</th>
                              <th><center>Excluir</center></th>
                           </tr>
                        </thead>
@@ -103,7 +103,7 @@
                           {
                             echo '<tr>
                                     <td data-title="Nome do lixo">' . $lixo[$i]->nome . '</td>
-                                    <td data-title="Nome em inglês">' . $lixo[$i]->nome_eng . '</td>
+                                    <td data-title="Nome do lixo (francês)">' . $lixo[$i]->nome_eng . '</td>
                                     <td data-title="Excluir"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
                           }
                       ?>
