@@ -63,7 +63,7 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" >
-          <li><a href="index.php" style="margin-left:700px; color:#21d97b; font-size:16px;">Voltar</a></li>
+          <li><a href="index.php" style="margin-left:700px; color:#21d97b; font-size:16px;">Retour</a></li>
         </ul>
       </nav>
     </div>

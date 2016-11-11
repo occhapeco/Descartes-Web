@@ -105,7 +105,7 @@
     <?php
       require_once("navtop.php");
     ?>    
-    <section class="wrapper site-min-height">
+    <section class="wrapper">
       <h3><i class="fa fa-angle-right"></i> Statistiques</h3>
       <div class="col-md-1">
       </div>

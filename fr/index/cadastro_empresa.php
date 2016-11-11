@@ -26,11 +26,11 @@
         header("location: ../empresa");
       }
       else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Something went wrong!</b> Check your connection and try again.</div>';
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque-chose s\'est mal passé!</b> Vérifiez votre connexion et réessayez.</div>';
     }
     else
     {
-      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Passwords do not match!</b></div>';
+      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Les mots de passe ne correspondent pas!</b></div>';
     }
   }
 
@@ -79,22 +79,22 @@
       <!--main content start-->
       <section >
           <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Register</h3>
+          	<h3><i class="fa fa-angle-right"></i> Registre</h3>
           	  <?php echo $alert; ?>
           	<!-- BASIC FORM ELELEMNTS -->
             <div class="row mt">
               <div class="col-lg-12">
                   <div class="form-panel offset1">
-                    <span style="color:red">*REQUIRED FIELD</span><br>
+                    <span style="color:red">*CHAMP NÉCESSAIRE</span><br>
                       <form class="form-horizontal style-form" method="post" action="#">
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Company name</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Nom de la compagnie</label>
                               <div class="col-sm-10">
                                 <input type="text" id="razao_social" name="razao_social" maxlength="40"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Fantasy name</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Nom de fantaisie</label>
                               <div class="col-sm-10">
                                 <input type="text" id="nome_fantasia" name="nome_fantasia" maxlength="40"  class="form-control" autofocus required>
                               </div>
@@ -106,36 +106,36 @@
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Accepted schedules</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Horaires acceptés</label>
                               <div class="col-sm-10">
                                 <div class="col-sm-3">
-                                  <input type="radio" name="agendamento" id="agendamento" value="1" checked>Yes
+                                  <input type="radio" name="agendamento" id="agendamento" value="1" checked>Oui
                                 </div>
                                 <div class="col-sm-3">
-                                  <input type="radio" name="agendamento" id="agendamento" value="0">No
+                                  <input type="radio" name="agendamento" id="agendamento" value="0">Non
                                 </div>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*E-mail</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Email</label>
                               <div class="col-sm-10">
                                 <input type="email" id="email" name="email" maxlength="50"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Password</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Mot de passe</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha" name="senha" maxlength="12"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Enter the password again</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Entrez de nouveau le mot de passe</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha1" name="senha1" maxlength="12"  class="form-control" autofocus required>
                               </div>
                           </div>
-                          <button type="submit" id="cadastrar_empresa" name="cadastrar_empresa" class="btn btn-sm btn-theme pull-right">Cadastrar</button>
-                          <a href="index.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>
+                          <button type="submit" id="cadastrar_empresa" name="cadastrar_empresa" class="btn btn-sm btn-theme pull-right">Enregistrer</button>
+                          <a href="index.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Annuler</a><br><br>
                       </form>
                   </div>
               </div><!-- col-lg-12-->       

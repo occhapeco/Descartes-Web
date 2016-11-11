@@ -18,11 +18,11 @@
           header("location: ../pessoa/");
       }
       else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque-chose s\'est mal passé!</b> Vérifiez votre connexion et réessayez.</div>';
     }
     else
     {
-      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Senhas não conferem!</b></div>';
+      $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Les mots de passe ne correspondent pas!</b></div>';
     }
   }
 
@@ -72,16 +72,16 @@
       <!--main content start-->
       <section >
           <section class="wrapper">
-            <h3><i class="fa fa-angle-right"></i> Cadastro</h3>
+            <h3><i class="fa fa-angle-right"></i> Registre</h3>
             <?php echo $alert; ?>
             <!-- BASIC FORM ELELEMNTS -->
             <div class="row mt">
               <div class="col-lg-12">
                   <div class="form-panel offset1">
-                    <span style="color: red">*CAMPO OBRIGATÓRIO</span><br>
+                    <span style="color: red">*CHAMP NÉCESSAIRE</span><br>
                       <form class="form-horizontal style-form" method="post" action="#">
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Complete name</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Nom complet</label>
                               <div class="col-sm-10">
                                 <input type="text" id="nome" name="nome" maxlength="30"  class="form-control" autofocus required>
                               </div>
@@ -93,31 +93,31 @@
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Telephone</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Téléphone</label>
                               <div class="col-sm-10">
                                 <input type="text" id="telefone" name="telefone" maxlength="25"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*E-mail</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Email</label>
                               <div class="col-sm-10">
                                 <input type="email" id="email" name="email" maxlength="40"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Password</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Mot de passe</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha" name="senha" maxlength="12"  class="form-control" autofocus required>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">*Write the password again</label>
+                              <label class="col-sm-2 col-sm-2 control-label">*Rédigez le mot de passe</label>
                               <div class="col-sm-10">
                                 <input type="password" id="senha1" name="senha1" maxlength="12"  class="form-control" autofocus required>
                               </div>
                           </div>
-                          <button type="submit" id="cadastrar_pessoa" name="cadastrar_pessoa" class="btn btn-sm btn-theme pull-right">Register</button>
-                          <a href="index.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancel</a><br><br>
+                          <button type="submit" id="cadastrar_pessoa" name="cadastrar_pessoa" class="btn btn-sm btn-theme pull-right">Registre</button>
+                          <a href="index.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Annuler</a><br><br>
                       </form>
                   </div>
               </div><!-- col-lg-12-->       

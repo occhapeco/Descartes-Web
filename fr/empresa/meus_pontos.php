@@ -301,49 +301,49 @@
                             <div class="form-group">
                                   <p class="col-sm-2 col-sm-2 control-label">*Code postal</p>
                                   <div class="col-sm-10">
-                                     <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus placeholder="Ex: 89888000">
+                                     <input type="text" id="cep" name="cep" maxlength="10" onkeypress="formatar('##.###-###', this)" class="form-control" <?php echo "value='$cep'"; ?> autofocus placeholder="Exemple: 89888000">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <p class="col-sm-2 col-sm-2 control-label">*Pays</p>
                                   <div class="col-sm-10">
-                                      <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Ex: Brazil">
+                                      <input type="text" class="form-control" maxlength="20" id="pais" name="pais" <?php echo "value='$pais'"; ?> required placeholder="Exemple: Brésil">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <p class="col-sm-2 col-sm-2 control-label">*Etat</p>
                                   <div class="col-sm-10">
-                                      <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required placeholder="Ex: SC">
+                                      <input type="text" class="form-control" maxlength="2" id="uf" name="uf"<?php echo "value='$estado'"; ?> required placeholder="Exemple: SC">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <p class="col-sm-2 col-sm-2 control-label">*Ville</p>
                                   <div class="col-sm-10">
-                                      <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required placeholder="Ex: São Paulo">
+                                      <input id="cidade" type="text" class="form-control" maxlength="40" id="cidade" name="cidade"<?php echo "value='$cidade'"; ?> required placeholder="Exemple: São Paulo">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <p class="col-sm-2 col-sm-2 control-label">*Quartier</p>
                                   <div class="col-sm-10">
-                                      <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required placeholder="Ex: Centro">
+                                      <input id="bairro" type="text" class="form-control" maxlength="40" id="bairro" name="bairro"<?php echo "value='$bairro'"; ?> required placeholder="Exemple: Centro">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <p class="col-sm-2 col-sm-2 control-label">*Rue</p>
                                   <div class="col-sm-10">
-                                      <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required placeholder="Ex: Rua das Margaridas.">
+                                      <input id="rua" type="text" class="form-control" maxlength="40" id="rua" name="rua"<?php echo "value='$rua'"; ?> required placeholder="Exemple: Rue des Marguerites.">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <p class="col-sm-2 control-label">*Nombre</p>
                                   <div class="col-sm-10">
-                                      <input type="text" class="form-control"  maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required placeholder="Ex: 402">
+                                      <input type="text" class="form-control"  maxlength="6" id="num" name="num"<?php echo "value='$numero'"; ?> required placeholder="Exemple: 402">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <p class="col-sm-2  control-label ">Complément</p>
                                   <div class="col-sm-10">
-                                      <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> placeholder="Ex: D. or landmark Ex: Near school">
+                                      <input type="text" class="form-control " maxlength="20" id="complemento" name="complemento" <?php echo "value='$complemento'"; ?> placeholder="Exemple: D. or landmark Exemple: près de l'école">
                                   </div>
                               </div>
                         </div>
@@ -366,13 +366,13 @@
                               <div class="form-group">
                                     <p class="col-sm-2 col-sm-2 control-label">Téléphone</p>
                                     <div class="col-sm-10">
-                                      <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> placeholder="Ex: 44 4444 4444">
+                                      <input type="text" maxlength="13" class="form-control" id="telefone" name="telefone" <?php echo "value='$telefone'";?> placeholder="Exemple: 44 4444 4444">
                                     </div>
                                 </div>
                               <div class="form-group">
                                  <p class="col-sm-2 col-sm-2 control-label">Commentaires</p>
                                   <div class="col-sm-10">
-                                      <textarea class="form-control" maxlength="250" id="observacao" name="observacao" placeholder="Ex: closes at noon."><?php
+                                      <textarea class="form-control" maxlength="250" id="observacao" name="observacao" placeholder="Exemple: fermeture à midi."><?php
                                        echo $observacao; ?></textarea>
                                   </div>
                               </div>

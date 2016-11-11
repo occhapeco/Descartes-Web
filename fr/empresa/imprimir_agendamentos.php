@@ -60,7 +60,7 @@
                 $pdf->Cell(4,1,"Date",1,0);
                 $pdf->Cell(3,1,utf8_decode("Temps"),1,0);
                 $pdf->cell(4,1,"Demandeur",1,0);
-                $pdf->cell(3,1,"Téléphone",1,0);
+                $pdf->cell(3,1,utf8_decode("Téléphone"),1,0);
                 $pdf->cell(13,1,utf8_decode("Adresse"),1,1);
                 $pdf->SetFont('Arial','','12');
                 for($i=0; $i<count($realizado);$i++)

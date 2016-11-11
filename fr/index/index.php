@@ -387,8 +387,8 @@
 			        <div class="row">
 			            <div class="col-md-12">
 			                <div class="form-group">
-			                    <label for="form_name" style="color: white; font-size:17px;">prénom</label>
-			                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Name" required="required">
+			                    <label for="form_name" style="color: white; font-size:17px;">Prénom</label>
+			                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Prénom" required="required">
 			                    <div class="help-block with-errors"></div>
 			                </div>
 			            </div>
@@ -446,8 +446,8 @@
 		        </div>
 		        <form action="logar.php" method="post">
 		          <div class="esp1 col-md-12" align="center">
-						<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus style="margin: 5px 10px 5px 10px;">
-						<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required style="margin: 5px 10px 5px 10px;">	
+						<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+						<input type="password" id="senha" name="senha" class="form-control" placeholder="mot de passe" required>	
 				  </div>
 		          <div class="modal-footer">
 		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">entrer</button>
