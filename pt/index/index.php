@@ -448,7 +448,7 @@
 		            <h4 class="modal-title">Login</h4>
 		        </div>
 		        <form action="logar.php" method="post">
-		          <div class="esp1" align="center">
+		          <div class="esp1 col-md-12" align="center">
 						<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus style="margin: 5px 10px 5px 10px;">
 						<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required style="margin: 5px 10px 5px 10px;">	
 				  </div>

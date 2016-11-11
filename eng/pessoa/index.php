@@ -102,7 +102,7 @@
       ?>
     <section class="wrapper">
       <div style="width:100%;height:auto;margin-top:10px;">
-        <input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
+        <input id="pac-input" class="controls" type="text" placeholder="Pesquer une localité">
         <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
         <div id="map"></div> 
       </div>
@@ -117,7 +117,7 @@
           <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Trash type selection</h4>
+                <h4 class="modal-title">Sélection du type de corbeille</h4>
             </div>
             <form action="#" method="post">
               <div class="modal-body" style="overflow: auto; max-height: 400px;">
@@ -133,7 +133,7 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Select</button>
+                <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Sélectionner</button>
               </div>
             </form>
           </div>
@@ -148,7 +148,7 @@
           <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Select your address to create the route</h4>
+                <h4 class="modal-title">Sélectionnez votre adresse pour créer l'itinéraire</h4>
             </div>
             <form action="#" method="post">
               <div class="modal-body" style="overflow: auto; max-height: 400px;">
@@ -320,7 +320,7 @@ var ds;
                         $tipo_lixo_has_ponto = json_decode($dados_json);
                         $pontos = "";
                         if (count($tipo_lixo_has_ponto) == 0)
-                          $pontos += "No trash types!";
+                          $pontos += "Pas de types de déchets!";
                         else{
                           for ($j=0;$j<count($tipo_lixo_has_ponto);$j++)
                           {
@@ -353,11 +353,11 @@ var ds;
                                 '<form action="agendamentos.php" method="post">'+
                                 '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                                 '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
-                                '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Schedule pickup</button>'+  
+                                '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Retrait d'horaire</button>'+  
                                 '</form>'+
                                 <?php } ?>
                                 '<form action="#" method="post">'+
-                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>)">Create route</a><br>'+
+                                '<a class="btn btn-sm btn-theme03 pull-right" id="rota" style="margin-left: 30px;" data-toggle="modal" data-target="#modalend" onclick="rota(<?php echo $endereco[0]->latitude.','.$endereco[0]->longitude;?>)">Créer une route</a><br>'+
                                 '</form>'+
                                 '</div>'+
                                 '</div>',
@@ -401,7 +401,7 @@ var ds;
                           '</div>'+
                           '<h3 id="firstHeading" class="firstHeading"><?php echo $emp[0]->nome_fantasia; ?></h3>'+
                           '<div id="bodyContent">'+
-                          '<p>Picks up: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
+                          '<p>Ramasser: <?php echo $pontos; ?></p><p name="nome"> <?php echo $endereco[0]->rua . ', ' . $endereco[0]->num . ' ' . $endereco[0]->complemento . ', ' . $endereco[0]->bairro . ', ' . $endereco[0]->cidade . ' - ' . $endereco[0]->uf . ', ' . $endereco[0]->pais; ?></p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->observacao; ?> </p>'+
                           '<p name="descricao"> <?php echo $ponto[$i]->telefone; ?> </p>'+
                           <?php
@@ -411,7 +411,7 @@ var ds;
                           '<form action="agendamentos.php" method="post">'+
                           '<input type="hidden" id="empresa_id" name="empresa_id" value="<?php echo $ponto[$i]->empresa_id; ?>">'+
                           '<input type="hidden" id="ponto_id" name="ponto_id" value="<?php echo $ponto[$i]->id; ?>">'+
-                          '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Schedule pickup</button>'+  
+                          '<button type="submit" name="agendar" id="agendar" class="btn btn-sm btn-theme pull-left">Retrait d'horaire</button>'+  
                           '</form>'+
                           <?php } ?>
                           '<form action="#" method="post">'+
@@ -464,7 +464,7 @@ function pegain(lati,longi) {
     if (status === google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
     } else {
-      alert("We couldn't create your route, please, try again.");
+      alert("Impossible de créer votre itinéraire, veuillez réessayer.");
     }
   });
   ds = directionsDisplay;
@@ -479,7 +479,7 @@ function realiza_rota(){
     markerCluster.clearMarkers();
     markerCluster.resetViewport();
     markerCluster.repaint();
-    document.getElementById('btfiltro').innerHTML = '<i class="fa fa-remove"></i> Remove route';
+    document.getElementById('btfiltro').innerHTML = '<i class="fa fa-remove"></i> Supprimer l\'itinéraire';
     document.getElementById('btfiltro').setAttribute('data-target', ' ');
     document.getElementById('btfiltro').setAttribute('onclick', 'remover_rota()');
 }
@@ -497,7 +497,7 @@ function remover_rota()
     markerCluster.repaint();
 }
  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete" async defer></script>  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmWPAIE9_AASg6Ijgoh0lVOZZ_VWvw6fg&libraries=places&callback=initAutocomplete&language=fr" async defer></script>  
 
 
  

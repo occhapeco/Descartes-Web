@@ -10,10 +10,10 @@
 	$pdf->AddPage();
 	$pdf->SetFont('Arial','b','12');
         $pdf->Cell(3,0.7,"Date",1,0);
-        $pdf->Cell(3,0.7,utf8_decode("Time"),1,0);
-        $pdf->Cell(4,0.7,utf8_decode("Address"),1,0);
-        $pdf->Cell(5,0.7,"Collecting company",1,0);
-        $pdf->Cell(4,0.7,"Status",1,1);
+        $pdf->Cell(3,0.7,utf8_decode("Temps"),1,0);
+        $pdf->Cell(4,0.7,utf8_decode("Adresse"),1,0);
+        $pdf->Cell(5,0.7,"Compagnie de collecte",1,0);
+        $pdf->Cell(4,0.7,"statut",1,1);
         $pdf->SetFont('Arial','','12');
 
 
@@ -33,23 +33,23 @@
 
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 0)
                                 {
-                                  $status = 'Not confirmed'; 
+                                  $status = 'Pas confirmé'; 
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento <= date("Y-m-d"))
                                 {
-                                  $status = 'Waiting';
+                                  $status = 'Attendre';
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 0 and $agendamento[$i]->data_agendamento > date("Y-m-d"))
                                 {
-                                  $status = 'Overdue';
+                                  $status = 'En retard';
                                 }
                                 if($agendamento[$i]->aceito == 1 and $agendamento[$i]->realizado == 1)
                                 {
-                                  $status = 'Finished';
+                                  $status = 'Fini';
                                 }
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 1)
                                 {
-                                  $status = 'Cancelled';
+                                  $status = 'Annulé';
                                 }
 
                                 $pdf->Cell(3,0.7,$format,1,0);

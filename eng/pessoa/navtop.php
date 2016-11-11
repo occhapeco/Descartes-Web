@@ -17,9 +17,9 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" >
-            <li><a href="index.php">Map</a></li>
-            <li><a href="enderecos.php">Addresses</a></li>
-            <li><a href="pedidos.php">Schedulings</a></li>
+            <li><a href="index.php">Carte</a></li>
+            <li><a href="enderecos.php">Adresses</a></li>
+            <li><a href="pedidos.php">Calendrier</a></li>
             <li style="" class="logina">
                 <a href="notificacoes.php">
                     <?php
@@ -43,10 +43,10 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" id="notification_bar">
                     <li style="width: 100%;">
-                        <a href="editar_perfil.php" style="color: darkgray;">Edit Profile</a>
+                        <a href="editar_perfil.php" style="color: darkgray;">Modifier le profil</a>
                     </li>
                     <li style="width: 100%;">
-                        <a class="logout" href="../index/logout.php" style="color: darkgray;">Logout</a>
+                        <a class="logout" href="../index/logout.php" style="color: darkgray;">Se déconnecter</a>
                     </li>
                 </ul>
             </li>

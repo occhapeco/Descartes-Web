@@ -49,7 +49,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h3><i class="fa fa-angle-right"></i> Notifications central</h3>
+          <h3><i class="fa fa-angle-right"></i> Notifications centrales</h3>
             <div class="col-lg-12 ds">
               <?php
                 $json = $service->call("notificacao.select_by_usuario", array($_SESSION["id"]));
@@ -67,7 +67,7 @@
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$empresa[0]->nome_fantasia.'</b> refused an scheduling.<br>
+                                      <b>'.$empresa[0]->nome_fantasia.'</b> refusé un calendrier.<br>
                                     </p>
                                   </div>
                                 </div>
@@ -80,7 +80,7 @@
                                   </div>
                                   <div class="details" style="width: 80%">
                                     <p style="font-size: 17px">
-                                      <b>'.$empresa[0]->nome_fantasia.'</b> accepted an scheduling.<br>
+                                      <b>'.$empresa[0]->nome_fantasia.'</b> accepté un calendrier.<br>
                                     </p>
                                   </div>
                                 </div>

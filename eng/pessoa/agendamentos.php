@@ -83,20 +83,20 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
           <section class="wrapper">
-          <a href="enderecos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">New Address</a>
-          	<h3><i class="fa fa-angle-right"></i> Perform scheduling</h3>
+          <a href="enderecos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Nouvelle adresse</a>
+          	<h3><i class="fa fa-angle-right"></i> Effectuer la planification</h3>
             
           	
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel offset1">
-                    <p style="color: red; margin-left: 20px;">*REQUIRED FIELD</p>
+                    <p style="color: red; margin-left: 20px;">*CHAMPS REQUIS</p>
 
                       <form class="form-horizontal style-form" method="post" action="#">
                           
                           <div class="form-group">
-                              <label class="col-sm-2 control-label">*Pickup date</label>
+                              <label class="col-sm-2 control-label">*Date de ramassage</label>
                               <div class="col-sm-10">
                                 <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Enter the desired date for payment">
 						                  </div>
@@ -110,7 +110,7 @@
                           </div>
 
 						              <div class="form-group">
-                              <label class="col-sm-2 control-label">*Address to the Pickup</label>
+                              <label class="col-sm-2 control-label">*Adresse à la réception</label>
                               <div class="container">
                                 
                                   <div class="form-group">
@@ -131,7 +131,7 @@
                               </div>
 
                               <div>
-                                <label class="col-sm-2 control-label">*Trash tipe to be picked up</label>
+                                <label class="col-sm-2 control-label">* Trash à ramasser</label>
                                 <div class="col-sm-10">
                                    <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false" title="Nothing Selected">
                                       <?php
@@ -151,16 +151,16 @@
                           <div class="form-group"></div>
                           
                           <div>
-                              <label class="col-sm-2 control-label">*Amount of trash to be picked</label>
+                              <label class="col-sm-2 control-label">*Quantité de détritus à cueillir</label>
                               <div class="col-sm-10">
                                   <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Enter the amount of waste that will be collected" required autofocus>
-                                 <span class="help-block">Value in kg</span>
+                                 <span class="help-block">Valeur en kg</span>
                                </div>
                           </div>
                           
                        </div> 
-                          <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirm</button>    
-                        <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancel</a><br><br>    
+                          <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmer</button>    
+                        <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Annuler</a><br><br>    
                          
                           <?php
                           echo $input;
