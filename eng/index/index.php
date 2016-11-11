@@ -278,7 +278,7 @@
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Choisissez de recevoir ou non des horaires;</h4>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Carte avec des rassemblements programmés.</h4>
 							<div class="row">
-								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 40px;">
+								<div class="col-md-12" style="margin-bottom: 30px;margin-top: 85px;">
 									<a class="btn-store" style="padding: 15px 20px; text-decoration: none" href="cadastro_empresa.php">Registre</a>
 								</div>
 							</div>
