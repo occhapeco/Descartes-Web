@@ -36,7 +36,7 @@
           <li><a href="meus_pontos.php">Meus pontos</a></li>
           <li><a href="mapa_coletas.php">Coletas</a></li>
           <li><a href="agendamentos.php">Agendamentos</a></li>
-		  <li style="margin-left:150px;margin-right:20px;">
+		  <li style="margin-right:20px;" class="marg">
 				<a href="notificacoes.php">
 					<?php
 	                    $json_dados = $service->call('notificacao.select_nao_visualizados_by_empresa',array($_SESSION["id"]));
