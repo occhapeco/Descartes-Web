@@ -20,7 +20,7 @@
             <li><a href="index.php">Mapa</a></li>
             <li><a href="enderecos.php">Endereços</a></li>
             <li><a href="pedidos.php">Agendamentos</a></li>
-            <li style="" class="logina">
+            <li style="" class=" marg">
                 <a href="notificacoes.php">
                     <?php
                         $json_dados = $service->call('notificacao.select_nao_visualizados_by_usuario',array($_SESSION["id"]));
