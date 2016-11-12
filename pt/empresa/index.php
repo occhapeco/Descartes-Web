@@ -95,6 +95,12 @@
     <link href="assets/css/table-responsive.css" rel="stylesheet">
 
     <script src="assets/js/chart-master/Chart.js"></script>
+    
+    <style>
+    h4{
+      text-align: center;
+    }
+    </style>
 
   </head>
 
