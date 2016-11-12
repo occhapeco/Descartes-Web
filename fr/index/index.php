@@ -221,7 +221,6 @@
     </div>
 
 	<section id="pesquise">
-	<div>
 		<div class="container">
 			<div class="row margin-lg text-center">
 				<div class="col-lg-12 text-center no-margin-top">
@@ -235,7 +234,6 @@
 			</div>
 			</div>
 		</div>
-	</div>
 	</section>
 
 	<!-- /Main Content -->
@@ -354,10 +352,10 @@
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:350px" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:350px;border:solid;border-color:white; max-width:500px;" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen></iframe>
 					</div>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:350px" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:350px;border:solid;border-color:white; max-width:500px;" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen></iframe>
 					</div>
 					</center>
 				</div>
