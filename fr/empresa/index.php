@@ -112,7 +112,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <img src="images/agenda5.png" height="35px" width="35px">
+            <img src="images/agenda5.png" height="35" alt="agenda" width="35">
             <h3><?php echo $num_solicitados; ?></h3>
                   </div>
             <p><?php echo $num_solicitados; ?> horaires demandés.</p>
@@ -121,7 +121,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <img src="images/agenda1.png" height="35px" width="35px">
+            <img src="images/agenda1.png" height="35" alt="agenda 1" width="35">
             <h3><?php echo $num_pendentes; ?></h3>
                   </div>
             <p><?php echo $num_pendentes; ?> calendriers en attente.</p>
@@ -130,7 +130,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <img src="images/agenda3.png" height="35px" width="35px">
+            <img src="images/agenda3.png" height="35" alt="agenda 2" width="35">
             <h3><?php echo $num_atrasados; ?></h3>
                   </div>
             <p><?php echo $num_atrasados; ?> schedules late.</p>
@@ -139,7 +139,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <img src="images/agenda2.png" height="35px" width="35px">
+            <img src="images/agenda2.png" alt="agenda 3" height="35" width="35">
             <h3><?php echo $num_realizados; ?></h3>
                   </div>
             <p><?php echo $num_realizados; ?> calendriers effectués.</p>
@@ -148,7 +148,7 @@
       <a href="agendamentos.php">
         <div class="col-md-2 box0">
           <div class="box1">
-            <img src="images/agenda4.png" height="35px" width="35px">
+            <img src="images/agenda4.png" alt="agenda 4" height="35" width="35">
             <h3><?php echo $num_cancelados; ?></h3>
                   </div>
             <p><?php echo $num_cancelados; ?> horaires annulés.</p>

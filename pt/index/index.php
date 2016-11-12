@@ -71,7 +71,6 @@
 
       #btfiltro{
         padding: 15px;
-        //background-color: #00FFFF;
         color: white;
         margin-bottom: 15px;
         margin-right: 15px;
@@ -95,7 +94,7 @@
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div class="logo"><img src="logo2.png" height="45px" width="130px" style="margin-left:30px; margin-top:5px;"> </div>
+      <div class="logo"><img src="logo2.png" height="45" alt="logo" width="130" style="margin-left:30px; margin-top:5px;"> </div>
       <nav id="nav-wrap" style="left: 25%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
@@ -110,7 +109,7 @@
           <li><a href="#sobre">Sobre nós</a></li>
           <li><a href="#contato">Contato</a></li>
           <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">Login</a></li>
-          <li><a href="../../fr/index/"><img src="img/bndfr.png" width="20px;"></a></li>
+          <li><a href="../../fr/index/"><img src="img/bndfr.png" alt="bandeira" width="20;"></a></li>
 				<!--Login dropdown-->
 				
                 	
@@ -261,7 +260,7 @@
 						<div class="col-lg-6 divider-vertical" style="margin-top: 20px;">
 							<center>
 								<div class="testimonial-img">
-									<img src="img/landing/testimonials/pessoa.png" class="img-responsive img-circle" alt="person" height="150px" width="150px">
+									<img src="img/landing/testimonials/pessoa.png" class="img-responsive img-circle" alt="person" height="150" width="150">
 								</div>
 							</center>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Filtre os pontos de coleta a partir do tipo de lixo que deseja descartar;</h4>
@@ -276,7 +275,7 @@
 						<div class="col-lg-6" style="margin-top: 20px;">
 						<center>
 							<div class="testimonial-img">
-								<img src="img/landing/testimonials/ind3.png" class="img-responsive img-circle" alt="person" height="150px" width="150px">
+								<img src="img/landing/testimonials/ind3.png" class="img-responsive img-circle" alt="person" height="150" width="150">
 							</div>
 						</center>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Cadastre todos os pontos de coleta da sua empresa;</h4>
@@ -303,7 +302,7 @@
 				<div class="col-md-12">
 				    <center>
 				    	<div class="col-md-4">
-							<img src="img/Andrew.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+							<img src="img/Andrew.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white;font-size:14px;"><b>Andrew Malta Silva</b></label>
 							<br>
@@ -311,7 +310,7 @@
 							<p style="color: white">Técnico em Informática</p>
 						</div>
 						<div class="col-md-4">
-							<img src="img/Diovanna.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+							<img src="img/Diovanna.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white;font-size:14px;"><b>Diovanna Caroline Schell</b></label>
 							<br>
@@ -320,7 +319,7 @@
 							<p style="color: white">Técnico em informática</p>
 						</div>
 						<div class="col-md-4">
-							<img src="img/Edenilson.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+							<img src="img/Edenilson.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white;font-size:14px;"><b>Edenilson Gonçalves</b></label>
 							<br>
@@ -337,7 +336,7 @@
 					<div class="col-md-2">
 					</div>
 					<div class="col-md-4">
-						<img src="img/Gabriel.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+						<img src="img/Gabriel.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 						<br>
 						<label for="form_name" style="color: white; font-size:14px;"><b>Gabriel Vassoler</b></label>
 						<br>
@@ -347,7 +346,7 @@
 						<p style="color:white;">Técnico em informática</p>
 					</div>
 					<div class="col-md-4">
-						<img src="img/Wagner.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+						<img src="img/Wagner.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 						<br>
 						<label for="form_name" style="color: white;font-size:14px;"><b>Wagner Titon</b></label>
 						<br>
@@ -363,10 +362,10 @@
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
-						<iframe width="100%" height="250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					<div class="col-md-6">
-						<iframe width="100%" height="250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					</center>
 				</div>
@@ -378,8 +377,8 @@
 			<div class="col-md-6">
 				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Desenvolvido pela equipe que representa Santa Catarina no desafio por equipe, na área de técnologia da Inofrmação e Comunicação na Olimpíada do Conhecimento 2016.<p>
 			 	<p style="color:white;margin-top:120px;font-size:20px;color:#393939;">Realização:<p>
-				<img src="img/olimpiada.png" class="img-responsive" style="margin-left:10px; margin-top:10px;">
-				<img src="img/senai.png" class="img-responsive" style="margin-left:10px;margin-top:30px; height:70px; width:390px;" >
+				<img src="img/olimpiada.png" class="img-responsive" alt="person" style="margin-left:10px; margin-top:10px;">
+				<img src="img/senai.png" class="img-responsive" alt="person" style="margin-left:10px;margin-top:30px; height:70px; width:390px;" >
 			</div>
 			<div class="col-md-6" style="padding-bottom: 20px">
 				<form id="contact-form" method="post" action="#" role="form" >
@@ -417,7 +416,7 @@
 						
 						<div class="col-md-12 pull-left">
 							<div class="col-md-3 pull-left">
-								<img src="captcha.php?l=150&a=50&tf=20&ql=5" class="pull-left" style=" margin-top:15px;">
+								<img src="captcha.php?l=150&a=50&tf=20&ql=5" alt="captcha" class="pull-left" style=" margin-top:15px;">
 							</div>
 							<div class="col-md-2"></div>
 							<div class="col-md-7 pull-left">
@@ -454,7 +453,7 @@
 						<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>	
 				  </div>
 		          <div class="modal-footer">
-		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">Entrar</button>
+		            <button type="submit" class="btn btn-theme">Entrar</button>
 		            <a href="#descubra" style="color:#21D97B; margin-left:15px;" data-dismiss="modal">Cadastre-se</a>
 		          </div>
 		        </form>

@@ -174,9 +174,9 @@
 					<div class="device-container i6 iphone-silver">
 						<div class="device-container-inner">
 							<div id="app-showcase" class="owl-carousel owl-theme">
-							  <div class="item"><img alt="print 1" src="img/cover/4.jpg" class="img-responsive" alt="Iphone Application 1"></div>
-							  <div class="item"><img alt="print 2" src="img/cover/5.jpg" class="img-responsive" alt="Iphone Application 2"></div>
-							  <div class="item"><img alt="print 3" src="img/cover/1.jpg" class="img-responsive" alt="Iphone Application 3"></div>
+							  <div class="item"><img src="img/cover/4.jpg" class="img-responsive" alt="Iphone Application 1"></div>
+							  <div class="item"><img src="img/cover/5.jpg" class="img-responsive" alt="Iphone Application 2"></div>
+							  <div class="item"><img src="img/cover/1.jpg" class="img-responsive" alt="Iphone Application 3"></div>
 							</div>
 						</div>
 					</div>
@@ -412,7 +412,7 @@
 						
 						<div class="col-md-12 pull-left">
 							<div class="col-md-3 pull-left">
-								<img src="captcha.php?l=150&a=50&tf=20&ql=5" alt="person" class="pull-left" style=" margin-top:15px;">
+								<img src="captcha.php?l=150&a=50&tf=20&ql=5" alt="captcha" class="pull-left" style=" margin-top:15px;">
 							</div>
 							<div class="col-md-2"></div>
 							<div class="col-md-7 pull-left">
