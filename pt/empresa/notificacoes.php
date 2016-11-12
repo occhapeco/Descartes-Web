@@ -4,8 +4,6 @@
 
   $service->call("notificacao.visualizar_todos_by_empresa", array($_SESSION["id"]));
 ?>
-
-<!DOCTYPE html>
 <html lang="pt">
   <head>
     <meta charset="utf-8">

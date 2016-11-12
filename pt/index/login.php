@@ -1,6 +1,4 @@
 <?php require_once("permissao.php"); ?>
-
-<!DOCTYPE html>
 <html lang="pt">
 <head>
     <title>Water²</title>

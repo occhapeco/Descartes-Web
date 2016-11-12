@@ -70,7 +70,6 @@
   $json = $service->call("agendamento.select_atrasados_by_empresa",array($_SESSION["id"]));
   $num_atrasados = count(json_decode($json));
 ?>
-
 <html lang="pt" style="overflow: hidden;"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

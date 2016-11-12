@@ -11,7 +11,6 @@
 	require_once("../conectar_service.php");
 
 ?>
-<!DOCTYPE html>
 <html lang="pt">
 <head>
 	<meta charset="UTF-8">

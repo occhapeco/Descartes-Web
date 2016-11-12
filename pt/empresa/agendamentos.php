@@ -19,8 +19,6 @@ if (isset($_POST["cancelar"]))
     $active="menu4";
   }
 ?>
-
-<!DOCTYPE html>
 <html lang="pt">
   <head>
     <meta charset="utf-8">

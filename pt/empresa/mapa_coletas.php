@@ -2,7 +2,6 @@
   require_once("permissao.php"); 
   require_once("../conectar_service.php");
 ?>
-<!DOCTYPE html>
 <html lang="pt">
   <head>
     <meta charset="utf-8">

@@ -128,8 +128,6 @@
   }
 
 ?>
-
-<!DOCTYPE html>
 <html lang="pt">
   <head>
     <meta charset="utf-8">
