@@ -362,10 +362,10 @@
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					</center>
 				</div>
