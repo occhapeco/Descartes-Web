@@ -110,7 +110,7 @@
     <?php
       require_once("navtop.php");
     ?>    
-    <section class="wrapper">
+    <section class="wrapper" style="margin-top:60px;">
       <h3><i class="fa fa-angle-right"></i> Statistiques</h3>
       <div class="col-md-1">
       </div>

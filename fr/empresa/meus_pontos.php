@@ -228,7 +228,7 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
         <section class="wrapper">
-          <h4><i class="fa fa-angle-right" style="margin-top:60px;"></i> Mes taches</h3>
+          <h3><i class="fa fa-angle-right" style="margin-top:60px;"></i> Mes taches</h3>
           <div class="row mt">
             <div class="col-lg-12">
               <div class="content-panel">

@@ -51,8 +51,8 @@
       MAIN CONTENT  TABELA RESPONSIVA
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
-        <section class="wrapper">
-          <h3><i class="fa fa-angle-right"></i> Notifications central</h3>
+        <section class="wrapper" style="margin-top:65px">
+          <h3><i class="fa fa-angle-right"></i> Notifications centrales</h3>
             <div class="col-lg-12 ds">
               <?php
                 $json = $service->call("notificacao.select_by_empresa", array($_SESSION["id"]));
