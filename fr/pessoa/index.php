@@ -1,7 +1,6 @@
 <?php 
   require_once("permissao_pessoa.php"); 
 ?>
-<!DOCTYPE html>
 <html lang="fr">
  <head>
     <meta charset="utf-8">

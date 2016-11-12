@@ -5,7 +5,6 @@
   $service->call("notificacao.visualizar_todos_by_usuario", array($_SESSION["id"]));
 ?>
 
-<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="utf-8">

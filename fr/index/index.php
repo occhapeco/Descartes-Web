@@ -10,7 +10,6 @@
 	require_once("../conectar_service.php");
 
 ?>
-<!DOCTYPE html>
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
