@@ -91,7 +91,7 @@
                           <tr>
                              <th>Nom du déchet</th>
                              <th>Nom du déchet (portugais)</th>
-                             <th><center>Effacer</center></th>
+                             <th class="text-center">Effacer</th>
                           </tr>
                        </thead>
                        <tbody>
@@ -103,7 +103,7 @@
                             echo '<tr>
                                     <td data-title="Nom du déchet">' . $lixo[$i]->nome_eng . '</td>
                                     <td data-title="Nom du déchet (portugais)">' . $lixo[$i]->nome . '</td>
-                                    <td data-title="Effacer"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
+                                    <td data-title="Effacer"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;" style="margin:0px auto;display:block;"></a></form></td></tr>';
                           }
                       ?>
                     </tbody>

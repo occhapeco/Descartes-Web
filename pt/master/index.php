@@ -91,7 +91,7 @@
                           <tr>
                              <th>Nome do Lixo</th>
                              <th>Nome do lixo (francês)</th>
-                             <th><center>Excluir</center></th>
+                             <th class="text-center">Excluir</th>
                           </tr>
                        </thead>
                        <tbody>
@@ -103,7 +103,7 @@
                             echo '<tr>
                                     <td data-title="Nome do lixo">' . $lixo[$i]->nome . '</td>
                                     <td data-title="Nome do lixo (francês)">' . $lixo[$i]->nome_eng . '</td>
-                                    <td data-title="Excluir"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><center><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;"></a></center></form></td></tr>';
+                                    <td data-title="Excluir"><form method="POST" action="#" id="lixo'. $lixo[$i]->id .'"><input type="hidden" id="id" name="id" value=' . $lixo[$i]->id . '><input type="hidden" id="excluir" name="excluir"><a href="#" onclick="document.getElementById(`lixo'. $lixo[$i]->id .'`).submit();" id="excluir"><img src="images/excluir.png" height="25px;" width="25px;" style="margin:0px auto;display:block;"></a></form></td></tr>';
                           }
                       ?>
                     </tbody>
