@@ -23,7 +23,7 @@
 	<title>DescartesLab</title>
 
 	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
 
 	<!-- General Style -->
 	<link href="style.css" rel="stylesheet">
@@ -69,7 +69,7 @@
 		color:#11ABB0;
 	}
 
-      #btfiltro{
+      .btfiltro{
         padding: 15px;
         color: white;
         margin-bottom: 15px;
@@ -237,7 +237,7 @@
 				</div>
 			<div class="col-lg-12">
 			<input id="pac-input" class="controls" type="text" placeholder="Pesquise a localidade">
-			 <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
+			 <a id="btfiltro" class="btn btn-theme03 btfiltro " data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
     		<div id="map"></div>
 
 			</div>
