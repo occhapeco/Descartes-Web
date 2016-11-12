@@ -55,7 +55,6 @@ section#landing {
 }
 .divider-vertical {
 	height: 100%;
-	border-right: 1px solid #FFF;
 }
 .cta {
 	background:url('../../img/landing/landing-bg.png');

@@ -28,7 +28,6 @@
     }
   }
 ?>
-<!DOCTYPE html>
 <html lang="pt">
   <head>
     <meta charset="utf-8">
@@ -41,10 +40,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
     
     <script src="https://use.fontawesome.com/9c8fd2c64e.js"></script>
 
@@ -135,7 +130,7 @@
             </form>
     	    </div>
 				</div><!-- col-lg-12-->      	
-			</section><! --/wrapper -->
+			</section><!--/wrapper -->
 
 			
      </section><!-- Conteiner-->
@@ -153,27 +148,6 @@
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
     
-    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
-    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
 
-    <!--script for this page-->
-    <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
-	
-	<script>
-
-     function formatar(mascara, documento){
-	     var i = documento.value.length;
-	     var saida = mascara.substring(0,1);
-	     var texto = mascara.substring(i);
-		 var tecla=(window.event);
-
-		if(tecla!=8){
-			 if (texto.substring(0,1) != saida){
-					documento.value += texto.substring(0,1);
-			 }
-		}
-	}
-   </script>
   </body>
 </html>

@@ -22,7 +22,7 @@
 	<title>DescartesLab</title>
 
 	<!-- Bootstrap -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
 
 	<!-- General Style -->
 	<link href="style.css" rel="stylesheet">
@@ -35,12 +35,9 @@
 	
 	<!-- Owl Carousel -->
 	<link href="css/owl.carousel.css" rel="stylesheet">
-	<link href="css/owl.theme.css" rel="stylesheet">
-	<link href="css/owl.transitions.css" rel="stylesheet">
 	
 	<!-- Vendor Styles -->
 	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/jasny-bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/push-menu.css" />
 	<link rel="stylesheet" type="text/css" href="vendor/animated-text/css/style.css" />
 	
 	<!-- Device Styles -->
@@ -68,7 +65,7 @@
 			color:#11ABB0;
 		}
 
-      #btfiltro{
+      .btfiltro{
         padding: 15px;
         color: white;
         margin-bottom: 15px;
@@ -175,8 +172,8 @@
 						<div class="device-container-inner">
 							<div id="app-showcase" class="owl-carousel owl-theme">
 							  <div class="item"><img src="img/cover/4.jpg" class="img-responsive" alt="Iphone Application 1"></div>
-							  <div class="item"><img src="img/cover/5.jpg" class="img-responsive" alt="Iphone Application 2"></div>
-							  <div class="item"><img src="img/cover/1.jpg" class="img-responsive" alt="Iphone Application 3"></div>
+							  <div class="item"><img src="img/cover/5.png" class="img-responsive" alt="Iphone Application 2"></div>
+							  <div class="item"><img src="img/cover/1.png" class="img-responsive" alt="Iphone Application 3"></div>
 							</div>
 						</div>
 					</div>
@@ -233,7 +230,7 @@
 				</div>
 			<div class="col-lg-12">
 			<input id="pac-input" class="controls" type="text" placeholder="rechercher les paramètres régionaux">
-			 <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
+			 <a id="btfiltro" class="btn btn-theme03 btfiltro" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
     		<div id="map"></div>
 
 			</div>
@@ -358,10 +355,10 @@
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:350px" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:350px" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					</center>
 				</div>
