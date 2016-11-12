@@ -36,12 +36,7 @@
 	
 	<!-- Owl Carousel -->
 	<link href="css/owl.carousel.css" rel="stylesheet">
-	<link href="css/owl.theme.css" rel="stylesheet">
-	<link href="css/owl.transitions.css" rel="stylesheet">
-	
 	<!-- Vendor Styles -->
-	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/jasny-bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="vendor/push-menu/css/push-menu.css" />
 	<link rel="stylesheet" type="text/css" href="vendor/animated-text/css/style.css" />
 	
 	<!-- Device Styles -->
