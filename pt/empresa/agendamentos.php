@@ -21,7 +21,7 @@ if (isset($_POST["cancelar"]))
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

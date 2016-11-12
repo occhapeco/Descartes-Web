@@ -11,12 +11,12 @@
 	Sections
 ------------------------*/
 section#landing {
-	background: url('../../img/bg.jpg');
+	background: url('../../img/bg3.jpg');
 	background-size: cover;
 	background-position: center;
 }
 .bg{
-	background: url('../../img/floresta.png');
+	background: url('../../img/bg3.png');
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -38,7 +38,7 @@ section#landing {
 	background-color: rgba(0,0,0,0.3);
 }
 .bg3{
-	background: url('../../img/bg3.jpg');
+	background: url('../../img/floresta.png');
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;

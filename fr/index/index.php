@@ -11,7 +11,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,6 @@
 
       #btfiltro{
         padding: 15px;
-        //background-color: #00FFFF;
         color: white;
         margin-bottom: 15px;
         margin-right: 15px;
@@ -94,7 +93,7 @@
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div class="logo"><img src="logo2.png" height="45px" width="130px" style="margin-left:30px; margin-top:5px;"> </div>
+      <div class="logo"><img src="logo2.png" height="45" alt="logo" width="130" style="margin-left:30px; margin-top:5px;"> </div>
       <nav id="nav-wrap" style="left: 25%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
@@ -109,7 +108,7 @@
           <li><a href="#sobre">Sur</a></li>
           <li><a href="#contato">Contact</a></li>
           <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">S'identifier</a></li>
-          <li><a href="../../pt/index/"><img src="img/bndbr.png" width="20px;"></a></li>
+          <li><a href="../../pt/index/"><img src="img/bndbr.png" width="20" alt="bandeira"></a></li>
         </ul>
       </nav>
     </div>
@@ -175,9 +174,9 @@
 					<div class="device-container i6 iphone-silver">
 						<div class="device-container-inner">
 							<div id="app-showcase" class="owl-carousel owl-theme">
-							  <div class="item"><img src="img/cover/4.jpg" class="img-responsive" alt="Iphone Application 1"></div>
-							  <div class="item"><img src="img/cover/5.jpg" class="img-responsive" alt="Iphone Application 2"></div>
-							  <div class="item"><img src="img/cover/1.jpg" class="img-responsive" alt="Iphone Application 3"></div>
+							  <div class="item"><img alt="print 1" src="img/cover/4.jpg" class="img-responsive" alt="Iphone Application 1"></div>
+							  <div class="item"><img alt="print 2" src="img/cover/5.jpg" class="img-responsive" alt="Iphone Application 2"></div>
+							  <div class="item"><img alt="print 3" src="img/cover/1.jpg" class="img-responsive" alt="Iphone Application 3"></div>
 							</div>
 						</div>
 					</div>
@@ -257,7 +256,7 @@
 						<div class="col-lg-6 divider-vertical" style="margin-top: 20px;">
 							<center>
 								<div class="testimonial-img">
-									<img src="img/landing/testimonials/pessoa.png" class="img-responsive img-circle" alt="person" height="150px" width="150px">
+									<img src="img/landing/testimonials/pessoa.png" class="img-responsive img-circle" alt="person" height="150" width="150">
 								</div>
 							</center>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Filtrer les points de collecte à partir du type de détritus que vous souhaitez jeter;</h4>
@@ -272,7 +271,7 @@
 						<div class="col-lg-6" style="margin-top: 20px;">
 						<center>
 							<div class="testimonial-img">
-								<img src="img/landing/testimonials/ind3.png" class="img-responsive img-circle" alt="person" height="150px" width="150px">
+								<img src="img/landing/testimonials/ind3.png" class="img-responsive img-circle" alt="person" height="150" width="150">
 							</div>
 						</center>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Enregistrez tous les points de collecte de votre entreprise;</h4>
@@ -299,7 +298,7 @@
 				<div class="col-md-12">
 				    <center>
 				    	<div class="col-md-4">
-							<img src="img/Andrew.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+							<img src="img/Andrew.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white;">Andrew Malta Silva</label>
 							<br>
@@ -307,7 +306,7 @@
 							<p style="color: white">Technicien informatique</p>
 						</div>
 						<div class="col-md-4">
-							<img src="img/Diovanna.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+							<img src="img/Diovanna.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white">Diovanna Caroline Schell</label>
 							<br>
@@ -316,7 +315,7 @@
 							<p style="color: white">Technicien informatique</p>
 						</div>
 						<div class="col-md-4">
-							<img src="img/Edenilson.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+							<img src="img/Edenilson.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 							<br>
 							<label for="form_name" style="color: white">Edenilson Gonçalves</label>
 							<br>
@@ -333,7 +332,7 @@
 					<div class="col-md-2">
 					</div>
 					<div class="col-md-4">
-						<img src="img/Gabriel.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+						<img src="img/Gabriel.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 						<br>
 						<label for="form_name" style="color: white">Gabriel Vassoler</label>
 						<br>
@@ -343,7 +342,7 @@
 						<p style="color:white;">Technicien informatique</p>
 					</div>
 					<div class="col-md-4">
-						<img src="img/Wagner.jpg" class="img-responsive img-circle" height="200px" width="200px" style="border:solid;border-color: #FFD449; padding:5px;">
+						<img src="img/Wagner.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
 						<br>
 						<label for="form_name" style="color: white;font-decoration:bold;">Wagner Titon</label>
 						<br>
@@ -359,10 +358,10 @@
 				<div class="col-md-12">
 				  <center>
 					<div class="col-md-6">
-						<iframe width="100%" height="250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					<div class="col-md-6">
-						<iframe width="100%" height="250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" frameborder="0" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
+						<iframe style="width:100%; height:250px" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen style="border:solid;border-color:white; max-width:500px;"></iframe>
 					</div>
 					</center>
 				</div>
@@ -374,8 +373,8 @@
 			<div class="col-md-6">
 				<p style="color:white;margin-top:30px;font-size:20px;color:#393939;">Développé par l'équipe représentant Santa Catarina dans le défi lancé par le personnel du domaine technologique de l'Inofrmação et de la Communication dans les Olympiades de la Connaissance en 2016.<p>
 			 	<p style="color:white;margin-top:120px;font-size:20px;color:#393939;">Exploit:<p>
-				<img src="img/olimpiada.png" class="img-responsive" style="margin-left:10px; margin-top:10px;">
-				<img src="img/senai.png" class="img-responsive" style="margin-left:10px;margin-top:30px; height:70px; weight:100px;" >
+				<img src="img/olimpiada.png" class="img-responsive" alt="person" style="margin-left:10px; margin-top:10px;">
+				<img src="img/senai.png" class="img-responsive" alt="person" style="margin-left:10px;margin-top:30px; height:70px; weight:100px;" >
 			</div>
 			<div class="col-md-6" style="padding-bottom: 20px">
 				<form id="contact-form" method="post" action="#" role="form" >
@@ -413,7 +412,7 @@
 						
 						<div class="col-md-12 pull-left">
 							<div class="col-md-3 pull-left">
-								<img src="captcha.php?l=150&a=50&tf=20&ql=5" class="pull-left" style=" margin-top:15px;">
+								<img src="captcha.php?l=150&a=50&tf=20&ql=5" alt="person" class="pull-left" style=" margin-top:15px;">
 							</div>
 							<div class="col-md-2"></div>
 							<div class="col-md-7 pull-left">
@@ -450,7 +449,7 @@
 						<input type="password" id="senha" name="senha" class="form-control" placeholder="mot de passe" required>	
 				  </div>
 		          <div class="modal-footer">
-		            <button type="submit" class="btn btn-theme" id="seleciona" name="seleciona">entrer</button>
+		            <button type="submit" class="btn btn-theme">entrer</button>
 		            <a href="#descubra" style="color:#21D97B; margin-left:15px;" data-dismiss="modal">Inscription</a>
 		          </div>
 		        </form>
