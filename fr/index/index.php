@@ -247,12 +247,11 @@
 				</div>
 				
 					<div class="col-lg-12 bg2">
-						<div class="col-lg-6 divider-vertical" style="margin-top: 20px;">
-							<center>
-								<div class="testimonial-img">
-									<img src="img/landing/testimonials/pessoa.png" class="img-responsive img-circle" alt="person" height="150" width="150">
-								</div>
-							</center>
+						<div class="col-lg-6" style="margin-top: 20px;">
+							<div class="col-lg-4"></div>
+							<div class="testimonial-img">
+								<img src="img/landing/testimonials/pessoa.png" class="img-responsive img-circle" alt="person" height="150" width="150">
+							</div>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Filtrer les points de collecte à partir du type de détritus que vous souhaitez jeter;</h4>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Recherchez le point de collecte le plus proche;</h4>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Planifier la collecte des déchets.</h4>
@@ -263,11 +262,11 @@
 							</div>
 						</div>
 						<div class="col-lg-6" style="margin-top: 20px;">
-						<center>
+							<div class="col-lg-4"></div>
+
 							<div class="testimonial-img">
 								<img src="img/landing/testimonials/ind3.png" class="img-responsive img-circle" alt="person" height="150" width="150">
 							</div>
-						</center>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Enregistrez tous les points de collecte de votre entreprise;</h4>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Choisissez de recevoir ou non des horaires;</h4>
 							<h4 class="pull-left"><span style="font-size: 28px;"><i class="fa fa-angle-right"></i></span> Carte avec des rassemblements programmés.</h4>
@@ -287,46 +286,45 @@
 
 	<section  id="sobre">
 		<div class="container-fluid">
-			<center><div class="section-title" style="padding-left:0;color: white">Sur</div></center>
-			<div class="row">
+			<div class="col-lg-12 text-center margin-lg no-margin-top">
+				<span class="section-title" style="color:white">Propos</span>
+			</div>
+			<div class="row text-center">
 				<div class="col-md-12">
-				    <center>
-				    	<div class="col-md-4">
-							<img src="img/Andrew.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
-							<br>
-							<label for="form_name" style="color: white;">Andrew Malta Silva</label>
-							<br>
-							<label for="form_name" style="color: white">Solutions logicielles pour les entreprises</label>
-							<p style="color: white">Technicien informatique</p>
-						</div>
-						<div class="col-md-4">
-							<img src="img/Diovanna.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
-							<br>
-							<label for="form_name" style="color: white">Diovanna Caroline Schell</label>
-							<br>
-							<label for="form_name" style="color: white">Création de sites web</label>
-							<p style="color: white">Formation industrielle en informatique</p>
-							<p style="color: white">Technicien informatique</p>
-						</div>
-						<div class="col-md-4">
-							<img src="img/Edenilson.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
-							<br>
-							<label for="form_name" style="color: white">Edenilson Gonçalves</label>
-							<br>
-							<label for="form_name" style="color: white">Infrastructure et réseaux locaux</label>
-							<p style="color: white">Appui à l'apprentissage industriel et à la maintenance des ordinateurs personnels et des réseaux locaux</p>
-							<p style="color: white">Formation industrielle en informatique</p>
-						</div>
-				 	</center>
+			    	<div class="col-md-4">
+						<img src="img/Andrew.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="margin:0px auto;display:block;border:solid;border-color: #FFD449; padding:5px;">
+						<br>
+						<label for="form_name" style="color: white;">Andrew Malta Silva</label>
+						<br>
+						<label for="form_name" style="color: white">Solutions logicielles pour les entreprises</label>
+						<p style="color: white">Technicien informatique</p>
+					</div>
+					<div class="col-md-4">
+						<img src="img/Diovanna.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="margin:0px auto;display:block;border:solid;border-color: #FFD449; padding:5px;">
+						<br>
+						<label for="form_name" style="color: white">Diovanna Caroline Schell</label>
+						<br>
+						<label for="form_name" style="color: white">Création de sites web</label>
+						<p style="color: white">Formation industrielle en informatique</p>
+						<p style="color: white">Technicien informatique</p>
+					</div>
+					<div class="col-md-4">
+						<img src="img/Edenilson.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="margin:0px auto;display:block;border:solid;border-color: #FFD449; padding:5px;">
+						<br>
+						<label for="form_name" style="color: white">Edenilson Gonçalves</label>
+						<br>
+						<label for="form_name" style="color: white">Infrastructure et réseaux locaux</label>
+						<p style="color: white">Appui à l'apprentissage industriel et à la maintenance des ordinateurs personnels et des réseaux locaux</p>
+						<p style="color: white">Formation industrielle en informatique</p>
+					</div>
 				 </div>
 			</div>
-			<div class="row">
+			<div class="row text-center">
 				<div class="col-md-12">
-					<center>
 					<div class="col-md-2">
 					</div>
 					<div class="col-md-4">
-						<img src="img/Gabriel.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
+						<img src="img/Gabriel.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="margin:0px auto;display:block;border:solid;border-color: #FFD449; padding:5px;">
 						<br>
 						<label for="form_name" style="color: white">Gabriel Vassoler</label>
 						<br>
@@ -336,7 +334,7 @@
 						<p style="color:white;">Technicien informatique</p>
 					</div>
 					<div class="col-md-4">
-						<img src="img/Wagner.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="border:solid;border-color: #FFD449; padding:5px;">
+						<img src="img/Wagner.jpg" class="img-responsive img-circle" alt="person" height="200" width="200" style="margin:0px auto;display:block;border:solid;border-color: #FFD449; padding:5px;">
 						<br>
 						<label for="form_name" style="color: white;font-decoration:bold;">Wagner Titon</label>
 						<br>
@@ -345,19 +343,16 @@
 					</div>
 					<div class="col-md-2">
 					</div>
-					</center>
 				</div>
 			</div>
 			<div class="row" style="margin-bottom:20px; margin-top:20px;">
 				<div class="col-md-12">
-				  <center>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:350px;border:solid;border-color:white; max-width:500px;" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen></iframe>
+						<iframe style="margin:0px auto;display:block;width:100%; height:350px;border:solid;border-color:white; max-width:500px;" src="https://www.youtube.com/embed/jirB2jNUd5Q" allowfullscreen></iframe>
 					</div>
 					<div class="col-md-6">
-						<iframe style="width:100%; height:350px;border:solid;border-color:white; max-width:500px;" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen></iframe>
+						<iframe style="margin:0px auto;display:block;width:100%; height:350px;border:solid;border-color:white; max-width:500px;" src="https://www.youtube.com/embed/uu5SPQDiFYE" allowfullscreen></iframe>
 					</div>
-					</center>
 				</div>
 			</div>
 		</div>
@@ -438,7 +433,7 @@
 		            <h4 class="modal-title">S'identifier</h4>
 		        </div>
 		        <form action="logar.php" method="post">
-		          <div class="esp1 col-md-12" align="center">
+		          <div class="esp1 col-md-12" style="margin:0px auto;display:block;">
 						<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
 						<input type="password" id="senha" name="senha" class="form-control" placeholder="mot de passe" required>	
 				  </div>
