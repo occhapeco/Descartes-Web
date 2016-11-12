@@ -99,7 +99,8 @@
       <?php 
           require_once("navtop.php");
       ?>
-    <section class="wrapper">
+    <section class="wrapper" style="margin-top:60px">
+      <h3><i class="fa fa-angle-right"></i> Mapa</h3>
       <div style="width:100%;height:auto;margin-top:10px;">
         <input id="pac-input" class="controls" type="text" placeholder="Pesquer une localité">
         <a id="btfiltro" class="btn btn-theme03" data-toggle="modal" data-target="#myModal"><i class="fa fa-filter"></i></a>
