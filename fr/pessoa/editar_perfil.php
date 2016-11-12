@@ -27,7 +27,6 @@
   }
 }
 ?>
-<!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="utf-8">
@@ -92,7 +91,7 @@
                     <label class="col-sm-2 col-sm-2 control-label">Téléphone</label>
                     <div class="col-sm-10">
   						        <?php
-                        echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required onkeypress="formatar("## ####-####", this)">';
+                        echo '<input type="text" id="telefone" name="telefone" class="form-control" maxlength="13" value="' . $usuario[0]->telefone . '" required>';
                       ?>
                     </div>
                 </div>
