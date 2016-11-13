@@ -63,13 +63,13 @@
               <div class="form-panel offset1">
                   <form class="form-horizontal style-form" method="post" action="#">
                       <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Nom de déchets</label>
+                          <label class="col-sm-2 col-sm-2 control-label">Nom de déchets (portugais)</label>
                           <div class="col-sm-10">
                             <input type="text" id="nome_lixo" name="nome_eng" maxlength="20"  class="form-control" autofocus required>
                           </div>
                       </div>
                       <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Nom du déchet (portugais)</label>
+                          <label class="col-sm-2 col-sm-2 control-label">Nom du déchet</label>
                           <div class="col-sm-10">
                             <input type="text" id="lixo" name="nome_lixo" maxlength="20"  class="form-control" autofocus required>
                           </div>

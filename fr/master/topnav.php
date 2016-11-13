@@ -34,7 +34,7 @@
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
         </a>
         <ul id="nav" class="nav" style="margin-left:430px" >
-          <li><center><a href="../../fr/empresa/"><img src="img/bndbr.png" width="20px;"></a></center></li>
+          <li><center><a href="../../pt/master/"><img src="img/bndbr.png" width="20px;"></a></center></li>
           <li><a href="../index/logout.php">Se déconnecter</a></li>
         </ul>
       </nav>
