@@ -57,6 +57,9 @@
                 $json = $service->call("notificacao.select_by_empresa", array($_SESSION["id"]));
                 $notificacao = json_decode($json);
                 $num = count($notificacao);
+                if ($num == 0) {
+                  echo "<center><h4>Você não tem notificações.</h4></center><br>";
+                }
                 for($i=0;$i<$num;$i++)
                 {
                     $json_dados = $service->call('usuario.select',array("id = ".$notificacao[$i]->usuario_id));
