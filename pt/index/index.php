@@ -94,7 +94,7 @@
 <header class="mobile">
   <div class="row">
     <div class="col full">
-      <div class="logo"><img src="logo2.png" height="45" alt="logo" width="130" style="margin-left:30px; margin-top:5px;"> </div>
+      <div class="logo"><img src="logo2.png" height="45" alt="logo" width="130" style="margin-left:30px; margin-top:5px;" class="img-responsive"> </div>
       <nav id="nav-wrap" style="left: 25%;">
         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
         	<i class="fa fa-bars" style="color:white; margin-top:2px;margin-left:8px;font-size:36px;"></i>
