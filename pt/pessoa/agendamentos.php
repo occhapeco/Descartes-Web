@@ -16,8 +16,7 @@
     
   elseif (isset($_POST["confirmar"]))
   {
-    $data_agendamento = DateTime::createFromFormat('Y-m-d',$_POST["data_agendamento"]);
-    $data_agendamento = $data_agendamento->format('d/m/Y');
+    $data_agendamento = $_POST["data_agendamento"];
     $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$data_agendamento,$_POST["horario"],$_POST["endereco"]));
     if($id_agendamento!=0)
     {
@@ -27,7 +26,6 @@
         // Como os nomes dos checkboxs são o id do tipo de lixo, é só ver se está checado
         $agendamento_has_tipo_lixo = $service->call('agendamento_has_tipo_lixo.insert', array($tipo_lixo[$i],$id_agendamento,$_POST["quantidade_lixo"]));
       }
-      echo "<script>alert('Agendamento efetuado com sucesso');</script>";
       header("location:pedidos.php");
     }
   }
@@ -37,7 +35,7 @@
   }
    
 ?>
-<html lang="pt">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,6 +53,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/bootstrap-select.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -82,39 +81,39 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
           <section class="wrapper">
-          <a href="enderecos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Novo Endereço</a>
-          	<h3><i class="fa fa-angle-right"></i> Efetuar Agendamento</h3>
+          <a href="enderecos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px; margin-top:15px;">Nouvelle adresse</a>
+            <h3><i class="fa fa-angle-right"></i> Efetuar agendamento</h3>
             
-          	
-          	<!-- BASIC FORM ELELEMNTS -->
-          	<div class="row mt">
-          		<div class="col-lg-12">
+            
+            <!-- BASIC FORM ELELEMNTS -->
+            <div class="row mt">
+              <div class="col-lg-12">
                   <div class="form-panel offset1">
-                      <p style="color: red; margin-left: 20px;">*CAMPO OBRIGATÓRIO</p>
+                    <p style="color: red; margin-left: 20px;">*CAMPO OBRIGATÓRIO</p>
 
                       <form class="form-horizontal style-form" method="post" action="#">
                           
                           <div class="form-group">
-                              <label class="col-sm-2 control-label">*Data do Recolhimento</label>
+                              <label class="col-sm-2 control-label">*Data do recolhimento</label>
                               <div class="col-sm-10">
-                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="9" value="" required autofocus placeholder="Informe a data desejada para o recolhimento">
-						                  </div>
+                                <input type="date" id="data_agendamento" name="data_agendamento" class="form-control" maxlength="10" value="" required autofocus placeholder="Entre a data do recolhimento">
+                              </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 control-label">*Horário</label>
                               <div class="col-sm-10">
-                                 <input type="time" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Informe o horário desejado para o recolhimento" required autofocus>
-					                     </div>
+                                 <input type="text" id="horario" name="horario" class="form-control" maxlength="5" value="" placeholder="Entre a hora do recolhimento" required autofocus>
+                               </div>
                           </div>
 
-						              <div class="form-group">
-                              <label class="col-sm-2 control-label">*Endereço para o Recolhimento</label>
+                          <div class="form-group">
+                              <label class="col-sm-2 control-label">*Endereço para o recolhimento</label>
                               <div class="container">
                                 
                                   <div class="form-group">
                                   <div class="col-sm-10">
-                                    <select id="endereco" name="endereco" class="selectpicker" data-live-search="true" title="Escolha um endereço ...">
+                                    <select id="endereco" name="endereco" class="selectpicker" data-live-search="true" title="Selecione um endereço ...">
                                     <?php
                                       $json_dados = $service->call('usuario_has_endereco.select', array("usuario_id = " .$_SESSION["id"]));
                                       $endereco = json_decode($json_dados);
@@ -130,9 +129,9 @@
                               </div>
 
                               <div>
-                                <label class="col-sm-2 control-label">*Tipo de Lixo a ser Recolhido</label>
+                                <label class="col-sm-2 control-label">* Tipo de lixo a ser recolhido</label>
                                 <div class="col-sm-10">
-                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false">
+                                   <select id="lixo" name="lixo[]" class="selectpicker" multiple data-done-button="false" title="Nada Selecionado">
                                       <?php
                                         $json_dados = $service->call('tipo_lixo_has_ponto.select_by_ponto',array($_POST["ponto_id"]));
                                         $tipo_lixo_has_ponto = json_decode($json_dados);
@@ -150,26 +149,27 @@
                           <div class="form-group"></div>
                           
                           <div>
-                              <label class="col-sm-2 control-label">*Quantidade de lixo a ser Recolhida</label>
+                              <label class="col-sm-2 control-label">*Quantidade de lixo a ser recolhido</label>
                               <div class="col-sm-10">
-                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Informe a quantidade de lixo que será descartado" required autofocus>
-                                 <span class="help-block">Valor em Kg</span>
+                                  <input type="text" id="quantidade_lixo" name="quantidade_lixo" class="form-control" maxlength="20" value="" placeholder="Entre a quantidade de lixo a ser recolhido" required autofocus>
+                                 <span class="help-block">Valor em kg</span>
                                </div>
                           </div>
-
+                          
                        </div> 
                           <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
                         <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
-                        <?php
+                         
+                          <?php
                           echo $input;
                         ?>
                     </form>
                   </div>
-			       	</div><!-- col-lg-12-->      	
-          	</div><!-- /row -->
-			  </section><! --/wrapper -->
+              </div><!-- col-lg-12-->       
+            </div><!-- /row -->
+        </section><! --/wrapper -->
 
-			
+      
      </section><!-- Conteiner-->
 
     <!-- js placed at the end of the document so the pages load faster -->
@@ -185,20 +185,20 @@
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
-	<script>
+  <script>
 
      function formatar(mascara, documento){
-	     var i = documento.value.length;
-	     var saida = mascara.substring(0,1);
-	     var texto = mascara.substring(i);
-		 var tecla=(window.event);
+       var i = documento.value.length;
+       var saida = mascara.substring(0,1);
+       var texto = mascara.substring(i);
+     var tecla=(window.event);
 
-		if(tecla!=8){
-			 if (texto.substring(0,1) != saida){
-					documento.value += texto.substring(0,1);
-			 }
-		}
-	}
+    if(tecla!=8){
+       if (texto.substring(0,1) != saida){
+          documento.value += texto.substring(0,1);
+       }
+    }
+  }
 //    $(document).ready(function() {
 //        $('#example-getting-started').multiselect();
 //    });

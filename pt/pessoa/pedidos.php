@@ -122,24 +122,24 @@
                                         <td data-title="Horário">' . $agendamento[$i]->horario . '</td>
                                         <td data-title="Endereço">' . $endereco[0]->nome . '</td>
                                         <td data-title="Coletadora">' . $empresa[0]->nome_fantasia . '</td>
-                                        <td data-title="Coletadora"><center>' . $status . '</center></td>';
+                                        <td data-title="Status"><center>' . $status . '</center></td>';
                                         if($status != 'Cancelado' and $status != 'Realizado')
                                         {
-                                          echo '<td data-title="Cancel"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a href="#" type="button" id="excluir" name="excluir" onclick="document.getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
+                                          echo '<td data-title="Cancelar"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a href="#" type="button" id="excluir" name="excluir" onclick="document.getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
                                           if($status != 'Não confirmado')
-                                            echo '<td data-title="Mark as finished"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="realizar" name="realizar"><center><a href="#" onclick="document.getElementById(\'finalizar'.$agendamento[$i]->id.'\').submit();"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td><td><center>-</center></td></tr>';
+                                            echo '<td data-title="Marcar como finalizado"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '></center></form></td><td><center>-</center></td></tr>';
                                           else
                                             echo '<td><center>-</center></td><td><center>-</center></td></tr>';
                                         }
                                         else
                                         {
-                                          echo '<td><center>-</center></td>';
-                                          echo '<td><center>-</center></td>';
+                                          echo '<td data-title="Cancelar"><center>-</center></td>';
+                                          echo '<td data-title="Marcar como realizado"><center>-</center></td>';
                                           if ($status == 'Cancelado') {
-                                            echo "<td><center>".$agendamento[$i]->justificativa."</center></td>";
+                                            echo "<td data-title='Justificativa'><center>".$agendamento[$i]->justificativa."</center></td>";
                                           }
                                           else
-                                            echo '<td><center>-</center></td>';
+                                            echo '<td data-title="Justificativa"><center>-</center></td>';
                                           echo "</tr>";
                                         }
                                        

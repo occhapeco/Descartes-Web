@@ -16,8 +16,7 @@
     
   elseif (isset($_POST["confirmar"]))
   {
-    $data_agendamento = DateTime::createFromFormat('Y-m-d',$_POST["data_agendamento"]);
-    $data_agendamento = $data_agendamento->format('d/m/Y');
+    $data_agendamento = $_POST["data_agendamento"];
     $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$data_agendamento,$_POST["horario"],$_POST["endereco"]));
     if($id_agendamento!=0)
     {
