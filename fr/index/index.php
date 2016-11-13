@@ -1,11 +1,17 @@
 <?php
-    require_once("permissao.php");
+	require_once("permissao.php");
 	$alert = "";
-	if(isset($_POST["palavra"]))
-		if ($_POST["palavra"] == $_SESSION["palavra"])
-			$alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Message envoyé avec succès</b></div>';
-		else
+	if(isset($_POST["email"]))
+	{
+		require_once('../lib/nusoap.php');
+
+		ini_set("soap.wsdl_cache_enabled", "1");
+		$service = new nusoap_client('http://descartes.esy.es/index.php?wsdl', true);
+		if(!$service->call("MandarEmail",array($_POST["name"],$_POST["email"],$_POST["message"])))
 			$alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Captha ne donne pas!</b></div>';
+		else
+			$alert = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Message envoyé avec succès</b></div>';
+	}
 
 	require_once("../conectar_service.php");
 
@@ -101,7 +107,7 @@
           <li><a href="#landing">Accueil</a></li>
           <li><a href="#pesquise">Chercher</a></li>
           <li><a href="#descubra">Registre</a></li>
-          <li><a href="#sobre">Sur</a></li>
+          <li><a href="#sobre">Propos</a></li>
           <li><a href="#contato">Contact</a></li>
           <li><a class="portfolio-link btn" data-toggle="modal" data-target="#login_modal">S'identifier</a></li>
           <li><a href="../../pt/index/"><img src="img/bndbr.png" width="20" alt="bandeira"></a></li>
@@ -398,22 +404,9 @@
 			                    <div class="help-block with-errors"></div>
 			                </div>
 			            </div>
-						
-						<div class="col-md-12 pull-left">
-							<div class="col-md-3 pull-left">
-								<img src="captcha.php?l=150&a=50&tf=20&ql=5" alt="captcha" class="pull-left" style=" margin-top:15px;">
-							</div>
-							<div class="col-md-2"></div>
-							<div class="col-md-7 pull-left">
-								<div class="form-group">
-									<label for="form_palavra" style="color: white; font-size:17px;">Mot</label>
-									<input id="form_palavra" type="text" name="palavra" class="form-control" placeholder="Entrez ici le mot à côté de" />
-								</div>
-							</div>
-						</div>
 					    <div class="col-md-12" style="margin-top: 20px; margin-bottom:0px">
 						   <div class="form-group">    
-							  <button type="submit" class="btn btn-store" style="padding: 15px 20px;color:#393939;" value="Validar Captcha">Envoyer</button>
+							  <button type="submit" class="btn btn-store" style="padding: 15px 20px;color:#393939;">Envoyer</button>
 	                       </div>					
 						</div>
 			        </div>
