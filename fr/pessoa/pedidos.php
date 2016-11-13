@@ -119,7 +119,7 @@
                                 }
                                 if($agendamento[$i]->aceito == 0 and $agendamento[$i]->realizado == 1)
                                 {
-                                  $status = 'Annulé';
+                                  $status = 'Annuler';
                                 }
                                 echo '<tr>
                                         <td data-title="Date">' . $format . '</td>
@@ -131,7 +131,7 @@
                                         {
                                           echo '<td data-title="Annuler"><form method="POST" action="#"><input type="hidden" id="id'.$agendamento[$i]->id.'" name="id'.$agendamento[$i]->id.'" value='.$agendamento[$i]->id.'><center><a href="#" type="button" id="excluir" name="excluir" onclick="document.getElementById(`agendamento_id`).value = getElementById(`id'.$agendamento[$i]->id.'`).value;" data-toggle="modal" data-target="#myModal"><img src="images/icones/icone-13.png" style="height:25px; width:25px;"></a></center></form></td>';
                                           if($status == 'Pas confirmé')
-                                            echo '<td data-title="Marquer comme terminé"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="realizar" name="realizar"><center><a href="#" onclick="document.getElementById(\'finalizar'.$agendamento[$i]->id.'\').submit();"><img src="images/icones/icone-06.png" style="height:25px; width:25px;"></a></center></form></td><td data-title="Raison"><center>-</center></td></tr>';
+                                            echo '<td data-title="Marquer comme terminé"><form method="POST" action="#" id="finalizar'.$agendamento[$i]->id.'"><input type="hidden" id="id" name="id" value=' . $agendamento[$i]->id . '><input type="hidden" id="realizar" name="realizar"><center>-</center></form></td><td data-title="Raison"><center>-</center></td></tr>';
                                           else
                                             echo '<td data-title="Annuler"><center>-</center></td><td data-title="Raison"><center>-</center></td></tr>';
                                         }
@@ -139,7 +139,7 @@
                                         {
                                           echo '<td><center>-</center></td>';
                                           echo '<td data-title="Raison"><center>-</center></td>';
-                                          if ($status == 'Cancelled') {
+                                          if ($status == 'Annuler') {
                                             echo "<td data-title='Raison'><center>".$agendamento[$i]->justificativa."</center></td>";
                                           }
                                           else
@@ -179,10 +179,10 @@
                                         <label class="col-sm-4 control-label">*Justification</label>
                                         <div class="col-sm-8">
                                               <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
-                                                  <option value="Overdue on the collection">En retard sur la collection</option>
-                                                  <option value="I will not be on my address in the scheduled day">Je ne serai pas sur mon adresse le jour prévu</option>
-                                                  <option value="Trash already picked up">Trash déjà ramassé</option>
-                                                  <option value="Another reason">Une autre raison</option>
+                                                  <option value="En retard sur la collection">En retard sur la collection</option>
+                                                  <option value="Je ne serai pas sur mon adresse le jour prévu">Je ne serai pas sur mon adresse le jour prévu</option>
+                                                  <option value="Trash déjà ramassé">Trash déjà ramassé</option>
+                                                  <option value="Une autre raison">Une autre raison</option>
                                               </select>
                                               <input type="hidden" name="agendamento_id" id="agendamento_id" value='0'>
                                         </div>
