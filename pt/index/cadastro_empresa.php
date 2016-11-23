@@ -11,15 +11,15 @@
     if($_POST["senha"] == $_POST["senha1"])
     {
       $empresa = $service->call('empresa.insert', array($_POST["razao_social"],$_POST["nome_fantasia"],$_POST["cnpj"],$_POST["senha"],$_POST["email"],$_POST["agendamento"]));
-      if ($empresa != 0)
+      if ($empresa > 0)
       {
        session_start();
           $_SESSION["id"] = $empresa;
           $_SESSION["tabela"] = "empresa";
           header("location: ../empresa");
       }
-      else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+      elseif(usuario == -2)
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>EMAIL JÁ CADASTRADO</b></div>';
     }
     else
     {

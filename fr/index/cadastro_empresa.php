@@ -25,8 +25,8 @@
         $_SESSION["tabela"] = "empresa";
         header("location: ../empresa");
       }
-      else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Quelque-chose s\'est mal passé!</b> Vérifiez votre connexion et réessayez.</div>';
+      elseif($usuario == -2)
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Déjà enregistré email</b> Vérifiez votre connexion et réessayez.</div>';
     }
     else
     {

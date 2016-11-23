@@ -11,15 +11,19 @@
     if($_POST["senha"] == $_POST["senha1"])
     {
       $usuario = $service->call('usuario.insert', array($_POST["nome"],$_POST["email"],$_POST["senha"],$_POST["cpf"],$_POST["telefone"]));
-      if ($usuario != 0)
+      if ($usuario > 0)
       {
           session_start();
           $_SESSION["id"] = $usuario;
           $_SESSION["tabela"] = "usuario";
           header("location: ../pessoa/");
       }
-      else
-        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>Algo deu errado!</b> Cheque sua conexão e tente novamente.</div>';
+      elseif ($usuario == -1)
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>CPF INVÁLIDO!</b></div>';
+      elseif ($usuario == -2)
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>EMAIL JÁ UTILIZADO!</b></div>';
+      elseif ($usuario == -3)
+        $alert = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><b>CPF JÁ CADASTRADO!</b></div>';
     }
     else
     {
