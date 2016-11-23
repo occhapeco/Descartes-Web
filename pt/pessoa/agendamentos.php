@@ -13,8 +13,8 @@
   }
   
   //Cadastrar Agendamentos
-    
-  elseif (isset($_POST["confirmar"]))
+   
+   elseif (isset($_POST["confirmar"]))
   {
     $data_agendamento = $_POST["data_agendamento"];
     $id_agendamento = $service->call('agendamento.insert',array($_POST["empresa_id"],$_SESSION["id"],$data_agendamento,$_POST["horario"],$_POST["endereco"]));
@@ -33,7 +33,6 @@
   {
     header("location:index.php");
   }
-   
 ?>
 <html lang="fr">
   <head>
@@ -125,8 +124,7 @@
                                    </select>
                                    </div>
                                   </div>
-                                
-                              </div>
+                                </div>
 
                               <div>
                                 <label class="col-sm-2 control-label">* Tipo de lixo a ser recolhido</label>
@@ -159,8 +157,7 @@
                        </div> 
                           <button type="submit" name="confirmar" id="confirmar" class="btn btn-sm btn-theme pull-right">Confirmar</button>    
                         <a href="pedidos.php" class="btn btn-sm btn-theme03 pull-right" id="oiem" style="margin-right: 10px;">Cancelar</a><br><br>    
-                         
-                          <?php
+                         <?php
                           echo $input;
                         ?>
                     </form>

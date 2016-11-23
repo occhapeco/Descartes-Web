@@ -86,7 +86,7 @@ if (isset($_POST["cancelar"]))
                       <table class="table table-striped table-condensed cf ">
                         <thead class="cf">
                         <tr>
-                            <th class="date">Date</th>
+                            <th class="date">Data</th>
                             <th class="time">Temps</th>  
                             <th>Adresse</th>
                             <th>Demandeur</th>
