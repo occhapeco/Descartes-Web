@@ -167,12 +167,13 @@
                           <div class="modal-content">
                               <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Cancelling justification</h4>
+                                  <h4 class="modal-title">Justificativa
+                                  </h4>
                               </div>
                               <form action="#" method="post" id="just">
                                 <div class="modal-body">
                                     
-                                        <label class="col-sm-4 control-label">*Justification</label>
+                                        <label class="col-sm-4 control-label">*Justificativa</label>
                                         <div class="col-sm-8">
                                               <select id="justificativa" name="justificativa" class="selectpicker" data-done-button="true">
                                                   <option value="Atraso no recolhimento">Atraso no recolhimento</option>
@@ -189,10 +190,8 @@
                                 </div>
                               </form>
                           </div>
-       
-                        </div>
+                      </div>
                   </div>
-   
               </div>
 
 
