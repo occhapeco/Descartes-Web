@@ -247,7 +247,7 @@
 			$cpf = preg_replace("![^0-9]+!",'',$cpf);
 			$telefone = preg_replace("![^0-9]+!",'',$telefone);
 	    	if (!validar_cpf($cpf))
-    			return 0;
+    			return -1;
     		$senha = sha1($senha);
 	    	$conexao = new mysqli("localhost","root","D3sc4rt3s-Lab:)","descarteslab");
 			$query = $conexao->query('SET CHARACTER SET utf8');
